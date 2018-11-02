@@ -1,0 +1,8 @@
+# [Office 365 管理 API](index.md)
+## [管理 API 概述](office-365-management-apis-overview.md)
+## [管理 API 入门](get-started-with-office-365-management-apis.md)
+## [服务通信 API（预览版）](office-365-service-communications-api-reference.md)
+## [管理活动 API 参考](office-365-management-activity-api-reference.md)
+## [管理活动 API 架构](office-365-management-activity-api-schema.md)
+## [管理活动 API 疑难解答](troubleshooting-the-office-365-management-activity-api.md)
+## [管理活动 API 常见问题解答](office-365-management-activity-api-faq.md)
