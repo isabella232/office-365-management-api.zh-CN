@@ -5,12 +5,12 @@ description: Office 365 管理活动 API 架构作为两层数据服务提供 - 
 ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
-ms.openlocfilehash: 13d964eb7665c70719b9310c880974b7eea6c530
-ms.sourcegitcommit: 0d3abd151e8970b84735eea975792ae930de6995
+ms.openlocfilehash: e9a7c47f10c3926f7fd681db6a11bb74cc034226
+ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "26215300"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "27240650"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -52,6 +52,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[Microsoft Teams 加载项架构](#microsoft-teams-add-ons-schema)|使用特定于 Microsoft Teams 加载项的属性扩展 Microsoft Teams 架构。|
 |[Microsoft Teams 设置架构](#microsoft-teams-settings-schema)|使用特定于 Microsoft Teams 设置更改事件的属性扩展 Microsoft Teams 架构。|
 |[Office 365 高级威胁防护和威胁智能架构](#office-365-advanced-threat-protection-and-threat-intelligence-schema)|使用特定于 Office 365 高级威胁防护和威胁智能数据的属性扩展常见架构。|
+|[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
 
 ## <a name="common-schema"></a>常见架构
 
@@ -94,16 +95,21 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |15|AzureActiveDirectoryStsLogon|Azure Active Directory 中安全令牌服务 (STS) 登录事件。|
 |18|SecurityComplianceCenterEOPCmdlet|来自安全与合规中心的 Admin 操作。|
 |20|PowerBIAudit|Power BI 事件。|
+|21|CRM|Microsoft CRM 事件。|
 |22|Yammer|Yammer 事件。|
+|23|SkypeForBusinessCmdlets|Skype for Business 事件。|
 |24|Discovery|通过在安全与合规中心中运行内容搜索和管理电子数据展示案例执行的电子数据展示活动事件。|
 |25|MicrosoftTeams|Microsoft Teams 中的事件。|
 |26|MicrosoftTeamsAddOns|Microsoft Teams 加载项中的事件。|
 |27|MicrosoftTeamsSettingsOperation|Microsoft Teams 中的设置更改。|
-|28|ThreatIntelligence|Office 365 高级威胁防护和威胁智能事件。|
+|28|ThreatIntelligence|Exchange Online Protection 和 Office 365 高级威胁防护中的网络钓鱼和恶意软件事件。|
 |30|MicrosoftFlow|Microsoft Flow 事件。|
 |32|MicrosoftStream|Microsoft Stream 事件。|
 |35|Project|Microsoft Project 事件。|
+|36|SharepointListOperation|Sharepoint List 事件。|
 |40|SecurityComplianceAlerts|安全与合规警报信号。|
+|41|ThreatIntelligenceUrl|Office 365 高级威胁防护中的安全链接信息块时间和信息块覆盖事件。|
+|47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
 
 ### <a name="enum-user-type---type-edmint32"></a>枚举：User Type - 类型：Edm.Int32
 
@@ -1116,9 +1122,34 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 |URL|Edm.String|是|用户单击 URL。|
 |UserIp|Edm.String|是|单击 URL 的用户的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
 
+## <a name="power-bi-schema"></a>Power BI 架构
 
+在[在 Office 365 保护中心搜索审核日志](/power-bi/service-admin-auditing#activities-audited-by-power-bi)中列出的 Power BI 事件将使用此架构。
 
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+| AppName               | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的应用名称。 |
+| DashboardName         | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的仪表板名称。 |
+| DataClassification    | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | [数据分类](/power-bi/service-data-classification)（如果有），针对发生事件的仪表板。 |
+| DatasetName           | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的数据集名称。 |
+| MembershipInformation | Collection([MembershipInformationType](#MembershipInformationType))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 与组相关的成员身份信息。 |
+| OrgAppPermission      | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 组织应用（整个组织、特定用户或特定组）的权限列表。 |
+| ReportName            | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的报表名称。 |
+| SharingInformation    | Collection([SharingInformationType](#SharingInformationType))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"    |  否  | 与向其发送共享邀请的人员相关的信息。 |
+| SwitchState           | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 与不同租户级开关的状态相关的信息。 |
+| WorkSpaceName         | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的工作区名称。 |
 
+### <a name="membershipinformationtype-complex-type"></a>MembershipInformationType 复杂类型
 
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+| MemberEmail | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 组的电子邮件地址。 |
+| 状态      | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 目前尚未填充。 |
 
+### <a name="sharinginformationtype-complex-type"></a>SharingInformationType 复杂类型
 
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+| RecipientEmail    | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 共享邀请的收件人的电子邮件地址。 |
+| RecipientName    | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 共享邀请的收件人的名称。 |
+| ResharePermission | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 授予此收件人的权限。 |
