@@ -5,12 +5,12 @@ description: 有关使用 Office 365 管理活动 API 的常见问题解答
 ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: 09/21/2018
-ms.openlocfilehash: 612aac60ab421d79a1c866a4a79157ee255d167d
-ms.sourcegitcommit: 525c0d0e78cc44ea8cb6a4bdce1858cb4ef91d57
+ms.openlocfilehash: 8118f44b04beedf33e98edd5ebc63c85b8c0fbc5
+ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/27/2018
-ms.locfileid: "25834792"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "27240622"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365 管理活动 API 常见问题解答
 
@@ -46,6 +46,11 @@ ms.locfileid: "25834792"
 
 有时，Office 365 服务会出现暂时中断或其他问题。 在这种情况下，一些审核记录会遭删除，而服务则会尝试回填这些记录。 虽然只有大约 5% 到 10% 的记录会出现这种情况，但正是这些记录导致了在某些情况下可能会发生的延迟。 如果延迟超过 5 天，请检查 Office 365 管理中心内的服务运行状况仪表板。 如果需要，还可以开启 [Microsoft 支持](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online)票证。
 
-#### <a name="i-am-encountering-a-throttling-error-in-the-management-activity-api-what-should-i-do"></a>我在使用管理活动 API 时遇到了限制错误。 该怎么办？
+#### <a name="im-encountering-a-throttling-error-in-the-management-activity-api-what-should-i-do"></a>我在使用管理活动 API 时遇到了限制错误。 该怎么办？
 
 开启 [Microsoft 支持](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online)票证，申请新限制，并添加提高限制的正当业务理由。 我们将会评估申请，如果接受，便会提高限制。
+
+#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activty-api"></a>如果禁用 Office 365 组织审核，会出现什么情况？ 是否仍可通过管理活动 API 获得事件？
+
+不可以。 必须为组织启用审核，才能通过管理活动 API 拉取记录。
+

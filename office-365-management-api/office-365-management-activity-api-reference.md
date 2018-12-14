@@ -5,12 +5,12 @@ description: 使用 Office 365 管理活动 API，可从 Office 365 和 Azure AD
 ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: 01/10/2018
-ms.openlocfilehash: fc738a0974cf27ad2ad5e2d9795df220579751a3
-ms.sourcegitcommit: 525c0d0e78cc44ea8cb6a4bdce1858cb4ef91d57
+ms.openlocfilehash: be3d88182eb04f3864b3843859c8b367339ea651
+ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/27/2018
-ms.locfileid: "25834807"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "27240636"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
