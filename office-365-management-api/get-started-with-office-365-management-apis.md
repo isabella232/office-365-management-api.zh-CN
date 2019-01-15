@@ -5,12 +5,13 @@ description: API 使用 Azure AD 提供身份验证服务，这样你便可使�
 ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
 ms.date: 09/05/2018
-ms.openlocfilehash: 87abfbe89f60710dc6c9981fa57bde4238790b1f
-ms.sourcegitcommit: 525c0d0e78cc44ea8cb6a4bdce1858cb4ef91d57
+localization_priority: Priority
+ms.openlocfilehash: 9732b5a838bdf4c14a6a13af8196704c89dec63d
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/27/2018
-ms.locfileid: "25834794"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014299"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Office 365 管理 API 入门
 
