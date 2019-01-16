@@ -5,12 +5,13 @@ description: Office 365 管理活动 API 架构作为两层数据服务提供 - 
 ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
-ms.openlocfilehash: e9a7c47f10c3926f7fd681db6a11bb74cc034226
-ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
+localization_priority: Priority
+ms.openlocfilehash: a8e8fdab103bcee6a5ea8de56dc91c45c1c20b43
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27240650"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014334"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -68,10 +69,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |UserType|Self.[UserType](#user-type)|是|执行操作的用户类型。 有关用户类型的详细信息，请参阅 [UserType](#user-type) 表。|
 |UserKey|Edm.String|是|UserID 属性中标识的用户的备选 ID。 例如，此属性使用 passport 唯一 ID (PUID) 填充，用于 SharePoint、OneDrive for Business 和 Exchange 中用户执行的事件。 此属性还可以为系统帐户执行的其他服务和事件中发生的事件指定与 UserID 属性相同的值。|
 |Workload|Edm.String|否|Office 365 服务，其中活动发生在 Workload 字符串中。 此属性的可能值为：<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Exchange</p></li><li><p>SharePoint</p></li><li><p>OneDrive</p></li><li><p>Azure Active Directory</p></li><li><p>SecurityComplianceCenter</p></li><li><p>Sway</p></li><li><p>ThreatIntelligence</p></li></ul>|
-|ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为 **Succeeded**、**PartiallySucceded** 或 **Failed**。 对于 Exchange 管理员活动，值为 **True** 或 **False**。|
+|ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为：**Succeeded**、**PartiallySucceeded** 或 **Failed**。 对于 Exchange 管理员活动，值为 **True** 或 **False**。|
 |ObjectId|Edm.string|否|对于 SharePoint 和 OneDrive for Business 活动，用户访问的文件或文件夹的完整路径名称。 对于 Exchange 管理员审核日志，通过 cmdlet 修改的对象的名称。|
 |UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。|
-|ClientIp|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
+|ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
 |Scope|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？ 可能的值为 **online** 和 **onprem**。 请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
 
 ### <a name="enum-auditlogrecordtype---type-edmint32"></a>枚举：AuditLogRecordType - 类型：Edm.Int32
@@ -540,7 +541,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |SendAsUserSmtp|Edm.String|否|所模拟的用户的 SMTP 地址。|
 |SendAsUserMailboxGuid|Edm.Guid|否|所访问的用于发送邮件的邮箱的 Exchange GUID。|
 |SendOnBehalfOfUserSmtp|Edm.String|否|代表其发送电子邮件的用户的 SMTP 地址。|
-|SendonBehalfOfUserMailboxGuid|Edm.Guid|否|所访问的代表发送邮件的邮箱的 Exchange GUID。|
+|SendOnBehalfOfUserMailboxGuid|Edm.Guid|否|所访问的代表发送邮件的邮箱的 Exchange GUID。|
 
 
 ### <a name="exchangeitem-complex-type"></a>ExchangeItem 复杂类型
@@ -741,7 +742,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |FileOwner|Edm.String|是|文档所有者。|
 |FilePathUrl|Edm.String|是|文档的 URL|
 |DocumentLastModifier|Edm.String|是|上次修改文档的用户。|
-|DocumentSharer|Edm.String|是|上次共享文档的用户。|
+|DocumentSharer|Edm.String|是|上次修改共享文档的用户。|
 |UniqueId|Edm.String|是|标识文件的 guid。|
 |LastModifiedTime|Edm.DateTime|是|上次修改文档时的 UTC 时间戳。|
 
@@ -756,7 +757,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |CC|Collection(Edm.String)|否|邮件“抄送”行上的电子邮件地址集合。|
 |BCC|Collection(Edm.String)|否|邮件“密件抄送”行上的电子邮件地址集合。|
 |Subject|Edm.String|是|电子邮件主题。|
-|Sent|Edm.DateTime|是|发送电子邮件时的 UTC 时间。|
+|发件箱|Edm.DateTime|是|发送电子邮件时的 UTC 时间。|
 |RecipientCount|Edm.Int32|是|邮件“收件人”、“抄送”和“密件抄送”行上的所有收件人总数。|
 
 
