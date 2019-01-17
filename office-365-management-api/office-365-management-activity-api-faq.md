@@ -5,12 +5,13 @@ description: 有关使用 Office 365 管理活动 API 的常见问题解答
 ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: 09/21/2018
-ms.openlocfilehash: 8118f44b04beedf33e98edd5ebc63c85b8c0fbc5
-ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
+localization_priority: Priority
+ms.openlocfilehash: 8e341def7bc3a4f71eee23bc04d01e11d1390e1d
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27240622"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014285"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365 管理活动 API 常见问题解答
 
@@ -50,7 +51,7 @@ ms.locfileid: "27240622"
 
 开启 [Microsoft 支持](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online)票证，申请新限制，并添加提高限制的正当业务理由。 我们将会评估申请，如果接受，便会提高限制。
 
-#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activty-api"></a>如果禁用 Office 365 组织审核，会出现什么情况？ 是否仍可通过管理活动 API 获得事件？
+#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activity-api"></a>如果禁用 Office 365 组织审核，会出现什么情况？ 是否仍可通过管理活动 API 获得事件？
 
 不可以。 必须为组织启用审核，才能通过管理活动 API 拉取记录。
 

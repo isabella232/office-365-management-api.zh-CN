@@ -5,12 +5,13 @@ description: 汇总 Microsoft 支持部门在提供此 API 支持方面所收到
 ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: 09/05/2018
-ms.openlocfilehash: 9267bd9e55be7605af72d9c77cf5ed415dcc5c9d
-ms.sourcegitcommit: 525c0d0e78cc44ea8cb6a4bdce1858cb4ef91d57
+localization_priority: Priority
+ms.openlocfilehash: ed84984dc3009d03e0bb7cacba16eafb687c93e0
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/27/2018
-ms.locfileid: "25834799"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014292"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -231,7 +232,7 @@ Response Code 403: {'error':{'code':'AF429','message':'Too many requests. Method
 
 如果你正在为公司的租户实现客户端，则 *PublisherIdentifier* 是租户 GUID。 如果要为多个客户创建 ISV 应用程序或外接程序，则 *PublisherIdentifier* 应该是 ISV 的租户 GUID，而不是最终用户公司的租户 GUID。
 
-如果包含有效的 *PublisherIdentifier*，那么你将进入一个池，其中每分钟为每个租户分配 6 万个请求。 请求的量是极大的。 但是，如果不包含 *PublishisherIdentifier* 参数，则你将进入每分钟为所有租户分配 6 万个请求的常规池。 在这种情况下，你很可能会发现调用受到限制。 为了防止出现这种情况，以下是使用 *PublisherIdentifier* 请求内容 blob 的方法：
+如果包含有效的 *PublisherIdentifier*，那么你将进入一个池，其中每分钟为每个租户分配 6 万个请求。 请求的量是极大的。 但是，如果不包含 *PublisherIdentifier* 参数，则你将进入每分钟为所有租户分配 6 万个请求的常规池。 在这种情况下，你很可能会发现调用受到限制。 为了防止出现这种情况，以下是使用 *PublisherIdentifier* 请求内容 blob 的方法：
 
 ```powershell
 $contentUri = ($response.Content | ConvertFrom-Json).contentUri[0]
@@ -239,7 +240,7 @@ $uri = $contentUri + '?PublisherIdentifier=82b24b6d-0591-4604-827b-705d55d0992f'
 $contents = Invoke-WebRequest -Method GET -Headers $headerParams -Uri $uri
 ```
 
-上一个示例假定 *$response* 变量填充了请求 /content 端点的响应，并且 *$hearderParams* 变量包含有效的访问令牌。 该脚本从响应中捕捉内容 URI 数组中的第一项，然后调用 GET 下载该 blob，并将其放入 *$contents* 变量中。 代码可能会遍历 contentUri 集合，针对每个 *contentUri* 发出 GET。
+上一个示例假定 *$response* 变量填充了请求 /content 端点的响应，并且 *$headerParams* 变量包含有效的访问令牌。 该脚本从响应中捕捉内容 URI 数组中的第一项，然后调用 GET 下载该 blob，并将其放入 *$contents* 变量中。 代码可能会遍历 contentUri 集合，针对每个 *contentUri* 发出 GET。
 
 ## <a name="frequently-asked-questions-about-the-office-365-management-api"></a>有关 Office 365 管理 API 的常见问题解答
 
