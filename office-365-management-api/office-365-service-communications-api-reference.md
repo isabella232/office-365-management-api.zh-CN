@@ -5,12 +5,13 @@ description: 此 API 可用于访问以下数据：“获取服务”、“获�
 ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: 09/05/2018
-ms.openlocfilehash: cde34da7377c5d4820d6ca62dd3affe806eda229
-ms.sourcegitcommit: 525c0d0e78cc44ea8cb6a4bdce1858cb4ef91d57
-ms.translationtype: HT
+localization_priority: Priority
+ms.openlocfilehash: dc231a4fb19be7ac0e9248d5f4d709681ff0abfa
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
+ms.translationtype: Auto
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/27/2018
-ms.locfileid: "25834793"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014306"
 ---
 # <a name="office-365-service-communications-api-reference-preview"></a>Office 365 服务通信 API（预览版）参考
 
@@ -380,7 +381,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 |**查询选项**|$select|选择一部分属性。|
 ||$top|选择前多少个结果（默认值和最大值：$top = 100）。|
 ||$skip|跳过的结果数（默认值：$skip = 0）。|
-|**响应**|“Message”实体列表。|“Message”实体包含“Id”(String)、“StartTime”(DateTimeOffset)、“EndTime”(DateTimeOffset)、“Status”(String)、“Messages”（“MessagHistory”实体列表）、“LastUpdatedTime”(DateTimeOffset)、“Workload”(String)、“WorkloadDisplayName”(String)、“Feature”(String)、“FeatureDisplayName”(String) 和“MessageType”（Enum，默认值：all）。<br/><br/>“MessageHistory”实体包含“PublishedTime”(DateTimeOffset) 和“MessageText”(String)。|
+|**响应**|“Message”实体列表。|“Message”实体包含“Id”(String)、“StartTime”(DateTimeOffset)、“EndTime”(DateTimeOffset)、“Status”(String)、“Messages”（“MessageHistory”实体列表）、“LastUpdatedTime”(DateTimeOffset)、“Workload”(String)、“WorkloadDisplayName”(String)、“Feature”(String)、“FeatureDisplayName”(String) 和“MessageType”（Enum，默认值：all）。<br/><br/>“MessageHistory”实体包含“PublishedTime”(DateTimeOffset) 和“MessageText”(String)。|
 
 #### <a name="sample-request"></a>示例请求
 

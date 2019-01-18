@@ -5,12 +5,13 @@ description: 使用 Office 365 管理活动 API，可从 Office 365 和 Azure AD
 ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: 01/10/2018
-ms.openlocfilehash: be3d88182eb04f3864b3843859c8b367339ea651
-ms.sourcegitcommit: a5a60b603acd9a17d7717420e377d5760e08c7da
-ms.translationtype: HT
+localization_priority: Priority
+ms.openlocfilehash: f9c4a79a882da31b85847bf60237e813c7cdb71c
+ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
+ms.translationtype: Auto
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "27240636"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "28014320"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
@@ -265,7 +266,7 @@ Content-Type: application/json; charset=utf-8
 |**路径**| `/subscriptions/content?contentType={ContentType}&amp;startTime={0}&amp;endTime={1}`||
 |**参数**|contentType|必须为有效内容类型。|
 ||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这**不是**应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
-||startTimeendTime|依据为内容可用时间的可选日期/时间 (UTC)，指明要返回的内容的时间范围。 此时间范围包含 startTime (startTime <= contentCreated)，但不包含 endTime (contentCreated < endTime)，这样便能使用不重叠的增量时间间隔翻阅可用内容。<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>YYYY-MM-DD</p></li><li><p>YYYY-MM-DDTHH:MM</p></li><li><p>YYYY-MM-DDTHH:MM:SS</p></li></ul>必须同时指定（或同时省略）开始时间和结束时间，两者间隔不得超过 24 小时，且开始时间与当前时间的间隔不得超过 7 天。 默认情况下，如果 startTime 和 endTime 遭省略，返回的便是过去 24 小时内的可用内容。<p>**注意**：即使可以指定间隔超过 24 小时的 startTime 和 endTime，也不建议这样做。 此外，如果确实返回了开始时间和结束时间间隔超过 24 小时的请求的任何响应结果，它们可能只是部分结果，不得纳入考虑范围。 应发出 startTime 和 endTime 间隔不超过 24 小时的请求。</p>|
+||startTime endTime|依据为内容可用时间的可选日期/时间 (UTC)，指明要返回的内容的时间范围。 此时间范围包含 startTime (startTime <= contentCreated)，但不包含 endTime (contentCreated < endTime)，这样便能使用不重叠的增量时间间隔翻阅可用内容。<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>YYYY-MM-DD</p></li><li><p>YYYY-MM-DDTHH:MM</p></li><li><p>YYYY-MM-DDTHH:MM:SS</p></li></ul>必须同时指定（或同时省略）开始时间和结束时间，两者间隔不得超过 24 小时，且开始时间与当前时间的间隔不得超过 7 天。 默认情况下，如果 startTime 和 endTime 遭省略，返回的便是过去 24 小时内的可用内容。<p>**注意**：即使可以指定间隔超过 24 小时的 startTime 和 endTime，也不建议这样做。 此外，如果确实返回了开始时间和结束时间间隔超过 24 小时的请求的任何响应结果，它们可能只是部分结果，不得纳入考虑范围。 应发出 startTime 和 endTime 间隔不超过 24 小时的请求。</p>|
 |**响应**|JSON 数组|可用内容由包含以下属性的 JSON 对象表示：<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>contentType</b>：指明内容类型。</p></li><li><p><b>contentId</b>：用于唯一标识内容的不透明字符串。</p></li><li><p><b>contentUri</b>：供检索内容时使用的 URL。</p></li><li><p><b>contentCreated</b>：内容的可用日期/时间。</p></li><li><p><b>contentExpiration</b>：内容不再可供检索的日期/时间。</p></li></ul>|
 
 
@@ -481,7 +482,7 @@ Content-Type: application/json; charset=utf-8
 |**路径**| `/subscriptions/notifications?contentType={ContentType}&amp;startTime={0}&amp;endTime={1}`||
 |**参数**|contentType|必须为有效内容类型。|
 ||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这**不是**应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
-||startTimeendTime|依据为内容可用时间的可选日期/时间 (UTC)，指明要返回的内容的时间范围。 此时间范围包含 _startTime_ ( _startTime_ <= contentCreated)，但不包含 _endTime_ (_contentCreated_ < endTime)，这样便能使用不重叠的增量时间间隔翻阅可用内容。<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>YYYY-MM-DD</p></li><li><p>YYYY-MM-DDTHH:MM</p></li><li><p>YYYY-MM-DDTHH:MM:SS</p></li></ul>必须同时指定（或同时省略）开始时间和结束时间，两者间隔不得超过 24 小时，且开始时间与当前时间的间隔不得超过 7 天。 默认情况下，如果 _startTime_ 和 _endTime_ 遭省略，返回的便是过去 24 小时内的可用内容。|
+||startTime endTime|依据为内容可用时间的可选日期/时间 (UTC)，指明要返回的内容的时间范围。 此时间范围包含 _startTime_ ( _startTime_ <= contentCreated)，但不包含 _endTime_ (_contentCreated_ < endTime)，这样便能使用不重叠的增量时间间隔翻阅可用内容。<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>YYYY-MM-DD</p></li><li><p>YYYY-MM-DDTHH:MM</p></li><li><p>YYYY-MM-DDTHH:MM:SS</p></li></ul>必须同时指定（或同时省略）开始时间和结束时间，两者间隔不得超过 24 小时，且开始时间与当前时间的间隔不得超过 7 天。 默认情况下，如果 _startTime_ 和 _endTime_ 遭省略，返回的便是过去 24 小时内的可用内容。|
 |**响应**|JSON 数组|通知由包含以下属性的 JSON 对象表示： <ul><li>**contentType**：指明内容类型。</li><li>**contentId**：用于唯一标识内容的不透明字符串。</li><li>**contentUri**：供检索内容时使用的 URL。 </li><li>**contentCreated**：内容的可用日期/时间。</li><li>**contentExpiration**：内容不再可供检索的日期/时间。</li><li>**notificationSent**：通知发送日期/时间。</li><li>**notificationStatus**：指明通知尝试发送是成功还是失败。</li></ul>|
 
 #### <a name="sample-request"></a>示例请求
