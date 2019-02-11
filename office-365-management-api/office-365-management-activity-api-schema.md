@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: a8e8fdab103bcee6a5ea8de56dc91c45c1c20b43
-ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
+ms.openlocfilehash: 6fa95b7134bd5bb8ac6a8f07c87df747ae086a81
+ms.sourcegitcommit: 55264094d1ebc2f9968b2d29d5982b1ba4e29118
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "28014334"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "29735241"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -1059,12 +1059,14 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 
 - 组织中的用户单击 URL，基于 [Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)保护被检测为恶意。  
 
+- SharePoint Online、OneDrive for Business 或 Microsoft Teams 中由 [Office 365 ATP](https://docs.microsoft.com/zh-CN/office365/securitycompliance/atp-for-spo-odb-and-teams) 保护检测为“恶意”的文件。  
+
 ### <a name="email-message-events"></a>电子邮件事件
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |AttachmentData|Collection(Self.[AttachmentData](#AttachmentData))|否|有关触发事件的电子邮件中附件的数据。|
-|DetectionType|Self.[DetectionType](#DetectionType)|是|检测类型。|
+|DetectionType|Edm.String|是|检测类型（例如，“Inline”**** - 在传递时检测到；“Delayed”**** - 在传递后检测到；“ZAP”**** - 消息由[零时差自动清除](https://support.office.com/zh-CN/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)删除）。 使用 ZAP 检测类型的事件通常前面是“Delayed”**** 检测类型的邮件。|
 |DetectionMethod|Edm.String|是|Office 365 ATP 用于检测的方法或技术。|
 |InternetMessageId|Edm.String|是|Internet 邮件 ID。|
 |NetworkMessageId|Edm.String|是|Exchange Online 网络消息 ID。|
@@ -1074,17 +1076,8 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 |SenderIp|Edm.String|是|提交 Office 365 电子邮件的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
 |Subject|Edm.String|是|邮件的主题行。|
 |Verdict|Edm.String|是|邮件裁定。|
-
-### <a name="enum-detectiontype---type-edmint32"></a>枚举：DetectionType - 类型：Edm.Int32
-
-#### <a name="detectiontype"></a>DetectionType
-
-|**值**|**成员名称**|**说明**|
-|:-----|:-----|:-----|
-|0|Inline|在送达时检测到威胁。|
-|1|Delayed|在送达后检测到威胁。|
-|2|ZAP|通过[零时差自动清除](https://support.office.com/zh-CN/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)删除邮件。 使用此检测类型的事件通常前面是“Delayed”检测类型的邮件。|
-
+|MessageTime|Edm.Date|是|接收或发送电子邮件的协调世界时 (UTC) 日期和时间。|
+|EventDeepLink|Edm.String|是|指向资源管理器中的电子邮件事件的深层链接或 Office 365 安全与合规中心中的实时报表。|
 
 ### <a name="attachmentdata-complex-type"></a>AttachmentData 复杂类型
 
@@ -1122,6 +1115,55 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 |TimeOfClick|Edm.Date|是|用户单击 URL 时的协调世界时 (UTC) 日期和时间。|
 |URL|Edm.String|是|用户单击 URL。|
 |UserIp|Edm.String|是|单击 URL 的用户的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
+
+### <a name="enum-urlclickaction---type-edmint32"></a>枚举：URLClickAction - 类型：Edm.Int32
+
+#### <a name="urlclickaction"></a>URLClickAction
+
+|**值**|**成员名称**|**说明**|
+|:-----|:-----|:-----|
+|0|None|没有检测到单击。|
+|1|Allowed|允许用户导航到该 URL（因为 [Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)认为该 URL 是安全的）。|
+|2|Blockpage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL。|
+|3|PendingDetonationPage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆待定页。|
+|4|BlockPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL；但用户忽略阻碍以导航到该 URL。|
+|5|PendingDetonationPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆页；但用户忽略以导航到该 URL。|
+
+
+### <a name="file-events"></a>文件事件
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|FileData|Self.[FileData](#FileData)|是|有关触发事件的文件的数据。|
+|SourceWorkload|Self.[SourceWorkload](#SourceWorkload)|是|在其中找到 teh 文件的工作负载或服务（例如，SharePoint Online、OneDrive for Business 或 Microsoft Teams）
+|DetectionMethod|Edm.String|是|Office 365 ATP 用于检测的方法或技术。|
+|LastModifiedDate|Edm.Date|是|创建文件或上次修改文件时的协调世界时 (UTC) 日期和时间。|
+|LastModifiedBy|Edm.String|是|创建或上次修改文件的用户的标识符（例如，电子邮件地址）。|
+|EventDeepLink|Edm.String|是|指向资源管理器中的文件事件的深层链接或安全与合规中心中的实时报表。|
+
+### <a name="filedata-complex-type"></a>FileData 复杂类型
+
+#### <a name="filedata"></a>FileData
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|DocumentId|Edm.String|是|SharePoint、OneDrive 或 Microsoft Teams 中文件的唯一标识符。|
+|FileName|Edm.String|是|触发事件的文件的名称。|
+|FilePath|Edm.String|是|SharePoint、OneDrive 或 Microsoft Teams 中文件的路径（位置）。|
+|FileVerdict||Self.[FileVerdict](#FileVerdict)|是|文件恶意软件裁定。|
+|MalwareFamily|Edm.String|否|文件恶意软件系列。|
+|SHA256|Edm.String|是|文件 SHA256 哈希。|
+|FileSize|Edm.String|是|文件大小（以字节为单位）。|
+
+### <a name="enum-sourceworkload---type-edmint32"></a>枚举：SourceWorkload - 类型：Edm.Int32
+
+#### <a name="sourceworkload"></a>SourceWorkload
+
+|**值**|**成员名称**|
+|:-----|:-----|
+|0|SharePoint Online|
+|1|OneDrive for Business|
+|2|Microsoft Teams|
 
 ## <a name="power-bi-schema"></a>Power BI 架构
 
