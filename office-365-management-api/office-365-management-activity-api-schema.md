@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 6fa95b7134bd5bb8ac6a8f07c87df747ae086a81
-ms.sourcegitcommit: 55264094d1ebc2f9968b2d29d5982b1ba4e29118
+ms.openlocfilehash: 72392671dccec43b70684bbde6f53ac926b8d06e
+ms.sourcegitcommit: 95a3313d95b79a2164008d32c4a4f03bf873a23c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "29735241"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "30379193"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -108,9 +108,13 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |32|MicrosoftStream|Microsoft Stream 事件。|
 |35|Project|Microsoft Project 事件。|
 |36|SharepointListOperation|Sharepoint List 事件。|
+|38|DataGovernance|与安全与合规中心中的保留策略和保留标签相关的事件|
 |40|SecurityComplianceAlerts|安全与合规警报信号。|
 |41|ThreatIntelligenceUrl|Office 365 高级威胁防护中的安全链接信息块时间和信息块覆盖事件。|
+|44|WorkplaceAnalytics|工作区分析事件。|
+|45|PowerAppsApp|PowerApps 应用程序事件。|
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
+||||
 
 ### <a name="enum-user-type---type-edmint32"></a>枚举：User Type - 类型：Edm.Int32
 

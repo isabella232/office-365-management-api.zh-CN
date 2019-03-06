@@ -6,12 +6,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: 01/10/2018
 localization_priority: Priority
-ms.openlocfilehash: 76907cf9f22078a232cc20e65ba5fdc12c7f5d7e
-ms.sourcegitcommit: 55264094d1ebc2f9968b2d29d5982b1ba4e29118
+ms.openlocfilehash: e6675628a384ab4b2dac3342875332b50586526f
+ms.sourcegitcommit: 95a3313d95b79a2164008d32c4a4f03bf873a23c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "29735227"
+ms.lasthandoff: 03/05/2019
+ms.locfileid: "30379179"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
@@ -22,7 +22,7 @@ ms.locfileid: "29735227"
 借助 Office 365 服务活动 API 这项 REST Web 服务，可开发使用任何语言和宿主环境（支持 HTTPS 和 X.509 证书）的解决方案。 此 API 依赖 Azure AD 和 OAuth2 协议进行身份验证和授权。 若要在应用程序中访问此 API，必须先在 Azure AD 中注册应用程序，并为它配置适当的权限。 这样，应用程序便能请求获取调用此 API 所需的 OAuth2 访问令牌。 有关详细信息，请参阅 [Office 365 管理 API 入门](get-started-with-office-365-management-apis.md)。
 
 > [!NOTE] 
-> 若要了解 Office 365 管理活动 API 返回的数据的架构（包括可能会影响实现的已知问题和即将发生的更改），请参阅 [Office 365 管理活动 API 架构](office-365-management-activity-api-schema.md)。
+> 有关 Office 365 管理活动 API 返回的数据架构的信息，请参阅 [Office 365 管理活动 API 架构](office-365-management-activity-api-schema.md)。
 
 
 ## <a name="working-with-the-office-365-management-activity-api"></a>使用 Office 365 管理活动 API
