@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 72392671dccec43b70684bbde6f53ac926b8d06e
-ms.sourcegitcommit: 95a3313d95b79a2164008d32c4a4f03bf873a23c
+ms.openlocfilehash: de6a841339690c483ed58e38e0b691b00fadab4d
+ms.sourcegitcommit: b030dc1b7ca46280191dd2f54c8179795657d792
 ms.translationtype: HT
 ms.contentlocale: zh-CN
 ms.lasthandoff: 03/05/2019
-ms.locfileid: "30379193"
+ms.locfileid: "30409076"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -187,7 +187,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|
 |AccessInvitationAccepted*|邀请查看或编辑共享文件（或文件夹）的收件人已通过单击邀请中的链接访问共享文件。|
 |AccessInvitationCreated*|用户向其他人发出邀请（在其组织内部或外部）来查看或编辑 SharePoint 或 OneDrive for Business 网站上的共享文件或文件夹。 事件条目的详细信息标识共享文件的名称、接收邀请的用户以及发送邀请的人员所选择的共享权限的类型。|
-|AccessInvitationExpired*|向外部用户发送的邀请过期。 默认情况下，如果在 7 天内未接受邀请，那么发送给组织外部用户的邀请将过期。|
+|AccessInvitationExpired*|向外部用户发送的邀请过期。默认情况下，如果未接受邀请，向您组织之外的某个用户发送的邀请将在 7 天之后过期。|
 |AccessInvitationRevoked*|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者撤回发送给组织外部用户的邀请。 邀请只有在被接受之前才能撤回。|
 |AccessInvitationUpdated*|在 SharePoint 或 OneDrive for Business 网站上创建并向其他人发送邀请以查看或编辑共享文件（或文件夹）的用户可以重新发送邀请。|
 |AccessRequestApproved|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者批准用户访问网站或文档的请求。|
@@ -223,7 +223,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |EntityForceCheckedIn|用户在 Project Web App 中的日历、自定义字段或查找表上强制签入。|
 |ExemptUserAgentSet*|全局管理员向 SharePoint 管理中心的豁免用户代理列表添加用户代理。|
 |FileAccessed|用户或系统帐户访问 SharePoint 或 OneDrive for Business 网站上的文件。 系统帐户还可以生成 FileAccessed 事件。|
-|FileCheckOutDiscarded*|用户放弃（或撤销）签出的文件。 这意味着他们在签出文件时对文件所做的任何更改都将被放弃，而不会保存到文档库中的文档版本中。|
+|FileCheckOutDiscarded*|用户放弃（或撤消）签出的文件。这意味着将放弃签出文件时对其所做的更改，而不将其保存到文档库中的文档版本。|
 |FileCheckedIn*|用户签入在 SharePoint 或 OneDrive for Business 文档库中签出的文档。|
 |FileCheckedOut*|用户签出位于 SharePoint 或 OneDrive for Business 文档库的文档。 用户可以对与其共享的文档执行签出和更改操作。|
 |FileCopied|用户从 SharePoint 或 OneDrive for Business 网站复制文档。 可以将复制的文件保存到网站上的另一个文件夹。|
@@ -312,7 +312,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |SharedLinkCreated|用户在 SharePoint 或 OneDrive for Business 中创建共享文件的链接。 此链接可以发送给其他人，以便授予其对文件的访问权限。 用户可创建两个类型的链接：允许用户查看和编辑共享文件的链接，或仅允许用户查看文件的链接。|
 |SharedLinkDisabled*|用户禁用（永久）为共享文件而创建的链接。|
 |SharingInvitationAccepted*|用户接受共享文件或文件夹的邀请。 当用户与其他用户共享文件时，将记录此事件。|
-|SharingRevoked*|用户取消共享之前与其他用户共享的文件或文件夹。 当用户停止与其他用户共享文件时，将记录此事件。|
+|SharingRevoked*|用户取消共享以前与其他用户共享的文件或文件夹。当用户停止与其他用户共享文件时，会记录此事件。|
 |SharingSet|用户与组织内的其他用户共享位于 SharePoint 或 OneDrive for Business 中的文件或文件夹。|
 |SiteAdminChangeRequest*|用户请求添加为 SharePoint 网站集的网站集管理员。 网站集管理员具有网站集和所有子网站的完全控制权限。|
 |SiteCollectionAdminAdded*|网站集管理员或所有者添加人员，作为 SharePoint 或 OneDrive for Business 网站的网站集管理员。 网站集管理员具有网站集和所有子网站的完全控制权限。|
@@ -1069,7 +1069,7 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
-|AttachmentData|Collection(Self.[AttachmentData](#AttachmentData))|否|有关触发事件的电子邮件中附件的数据。|
+|AttachmentData|Collection(Self.[AttachmentData](#attachmentdata)|否|有关触发事件的电子邮件中附件的数据。|
 |DetectionType|Edm.String|是|检测类型（例如，“Inline”**** - 在传递时检测到；“Delayed”**** - 在传递后检测到；“ZAP”**** - 消息由[零时差自动清除](https://support.office.com/zh-CN/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)删除）。 使用 ZAP 检测类型的事件通常前面是“Delayed”**** 检测类型的邮件。|
 |DetectionMethod|Edm.String|是|Office 365 ATP 用于检测的方法或技术。|
 |InternetMessageId|Edm.String|是|Internet 邮件 ID。|
@@ -1091,7 +1091,7 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 |:-----|:-----|:-----|:-----|
 |FileName|Edm.String|是|附件的文件名。|
 |FileType|Edm.String|是|附件的文件类型。|
-|FileVerdict|Self.[FileVerdict](#FileVerdict)|是|文件恶意软件裁定。|
+|FileVerdict|Self.[FileVerdict](#fileverdict)|是|文件恶意软件裁定。|
 |MalwareFamily|Edm.String|否|文件恶意软件系列。|
 |SHA256|Edm.String|是|文件 SHA256 哈希。|
 
@@ -1113,8 +1113,7 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 |:-----|:-----|:-----|:-----|
 |UserID|Edm.String|是|单击 URL 的用户的标识符（例如电子邮件地址）。|
 |AppName|Edm.String|是|从中单击 URL 的 Office 365 服务（例如邮件）。|
-|Blocked|Edm.Boolean|是|如果单击 URL 被 [Office 365 ATP安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)保护阻止，则为 true。|
-|ClickedThrough|Edm.Boolean|是|如果用户根据组织的 [Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)保护策略通过单击（覆盖）解除了 URL 阻止，则为 true。|
+|URLClickAction|Self.[URLClickAction](#urlclickaction)|是|URL 的单击操作基于组织针对 [Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)的策略。|
 |SourceId|Edm.String|是|从中单击 URL 的 Office 365 服务的标识符（例如，对于邮件而言，这是 Exchange Online 网络消息 ID）。|
 |TimeOfClick|Edm.Date|是|用户单击 URL 时的协调世界时 (UTC) 日期和时间。|
 |URL|Edm.String|是|用户单击 URL。|
@@ -1138,8 +1137,8 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
-|FileData|Self.[FileData](#FileData)|是|有关触发事件的文件的数据。|
-|SourceWorkload|Self.[SourceWorkload](#SourceWorkload)|是|在其中找到 teh 文件的工作负载或服务（例如，SharePoint Online、OneDrive for Business 或 Microsoft Teams）
+|FileData|Self.[FileData](#filedata)|是|有关触发事件的文件的数据。|
+|SourceWorkload|Self.[SourceWorkload](#sourceworkload)|是|在其中找到 teh 文件的工作负载或服务（例如，SharePoint Online、OneDrive for Business 或 Microsoft Teams）
 |DetectionMethod|Edm.String|是|Office 365 ATP 用于检测的方法或技术。|
 |LastModifiedDate|Edm.Date|是|创建文件或上次修改文件时的协调世界时 (UTC) 日期和时间。|
 |LastModifiedBy|Edm.String|是|创建或上次修改文件的用户的标识符（例如，电子邮件地址）。|
@@ -1154,7 +1153,7 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 |DocumentId|Edm.String|是|SharePoint、OneDrive 或 Microsoft Teams 中文件的唯一标识符。|
 |FileName|Edm.String|是|触发事件的文件的名称。|
 |FilePath|Edm.String|是|SharePoint、OneDrive 或 Microsoft Teams 中文件的路径（位置）。|
-|FileVerdict||Self.[FileVerdict](#FileVerdict)|是|文件恶意软件裁定。|
+|FileVerdict|Self.[FileVerdict](#fileverdict)|是|文件恶意软件裁定。|
 |MalwareFamily|Edm.String|否|文件恶意软件系列。|
 |SHA256|Edm.String|是|文件 SHA256 哈希。|
 |FileSize|Edm.String|是|文件大小（以字节为单位）。|
