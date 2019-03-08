@@ -4,14 +4,14 @@ title: Office 365 管理活动 API 常见问题解答
 description: 有关使用 Office 365 管理活动 API 的常见问题解答
 ms.ContentId: ''
 ms.topic: reference (API)
-ms.date: 09/21/2018
+ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 8e341def7bc3a4f71eee23bc04d01e11d1390e1d
-ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
+ms.openlocfilehash: 8954be1b9076eb2a6f640ee96cc2b612addcabc0
+ms.sourcegitcommit: c6a3d440a1ecc8f8f0b00b3fdd8e41127514a6f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "28014285"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "30458512"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365 管理活动 API 常见问题解答
 
@@ -55,3 +55,6 @@ ms.locfileid: "28014285"
 
 不可以。 必须为组织启用审核，才能通过管理活动 API 拉取记录。
 
+#### <a name="why-are-targetupdatedproperties-no-longer-in-extendedproperties-in-the-audit-logs-for-azure-active-directory-activities"></a>TargetUpdatedProperties 为何不再位于 Azure Active Directory 活动审核日志的 ExtendedProperties 中？
+
+TargetUpdatedProperties 显示在 ExtendedProperties 中。 但是，它们将从 ExtendedProperties 中删除，并且现在将显示在 ModifiedProperties 中。
