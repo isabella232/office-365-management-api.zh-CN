@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: de6a841339690c483ed58e38e0b691b00fadab4d
-ms.sourcegitcommit: b030dc1b7ca46280191dd2f54c8179795657d792
+ms.openlocfilehash: 41018718dd5890c5c628672828a2dd365a6bebe3
+ms.sourcegitcommit: c6a3d440a1ecc8f8f0b00b3fdd8e41127514a6f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/05/2019
-ms.locfileid: "30409076"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "30458526"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -54,6 +54,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[Microsoft Teams 设置架构](#microsoft-teams-settings-schema)|使用特定于 Microsoft Teams 设置更改事件的属性扩展 Microsoft Teams 架构。|
 |[Office 365 高级威胁防护和威胁智能架构](#office-365-advanced-threat-protection-and-threat-intelligence-schema)|使用特定于 Office 365 高级威胁防护和威胁智能数据的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
+|[工作区分析](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
+|||
 
 ## <a name="common-schema"></a>常见架构
 
@@ -963,8 +965,6 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 
 ## <a name="data-center-security-base-schema"></a>数据中心安全基本架构
 
-
-
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |DataCenterSecurityEventType|Self.[DataCenterSecurityEventType](#datacentersecurityeventtype)|是|锁定框中的 dmdlet 事件的类型。|
@@ -1199,3 +1199,14 @@ Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、�
 | RecipientEmail    | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 共享邀请的收件人的电子邮件地址。 |
 | RecipientName    | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 共享邀请的收件人的名称。 |
 | ResharePermission | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 授予此收件人的权限。 |
+
+## <a name="workplace-analytics-schema"></a>工作区分析架构
+
+在[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/office365/securitycompliance/search-the-audit-log-in-security-and-compliance#microsoft-workplace-analytics-activities)中列出的工作区分析事件将使用此架构。
+
+| **参数**     | **类型**            | **强制？** | **说明**|
+|:------------------ | :------------------ | :--------------|:--------------|
+| WpaUserRole        | Edm.String | 否     | 执行操作的用户的工作区分析角色。                                                                                            |
+| ModifiedProperties | 集合 (Common.ModifiedProperty) | 否 | 该属性包括已修改属性的名称、已修改属性的新值和已修改属性的先前值。|
+| OperationDetails   | 集合 (Common.NameValuePair)    | 否 | 已更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value**。|
+||||
