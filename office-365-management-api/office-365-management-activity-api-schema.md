@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 41018718dd5890c5c628672828a2dd365a6bebe3
-ms.sourcegitcommit: c6a3d440a1ecc8f8f0b00b3fdd8e41127514a6f6
+ms.openlocfilehash: 4604bd0aec3856b377a24d758a0961e8da1d9bf6
+ms.sourcegitcommit: 338c5c61687bc15ade48ecbae80d7f477640b68f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/07/2019
-ms.locfileid: "30458526"
+ms.lasthandoff: 03/14/2019
+ms.locfileid: "30575975"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -52,7 +52,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[Microsoft Teams 架构](#microsoft-teams-schema)|使用特定于所有 Microsoft Teams 事件的属性扩展常见架构。|
 |[Microsoft Teams 加载项架构](#microsoft-teams-add-ons-schema)|使用特定于 Microsoft Teams 加载项的属性扩展 Microsoft Teams 架构。|
 |[Microsoft Teams 设置架构](#microsoft-teams-settings-schema)|使用特定于 Microsoft Teams 设置更改事件的属性扩展 Microsoft Teams 架构。|
-|[Office 365 高级威胁防护和威胁智能架构](#office-365-advanced-threat-protection-and-threat-intelligence-schema)|使用特定于 Office 365 高级威胁防护和威胁智能数据的属性扩展常见架构。|
+|[Office 365 高级威胁防护和威胁调查与响应](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|使用特定于 Office 365 高级威胁防护与威胁调查和响应数据的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
 |[工作区分析](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
 |||
@@ -1055,21 +1055,24 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |ModifiedProperty|Common.ModifiedProperty|否|修改的属性。 它将包含属性的 **Name**、**OldValue** 和 **NewValue**。|
 |ExtendedProperties|Collection(Common.NameValuePair)|否|被更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value**。|
 
-## <a name="office-365-advanced-threat-protection-and-threat-intelligence-schema"></a>Office 365 高级威胁防护和威胁智能架构
+## <a name="office-365-advanced-threat-protection-and-threat-investigation-and-response-schema"></a>Office 365 高级威胁防护与威胁调查和响应
 
-Office 365 高级威胁防护 (ATP) 和威胁智能事件适用于具有 ATP、威胁智能或 E5 订阅的 Office 365 客户。 ATP 和威胁智能源中的每个事件对应以下确定为包含威胁的事件：
+Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具有 Office 365 高级威胁防护计划 1、Office 365 高级威胁防护计划 2 或 E5 订阅的 Office 365 客户。 Office 365 ATP 中的每个事件对应以下确定为包含威胁的事件：
 
 - 由组织中的用户发送或接收电子邮件，同时对送达的邮件进行检测，并从[零时差自动清除](https://support.office.com/zh-CN/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)检测邮件。 
 
 - 组织中的用户单击 URL，基于 [Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)保护被检测为恶意。  
 
-- SharePoint Online、OneDrive for Business 或 Microsoft Teams 中由 [Office 365 ATP](https://docs.microsoft.com/zh-CN/office365/securitycompliance/atp-for-spo-odb-and-teams) 保护检测为“恶意”的文件。  
+- SharePoint Online、OneDrive for Business 或 Microsoft Teams 中由 [Office 365 ATP](https://docs.microsoft.com/zh-CN/office365/securitycompliance/atp-for-spo-odb-and-teams) 保护检测为“恶意”的文件。
+
+> [!NOTE]
+> Office 365 高级威胁防护与 Office 365 威胁调查和响应（先前称为 Office 365 威胁智能）功能现在是 Office 365 高级威胁防护计划 2 的一部分，具有其他威胁防护功能。 若要了解详细信息，请参阅 [Office 365 ATP 计划和定价](https://products.office.com/exchange/advance-threat-protection)与 [Office 365 ATP 服务说明](https://docs.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description)。
 
 ### <a name="email-message-events"></a>电子邮件事件
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
-|AttachmentData|Collection(Self.[AttachmentData](#attachmentdata)|否|有关触发事件的电子邮件中附件的数据。|
+|AttachmentData|Collection(Self.[AttachmentData](#attachmentdata))|否|有关触发事件的电子邮件中附件的数据。|
 |DetectionType|Edm.String|是|检测类型（例如，“Inline”**** - 在传递时检测到；“Delayed”**** - 在传递后检测到；“ZAP”**** - 消息由[零时差自动清除](https://support.office.com/zh-CN/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)删除）。 使用 ZAP 检测类型的事件通常前面是“Delayed”**** 检测类型的邮件。|
 |DetectionMethod|Edm.String|是|Office 365 ATP 用于检测的方法或技术。|
 |InternetMessageId|Edm.String|是|Internet 邮件 ID。|
