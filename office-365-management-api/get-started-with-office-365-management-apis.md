@@ -7,11 +7,11 @@ ms.topic: reference (API)
 ms.date: 09/05/2018
 localization_priority: Priority
 ms.openlocfilehash: 9732b5a838bdf4c14a6a13af8196704c89dec63d
-ms.sourcegitcommit: 358bfe9553eabbe837fda1d73cd1d1a83bcb427e
+ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "28014299"
+ms.lasthandoff: 04/23/2019
+ms.locfileid: "32224019"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Office 365 管理 API 入门
 

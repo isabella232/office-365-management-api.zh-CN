@@ -7,11 +7,11 @@ ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
 ms.openlocfilehash: 4604bd0aec3856b377a24d758a0961e8da1d9bf6
-ms.sourcegitcommit: 338c5c61687bc15ade48ecbae80d7f477640b68f
+ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/14/2019
-ms.locfileid: "30575975"
+ms.lasthandoff: 04/23/2019
+ms.locfileid: "32223915"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
