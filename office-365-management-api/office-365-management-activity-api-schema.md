@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 4604bd0aec3856b377a24d758a0961e8da1d9bf6
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: 580fc44cacea81bcc046bb16d434a309485bab77
+ms.sourcegitcommit: 336f901a6ed8eb75d99baa4af37d838aeec905c6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32223915"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "33311392"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -869,17 +869,17 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |**参数**|**类型**|**强制**|**说明**|
 |:-----|:-----|:-----|:-----|
 |ActorUserId|Edm.String|否|执行操作的用户的电子邮件。|
-|ActorYammerUserId|Edm.Int32|否|执行操作的用户的 ID。|
+|ActorYammerUserId|Edm.Int64|否|执行操作的用户的 ID。|
 |DataExportType|Edm.String|否|如果数据导出包括邮件、备注、文件、主题、用户和组，则返回“data”；如果数据导出仅包括用户，则返回“user”。|
-|FileId|Edm.Int32|否|操作中的文件 ID。 |
+|FileId|Edm.Int64|否|操作中的文件 ID。 |
 |FileName|Edm.String|否|操作中的文件名称。 如果与操作不相关，将显示空白。|
 |GroupName|Edm.String|否|操作中的组名称。 如果与操作不相关，将显示空白。|
 |IsSoftDelete|Edm.Boolean|否|如果网络数据保留策略设置为“软删除”，返回“true”；如果网络数据保留策略设置为“硬删除”，则返回“false”。|
-|MessageId|Edm.Int32|否|操作中的消息 ID。|
-|YammerNetworkId|Edm.Int32|否|执行操作的用户的网络 ID。|
+|MessageId|Edm.Int64|否|操作中的消息 ID。|
+|YammerNetworkId|Edm.Int64|否|执行操作的用户的网络 ID。|
 |TargetUserId|Edm.String|否|操作中的目标用户的电子邮件。 如果与操作不相关，将显示空白。|
-|TargetYammerUserId|Edm.Int32|否|操作中的目标用户的 ID。|
-|VersionId|Edm.Int32|否|操作中文件的版本 ID。|
+|TargetYammerUserId|Edm.Int64|否|操作中的目标用户的 ID。|
+|VersionId|Edm.Int64|否|操作中文件的版本 ID。|
 
 ## <a name="sway-schema"></a>Sway 架构
 
