@@ -1,17 +1,17 @@
 ---
-ms.TocTitle: Office 365 Service Communications API reference (preview)
+ms.TocTitle: Office 365 Service Communications API reference (Preview)
 title: Office 365 服务通信 API（预览版）参考
 description: 此 API 可用于访问以下数据：“获取服务”、“获取当前状态”、“获取历史状态”和“获取消息”。
 ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 9b38c4ee73f18bf10c7fa7cbb5b323740dfb5a7e
-ms.sourcegitcommit: 336f901a6ed8eb75d99baa4af37d838aeec905c6
+ms.openlocfilehash: 728cf632baa1f4a45b626677b1da862438562d90
+ms.sourcegitcommit: 490310e2718a7f9d827c945a78e940d936d15386
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/28/2019
-ms.locfileid: "33440050"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "34102309"
 ---
 # <a name="office-365-service-communications-api-reference-preview"></a>Office 365 服务通信 API（预览版）参考
 
@@ -142,6 +142,9 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 ## <a name="get-current-status"></a>获取当前状态
 
 返回过去 24 小时的服务状态。
+
+> [!NOTE] 
+> 服务响应将包含自发出请求后 24 小时的状态。 返回的 StatusDate 或 StatusTime 值将为过去 24 小时。 
 
 ||服务|说明|
 |:-----|:-----|:-----|

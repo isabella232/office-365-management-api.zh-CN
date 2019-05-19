@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 580fc44cacea81bcc046bb16d434a309485bab77
-ms.sourcegitcommit: 336f901a6ed8eb75d99baa4af37d838aeec905c6
+ms.openlocfilehash: 567e17ca3dc701be6cb499f3bf36bcaba8912146
+ms.sourcegitcommit: 2a256e01834388711ba8c438a891c228877588a4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "33311392"
+ms.lasthandoff: 05/17/2019
+ms.locfileid: "34106164"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -40,7 +40,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[Exchange 邮箱架构](#exchange-mailbox-schema)|使用特定于所有 Exchange 邮箱审核数据的属性扩展常见架构。|
 |[Azure Active Directory 基本架构](#azure-active-directory-base-schema)|使用特定于所有 Azure Active Directory 审核数据的属性扩展常见架构。|
 |[Azure Active Directory 帐户登录架构](#azure-active-directory-account-logon-schema)|使用特定于所有 Azure Active Directory 登录事件的属性扩展 Azure Active Directory 基本架构。|
-|[Azure Active Directory STS 登录架构](#azure-active-directory-sts-logon-schema)|使用特定于所有 Azure Active Directory STS 登录事件的属性扩展 Azure Active Directory 基本架构。|
+|[Azure Active Directory 安全 STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)|使用特定于所有 Azure Active Directory 安全令牌服务 (STS) 登录事件的属性扩展 Azure Active Directory 基本架构。|
 |[Azure Active Directory 架构](#azure-active-directory-schema)|使用特定于所有 Azure Active Directory 审核数据的属性扩展常见架构。|
 |[DLP 架构](#dlp-schema)|使用特定于数据丢失防护事件的属性扩展常见架构。|
 |[安全与合规中心架构](#security-and-compliance-center-schema)|使用特定于所有安全与合规中心事件的属性扩展常见架构。|
@@ -70,8 +70,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |OrganizationId|Edm.Guid|是|组织 Office 365 租户的 GUID。 对于组织而言，该值始终相同，而不管它是在哪个 Office 365 服务中出现。|
 |UserType|Self.[UserType](#user-type)|是|执行操作的用户类型。 有关用户类型的详细信息，请参阅 [UserType](#user-type) 表。|
 |UserKey|Edm.String|是|UserID 属性中标识的用户的备选 ID。 例如，此属性使用 passport 唯一 ID (PUID) 填充，用于 SharePoint、OneDrive for Business 和 Exchange 中用户执行的事件。 此属性还可以为系统帐户执行的其他服务和事件中发生的事件指定与 UserID 属性相同的值。|
-|Workload|Edm.String|否|Office 365 服务，其中活动发生在 Workload 字符串中。 此属性的可能值为：<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Exchange</p></li><li><p>SharePoint</p></li><li><p>OneDrive</p></li><li><p>Azure Active Directory</p></li><li><p>SecurityComplianceCenter</p></li><li><p>Sway</p></li><li><p>ThreatIntelligence</p></li></ul>|
-|ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为：**Succeeded**、**PartiallySucceeded** 或 **Failed**。 对于 Exchange 管理员活动，值为 **True** 或 **False**。|
+|Workload|Edm.String|否|其中发生活动的 Office 365 服务。 
+|ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为：**Succeeded**、**PartiallySucceeded** 或 **Failed**。 对于 Exchange 管理员活动，值为 **True** 或 **False**。<br/><br/>**重要说明**：不同的工作负载可能会覆盖 ResultStatus 属性的值。 例如，对于 Azure Active Directory STS 登录事件，ResultStatus 的“**已成功**”值仅指示 HTTP 操作成功；这并不意味着登录成功。 若要确定实际登录是否成功，请参阅 [Azure Active Directory STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)中的 LogonError 属性。 如果登录失败，则此属性的值将包含登录尝试失败的原因。 |
 |ObjectId|Edm.string|否|对于 SharePoint 和 OneDrive for Business 活动，用户访问的文件或文件夹的完整路径名称。 对于 Exchange 管理员审核日志，通过 cmdlet 修改的对象的名称。|
 |UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。|
 |ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
@@ -107,6 +107,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |27|MicrosoftTeamsSettingsOperation|Microsoft Teams 中的设置更改。|
 |28|ThreatIntelligence|Exchange Online Protection 和 Office 365 高级威胁防护中的网络钓鱼和恶意软件事件。|
 |30|MicrosoftFlow|Microsoft Flow 事件。|
+|31|AeD|高级电子数据展示事件。|
 |32|MicrosoftStream|Microsoft Stream 事件。|
 |35|Project|Microsoft Project 事件。|
 |36|SharepointListOperation|Sharepoint List 事件。|
@@ -116,6 +117,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |44|WorkplaceAnalytics|工作区分析事件。|
 |45|PowerAppsApp|PowerApps 应用程序事件。|
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
+|54|SharePointListItemOperation|Sharepoint 列表事件。|
+|55|SharePointContentTypeOperation|SharePoint 列表内容类型事件。|
 ||||
 
 ### <a name="enum-user-type---type-edmint32"></a>枚举：User Type - 类型：Edm.Int32
@@ -332,7 +335,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |TimesheetRejected|用户拒绝 Project Web App 中的时间表。|
 |TimesheetSaved|用户保存 Project Web App 中的时间表。|
 |TimesheetSubmitted|用户在 Project Web App 中提交状态时间表。|
-|UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/index?view=sharepoint-ps)。|
+|UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](https://docs.microsoft.com/zh-CN/powershell/module/sharepoint-online/index?view=sharepoint-ps)。|
 |UpdateSSOApplication*|Secure Store Service 中更新目标应用程序。|
 |UserAddedToGroup*|网站管理员或所有者向 SharePoint 或 OneDrive for Business 网站上的组添加人员。 向组添加人员授予用户已分配给组的权限。 |
 |UserRemovedFromGroup*|网站管理员或所有者从 SharePoint 或 OneDrive for Business 网站上的组删除人员。 删除该人员后，不再向其授予已分配给组的权限。 |
@@ -346,7 +349,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-file-operations"></a>SharePoint 文件操作
 
-在[在 Office 365 保护中心搜索审核日志](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)的“文件和文件夹活动”部分列出的与文件相关的 SharePoint 事件使用此架构。
+在[在 Office 365 保护中心搜索审核日志](https://support.office.com/zh-CN/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)的“文件和文件夹活动”部分列出的与文件相关的 SharePoint 事件使用此架构。
 
 
 
@@ -366,7 +369,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-sharing-schema"></a>SharePoint 共享架构
 
- 与文件共享相关的 SharePoint 事件。 它们不同于与文件和文件夹相关的事件，因为用户正在执行对另一个用户有一定影响的操作。 有关 SharePoint 共享架构信息，请参阅[在 Office 365 审核日志中使用共享审核](https://support.office.com/en-us/article/Use-sharing-auditing-in-the-Office-365-audit-log-50bbf89f-7870-4c2a-ae14-42635e0cfc01?ui=en-US&amp;rs=en-US&amp;ad=US)。
+ 与文件共享相关的 SharePoint 事件。 它们不同于与文件和文件夹相关的事件，因为用户正在执行对另一个用户有一定影响的操作。 有关 SharePoint 共享架构信息，请参阅[在 Office 365 审核日志中使用共享审核](https://support.office.com/zh-CN/article/Use-sharing-auditing-in-the-Office-365-audit-log-50bbf89f-7870-4c2a-ae14-42635e0cfc01?ui=en-US&amp;rs=en-US&amp;ad=US)。
 
 
 
@@ -379,7 +382,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-schema"></a>SharePoint 架构
 
-在[在 Office 365 保护中心搜索审核日志](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 SharePoint 事件（除了文件和文件夹事件）使用此架构。
+在[在 Office 365 保护中心搜索审核日志](https://support.office.com/zh-CN/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 SharePoint 事件（除了文件和文件夹事件）使用此架构。
 
 
 
@@ -701,9 +704,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |UPN|用户主体名称。|
 
 
-## <a name="azure-active-directory-sts-logon-schema"></a>Azure Active Directory STS 登录架构
-
-
+## <a name="azure-active-directory-secure-token-service-sts-logon-schema"></a>Azure Active Directory 安全令牌服务 (STS) 登录架构
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -723,8 +724,6 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 - DlpInfo：仅存在于 SharePoint Online 和 OneDrive for Business 中，指示指定的误报，但没有“撤销”任何操作。
 
-
-
 |**参数**|**类型**|**强制**|**说明**|
 |:-----|:-----|:-----|:-----|
 |SharePointMetaData|Self.[SharePointMetadata](#sharepointmetadata-complex-type)|否|说明 SharePoint 或 OneDrive for Business 中有关包含敏感信息的文档的元数据。|
@@ -732,9 +731,6 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |ExceptionInfo|Edm.String|否|确定策略不再适用的原因和/或最终用户指出的有关误报和/或重写的任何信息。|
 |PolicyDetails|Collection(Self.[PolicyDetails](#policydetails-complex-type))|是|有关触发 DLP 事件的一个或多个策略的信息。|
 |SensitiveInfoDetectionIsIncluded|Boolean|是|指示事件是否包含来自源内容的敏感数据类型和相关上下文的值。 访问敏感数据需要 Azure Active Directory 中的“读取包括敏感详细信息的 DLP 策略事件”权限。|
-
-
-
 
 ### <a name="sharepointmetadata-complex-type"></a>SharePointMetadata 复杂类型
 
@@ -864,7 +860,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 
 ## <a name="yammer-schema"></a>Yammer 架构
 
-在[在 Office 365 保护中心搜索审核日志](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 Yammer 事件将使用此架构。
+在[在 Office 365 保护中心搜索审核日志](https://support.office.com/zh-CN/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 Yammer 事件将使用此架构。
 
 |**参数**|**类型**|**强制**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -883,7 +879,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 
 ## <a name="sway-schema"></a>Sway 架构
 
-在[在 Office 365 保护中心搜索审核日志](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 Sway 事件（除了文件和文件夹事件）将使用此架构。
+在[在 Office 365 保护中心搜索审核日志](https://support.office.com/zh-CN/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 Sway 事件（除了文件和文件夹事件）将使用此架构。
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -1003,7 +999,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |:-----|:-----|:-----|:-----|
 |MessageId|Edm.String|否|聊天或频道消息的标识符。|
 |MeetupId|Edm.String|否|计划或临时会议的标识符。|
-|Members|Collection(Self.[MicrosoftTeamsMember](#MicrosoftTeamsMember-complex-type))|否|团队中的用户列表。|
+|Members|Collection(Self.[MicrosoftTeamsMember](#microsoftteamsmember-complex-type))|否|团队中的用户列表。|
 |TeamName|Edm.String|否|审核中的团队名称。|
 |TeamGuid|Edm.Guid|否|审核中团队的唯一标识符。|
 |ChannelName|Edm.String|否|审核中的频道名称。|
@@ -1181,10 +1177,10 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 | DashboardName         | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的仪表板名称。 |
 | DataClassification    | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | [数据分类](/power-bi/service-data-classification)（如果有），针对发生事件的仪表板。 |
 | DatasetName           | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的数据集名称。 |
-| MembershipInformation | Collection([MembershipInformationType](#MembershipInformationType))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 与组相关的成员身份信息。 |
+| MembershipInformation | Collection([MembershipInformationType](#membershipinformationtype-complex-type))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 与组相关的成员身份信息。 |
 | OrgAppPermission      | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 组织应用（整个组织、特定用户或特定组）的权限列表。 |
 | ReportName            | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的报表名称。 |
-| SharingInformation    | Collection([SharingInformationType](#SharingInformationType))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"    |  否  | 与向其发送共享邀请的人员相关的信息。 |
+| SharingInformation    | Collection([SharingInformationType](#sharinginformationtype-complex-type))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"    |  否  | 与向其发送共享邀请的人员相关的信息。 |
 | SwitchState           | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 与不同租户级开关的状态相关的信息。 |
 | WorkSpaceName         | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的工作区名称。 |
 
