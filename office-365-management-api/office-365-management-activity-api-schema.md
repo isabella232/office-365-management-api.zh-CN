@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 567e17ca3dc701be6cb499f3bf36bcaba8912146
-ms.sourcegitcommit: 2a256e01834388711ba8c438a891c228877588a4
+ms.openlocfilehash: c42f22fa1c4d07c25ed15bad7225f35c298075ff
+ms.sourcegitcommit: efa2f49c46a4dc2a296d0ecc510a8153f51c535b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/17/2019
-ms.locfileid: "34106164"
+ms.lasthandoff: 06/06/2019
+ms.locfileid: "34741218"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -1124,8 +1124,6 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
-|0|None|没有检测到单击。|
-|1|Allowed|允许用户导航到该 URL（因为 [Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)认为该 URL 是安全的）。|
 |2|Blockpage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL。|
 |3|PendingDetonationPage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆待定页。|
 |4|BlockPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL；但用户忽略阻碍以导航到该 URL。|
