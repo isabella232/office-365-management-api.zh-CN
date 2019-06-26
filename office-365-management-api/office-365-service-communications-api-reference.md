@@ -6,12 +6,12 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 728cf632baa1f4a45b626677b1da862438562d90
-ms.sourcegitcommit: 490310e2718a7f9d827c945a78e940d936d15386
+ms.openlocfilehash: 1790baa6c941900a18488f338b02fc83a9b29a8b
+ms.sourcegitcommit: efd3dcdb3d190ca7b0f22a671867f0aede5d46c2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "34102309"
+ms.lasthandoff: 06/25/2019
+ms.locfileid: "35226963"
 ---
 # <a name="office-365-service-communications-api-reference-preview"></a>Office 365 服务通信 API（预览版）参考
 
@@ -144,7 +144,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 返回过去 24 小时的服务状态。
 
 > [!NOTE] 
-> 服务响应将包含自发出请求后 24 小时的状态。 返回的 StatusDate 或 StatusTime 值将为过去 24 小时。 
+> 服务响应将包含过去 24 小时内的状态和所有事件。 返回的 StatusDate 或 StatusTime 值将正好是过去 24 小时。 
 
 ||服务|说明|
 |:-----|:-----|:-----|
