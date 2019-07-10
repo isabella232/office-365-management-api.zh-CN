@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c42f22fa1c4d07c25ed15bad7225f35c298075ff
-ms.sourcegitcommit: efa2f49c46a4dc2a296d0ecc510a8153f51c535b
+ms.openlocfilehash: 012d2951c12b5da0b5767ff3edd2dd7fb64fd695
+ms.sourcegitcommit: 1345cb6bd688ee7ca4320b073eacdf614dae9b08
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/06/2019
-ms.locfileid: "34741218"
+ms.lasthandoff: 07/09/2019
+ms.locfileid: "35601528"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -103,8 +103,6 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |23|SkypeForBusinessCmdlets|Skype for Business 事件。|
 |24|Discovery|通过在安全与合规中心中运行内容搜索和管理电子数据展示案例执行的电子数据展示活动事件。|
 |25|MicrosoftTeams|Microsoft Teams 中的事件。|
-|26|MicrosoftTeamsAddOns|Microsoft Teams 加载项中的事件。|
-|27|MicrosoftTeamsSettingsOperation|Microsoft Teams 中的设置更改。|
 |28|ThreatIntelligence|Exchange Online Protection 和 Office 365 高级威胁防护中的网络钓鱼和恶意软件事件。|
 |30|MicrosoftFlow|Microsoft Flow 事件。|
 |31|AeD|高级电子数据展示事件。|
