@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 012d2951c12b5da0b5767ff3edd2dd7fb64fd695
-ms.sourcegitcommit: 1345cb6bd688ee7ca4320b073eacdf614dae9b08
+ms.openlocfilehash: 49ffb697575a63bce7a7eee8e539a30c733772a5
+ms.sourcegitcommit: c4674653f99c77b64115f8547f9e410dea3408f9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2019
-ms.locfileid: "35601528"
+ms.lasthandoff: 07/10/2019
+ms.locfileid: "35613583"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -50,8 +50,6 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[数据中心安全基本架构](#data-center-security-base-schema)|使用特定于所有数据中心安全审核数据的属性扩展常见架构。|
 |[数据中心安全 Cmdlet 架构](#data-center-security-cmdlet-schema)|使用特定于所有数据中心安全 cmdlet 审核数据的属性扩展数据中心安全基本架构。|
 |[Microsoft Teams 架构](#microsoft-teams-schema)|使用特定于所有 Microsoft Teams 事件的属性扩展常见架构。|
-|[Microsoft Teams 加载项架构](#microsoft-teams-add-ons-schema)|使用特定于 Microsoft Teams 加载项的属性扩展 Microsoft Teams 架构。|
-|[Microsoft Teams 设置架构](#microsoft-teams-settings-schema)|使用特定于 Microsoft Teams 设置更改事件的属性扩展 Microsoft Teams 架构。|
 |[Office 365 高级威胁防护和威胁调查与响应](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|使用特定于 Office 365 高级威胁防护与威胁调查和响应数据的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
 |[工作区分析](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
@@ -76,6 +74,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。|
 |ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
 |Scope|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？ 可能的值为 **online** 和 **onprem**。 请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
+|||||
 
 ### <a name="enum-auditlogrecordtype---type-edmint32"></a>枚举：AuditLogRecordType - 类型：Edm.Int32
 
@@ -132,6 +131,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |4|System|系统帐户。|
 |5|Application|应用程序。|
 |6|ServicePrincipal|服务主体。|
+||||
 
 > [!NOTE] 
 > 仅 Exchange 操作包括用户类型。 SharePoint 操作不指定用户类型。 
@@ -144,6 +144,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|
 |0|Online|此事件由托管的 O365 服务创建。|
 |1|Onprem|此事件由本地服务器创建。|
+||||
 
 
 ## <a name="sharepoint-base-schema"></a>SharePoint 基本架构
@@ -157,7 +158,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |UserAgent|Edm.String|否|有关用户客户端或浏览器的信息。 此信息由客户端或浏览器提供。|
 |MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。 只有在请求中存在该信息时才会报告该信息。|
 |MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。 只有在请求中存在该信息时才会报告该信息。|
-
+|||||
 
 ### <a name="enum-itemtype---type-edmint32"></a>枚举：ItemType - 类型：Edm.Int32
 
@@ -173,6 +174,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |8|Tenant|项目为租户。|
 |9|DocumentLibrary|项目为文档库。|
 |11|Page|项目为页面。|
+||||
 
 ### <a name="enum-eventsource---type-edmint32"></a>枚举：EventSource - 类型：Edm.Int32
 
@@ -182,6 +184,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|
 |0|SharePoint|事件源是 SharePoint。|
 |1|ObjectModel|事件源是 ObjectModel。|
+||||
 
 
 ### <a name="enum-sharepointauditoperation---type-edmint32"></a>枚举：SharePointAuditOperation - 类型：Edm.Int32
@@ -338,6 +341,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |UserAddedToGroup*|网站管理员或所有者向 SharePoint 或 OneDrive for Business 网站上的组添加人员。 向组添加人员授予用户已分配给组的权限。 |
 |UserRemovedFromGroup*|网站管理员或所有者从 SharePoint 或 OneDrive for Business 网站上的组删除人员。 删除该人员后，不再向其授予已分配给组的权限。 |
 |WorkflowModified|用户在 Project Web App 中创建、修改或删除 Enterprise Project 类型或 Workflow 阶段。|
+|||||
 
 
 > [!NOTE] 
@@ -362,7 +366,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |DestinationFileExtension|Edm.String|否|复制或移动的文件的文件扩展名。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
 |UserSharedWith|Edm.String|否|与之共享资源的用户。|
 |SharingType|Edm.String|否|分配给与之共享资源的用户的共享权限的类型。 通过 _UserSharedWith_ 参数标识此用户。|
-
+|||||
 
 
 ## <a name="sharepoint-sharing-schema"></a>SharePoint 共享架构
@@ -376,6 +380,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |TargetUserOrGroupName |Edm.String|否|存储与之共享资源的目标用户或组的 UPN 或名称。|
 |TargetUserOrGroupType|Edm.String|否|标识目标用户或组是成员、来宾、组还是合作伙伴。 |
 |EventData|XML 代码|否|传达有关已发生的共享操作的后续信息，例如向组中添加用户或授予编辑权限。|
+|||||
 
 
 ## <a name="sharepoint-schema"></a>SharePoint 架构
@@ -383,13 +388,12 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 在[在 Office 365 保护中心搜索审核日志](https://support.office.com/zh-CN/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 SharePoint 事件（除了文件和文件夹事件）使用此架构。
 
 
-
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |CustomEvent|Edm.String|否|自定义事件的可选字符串。|
 |EventData|Edm.String|否|自定义事件的可选负载。|
 |ModifiedProperties|Collection(ModifiedProperty)|否|属性包含在管理员事件中，例如将用户添加为网站或网站集管理组的成员。 该属性包括已修改属性的名称（例如，Site Admin 组）、已修改属性的新值（例如添加为网站管理员的用户）和已修改对象的先前值。|
-
+|||||
 
 ## <a name="project-schema"></a>Project 架构
 
@@ -398,11 +402,11 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |Entity|Edm.String|是| 审核针对的 [ProjectEntity](#project-entity)。|
 |Action|Edm.String|是|采取的 [ProjectAction](#project-action)。|
 |OnBehalfOfResId|Edm.Guid|否|代表其执行操作的资源 ID。|
-
-<a name="project-action"></a>
+|||||
 
 ### <a name="enum-project-action---type-edmint32"></a>枚举：Project Action - 类型：Edm.Int32
 
+#### <a name="project-action"></a>Project 操作
 
 |**成员名称**|**说明**|
 |:-----|:-----|
@@ -426,9 +430,11 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |Saved|用户保留实体。|
 |Sent|用户发送实体。|
 |Submitted|用户提交进行审阅的实体或工作流。|
+|||||
 
-<a name="project-entity"></a>
 ### <a name="enum-project-entity---type-edmint32"></a>枚举：Project Entity - 类型：Edm.Int32
+
+#### <a name="project-entity"></a>Project 实体
 
 |**成员名称**|**说明**|
 |:-----|:-----|
@@ -464,9 +470,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |View|表示视图定义。|
 |WorkflowPhase|表示工作流中的阶段。|
 |WorkflowStage|表示工作流中的阶段。|
+|||||
 
 ## <a name="exchange-admin-schema"></a>Exchange 管理员架构
-
 
 
 |**参数**|**类型**|**强制**|**说明**|
@@ -477,10 +483,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |ExternalAccess|Edm.Boolean|是|指定 cmdlet 是由组织中的用户、Microsoft 数据中心人员或数据中心服务帐户，还是由委托的管理员运行。 值 **False** 表示 cmdlet 由组织中的某人运行。 值 **True** 表示 cmdlet 由数据中心人员、数据中心服务帐户或委托的管理员运行。|
 |OriginatingServer|Edm.String|否|从中执行 cmdlet 的服务器的名称。|
 |OrganizationName|Edm.String|否|租户名称。|
-
+|||||
 
 ## <a name="exchange-mailbox-schema"></a>Exchange 邮箱架构
-
 
 
 |**参数**|**类型**|**强制**|**说明**|
@@ -501,7 +506,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |ClientMachineName|Edm.String|否|托管 Outlook 客户端的计算机名称。|
 |ClientProcessName|Edm.String|否|用于访问邮箱的电子邮件客户端。 |
 |ClientVersion|Edm.String|否|电子邮件客户端版本。|
-
+|||||
 
 ### <a name="enum-logontype---type-edmint32"></a>枚举：LogonType - 类型：Edm.Int32
 
@@ -517,10 +522,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |4|SystemService|中Microsoft 数据中心的服务帐户|
 |5|BestAccess|仅供内部使用。|
 |6|DelegatedAdmin|委派的管理员。|
-
+|||||
 
 ### <a name="exchangemailboxauditgrouprecord-schema"></a>ExchangeMailboxAuditGroupRecord 架构
-
 
 
 |**参数**|**类型**|**强制？**|**说明**|
@@ -534,11 +538,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |DestFolder|Self.[ExchangeFolder](#exchangefolder-complex-type)|否|用于移动等操作的目标文件夹。|
 |Folders|Collection(Self.[ExchangeFolder](#exchangefolder-complex-type))|否|涉及操作的源文件夹信息；例如，如果选择文件夹然后删除。|
 |AffectedItems|Collection(Self.[ExchangeItem](#exchangeitem-complex-type))|否|有关组中每个项目的信息。|
-
+|||||
 
 
 ### <a name="exchangemailboxauditrecord-schema"></a>ExchangeMailboxAuditRecord 架构
-
 
 
 |**参数**|**类型**|**强制？**|**说明**|
@@ -549,7 +552,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |SendAsUserMailboxGuid|Edm.Guid|否|所访问的用于发送邮件的邮箱的 Exchange GUID。|
 |SendOnBehalfOfUserSmtp|Edm.String|否|代表其发送电子邮件的用户的 SMTP 地址。|
 |SendOnBehalfOfUserMailboxGuid|Edm.Guid|否|所访问的代表发送邮件的邮箱的 Exchange GUID。|
-
+|||||
 
 ### <a name="exchangeitem-complex-type"></a>ExchangeItem 复杂类型
 
@@ -560,20 +563,19 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |Subject|Edm.String|否|访问的邮件的主题行。|
 |ParentFolder|Edm.ExchangeFolder|否|项目所在的文件夹名称。|
 |Attachments|Edm.String|否|附加到邮件中的所有项的名称和文件大小列表。|
+|||||
 
 ### <a name="exchangefolder-complex-type"></a>ExchangeFolder 复杂类型
-
 
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |Id|Edm.String|是|文件夹对象的存储 ID。|
 |Path|Edm.String|否|访问的邮件所在的邮箱文件夹的名称。|
-
+|||||
 
 
 ## <a name="azure-active-directory-base-schema"></a>Azure Active Directory 基本架构
-
 
 
 |**参数**|**类型**|**强制？**|**说明**|
@@ -581,6 +583,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |AzureActiveDirectoryEventType|Self.[AzureActiveDirectoryEventType](#azureactivedirectoryeventtype)|是|Azure AD 事件的类型。 |
 |ExtendedProperties|Collection(Common.NameValuePair)|否|Azure AD 事件的扩展属性。|
 |ModifiedProperties|Collection(Common.ModifiedProperty)|否|该属性包含在管理员事件中。 该属性包括已修改属性的名称、已修改属性的新值和已修改属性的先前值。|
+|||||
 
 ### <a name="enum-azureactivedirectoryeventtype---type--edmint32"></a>枚举：AzureActiveDirectoryEventType - 类型 - Edm.Int32
 
@@ -590,9 +593,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|
 |AccountLogon|帐户登录事件。|
 |AzureApplicationAuditEvent|Azure 应用程序安全事件。|
+|||||
 
 ## <a name="azure-active-directory-account-logon-schema"></a>Azure Active Directory 帐户登录架构
-
 
 
 |**参数**|**类型**|**强制？**|**说明**|
@@ -601,11 +604,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |Client|Edm.String|否|有关客户端设备、设备 OS 和用于帐户登录事件的设备浏览器的详细信息。|
 |LoginStatus|Edm.Int32|是|此属性直接来自 OrgIdLogon.LoginStatus。 各种有趣的登录失败映射可以通过警报算法来完成。|
 |UserDomain|Edm.String|是|租户标识信息 (TII)。|
-
+|||||
 
 
 ### <a name="enum-credentialtype---type-edmint32"></a>枚举：CredentialType - 类型：Edm.Int32
-
 
 
 |**值**|**成员名称**|**说明**|
@@ -620,9 +622,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |14|PasswordIndexCredentialType|用户凭据是 PasswordIndexCredentialType。|
 |16|Device|用户凭据是设备。|
 |17|ForeignRealmIndex|用户凭据是 ForeignRealmIndex。|
+|||||
 
 ### <a name="enum-logintype---type-edmint32"></a>枚举：LoginType - 类型：Edm.Int32
-
 
 
 |**值**|**成员名称**|**说明**|
@@ -631,10 +633,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |1|InitialAuth|使用初始身份验证登录|
 |2|CookieCopy|使用 cookie 登录。|
 |3|SilentReAuth|通过无提示重新身份验证登录。|
-
+|||||
 
 ### <a name="enum-authenticationmethod---type-edmint32"></a>枚举：AuthenticationMethod - 类型：Edm.Int32
-
 
 
 |**值**|**成员名称**|**说明**|
@@ -659,11 +660,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |17|SAML20PostSimpleSign|身份验证方法是 SAML20PostSimpleSign。|
 |18|SAML20Post|身份验证方法是 SAML20Post。|
 |19|OneTimeCode|身份验证方法是一次性代码。|
-
+|||||
 
 
 ## <a name="azure-active-directory-schema"></a>Azure Active Directory 架构
-
 
 
 |**参数**|**类型**|**强制？**|**说明**|
@@ -676,17 +676,16 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |SupportTicketId|Edm.String|否|在“代表操作”情况下针对操作的客户支持票证 ID。|
 |Target|Collection(Self.[IdentityTypeValuePair](#complex-type-identitytypevaluepair))|否|对其执行操作（由 Operation 属性标识）的用户。|
 |TargetContextId|Edm.String|否|目标用户所属组织的 GUID。|
-
-
+|||||
 
 ### <a name="complex-type-identitytypevaluepair"></a>复杂类型 IdentityTypeValuePair
-
 
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |ID|Edm.String|是|给定类型的标识值。|
 |Type|Self.IdentityType|是|标识类型。|
+|||||
 
 ### <a name="enum-identitytype---type-edmint32"></a>枚举：IdentityType - 类型：Edm.Int32
 
@@ -700,6 +699,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |PUID|审核操作参与者或目标 passport 唯一 ID (PUID)。|
 |SPN|如果操作是由 Office 365 服务执行的，服务主体的身份。|
 |UPN|用户主体名称。|
+|||||
 
 
 ## <a name="azure-active-directory-secure-token-service-sts-logon-schema"></a>Azure Active Directory 安全令牌服务 (STS) 登录架构
@@ -709,6 +709,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |ApplicationId|Edm.String|否|表示正在请求登录的应用程序的 GUID。 可以通过 Azure Active Directory Graph API 查找显示名称。|
 |Client|Edm.String|否|客户端设备信息，由执行登录的浏览器提供。|
 |LogonError|Edm.String|否|用于失败登录，包含登录失败的原因。|
+|||||
 
 ## <a name="dlp-schema"></a>DLP 架构
 
@@ -729,6 +730,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |ExceptionInfo|Edm.String|否|确定策略不再适用的原因和/或最终用户指出的有关误报和/或重写的任何信息。|
 |PolicyDetails|Collection(Self.[PolicyDetails](#policydetails-complex-type))|是|有关触发 DLP 事件的一个或多个策略的信息。|
 |SensitiveInfoDetectionIsIncluded|Boolean|是|指示事件是否包含来自源内容的敏感数据类型和相关上下文的值。 访问敏感数据需要 Azure Active Directory 中的“读取包括敏感详细信息的 DLP 策略事件”权限。|
+|||||
 
 ### <a name="sharepointmetadata-complex-type"></a>SharePointMetadata 复杂类型
 
@@ -745,6 +747,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |DocumentSharer|Edm.String|是|上次修改共享文档的用户。|
 |UniqueId|Edm.String|是|标识文件的 guid。|
 |LastModifiedTime|Edm.DateTime|是|上次修改文档时的 UTC 时间戳。|
+|||||
 
 
 ### <a name="exchangemetadata-complex-type"></a>ExchangeMetadata 复杂类型
@@ -759,7 +762,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |Subject|Edm.String|是|电子邮件主题。|
 |发件箱|Edm.DateTime|是|发送电子邮件时的 UTC 时间。|
 |RecipientCount|Edm.Int32|是|邮件“收件人”、“抄送”和“密件抄送”行上的所有收件人总数。|
-
+|||||
 
 ### <a name="policydetails-complex-type"></a>PolicyDetails 复杂类型
 
@@ -768,6 +771,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |PolicyId|Edm.Guid|是|此事件 DLP 策略的 guid。|
 |PolicyName|Edm.String|是|此事件 DLP 策略的友好名称。|
 |Rules|Collection(Self.[Rules](#rules-complex-type))|是|关于策略中匹配此事件的规则的信息。|
+|||||
 
 ### <a name="rules-complex-type"></a>Rules 复杂类型
 
@@ -780,6 +784,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |Severity|Edm.String|否|规则匹配的严重性（低、中和高）。|
 |RuleMode|Edm.String|是|指示 DLP 规则是否设置为“强制使用”、“在通知情况下审核”或“仅审核”。|
 |ConditionsMatched|Self.[ConditionsMatched](#conditionsmatched-complex-type)|否|关于此事件匹配规则条件的详细信息。|
+|||||
 
 ### <a name="conditionsmatched-complex-type"></a>ConditionsMatched 复杂类型
 
@@ -788,6 +793,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |SensitiveInformation|Collection(Self.[SensitiveInformation](#sensitiveinformation-complex-type))|否|有关检测到的敏感信息类型的信息。|
 |DocumentProperties|Collection(NameValuePair)|否|有关触发规则匹配的文档属性的信息。|
 |OtherConditions|Collection(NameValuePair)|否|描述匹配的任何其他条件的键值对列表。|
+|||||
 
 ### <a name="sensitiveinformation-complex-type"></a>SensitiveInformation 复杂类型
 
@@ -797,6 +803,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |Count|Edm.Int|是|检测到的敏感实例数。|
 |SensitiveType|Edm.Guid|是|识别检测到的敏感数据类型的 guid。|
 |SensitiveInformationDetections|Self.SensitiveInformationDetections|否|包含具有以下详细信息的敏感信息数据的对象数组 - 匹配值和匹配值上下文。|
+|||||
 
 ### <a name="sensitiveinformationdetections-complex-type"></a>SensitiveInformationDetections 复杂类型 
 DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户的活动源 API 中获得。 
@@ -805,6 +812,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |:-----|:-----|:-----|:-----|
 |Detections|Collection(Self.Detections)|是|检测到的敏感信息数组。 信息包含键值对，其中值 = 匹配值（如 SSN 的信用卡值），上下文 = 来自包含匹配值的源内容的摘要。 |
 |ResultsTruncated|Edm.Boolean|是|指示日志是否由于大量结果而被截断。 |
+|||||
 
 ### <a name="exceptioninfo-complex-type"></a>ExceptionInfo 复杂类型
 
@@ -814,6 +822,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |FalsePositive|Edm.Boolean|否|指示用户是否将此事件指定为误报。|
 |Justification|Edm.String|否|如果用户选择重写策略，则可以在此捕获任何用户指定的理由。|
 |Rules|Collection(Edm.Guid)|否|每个指定为误报或重写的规则或未撤销操作的规则的 guid 集合。|
+|||||
 
 ## <a name="security-and-compliance-center-schema"></a>安全与合规中心架构
 
@@ -827,6 +836,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |ClientApplication|Edm.String|否|如果 cmdlet 由应用程序执行，而不是由远程 powershell 执行，则此字段包含该应用程序的名称。|
 |Parameters|Edm.String|否|与不包含个人身份信息的 cmdlet 结合使用的参数的名称和值。|
 |NonPiiParameters|Edm.String|否|与包含个人身份信息的 cmdlet 结合使用的参数的名称和值。 （弃用：此字段将在以后停止显示，其内容将与 Parameters 字段合并。）|
+|||||
 
 ## <a name="security-and-compliance-alerts-schema"></a>安全与合规警报架构
 
@@ -855,6 +865,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |Data|Edm.String|否|警报或警报实体的详细数据 blob。|
 |AlertEntityId|Edm.String|否|警报实体的标识符。 此参数仅适用于 AlertEntityGenerated 事件。|
 |EntityType|Edm.String|否|警报或警报实体的类型。 实体类型包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>User</p></li><li><p>Recipients</p></li><li><p>Sender</p></li><li><p>MalwareFamily</p></li></ul>此参数仅适用于 AlertEntityGenerated 事件。|
+|||||
 
 ## <a name="yammer-schema"></a>Yammer 架构
 
@@ -874,6 +885,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |TargetUserId|Edm.String|否|操作中的目标用户的电子邮件。 如果与操作不相关，将显示空白。|
 |TargetYammerUserId|Edm.Int64|否|操作中的目标用户的 ID。|
 |VersionId|Edm.Int64|否|操作中文件的版本 ID。|
+|||||
 
 ## <a name="sway-schema"></a>Sway 架构
 
@@ -888,6 +900,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |SwayLookupId|Edm.String|否|Sway ID。 |
 |SiteUrl|Edm.String|否|Sway 的 URL。|
 |OperationResult|Self.[OperationResult](#operationresult)|否|成功或失败。|
+|||||
 
 
 ### <a name="enum-objecttype---type-edmint32"></a>枚举：ObjectType - 类型 Edm.Int32
@@ -899,6 +912,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |0|Sway|从 Sway 触发事件。|
 |1|SwayEmbedded|从嵌入主机的 Sway 触发事件。|
 |2|SwayAdminPortal|从 Office 365 管理门户的 Sway 服务设置触发事件。|
+|||||
 
 
 ### <a name="enum-operationresult---type-edmint32"></a>枚举：OperationResult - 类型 Edm.Int32
@@ -909,6 +923,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |:-----|:-----|:-----|
 |0|Succeeded|事件成功。|
 |1|Failed|事件失败。|
+|||||
 
 
 ### <a name="enum-endpoint---type-edmint32"></a>枚举：Endpoint - 类型 Edm.Int32
@@ -921,7 +936,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |1|SwayIOS|使用 Sway iOS 客户端触发事件。|
 |2|SwayWindows|使用 Sway Windows 客户端触发事件。|
 |3|SwayAndroid|使用 Sway Android 客户端触发事件。|
-
+|||||
 
 
 ### <a name="enum-devicetype---type-edmint32"></a>枚举：DeviceType - 类型 Edm.Int32
@@ -933,6 +948,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |0|桌面|使用桌面触发事件。|
 |1|移动设备|使用移动设备触发事件。|
 |2|平板电脑|使用平板电脑设备触发事件。|
+|||||
 
 
 
@@ -956,12 +972,14 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |13|ServiceOff|用户通过 Office 365 管理中心对整个组织禁用 Sway（默认禁用）。|
 |14|ExternalSharingOn|用户通过 Office 365 管理中心对整个组织启用外部共享。|
 |15|ExternalSharingOff|用户通过 Office 365 管理中心对整个组织禁用外部共享。|
+|||||
 
 ## <a name="data-center-security-base-schema"></a>数据中心安全基本架构
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |DataCenterSecurityEventType|Self.[DataCenterSecurityEventType](#datacentersecurityeventtype)|是|锁定框中的 dmdlet 事件的类型。|
+|||||
 
 ### <a name="enum-datacentersecurityeventtype---type-edmint32"></a>枚举：DataCenterSecurityEventType - 类型：Edm.Int32
 
@@ -971,12 +989,10 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |**成员名称**|**说明**|
 |:-----|:-----|
 |DataCenterSecurityCmdletAuditEvent|这是 cmdlet 审核类型事件的枚举值。|
-
+|||
 
 
 ## <a name="data-center-security-cmdlet-schema"></a>数据中心安全 Cmdlet 架构
-
-
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -989,6 +1005,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |ElevationRole|Edm.String|否|为其请求提升的角色。|
 |ElevationDuration|Edm.Int32|是|提升处于活动状态的持续时间。|
 |GenericInfo|Edm.String|否|用于注释和其他通用信息。|
+|||||
 
 
 ## <a name="microsoft-teams-schema"></a>Microsoft Teams 架构
@@ -996,12 +1013,22 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |MessageId|Edm.String|否|聊天或频道消息的标识符。|
-|MeetupId|Edm.String|否|计划或临时会议的标识符。|
 |Members|Collection(Self.[MicrosoftTeamsMember](#microsoftteamsmember-complex-type))|否|团队中的用户列表。|
 |TeamName|Edm.String|否|审核中的团队名称。|
 |TeamGuid|Edm.Guid|否|审核中团队的唯一标识符。|
+|ChannelType|Edm.String|否|审核中的频道类型（标准/私有）。|
 |ChannelName|Edm.String|否|审核中的频道名称。|
 |ChannelGuid|Edm.Guid|否|审核中的频道的唯一标识符。|
+|ExtraProperties|Collection(Self.[KeyValuePair](#keyvaluepair-complex-type))|否|额外属性的列表。|
+|AddOnType|Self.[AddOnType](#addontype)|否|生成此事件的加载项类型。|
+|AddonName|Edm.String|否|生成此事件的加载项名称。|
+|AddOnGuid|Edm.Guid|否|生成此事件的加载项的唯一标识符。|
+|TabType|Edm.String|否|仅用于选项卡事件。 生成此事件的选项卡类型。|
+|名称|Edm.String|否|仅用于设置事件。 已更改的设置的名称。|
+|OldValue|Edm.String|否|仅用于设置事件。 设置的旧值。|
+|NewValue|Edm.String|否|仅用于设置事件。 设置的新值。|
+||||
+
 
 ### <a name="microsoftteamsmember-complex-type"></a>MicrosoftTeamsMember 复杂类型
 
@@ -1010,6 +1037,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |UPN|Edm.String|否|用户的用户主体名称。|
 |Role|Self.[MemberRoleType](#memberroletype)|否|团队中用户的角色。|
 |DisplayName|Edm.String|否|用户的显示名称。|
+|||||
 
 ### <a name="enum-memberroletype---type-edmint32"></a>枚举：MemberRoleType - 类型：Edm.Int32
 
@@ -1020,16 +1048,16 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |0|Member|属于团队成员的用户。|
 |1|Owner|担任团队所有者的用户。|
 |2|Guest|不属于团队成员的用户。|
+||||
 
-
-## <a name="microsoft-teams-add-ons-schema"></a>Microsoft Teams 加载项架构
+### <a name="keyvaluepair-complex-type"></a>KeyValuePair 复杂类型
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
-|AddOnType|Self.[AddOnType](#addontype)|否|生成此事件的加载项类型。|
-|AddonName|Edm.String|否|生成此事件的加载项名称。|
-|AddOnGuid|Edm.Guid|否|生成此事件的加载项的唯一标识符。|
-|TabType|Edm.String|否|生成此事件的选项卡类型。|
+|键|Edm.String|否|键值对的键。|
+|值|Edm.String|否|键值对的值。|
+|||||
+
 
 ### <a name="enum-addontype---type-edmint32"></a>枚举：AddOnType - 类型：Edm.Int32
 
@@ -1040,14 +1068,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |1|Bot|Microsoft Teams 机器人。|
 |2|Connector|Microsoft Teams 连接器。|
 |3|Tab|Microsoft Teams 选项卡。|
-
-
-## <a name="microsoft-teams-settings-schema"></a>Microsoft Teams 设置架构
-
-|**参数**|**类型**|**强制？**|**说明**|
-|:-----|:-----|:-----|:-----|
-|ModifiedProperty|Common.ModifiedProperty|否|修改的属性。 它将包含属性的 **Name**、**OldValue** 和 **NewValue**。|
-|ExtendedProperties|Collection(Common.NameValuePair)|否|被更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value**。|
+||||
 
 ## <a name="office-365-advanced-threat-protection-and-threat-investigation-and-response-schema"></a>Office 365 高级威胁防护与威胁调查和响应
 
@@ -1079,6 +1100,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |Verdict|Edm.String|是|邮件裁定。|
 |MessageTime|Edm.Date|是|接收或发送电子邮件的协调世界时 (UTC) 日期和时间。|
 |EventDeepLink|Edm.String|是|指向资源管理器中的电子邮件事件的深层链接或 Office 365 安全与合规中心中的实时报表。|
+|||||
 
 ### <a name="attachmentdata-complex-type"></a>AttachmentData 复杂类型
 
@@ -1091,6 +1113,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |FileVerdict|Self.[FileVerdict](#fileverdict)|是|文件恶意软件裁定。|
 |MalwareFamily|Edm.String|否|文件恶意软件系列。|
 |SHA256|Edm.String|是|文件 SHA256 哈希。|
+|||||
 
 ### <a name="enum-fileverdict---type-edmint32"></a>枚举：FileVerdict - 类型：Edm.Int32
 
@@ -1103,6 +1126,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |-1|Error|扫描/分析错误。|
 |-2|Timeout|扫描/分析超时。|
 |-3|Pending|扫描/分析未完成。|
+|||||
 
 ### <a name="url-time-of-click-events"></a>URL 单击时事件
 
@@ -1115,6 +1139,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |TimeOfClick|Edm.Date|是|用户单击 URL 时的协调世界时 (UTC) 日期和时间。|
 |URL|Edm.String|是|用户单击 URL。|
 |UserIp|Edm.String|是|单击 URL 的用户的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
+|||||
 
 ### <a name="enum-urlclickaction---type-edmint32"></a>枚举：URLClickAction - 类型：Edm.Int32
 
@@ -1126,6 +1151,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |3|PendingDetonationPage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆待定页。|
 |4|BlockPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL；但用户忽略阻碍以导航到该 URL。|
 |5|PendingDetonationPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆页；但用户忽略以导航到该 URL。|
+|||||
 
 
 ### <a name="file-events"></a>文件事件
@@ -1138,6 +1164,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |LastModifiedDate|Edm.Date|是|创建文件或上次修改文件时的协调世界时 (UTC) 日期和时间。|
 |LastModifiedBy|Edm.String|是|创建或上次修改文件的用户的标识符（例如，电子邮件地址）。|
 |EventDeepLink|Edm.String|是|指向资源管理器中的文件事件的深层链接或安全与合规中心中的实时报表。|
+|||||
 
 ### <a name="filedata-complex-type"></a>FileData 复杂类型
 
@@ -1152,6 +1179,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |MalwareFamily|Edm.String|否|文件恶意软件系列。|
 |SHA256|Edm.String|是|文件 SHA256 哈希。|
 |FileSize|Edm.String|是|文件大小（以字节为单位）。|
+|||||
 
 ### <a name="enum-sourceworkload---type-edmint32"></a>枚举：SourceWorkload - 类型：Edm.Int32
 
@@ -1162,6 +1190,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |0|SharePoint Online|
 |1|OneDrive for Business|
 |2|Microsoft Teams|
+|||||
 
 ## <a name="power-bi-schema"></a>Power BI 架构
 
@@ -1179,6 +1208,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 | SharingInformation    | Collection([SharingInformationType](#sharinginformationtype-complex-type))   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"    |  否  | 与向其发送共享邀请的人员相关的信息。 |
 | SwitchState           | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 与不同租户级开关的状态相关的信息。 |
 | WorkSpaceName         | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"                            |  否  | 发生事件的工作区名称。 |
+|||||
 
 ### <a name="membershipinformationtype-complex-type"></a>MembershipInformationType 复杂类型
 
@@ -1186,6 +1216,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |:-----|:-----|:-----|:-----|
 | MemberEmail | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 组的电子邮件地址。 |
 | 状态      | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 目前尚未填充。 |
+|||||
 
 ### <a name="sharinginformationtype-complex-type"></a>SharingInformationType 复杂类型
 
@@ -1194,6 +1225,7 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 | RecipientEmail    | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 共享邀请的收件人的电子邮件地址。 |
 | RecipientName    | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 共享邀请的收件人的名称。 |
 | ResharePermission | Edm.String   Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true" |  否  | 授予此收件人的权限。 |
+|||||
 
 ## <a name="workplace-analytics-schema"></a>工作区分析架构
 
