@@ -6,18 +6,18 @@ ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 8954be1b9076eb2a6f640ee96cc2b612addcabc0
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: 2abcdd71c75cab011fa8e711832b06d398e3a6ab
+ms.sourcegitcommit: 289cf45903a045630f4b3efba6f03494bf08ab4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32223943"
+ms.lasthandoff: 07/17/2019
+ms.locfileid: "35772112"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365 管理活动 API 常见问题解答
 
 #### <a name="what-events-are-audited-for-a-specific-office-365-service"></a>要对特定 Office 365 服务审核什么事件？
 
-“Office 365 管理活动 API 架构”一文列出了全部事件。 有关详细信息，请参阅 [Office 365 管理活动 API 架构](office-365-management-activity-api-schema.md)。
+“Office 365 管理活动 API 架构”一文列出了全部事件。 有关详细信息，请参阅 [Office 365 管理活动 API 架构](office-365-management-activity-api-schema.md)。 另请参阅[在安全与合规中心内搜索审核日志](https://docs.microsoft.com/zh-CN/office365/securitycompliance/search-the-audit-log-in-security-and-compliance#audited-activities)中的“已审核的活动”部分，以获取大多数已审核的 Office 365 服务的事件列表。
 
 #### <a name="how-do-i-onboard-to-the-management-activity-api"></a>如何上手使用管理活动 API？
 
@@ -33,7 +33,7 @@ ms.locfileid: "32223943"
 
 #### <a name="is-it-true-that-mailbox-auditing-in-exchange-online-can-only-be-enabled-by-using-powershell"></a>Exchange Online 中的邮箱审核是否只能使用 PowerShell 启用？
 
-是。 不过，我们正在努力为 Office 365 组织中的所有邮箱默认启用邮箱审核。 有关详细信息，请参阅 [Microsoft 安全性、隐私与合规性博客](https://techcommunity.microsoft.com/t5/Security-Privacy-and-Compliance/Exchange-Mailbox-Auditing-will-be-enabled-by-default/ba-p/215171)中的“Exchange 邮箱审核将默认处于启用状态”。
+过去是这样，但自 2019 年 1 月起，所有 Office 365 组织都会默认启用邮箱审核。 有关详细信息，请参阅[管理邮箱审核](https://docs.microsoft.com/office365/securitycompliance/enable-mailbox-auditing)。
 
 #### <a name="are-there-any-differences-in-the-records-that-are-fetched-by-the-management-activity-api-versus-the-records-that-are-returned-by-using-the-audit-log-search-tool-in-the-office-365-security--compliance-center"></a>管理活动 API 提取的记录与使用 Office 365 安全与合规中心内的审核日志搜索工具返回的记录是否有何不同？
 
