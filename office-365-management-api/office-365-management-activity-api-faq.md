@@ -6,12 +6,12 @@ ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 2abcdd71c75cab011fa8e711832b06d398e3a6ab
-ms.sourcegitcommit: 289cf45903a045630f4b3efba6f03494bf08ab4a
+ms.openlocfilehash: 9083127d1fd3ecf82e5fe778ba1727d22d91017c
+ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2019
-ms.locfileid: "35772112"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "35924775"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365 管理活动 API 常见问题解答
 
@@ -38,7 +38,11 @@ ms.locfileid: "35772112"
 #### <a name="are-there-any-differences-in-the-records-that-are-fetched-by-the-management-activity-api-versus-the-records-that-are-returned-by-using-the-audit-log-search-tool-in-the-office-365-security--compliance-center"></a>管理活动 API 提取的记录与使用 Office 365 安全与合规中心内的审核日志搜索工具返回的记录是否有何不同？
 
 这两种方法返回的数据是相同的。 数据并未经过筛选。 唯一区别是：使用 API 可一次获取过去 7 天的数据； 在安全与合规中心内搜索审核日志（或在 Exchange Online 中使用相应的 [Search-unifiedauditlog](https://docs.microsoft.com/powershell/module/exchange/policy-and-compliance-audit/search-unifiedauditlog) cmdlet），可获取过去 90 天的数据。 
- 
+
+#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activity-api"></a>如果禁用 Office 365 组织审核，会出现什么情况？ 是否仍可通过管理活动 API 获得事件？
+
+否。 必须为组织启用 Office 365 统一审核，才能通过管理活动 API 拉取记录。 有关说明，请参阅 [ 启用或禁用 Office 365 审核日志搜索 ](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off)。
+
 #### <a name="arent-webhook-notifications-more-immediate-after-all-arent-they-event-driven"></a>Webhook 通知不是更即时吗？ 毕竟它们是事件驱动通知，不是吗？
 
 不是。 Webhook 通知并不是事件触发通知意义上的事件驱动通知。 仍必须创建内容 blob，而创建内容 blob 则会触发通知传递。 最近，与直接使用 */content* 操作查询 API 相比，使用 Webhook 的通知等待时间更长。 因此，不得将管理活动 API 视为实时安全警报系统。 对于这一领域，Microsoft 有其他产品。 就安全性而言，管理活动 API 事件通知可能更适用于确定长时间的使用模式。
@@ -50,10 +54,6 @@ ms.locfileid: "35772112"
 #### <a name="im-encountering-a-throttling-error-in-the-management-activity-api-what-should-i-do"></a>我在使用管理活动 API 时遇到了限制错误。 该怎么办？
 
 开启 [Microsoft 支持](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online)票证，申请新限制，并添加提高限制的正当业务理由。 我们将会评估申请，如果接受，便会提高限制。
-
-#### <a name="what-happens-if-i-disable-auditing-for-my-office-365-organization-will-i-still-get-events-via-the-management-activity-api"></a>如果禁用 Office 365 组织审核，会出现什么情况？ 是否仍可通过管理活动 API 获得事件？
-
-不可以。 必须为组织启用审核，才能通过管理活动 API 拉取记录。
 
 #### <a name="why-are-targetupdatedproperties-no-longer-in-extendedproperties-in-the-audit-logs-for-azure-active-directory-activities"></a>TargetUpdatedProperties 为何不再位于 Azure Active Directory 活动审核日志的 ExtendedProperties 中？
 

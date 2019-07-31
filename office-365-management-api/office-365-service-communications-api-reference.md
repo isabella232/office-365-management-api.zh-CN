@@ -6,12 +6,12 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 6b42efe72931875592c87e78aa9c9cdce11a339b
-ms.sourcegitcommit: f823233a1ab116bc83d7ca8cd8ad7c7ea59439fc
+ms.openlocfilehash: 986298b87e2583788dca9b11f288743ce5f96b60
+ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/15/2019
-ms.locfileid: "35688170"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "35924810"
 ---
 # <a name="office-365-service-communications-api-reference-preview"></a>Office 365 服务通信 API（预览版）参考
 
@@ -46,7 +46,7 @@ https://manage.office.com/api/v1.0/{tenant_identifier}/ServiceComms/{operation}
 Authorization: Bearer {OAuth2 token}
 ```
 
-**请求头**
+### <a name="request-headers"></a>请求标头
 
 以下是所有 Office 365 服务通信 API 操作支持的请求头。
 
@@ -58,7 +58,7 @@ Authorization: Bearer {OAuth2 token}
 
 <br/>
 
-**响应头**
+### <a name="response-headers"></a>响应标头
 
 以下是所有 Office 365 服务通信 API 操作返回的响应头：
 
@@ -95,7 +95,7 @@ Authorization: Bearer {OAuth2 token}
 |**响应**|“Service”实体列表|“Service”实体包含“Id”(String)、“DisplayName”(String) 和“FeatureNames”（String 列表）。|
 ||||
 
-#### <a name="sample-request"></a>示例请求
+### <a name="sample-request"></a>示例请求
 
 ```json
 GET https://manage.office.com/api/v1.0/contoso.com/ServiceComms/Services 
@@ -103,7 +103,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 
 ```
 
-#### <a name="sample-response"></a>示例响应
+### <a name="sample-response"></a>示例响应
 
 ```json
 {
@@ -145,7 +145,9 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 返回过去 24 小时的服务状态。
 
 > [!NOTE] 
-> 服务响应将包含过去 24 小时内的状态和所有事件。 返回的 StatusDate 或 StatusTime 值将正好是过去 24 小时，除非有最新的状态。 如果服务在过去的24小时内接收到状态更新, 将改为返回最新更新的时间。
+> 服务响应将包含过去 24 小时内的状态和所有事件。 返回的 StatusDate 或 StatusTime 值将正好是过去 24 小时。 若要获取特定事件的最近一次更新信息, 请使用 "获取消息" 功能并从与事件 ID 匹配的响应记录中读取 LastUpdatedTime 值。 <br/>
+
+<br/>
 
 ||服务|说明|
 |:-----|:-----|:-----|
@@ -155,14 +157,14 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 |**响应**|“WorkloadStatus”实体列表。|“WorkloadStatus”实体包含“Id”(String)、“Workload”(String)、“StatusTime”(DateTimeOffset)、“WorkloadDisplayName”(String)、“Status”(String)、“IncidentIds”（String 列表）和“FeatureGroupStatusCollection”（“FeatureStatus”列表）。<br/><br/>“FeatureStatus”实体包含“Feature”(String)、“FeatureGroupDisplayName”(String) 和“FeatureStatus”(String)。|
 ||||
 
-#### <a name="sample-request"></a>示例请求
+### <a name="sample-request"></a>示例请求
 
 ```json
 GET https://manage.office.com/api/v1.0/contoso.com/ServiceComms/CurrentStatus
 Authorization: Bearer {AAD_Bearer_JWT_Token}
 ```
 
-#### <a name="sample-response"></a>示例响应
+### <a name="sample-response"></a>示例响应
 
 ```json
 {
@@ -265,22 +267,23 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
     ]
 }
 ```
-#### <a name="status-definitions"></a>状态定义
 
-|**Status**|**定义**|
-|:-----|:-----|
-|**正在调查** | 我们已发现存在潜在问题，我们正在收集有关情况和影响范围的详细信息。 |
-|**ServiceDegradation** | 我们已确认存在可能影响服务或功能使用的问题。例如，如果服务的执行速度比平常慢、存在间歇性中断或某功能运行不正常，则可能看到此状态。 |
-|**ServiceInterruption** | 如果我们确定某问题影响用户访问服务的能力，则你将看到此状态。在本例中，问题十分重大且可持续重现。 |
-|**RestoringService** | 我们已确定问题成因，知晓需要采取的纠正措施，并正在将服务恢复到正常状态。 |
-|**ExtendedRecovery** | 此状态表示正在执行纠正措施，为大多数用户恢复服务，但恢复所有受影响的系统仍需一些时间。如果我们为了减轻影响，而在实施永久解决措施前实施临时措施，你也可能看到此状态。 |
-|**InvestigationSuspended** | 如果对潜在问题的详细调查需要请求客户提供其他信息，以便进行进一步的调查，则你将看到此状态。如果我们需要你的参与，我们会告知你所需的数据或日志。 |
-|**ServiceRestored** | 我们确认纠正措施已解决基础问题，且服务已还原到正常状态。若要了解出了什么问题，请查看问题详细信息。 |
-|**PostIncidentReportPublished** | 我们已发布了有关特定问题的文章事件报告, 其中包含根本原因信息和后续步骤, 确保不再发生类似的问题。 |
-|||
+### <a name="status-definitions"></a>状态定义
 
-> [!NOTE] 
-> 有关 office 365 服务运行状况的详细信息，请访问[如何检查 office 365 服务运行状况](https://docs.microsoft.com/office365/enterprise/view-service-health)。
+状态定义包括以下值: 
+
+- 正在调查
+- ServiceDegradation
+- ServiceInterruption 
+- RestoringService
+- ExtendedRecovery
+- ServiceRestored
+- PostIncidentReportPublished 
+- VerifyingService
+- ServiceOperational
+
+有关最新列表及这些状态定义的说明, 请参阅[如何检查 Office 365 服务运行状况](https://docs.microsoft.com/office365/enterprise/view-service-health#status-definitions)。
+
 
 ## <a name="get-historical-status"></a>获取历史状态
 
@@ -295,14 +298,14 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 |**响应**|“WorkloadStatus”实体列表。|“WorkloadStatus”实体包含“Id”(String)、“Workload”(String)、“StatusTime”(DateTimeOffset)、“WorkloadDisplayName”(String)、“Status”(String)、“IncidentIds”（String 列表）和“FeatureGroupStatusCollection”（“FeatureStatus”列表）。<br/><br/>“FeatureStatus”实体包含“Feature”(String)、“FeatureGroupDisplayName”(String) 和“FeatureStatus”(String)。|
 ||||
 
-#### <a name="sample-request"></a>示例请求
+### <a name="sample-request"></a>示例请求
 
 ```json
 GET https://manage.office.com/api/v1.0/contoso.com/ServiceComms/HistoricalStatus
 Authorization: Bearer {AAD_Bearer_JWT_Token}
 ```
 
-#### <a name="sample-response"></a>示例响应
+### <a name="sample-response"></a>示例响应
 
 ```json
 {
@@ -383,7 +386,6 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 }
 ```
 
-
 ## <a name="get-messages"></a>获取消息
 
 返回特定时间范围内关于服务的消息。 使用类型筛选器，以筛选出“服务事件”、“计划内维护”或“消息中心”消息。
@@ -402,14 +404,14 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 |**响应**|“Message”实体列表。|“Message”实体包含“Id”(String)、“StartTime”(DateTimeOffset)、“EndTime”(DateTimeOffset)、“Status”(String)、“Messages”（“MessageHistory”实体列表）、“LastUpdatedTime”(DateTimeOffset)、“Workload”(String)、“WorkloadDisplayName”(String)、“Feature”(String)、“FeatureDisplayName”(String) 和“MessageType”（Enum，默认值：all）。<br/><br/>“MessageHistory”实体包含“PublishedTime”(DateTimeOffset) 和“MessageText”(String)。|
 ||||
 
-#### <a name="sample-request"></a>示例请求
+### <a name="sample-request"></a>示例请求
 
 ```json
 GET https://manage.office.com/api/v1.0/contoso.com/ServiceComms/Messages
 Authorization: Bearer {AAD_Bearer_JWT_Token}
 ```
 
-#### <a name="sample-response"></a>示例响应
+### <a name="sample-response"></a>示例响应
 
 ```json
 {
@@ -476,7 +478,6 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 
 
 ```json
-
 { 
     "error":{ 
         "code":"AF5000.  An internal server error occurred.",

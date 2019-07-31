@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: 09/05/2018
 localization_priority: Priority
-ms.openlocfilehash: ed84984dc3009d03e0bb7cacba16eafb687c93e0
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: 35d90859056225a5ebcf547d88c05640699c5295
+ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32223950"
+ms.lasthandoff: 07/29/2019
+ms.locfileid: "35924817"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -25,6 +25,10 @@ Office 365 管理活动 API（也称为*统一审核 API *）只是 Office 365 �
 尽管相对而言操作较少且 REST 接口简单，但是对关于如何使用管理活动 API 以及如何检索数据的确切详细信息存在很多困惑。  对于任何开始使用管理活动 API 的人来说，应该明确的一点是，没有按事件细节（例如事件发生的日期、可能触发事件的网站集或者事件类型）进行查询的概念。  相反，而是创建对特定工作负载（例如，SharePoint 或 Azure AD）的订阅，并且每个租户对应一个订阅。
 
 本文汇总了 Microsoft 支持部门在提供此 API 支持方面所收到的最常见问题。  我们将展示一系列简单的 PowerShell 脚本，可以帮助你回答客户提出的最常见问题，或者通过演示主要操作开始实施自定义解决方案。  并非所有操作都在本文中做了相关解释，但它们在 [Office 365 管理活动 API 参考](office-365-management-activity-api-reference.md)中均有列出。
+
+## <a name="enabling-unified-audit-logging-in-office-365"></a>在 Office 365 中启用统一审核日志
+
+如果你刚刚设置了一个正在尝试使用管理活动 API 的应用程序，但它无法正常工作，请确保已针对你的 Office 365 组织启用统一审核日志记录。 可通过启用 Office 365 审核日志来实现此操作。 有关说明，请参阅 [ 启用或禁用 Office 365 审核日志搜索 ](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off)。
 
 ## <a name="questions-about-third-party-tools-and-clients"></a>关于第三方工具和客户端的问题
 
