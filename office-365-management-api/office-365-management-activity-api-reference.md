@@ -4,14 +4,14 @@ title: Office 365 管理活动 API 参考
 description: 使用 Office 365 管理活动 API，可从 Office 365 和 Azure AD 活动日志中获取用户、管理员、系统和策略的操作和事件相关信息。
 ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
-ms.date: 01/10/2018
+ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: d6cdef5f0445ef0fa551be3080d4ce28595a1e9f
-ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
+ms.openlocfilehash: b4aea4da9a63e298fa154a7d0cbb0da976c7fe88
+ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/29/2019
-ms.locfileid: "35924824"
+ms.lasthandoff: 07/30/2019
+ms.locfileid: "35936214"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
