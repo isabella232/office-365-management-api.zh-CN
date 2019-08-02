@@ -4,14 +4,14 @@ title: Office 365 管理活动 API 疑难解答
 description: 汇总 Microsoft 支持部门在提供此 API 支持方面所收到的最常见问题。
 ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
-ms.date: 09/05/2018
+ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 35d90859056225a5ebcf547d88c05640699c5295
-ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
+ms.openlocfilehash: f02088f557a10414539952c78542e09b2dc2d90b
+ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/29/2019
-ms.locfileid: "35924817"
+ms.lasthandoff: 07/30/2019
+ms.locfileid: "35936227"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -26,15 +26,17 @@ Office 365 管理活动 API（也称为*统一审核 API *）只是 Office 365 �
 
 本文汇总了 Microsoft 支持部门在提供此 API 支持方面所收到的最常见问题。  我们将展示一系列简单的 PowerShell 脚本，可以帮助你回答客户提出的最常见问题，或者通过演示主要操作开始实施自定义解决方案。  并非所有操作都在本文中做了相关解释，但它们在 [Office 365 管理活动 API 参考](office-365-management-activity-api-reference.md)中均有列出。
 
-## <a name="enabling-unified-audit-logging-in-office-365"></a>在 Office 365 中启用统一审核日志
-
-如果你刚刚设置了一个正在尝试使用管理活动 API 的应用程序，但它无法正常工作，请确保已针对你的 Office 365 组织启用统一审核日志记录。 可通过启用 Office 365 审核日志来实现此操作。 有关说明，请参阅 [ 启用或禁用 Office 365 审核日志搜索 ](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off)。
-
 ## <a name="questions-about-third-party-tools-and-clients"></a>关于第三方工具和客户端的问题
 
 我们目前支持的最常见问题类别来自使用第三方产品下载和汇总审核数据的客户。 根据第三方产品，客户可能会遇到设置问题或这些产品中暴露的数据出现中断或不一致的情况。 这里应该指出，此类客户首先应采取的措施是联系其供应商的支持部门。 在支持的所有服务请求中，工程师只看到一个案例，其中特定于租户的服务问题是原因。
 
 然而，这些客户可能仍有一些未得到解答的问题。 他们的供应商可能会坚持认为这是服务问题，或者他们可能只是想在联系供应商之前进行一些初步检查。 
+
+## <a name="enabling-unified-audit-logging-in-office-365"></a>在 Office 365 中启用统一审核日志记录
+
+如果你刚刚设置了一个正在尝试使用管理活动 API 的应用程序，但它无法正常工作，请确保已针对你的 Office 365 组织启用统一审核日志记录。 可通过启用 Office 365 审核日志来实现此操作。 有关说明，请参阅[打开或关闭 Office 365 审核日志搜索](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off)。
+
+如果未启用统一审核，则通常会收到包含以下字符串的错误：`Microsoft.Office.Compliance.Audit.DataServiceException: Tenant <tenantID> does not exist.`
 
 ## <a name="connecting-to-the-api"></a>连接到 API
 
@@ -43,6 +45,7 @@ Office 365 管理活动 API（也称为*统一审核 API *）只是 Office 365 �
 ### <a name="azure-application-permissions"></a>Azure 应用程序权限
 
 当前用于 Office 365 管理活动 API 的三个权限是：
+
 1. 为组织读取活动数据
 2. 为组织读取服务运行状况信息
 3. 读取数据丢失防护 (DLP) 策略事件，包括检测到的敏感信息 

@@ -4,14 +4,14 @@ title: Office 365 管理 API 入门
 description: API 使用 Azure AD 提供身份验证服务，这样你便可使用这些服务向应用程序授予对 API 的访问权限。
 ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
-ms.date: 09/05/2018
+ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 9732b5a838bdf4c14a6a13af8196704c89dec63d
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: 08f510302c1d19cf3e3e2385f1baab6133153f07
+ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32224019"
+ms.lasthandoff: 07/30/2019
+ms.locfileid: "35936234"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Office 365 管理 API 入门
 
@@ -32,6 +32,8 @@ ms.locfileid: "32224019"
 
 ![管理 API 入门 - 授权流](images/authorization-flow.png)
 
+> [!IMPORTANT]
+> 必须为你的 Office 365 组织启用统一审核日志记录，然后才能通过 Office 365 管理活动 API 访问数据。 可通过启用 Office 365 审核日志来实现此操作。 有关说明，请参阅[打开或关闭 Office 365 审核日志搜索](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off)。 <br/><br/>如果你仅使用 Office 365 服务通信 API，则不需要启用统一审核日志记录。
 
 ## <a name="register-your-application-in-azure-ad"></a>在 Azure AD 中注册应用程序
 
@@ -113,7 +115,7 @@ Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全
 
 在后台运行的应用程序（如守护程序或服务）可使用客户端凭据，以请求获取仅应用程序访问令牌，而无需在获取初始同意后重复请求获取租户管理员同意。 
 
-有关详细信息，请参阅[使用客户端凭据执行服务到服务调用](https://msdn.microsoft.com/zh-CN/library/azure/dn645543.aspx)。
+有关详细信息，请参阅[使用客户端凭据执行服务到服务调用](https://msdn.microsoft.com/en-us/library/azure/dn645543.aspx)。
 
 必须为应用程序配置 X.509 证书，以用作在从 Azure AD 请求获取仅应用程序访问令牌时所需的客户端凭据。 此过程分为两步：
 
@@ -247,10 +249,9 @@ http://www.mycompany.com/myapp/?code=AAABAAAAvPM1KaPlrEqdFSB...
 
 从 Azure AD 请求获取访问令牌的方法有以下两种：
 
-- 
-  [授权代码授予流](https://msdn.microsoft.com/en-us/library/azure/dn645542.aspx)：让租户管理员明确授予同意，以向应用程序返回授权代码。 然后，应用程序用授权代码交换访问令牌。 必须使用这种方法，才能获取应用程序使用 API 访问租户数据所需的初始同意；并且必须有第一个访问令牌，才能获取并存储租户 ID。
+- [授权代码授予流](https://msdn.microsoft.com/en-us/library/azure/dn645542.aspx)：让租户管理员明确授予同意，以向应用程序返回授权代码。 然后，应用程序用授权代码交换访问令牌。 必须使用这种方法，才能获取应用程序使用 API 访问租户数据所需的初始同意；并且必须有第一个访问令牌，才能获取并存储租户 ID。
     
-- [客户端凭据授予流](https://msdn.microsoft.com/zh-CN/library/azure/dn645543.aspx)：允许应用程序在旧版访问令牌到期时请求获取后续访问令牌，而无需请求租户管理员登录并明确授予同意。 必须对在初始租户管理员同意授予后在后台连续运行并调用 API 的应用程序使用这种方法。
+- [客户端凭据授予流](https://msdn.microsoft.com/en-us/library/azure/dn645543.aspx)：允许应用程序在旧版访问令牌到期时请求获取后续访问令牌，而无需请求租户管理员登录并明确授予同意。 必须对在初始租户管理员同意授予后在后台连续运行并调用 API 的应用程序使用这种方法。
     
 
 ### <a name="request-an-access-token-using-the-authorization-code"></a>使用授权代码请求获取访问令牌
