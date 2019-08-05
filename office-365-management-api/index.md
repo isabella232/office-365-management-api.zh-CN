@@ -4,14 +4,14 @@ title: 欢迎使用 Office 365 管理 API
 description: Office 365 管理 API 提供了一个用于执行所有 Office 365 客户和合作伙伴的管理任务的扩展性平台，包括服务通信、安全性、合规性、报告和审核等方面的任务。
 ms.ContentId: a11a6d30-f6b7-3629-28b6-cbab527d8a5e
 ms.topic: reference (API)
-ms.date: 07/10/2018
+ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 0444b343a28f89a56a45f639d3f2374bb82a33d6
-ms.sourcegitcommit: 5b1eaeb7f262b7b9f7ab30ccb9f10878814153ac
+ms.openlocfilehash: c809fd5d86dcd04c075eae27790991340c3460eb
+ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2019
-ms.locfileid: "32223929"
+ms.lasthandoff: 07/30/2019
+ms.locfileid: "35936215"
 ---
 # <a name="welcome-to-office-365-management-apis"></a>欢迎使用 Office 365 管理 API
 
@@ -29,4 +29,5 @@ Office 365 管理 API 提供了一个用于执行所有 Office 365 客户和合�
 
 ## <a name="see-also"></a>另请参阅
 
-- [Office 365 REST API](https://docs.microsoft.com/zh-CN/previous-versions/office/office-365-api/how-to/platform-development-overview)
+- 
+  [Office 365 REST API](https://docs.microsoft.com/zh-CN/previous-versions/office/office-365-api/how-to/platform-development-overview)
