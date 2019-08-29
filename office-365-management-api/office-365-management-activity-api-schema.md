@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 49ffb697575a63bce7a7eee8e539a30c733772a5
-ms.sourcegitcommit: c4674653f99c77b64115f8547f9e410dea3408f9
+ms.openlocfilehash: 175d18dad57bff0939250cd4ae27c02129d7c0ed
+ms.sourcegitcommit: b9439635542de9db8f9fb8e056b8359d4653aa21
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2019
-ms.locfileid: "35613583"
+ms.lasthandoff: 08/27/2019
+ms.locfileid: "36643041"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -1094,6 +1094,9 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |NetworkMessageId|Edm.String|是|Exchange Online 网络消息 ID。|
 |P1Sender|Edm.String|是|电子邮件发件人的返回路径。|
 |P2Sender|Edm.String|是|电子邮件的发件人。|
+|Policy|Self.[Policy](#policy-type-and-action-type)|是|与电子邮件相关的筛选策略类型（例如，“**反垃圾邮件**”或“**反钓鱼**”）和相关操作类型（例如，“**高可信度垃圾邮件**”、“**垃圾邮件**”或“**网络钓鱼**”）。|
+|Policy|Self.[PolicyAction](#policy-action)|是|与电子邮件相关的筛选策略中配置的操作（例如，“**移动到垃圾邮件文件夹**”或“**隔离**”）。|
+|P2Sender|Edm.String|是|电子邮件的“**发件人:**”。|
 |Recipients|Collection(Edm.String)|是|电子邮件的收件人数组。|
 |SenderIp|Edm.String|是|提交 Office 365 电子邮件的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
 |Subject|Edm.String|是|邮件的主题行。|
@@ -1127,6 +1130,37 @@ Office 365 高级威胁防护 (ATP) 与威胁调查和响应事件适用于具�
 |-2|Timeout|扫描/分析超时。|
 |-3|Pending|扫描/分析未完成。|
 |||||
+
+### <a name="enum-policy---type-edmint32"></a>枚举：Policy - 类型：Edm.Int32
+
+#### <a name="policy-type-and-action-type"></a>策略类型和操作类型
+
+|**值**|**成员名称**|**说明**|
+|:-----|:-----|:-----|
+|1|Anti-spam, HSPM|反垃圾邮件策略中的高可信度垃圾邮件 (HSPM) 操作。|
+|2|Anti-spam, SPM|反垃圾邮件策略中的垃圾邮件 (SPM) 操作。|
+|3|Anti-spam, Bulk|反垃圾邮件策略中的批量操作。|
+|4|Anti-spam, PHSH|反垃圾邮件策略中的网络钓鱼 (PHSH) 操作。|
+|5|Anti-phish, DIMP|反钓鱼策略中的域模拟 (DIMP) 操作。|
+|6|Anti-phish, UIMP|反钓鱼策略中的用户模拟 (UIMP) 操作。|
+|7|Anti-phish, SPOOF|反钓鱼策略中的欺骗操作。|
+
+
+### <a name="enum-policyaction---type-edmint32"></a>枚举：PolicyAction - 类型：Edm.Int32
+
+#### <a name="policy-action"></a>策略操作
+
+|**值**|**成员名称**|**说明**|
+|:-----|:-----|:-----|
+|0|MoveToJMF|策略操作是移动到“垃圾邮件”文件夹。|
+|1|AddXHeader|策略操作是将 X 标头添加到电子邮件。|
+|2|ModifySubject|策略操作是使用筛选策略指定的信息修改电子邮件中的主题。|
+|3|Redirect|策略操作是将电子邮件重定向到筛选策略指定的电子邮件地址。|
+|4|Delete|策略操作是删除电子邮件。|
+|5|Quarantine|策略操作是隔离电子邮件。|
+|6|NoAction| 策略被配置为不对电子邮件执行任何操作。|
+|7|BccMessage|策略操作是将电子邮件密送至筛选策略指定的电子邮件地址。|
+
 
 ### <a name="url-time-of-click-events"></a>URL 单击时事件
 
