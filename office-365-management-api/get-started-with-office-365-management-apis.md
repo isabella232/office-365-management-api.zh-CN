@@ -115,7 +115,7 @@ Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全
 
 在后台运行的应用程序（如守护程序或服务）可使用客户端凭据，以请求获取仅应用程序访问令牌，而无需在获取初始同意后重复请求获取租户管理员同意。 
 
-有关详细信息，请参阅[使用客户端凭据执行服务到服务调用](https://msdn.microsoft.com/en-us/library/azure/dn645543.aspx)。
+有关详细信息，请参阅[使用客户端凭据执行服务到服务调用](https://msdn.microsoft.com/zh-CN/library/azure/dn645543.aspx)。
 
 必须为应用程序配置 X.509 证书，以用作在从 Azure AD 请求获取仅应用程序访问令牌时所需的客户端凭据。 此过程分为两步：
 
@@ -251,7 +251,7 @@ http://www.mycompany.com/myapp/?code=AAABAAAAvPM1KaPlrEqdFSB...
 
 - [授权代码授予流](https://msdn.microsoft.com/en-us/library/azure/dn645542.aspx)：让租户管理员明确授予同意，以向应用程序返回授权代码。 然后，应用程序用授权代码交换访问令牌。 必须使用这种方法，才能获取应用程序使用 API 访问租户数据所需的初始同意；并且必须有第一个访问令牌，才能获取并存储租户 ID。
     
-- [客户端凭据授予流](https://msdn.microsoft.com/en-us/library/azure/dn645543.aspx)：允许应用程序在旧版访问令牌到期时请求获取后续访问令牌，而无需请求租户管理员登录并明确授予同意。 必须对在初始租户管理员同意授予后在后台连续运行并调用 API 的应用程序使用这种方法。
+- [客户端凭据授予流](https://msdn.microsoft.com/zh-CN/library/azure/dn645543.aspx)：允许应用程序在旧版访问令牌到期时请求获取后续访问令牌，而无需请求租户管理员登录并明确授予同意。 必须对在初始租户管理员同意授予后在后台连续运行并调用 API 的应用程序使用这种方法。
     
 
 ### <a name="request-an-access-token-using-the-authorization-code"></a>使用授权代码请求获取访问令牌

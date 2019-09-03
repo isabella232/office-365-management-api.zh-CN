@@ -29,5 +29,4 @@ Office 365 管理 API 提供了一个用于执行所有 Office 365 客户和合�
 
 ## <a name="see-also"></a>另请参阅
 
-- 
-  [Office 365 REST API](https://docs.microsoft.com/zh-CN/previous-versions/office/office-365-api/how-to/platform-development-overview)
+- [Office 365 REST API](https://docs.microsoft.com/zh-CN/previous-versions/office/office-365-api/how-to/platform-development-overview)
