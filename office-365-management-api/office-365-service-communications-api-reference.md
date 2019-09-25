@@ -1,34 +1,31 @@
 ---
-ms.TocTitle: Office 365 Service Communications API reference (Preview)
-title: Office 365 服务通信 API（预览版）参考
+ms.TocTitle: Office 365 Service Communications API reference
+title: Office 365 服务通信 API 参考
 description: 此 API 可用于访问以下数据：“获取服务”、“获取当前状态”、“获取历史状态”和“获取消息”。
 ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 986298b87e2583788dca9b11f288743ce5f96b60
-ms.sourcegitcommit: 784b581a699c6d0ab7939ea621d5ecbea71925ea
+ms.openlocfilehash: 427c741f623f46962c3cd6818adbb64bfc0f1e7a
+ms.sourcegitcommit: 0e6d71ad2375e5d1fc72d6893724511c08840c27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/29/2019
-ms.locfileid: "35924810"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "37131422"
 ---
-# <a name="office-365-service-communications-api-reference-preview"></a>Office 365 服务通信 API（预览版）参考
-
-> [!NOTE] 
-> 本文档介绍的功能暂处于预览阶段。
+# <a name="office-365-service-communications-api-reference"></a>Office 365 服务通信 API 参考
 
 Office 365 服务通信 API V2 可用于访问以下数据：
 
 - **获取服务**：获取已订阅服务的列表。
     
-- **获取当前状态**：获取当前正在进行的服务事件和维护事件的实时视图
+- **获取当前状态**：获取当前正在进行的服务事件的实时视图。
     
-- **获取历史状态**：获取服务运行状况的历史视图，包括服务事件和维护事件。
+- **获取历史记录状态**：获取服务事件的历史视图。
     
-- **获取消息**：查找事件、计划内维护和消息中心通信。
+- **获取消息**：查找事件和消息中心通信。
     
-目前，Office 365 服务通信 API 包含以下服务的数据：Dynamics CRM、Dynamics Marketing、Exchange Online、Exchange Online Protection、标识服务、移动设备管理、Office 365 合作伙伴管理中心、OneDrive for Business、Parature、Power BI for Office 365、权限管理服务、SharePoint Online、SHD 管理、Skype for Business、Social Engagement 和 Yammer Enterprise。
+目前，Office 365 服务通信 API 包含 Office 365、Yammer、Dynamics CRM 和 Microsoft Intune 云服务的数据。
 
 ## <a name="the-fundamentals"></a>基础知识
 
