@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 2e2ca6440a0f1ba10eb3d63e889a85efdaa334a0
-ms.sourcegitcommit: 78b79bd215433512fad7437220c7d5ebc1987862
+ms.openlocfilehash: bd37eb32c07e5b8c1feafad39c765d81342b5150
+ms.sourcegitcommit: 0e6d71ad2375e5d1fc72d6893724511c08840c27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/05/2019
-ms.locfileid: "36766850"
+ms.lasthandoff: 09/24/2019
+ms.locfileid: "37131436"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -708,7 +708,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|:-----|
 |ApplicationId|Edm.String|否|表示正在请求登录的应用程序的 GUID。 可以通过 Azure Active Directory Graph API 查找显示名称。|
 |Client|Edm.String|否|客户端设备信息，由执行登录的浏览器提供。|
-|LogonError|Edm.String|否|用于失败登录，包含登录失败的原因。|
+|LogonError|Edm.String|否|用于失败登录，包含登录失败的原因。 有关 LogonErrors 的完整说明，请参阅[身份验证和授权错误代码](https://docs.microsoft.com/zh-CN/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes)列表。
 |||||
 
 ## <a name="dlp-schema"></a>DLP 架构
