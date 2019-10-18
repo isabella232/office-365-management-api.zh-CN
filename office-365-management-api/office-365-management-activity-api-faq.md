@@ -17,7 +17,7 @@ ms.locfileid: "35924775"
 
 #### <a name="what-events-are-audited-for-a-specific-office-365-service"></a>要对特定 Office 365 服务审核什么事件？
 
-“Office 365 管理活动 API 架构”一文列出了全部事件。 有关详细信息，请参阅 [Office 365 管理活动 API 架构](office-365-management-activity-api-schema.md)。 另请参阅[在安全与合规中心内搜索审核日志](https://docs.microsoft.com/zh-CN/office365/securitycompliance/search-the-audit-log-in-security-and-compliance#audited-activities)中的“已审核的活动”部分，以获取大多数已审核的 Office 365 服务的事件列表。
+“Office 365 管理活动 API 架构”一文列出了全部事件。 有关详细信息，请参阅 [Office 365 管理活动 API 架构](office-365-management-activity-api-schema.md)。 另请参阅[在安全与合规中心内搜索审核日志](https://docs.microsoft.com/en-us/office365/securitycompliance/search-the-audit-log-in-security-and-compliance#audited-activities)中的“已审核的活动”部分，以获取大多数已审核的 Office 365 服务的事件列表。
 
 #### <a name="how-do-i-onboard-to-the-management-activity-api"></a>如何上手使用管理活动 API？
 

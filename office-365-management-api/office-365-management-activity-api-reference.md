@@ -17,7 +17,7 @@ ms.locfileid: "35936214"
 
 使用 Office 365 管理活动 API，可从 Office 365 和 Azure AD 活动日志中获取用户、管理员、系统和策略的操作和事件相关信息。 
 
-可使用 Office 365 和 Microsoft Azure Active Directory 审核和活动日志中的操作和事件，创建可提供监视、分析和数据可视化的解决方案。 借助这些解决方案，组织可以深入了解对自己内容执行的操作。 Office 365 活动报告中也包含这些操作和事件。 有关详细信息，请参阅[在 Office 365 安全与合规中心内搜索审核日志](https://support.office.com/zh-CN/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c)。
+可使用 Office 365 和 Microsoft Azure Active Directory 审核和活动日志中的操作和事件，创建可提供监视、分析和数据可视化的解决方案。 借助这些解决方案，组织可以深入了解对自己内容执行的操作。 Office 365 活动报告中也包含这些操作和事件。 有关详细信息，请参阅[在 Office 365 安全与合规中心内搜索审核日志](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c)。
 
 借助 Office 365 服务活动 API 这项 REST Web 服务，可开发使用任何语言和宿主环境（支持 HTTPS 和 X.509 证书）的解决方案。 此 API 依赖 Azure AD 和 OAuth2 协议进行身份验证和授权。 若要在应用程序中访问此 API，必须先在 Azure AD 中注册应用程序，并为它配置适当的权限。 这样，应用程序便能请求获取调用此 API 所需的 OAuth2 访问令牌。 有关详细信息，请参阅 [Office 365 管理 API 入门](get-started-with-office-365-management-apis.md)。
 
@@ -53,7 +53,7 @@ Office 365 管理活动 API 将操作和事件聚合到租户专用内容 blob �
 
 
 > [!NOTE] 
-> 只有已拥有“读取 DLP 敏感数据”权限的用户，才能通过活动源 API 访问 DLP 敏感数据。 若要详细了解数据丢失防护 (DLP)，请参阅[数据丢失防护策略概述](https://support.office.com/zh-CN/article/Overview-of-data-loss-prevention-policies-1966b2a7-d1e2-4d92-ab61-42efbb137f5e)。
+> 只有已拥有“读取 DLP 敏感数据”权限的用户，才能通过活动源 API 访问 DLP 敏感数据。 若要详细了解数据丢失防护 (DLP)，请参阅[数据丢失防护策略概述](https://support.office.com/en-us/article/Overview-of-data-loss-prevention-policies-1966b2a7-d1e2-4d92-ab61-42efbb137f5e)。
 
 ## <a name="activity-api-operations"></a>活动 API 操作
 
