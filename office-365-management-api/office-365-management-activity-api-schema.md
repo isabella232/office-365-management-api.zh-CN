@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: f03ce58c1d953b1db66bc5327c8dc4156b02efe4
-ms.sourcegitcommit: d7c91b326681544518edecb94d71f4ce68cd4ff3
+ms.openlocfilehash: 85e9a62a029a905204d0091d3f0d58824d3c1d9a
+ms.sourcegitcommit: 0db48c00c956935a4a52aa2c2686f160a3efc8f3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2019
-ms.locfileid: "37437681"
+ms.lasthandoff: 10/22/2019
+ms.locfileid: "37636282"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -72,7 +72,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为：**Succeeded**、**PartiallySucceeded** 或 **Failed**。 对于 Exchange 管理员活动，值为 **True** 或 **False**。<br/><br/>**重要说明**：不同的工作负载可能会覆盖 ResultStatus 属性的值。 例如，对于 Azure Active Directory STS 登录事件，ResultStatus 的“**已成功**”值仅指示 HTTP 操作成功；这并不意味着登录成功。 若要确定实际登录是否成功，请参阅 [Azure Active Directory STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)中的 LogonError 属性。 如果登录失败，则此属性的值将包含登录尝试失败的原因。 |
 |ObjectId|Edm.string|否|对于 SharePoint 和 OneDrive for Business 活动，用户访问的文件或文件夹的完整路径名称。 对于 Exchange 管理员审核日志，通过 cmdlet 修改的对象的名称。|
 |UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。|
-|ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。<br/><br/>请注意，对于与 Azure Active Directory 相关的事件的管理员活动，不会记录 IP 地址，并且 ClientIP 属性的值为 `null`。|
+|ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。<br/><br/>对于某些服务，此属性中显示的值可能是代表用户调用服务的受信任应用程序（例如，Web 应用上的 Office）的 IP 地址，而不是执行活动的人员使用的设备的 IP 地址。 <br/><br/>此外，对于与 Azure Active Directory 相关的事件，不会记录 IP 地址，并且 ClientIP 属性的值为 `null`。|
 |范围|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？ 可能的值为 **online** 和 **onprem**。 请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
 |||||
 
