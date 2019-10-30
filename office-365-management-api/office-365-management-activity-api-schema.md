@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 85e9a62a029a905204d0091d3f0d58824d3c1d9a
-ms.sourcegitcommit: 0db48c00c956935a4a52aa2c2686f160a3efc8f3
+ms.openlocfilehash: ee002772f5d35fefb758d32b6cb015993add0319
+ms.sourcegitcommit: d0bf43ff238f4647dd049672f68b4e1171083203
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/22/2019
-ms.locfileid: "37636282"
+ms.lasthandoff: 10/29/2019
+ms.locfileid: "37774888"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -1146,6 +1146,13 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |5|Anti-phish, DIMP|反钓鱼策略中的域模拟 (DIMP) 操作。|
 |6|Anti-phish, UIMP|反钓鱼策略中的用户模拟 (UIMP) 操作。|
 |7|Anti-phish, SPOOF|反钓鱼策略中的欺骗操作。|
+|8|Anti-phish, GIMP|反钓鱼策略中的邮箱智能操作。|
+|9|Anti-malware, AMP| 反恶意软件策略中的恶意软件策略操作。|
+|10|Safe attachment, SAP| Office 365 ATP 安全附件策略中的策略操作。|
+|11|Exchange transport rule, ETR| Exchange 传输规则中的策略操作。|
+|12|Anti-malware, ZAPM| 应用于零时差自动清除 (ZAP) 的反恶意软件策略中的恶意软件策略操作。|
+|13|Anti-phish, ZAPP| 应用于 ZAP 的反钓鱼策略中的钓鱼策略操作。|
+|14|Anti-phish, ZAPS| 应用于 ZAP 的反垃圾邮件策略中的垃圾邮件策略操作。|
 
 
 ### <a name="enum-policyaction---type-edmint32"></a>枚举：PolicyAction - 类型：Edm.Int32
