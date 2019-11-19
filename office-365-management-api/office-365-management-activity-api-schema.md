@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: ee002772f5d35fefb758d32b6cb015993add0319
-ms.sourcegitcommit: d0bf43ff238f4647dd049672f68b4e1171083203
+ms.openlocfilehash: 3cd8c5988273d05c85b97faa20903ebc283217dd
+ms.sourcegitcommit: a64c58d52f210c9952666d3e5bd86a0e70e983a2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/29/2019
-ms.locfileid: "37774888"
+ms.lasthandoff: 11/18/2019
+ms.locfileid: "38696959"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -64,7 +64,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |Id|Combination GUIDEdm.Guid|是|审核记录的唯一标识符。|
 |RecordType|Self.[AuditLogRecordType](#auditlogrecordtype)|是|记录指示的操作类型。 有关审核日志记录类型的详细信息表，请参阅 [AuditLogRecordType](#auditlogrecordtype)。|
 |CreationTime|Edm.Date|是|用户执行活动时的协调世界时 (UTC) 日期和时间。|
-|Operation|Edm.String|是|用户或管理员活动的名称。 有关最常见操作/活动的说明，请参阅[在 Office 365 保护中心搜索审核日志](http://go.microsoft.com/fwlink/p/?LinkId=708432)。 对于 Exchange 管理员活动，此属性标识已运行的 cmdlet 名称。 对于 DLp 事件，这可以是“DLP 架构”下描述的“DlpRuleMatch”、“DlpRuleUndo”或“DlpInfo”。|
+|Operation|Edm.String|是|用户或管理员活动的名称。 有关最常见操作/活动的说明，请参阅[在 Office 365 保护中心搜索审核日志](https://go.microsoft.com/fwlink/p/?LinkId=708432)。 对于 Exchange 管理员活动，此属性标识已运行的 cmdlet 名称。 对于 DLp 事件，这可以是“DLP 架构”下描述的“DlpRuleMatch”、“DlpRuleUndo”或“DlpInfo”。|
 |OrganizationId|Edm.Guid|是|组织 Office 365 租户的 GUID。 对于组织而言，该值始终相同，而不管它是在哪个 Office 365 服务中出现。|
 |UserType|Self.[UserType](#user-type)|是|执行操作的用户类型。 有关用户类型的详细信息，请参阅 [UserType](#user-type) 表。|
 |UserKey|Edm.String|是|UserID 属性中标识的用户的备选 ID。 例如，此属性使用 passport 唯一 ID (PUID) 填充，用于 SharePoint、OneDrive for Business 和 Exchange 中用户执行的事件。 此属性还可以为系统帐户执行的其他服务和事件中发生的事件指定与 UserID 属性相同的值。|
@@ -265,7 +265,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |LanguageRemovedFromTermStore*|从术语库中删除语言。|
 |LegacyWorkflowEnabledSet*|网站管理员或所有者向网站添加 SharePoint Workflow Task 内容类型。 全局管理员还可以在 SharePoint 管理中心中对整个组织启用工作流。|
 |LookAndFeelModified|用户修改快速启动、甘特图格式或组格式。 或者用户在 Project Web App 中创建、修改或删除视图。|
-|ManagedSyncClientAllowed|用户成功建立与 SharePoint 或 OneDrive for Business 网站的同步关系。 同步关系之所以成功，是因为用户计算机是添加到域列表（称为“安全收件人列表”）的域成员，可以访问组织中的文档库。 有关此功能的详细信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](http://go.microsoft.com/fwlink/p/?LinkID=534609)。|
+|ManagedSyncClientAllowed|用户成功建立与 SharePoint 或 OneDrive for Business 网站的同步关系。 同步关系之所以成功，是因为用户计算机是添加到域列表（称为“安全收件人列表”）的域成员，可以访问组织中的文档库。 有关详细信息，请参阅[使用 SharePoint Online PowerShell ](https://go.microsoft.com/fwlink/p/?LinkID=534609)为安全收件人列表中的域启用 OneDrive 同步。|
 |MaxQuotaModified*|修改了网站的最大限额。|
 |MaxResourceUsageModified*|修改了网站所允许的最大资源使用量。|
 |MySitePublicEnabledSet*|SharePoint 管理员设置了使用户拥有公共 MySites 的标志。|
@@ -336,7 +336,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |TimesheetRejected|用户拒绝 Project Web App 中的时间表。|
 |TimesheetSaved|用户保存 Project Web App 中的时间表。|
 |TimesheetSubmitted|用户在 Project Web App 中提交状态时间表。|
-|UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](https://docs.microsoft.com/en-us/powershell/module/sharepoint-online/index?view=sharepoint-ps)。|
+|UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](https://docs.microsoft.com/powershell/module/sharepoint-online/index?view=sharepoint-ps)。|
 |UpdateSSOApplication*|Secure Store Service 中更新目标应用程序。|
 |UserAddedToGroup*|网站管理员或所有者向 SharePoint 或 OneDrive for Business 网站上的组添加人员。 向组添加人员授予用户已分配给组的权限。 |
 |UserRemovedFromGroup*|网站管理员或所有者从 SharePoint 或 OneDrive for Business 网站上的组删除人员。 删除该人员后，不再向其授予已分配给组的权限。 |
@@ -708,7 +708,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|:-----|
 |ApplicationId|Edm.String|否|表示正在请求登录的应用程序的 GUID。 可以通过 Azure Active Directory Graph API 查找显示名称。|
 |Client|Edm.String|否|客户端设备信息，由执行登录的浏览器提供。|
-|LogonError|Edm.String|否|用于失败登录，包含登录失败的原因。 有关 LogonErrors 的完整说明，请参阅[身份验证和授权错误代码](https://docs.microsoft.com/zh-CN/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes)列表。
+|LogonError|Edm.String|否|用于失败登录，包含登录失败的原因。 有关 LogonErrors 的完整说明，请参阅[身份验证和授权错误代码](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes)列表。
 |||||
 
 ## <a name="dlp-schema"></a>DLP 架构
@@ -843,7 +843,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 警报信号包括：
 
 - 基于[安全与合规中心的警报策略](https://docs.microsoft.com/office365/securitycompliance/alert-policies#default-alert-policies)生成的所有警报。
-- 在 [Office 365 云应用安全](https://docs.microsoft.com/office365/securitycompliance/office-365-cas-overview)和 [Microsoft Cloud App Security](https://docs.microsoft.com/zh-CN/cloud-app-security/what-is-cloud-app-security) 中生成的 Office 365 相关警报。
+- 在 [Office 365 云应用安全](https://docs.microsoft.com/office365/securitycompliance/office-365-cas-overview)和 [Microsoft Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security) 中生成的 Office 365 相关警报。
 
 这些事件的 UserId 和 UserKey 始终为 SecurityComplianceAlerts。 有两种类型的警报信号，它们被存储为常见架构的 Operation 属性值：
 
@@ -1078,7 +1078,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 
 - 组织中的用户单击 URL，基于 [Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)保护被检测为恶意。  
 
-- SharePoint Online、OneDrive for Business 或 Microsoft Teams 中由 [Office 365 ATP](https://docs.microsoft.com/zh-CN/office365/securitycompliance/atp-for-spo-odb-and-teams) 保护检测为“恶意”的文件。
+- SharePoint Online、OneDrive for Business 或 Microsoft Teams 中由 [Office 365 ATP](https://docs.microsoft.com/office365/securitycompliance/atp-for-spo-odb-and-teams) 保护检测为“恶意”的文件。
 
 - 触发并启动[自动调查](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office)的警报。
 
@@ -1169,6 +1169,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |5|Quarantine|策略操作是隔离电子邮件。|
 |6|NoAction| 策略被配置为不对电子邮件执行任何操作。|
 |7|BccMessage|策略操作是将电子邮件密送至筛选策略指定的电子邮件地址。|
+|8|ReplaceAttachment|策略操作是按照筛选策略指定的信息更换电子邮件中的附件。|
 
 
 ### <a name="url-time-of-click-events"></a>URL 单击时事件
@@ -1240,15 +1241,16 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 [Office 365 自动调查和响应 (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) 事件适用于其订阅中包含 Office 365 高级威胁防护计划 2 或 Office 365 E5 的 Office 365 客户。 将根据调查状态的变化记录调查事件。 例如，当管理员执行将调查状态从“挂起的操作”更改为“已完成”的操作时，将记录一个事件。 
 
 目前，仅记录自动调查事件。 （手动生成调查的事件即将提供。）将记录以下状态值： 
-- 已创建调查
+- 已开始调查
 - 未发现威胁 
-- 已由系统终止 
+- 已由系统终止
 - 挂起的操作 
 - 发现威胁 
 - 已修正 
 - 已失败 
 - 已通过限制终止 
-- 已由用户终止 
+- 已由用户终止
+- 正在运行
 
 #### <a name="main-investigation-schema"></a>主调查架构 
 
