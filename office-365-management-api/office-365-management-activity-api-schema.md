@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 3cd8c5988273d05c85b97faa20903ebc283217dd
-ms.sourcegitcommit: a64c58d52f210c9952666d3e5bd86a0e70e983a2
+ms.openlocfilehash: c97325687967b85b589f4e7b94196ed1a406ef5d
+ms.sourcegitcommit: 3ff573d31612ca08819a37bfc98d43926a4a60e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/18/2019
-ms.locfileid: "38696959"
+ms.lasthandoff: 11/27/2019
+ms.locfileid: "39631989"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -53,6 +53,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[Office 365 高级威胁防护和威胁调查与响应](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|使用特定于 Office 365 高级威胁防护与威胁调查和响应数据的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
 |[工作区分析](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
+|[Microsoft Forms 架构](#microsoft-forms-schema)|使用特定于所有 Microsoft Forms 事件的属性扩展常见架构。|
 |||
 
 ## <a name="common-schema"></a>常见架构
@@ -116,6 +117,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
 |54|SharePointListItemOperation|Sharepoint 列表事件。|
 |55|SharePointContentTypeOperation|SharePoint 列表内容类型事件。|
+|66|MicrosoftForms|Microsoft Forms 事件。|
 ||||
 
 ### <a name="enum-user-type---type-edmint32"></a>枚举：User Type - 类型：Edm.Int32
@@ -1240,7 +1242,8 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 
 [Office 365 自动调查和响应 (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) 事件适用于其订阅中包含 Office 365 高级威胁防护计划 2 或 Office 365 E5 的 Office 365 客户。 将根据调查状态的变化记录调查事件。 例如，当管理员执行将调查状态从“挂起的操作”更改为“已完成”的操作时，将记录一个事件。 
 
-目前，仅记录自动调查事件。 （手动生成调查的事件即将提供。）将记录以下状态值： 
+目前，仅记录自动调查事件。 （手动生成调查的事件即将提供。）将记录以下状态值：
+
 - 已开始调查
 - 未发现威胁 
 - 已由系统终止
@@ -1265,6 +1268,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |DeeplinkURL    |Edm.String |Office 365 安全与合规中心中的调查的深度链接 URL |
 |操作 |集合 (Edm.String)   |调查建议的操作集合 |
 |Data   |Edm.String |数据字符串，其中包含有关调查实体的更多详细信息，以及有关调查警报的信息。 实体位于数据 Blob 内的单独节点中。 |
+||||
 
 #### <a name="actions"></a>操作
 
@@ -1283,6 +1287,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |资源标识符   |Edm.String  |包含 Azure Active Directory 租户 ID。|
 |实体   |Collection(Edm.String) |按操作列出的一个或多个受影响的实体 |
 |相关警报 ID  |Edm.String |与调查相关的警报 |
+||||
 
 #### <a name="entities"></a>实体
 
@@ -1300,6 +1305,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |NetworkMessageId   |Edm.Guid   |此邮件消息的网络消息 ID  |
 |InternetMessageId  |Edm.String  |此邮件消息的 Internet 消息 ID |
 |Subject    |Edm.String |此邮件的主题  |
+||||
 
 #### <a name="ip"></a>IP
 
@@ -1307,6 +1313,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |----|----|----|
 |类型   |Edm.String |“ip” |
 |地址    |Edm.String |字符串形式的 IP 地址，例如 `127.0.0.1`
+||||
 
 #### <a name="url"></a>URL
 
@@ -1314,6 +1321,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |----|----|----|
 |类型   |Edm.String |“url” |
 |URL    |Edm.String |实体指向的完整 URL  |
+||||
 
 #### <a name="mailbox-also-equivalent-to-the-user"></a>邮箱（也相当于用户） 
 
@@ -1323,6 +1331,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |MailboxPrimaryAddress  |Edm.String |邮箱的主要地址  |
 |DisplayName    |Edm.String |邮箱的显示名称 |
 |UPN    |Edm.String |邮箱的 UPN  |
+||||
 
 #### <a name="file"></a>文件
 
@@ -1331,6 +1340,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |类型   |Edm.String |“文件” |
 |名称   |Edm.String |不带路径的文件名 |
 FileHashes |集合 (Edm.String) |与文件关联的文件哈希 |
+||||
 
 #### <a name="filehash"></a>FileHash
 
@@ -1339,6 +1349,7 @@ FileHashes |集合 (Edm.String) |与文件关联的文件哈希 |
 |类型   |Edm.String |“filehash” |
 |算法  |Edm.String |哈希算法类型，可为以下值之一：<br/>- 未知<br/>- MD5<br/>- SHA1<br/>- SHA256<br/>- SHA256AC
 |值  |Edm.String |哈希值  |
+||||
 
 #### <a name="mailcluster"></a>MailCluster
 
@@ -1353,6 +1364,7 @@ FileHashes |集合 (Edm.String) |与文件关联的文件哈希 |
 |QueryTime  |Edm.DateTime   |查询时间  |
 |MailCount  |Edm.Int    |作为邮件群集一部分的邮件消息数  |
 |Source |字符串 |邮件群集的来源；群集源的值。 |
+||||
 
 ## <a name="power-bi-schema"></a>Power BI 架构
 
@@ -1391,11 +1403,48 @@ FileHashes |集合 (Edm.String) |与文件关联的文件哈希 |
 
 ## <a name="workplace-analytics-schema"></a>工作区分析架构
 
-在[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/office365/securitycompliance/search-the-audit-log-in-security-and-compliance#microsoft-workplace-analytics-activities)中列出的工作区分析事件将使用此架构。
+在[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-workplace-analytics-activities)中列出的工作区分析事件将使用此架构。
 
 | **参数**     | **类型**            | **强制？** | **说明**|
 |:------------------ | :------------------ | :--------------|:--------------|
 | WpaUserRole        | Edm.String | 否     | 执行操作的用户的工作区分析角色。                                                                                            |
 | ModifiedProperties | 集合 (Common.ModifiedProperty) | 否 | 该属性包括已修改属性的名称、已修改属性的新值和已修改属性的先前值。|
 | OperationDetails   | 集合 (Common.NameValuePair)    | 否 | 已更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value**。|
+||||
+
+## <a name="microsoft-forms-schema"></a>Microsoft Forms 架构
+
+[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities)中列出的 Micorosft Forms 事件将使用此架构。
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|FormsUserTypes|Collection(Self.[FormsUserTypes](#formsusertypes))|是|执行操作的用户的角色。  此参数的值为“管理员”、“所有者”、“响应者人”或“合著者”。|
+|SourceApp|Edm.String|是|指示操作是来自 Forms 网站还是其他应用。|
+|FormName|Edm.String|否|当前表单的名称。|
+|FormId |Edm.String|否|目标表单的 ID。|
+|FormTypes|Collection(Self.[FormTypes](#formtypes))|否|指示这是表单、测验还是调查。|
+|ActivityParameters|Edm.String|否|包含活动参数的 JSON 字符串。 有关更多详细信息，请参阅[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities)。|
+||||
+
+### <a name="enum-formsusertypes---type-edmint32"></a>枚举：FormsUserTypes - 类型：Edm.Int32
+
+#### <a name="formsusertypes"></a>FormsUserTypes
+
+|**值**|**表单用户类型**|**说明**|
+|:-----|:-----|:-----|
+|0|管理员|有权访问表单的管理员。|
+|1|所有者|担任表单所有者的用户。|
+|2|响应者|已向表单提交回复的用户。|
+|3|合著者|已使用表单所有者提供的协作链接登录和编辑表单的用户。|
+||||
+
+### <a name="enum-formtypes---type-edmint32"></a>枚举：FormTypes - 类型：Edm.Int32
+
+#### <a name="formtypes"></a>FormTypes
+
+|**值**|**表单类型**|**说明**|
+|:-----|:-----|:-----|
+|0|表单|使用“新建表单”选项创建的表单。|
+|1|测验|使用“新建测验”选项创建的测验。  测验是表单的一种特殊类型，包含得分值、自动和手动评分、批注等附加功能。|
+|2|调查|使用“新建调查”选项创建的调查。  调查是表单的一种特殊类型，包含 CMS 集成和对流程规则的支持等附加功能。|
 ||||
