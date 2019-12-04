@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c97325687967b85b589f4e7b94196ed1a406ef5d
-ms.sourcegitcommit: 3ff573d31612ca08819a37bfc98d43926a4a60e2
+ms.openlocfilehash: 1762bed1a970215b3fc8c45f3ef807caaf93ace8
+ms.sourcegitcommit: e45b168705f36e12ceae02c77244d17d5ce01310
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/27/2019
-ms.locfileid: "39631989"
+ms.lasthandoff: 12/02/2019
+ms.locfileid: "39665462"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -51,6 +51,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[数据中心安全 Cmdlet 架构](#data-center-security-cmdlet-schema)|使用特定于所有数据中心安全 cmdlet 审核数据的属性扩展数据中心安全基本架构。|
 |[Microsoft Teams 架构](#microsoft-teams-schema)|使用特定于所有 Microsoft Teams 事件的属性扩展常见架构。|
 |[Office 365 高级威胁防护和威胁调查与响应](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|使用特定于 Office 365 高级威胁防护与威胁调查和响应数据的属性扩展常见架构。|
+|[自动调查和响应事件](#automated-investigation-and-response-events-in-office-365)|使用特定于 Office 365 自动调查和响应 (AIR) 事件的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
 |[工作区分析](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
 |[Microsoft Forms 架构](#microsoft-forms-schema)|使用特定于所有 Microsoft Forms 事件的属性扩展常见架构。|
@@ -117,6 +118,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
 |54|SharePointListItemOperation|Sharepoint 列表事件。|
 |55|SharePointContentTypeOperation|SharePoint 列表内容类型事件。|
+|64|AirInvestigation|自动事件响应 (AIR) 事件。|
 |66|MicrosoftForms|Microsoft Forms 事件。|
 ||||
 
@@ -1238,7 +1240,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |2|Microsoft Teams|
 |||||
 
-### <a name="automated-investigation-and-response-events"></a>自动调查和响应事件
+## <a name="automated-investigation-and-response-events-in-office-365"></a>Office 365 中的自动调查和响应事件
 
 [Office 365 自动调查和响应 (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) 事件适用于其订阅中包含 Office 365 高级威胁防护计划 2 或 Office 365 E5 的 Office 365 客户。 将根据调查状态的变化记录调查事件。 例如，当管理员执行将调查状态从“挂起的操作”更改为“已完成”的操作时，将记录一个事件。 
 
@@ -1255,7 +1257,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 - 已由用户终止
 - 正在运行
 
-#### <a name="main-investigation-schema"></a>主调查架构 
+### <a name="main-investigation-schema"></a>主调查架构 
 
 |名称   |类型   |说明  |
 |----|----|----|
@@ -1270,7 +1272,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |Data   |Edm.String |数据字符串，其中包含有关调查实体的更多详细信息，以及有关调查警报的信息。 实体位于数据 Blob 内的单独节点中。 |
 ||||
 
-#### <a name="actions"></a>操作
+### <a name="actions"></a>操作
 
 |字段  |类型   |说明 |
 |----|----|----|
@@ -1289,9 +1291,9 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |相关警报 ID  |Edm.String |与调查相关的警报 |
 ||||
 
-#### <a name="entities"></a>实体
+### <a name="entities"></a>实体
 
-##### <a name="mailmessage-email"></a>MailMessage（电子邮件） 
+#### <a name="mailmessage-email"></a>MailMessage（电子邮件） 
 
 |字段  |类型   |说明  |
 |----|----|----|
