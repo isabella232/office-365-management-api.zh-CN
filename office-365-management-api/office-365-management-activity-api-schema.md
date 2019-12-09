@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 1762bed1a970215b3fc8c45f3ef807caaf93ace8
-ms.sourcegitcommit: e45b168705f36e12ceae02c77244d17d5ce01310
+ms.openlocfilehash: f05cf59e720c56b1b43db153519ea0fbee548895
+ms.sourcegitcommit: f959ebd84b3df57171f8d8ca2485adc1b69b4008
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/02/2019
-ms.locfileid: "39665462"
+ms.lasthandoff: 12/06/2019
+ms.locfileid: "39872223"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -108,16 +108,21 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |30|MicrosoftFlow|Microsoft Flow 事件。|
 |31|AeD|高级电子数据展示事件。|
 |32|MicrosoftStream|Microsoft Stream 事件。|
+|33|ComplianceDLPSharePointClassification|与 SharePoint 中 DLP 分类有关的事件。|
 |35|Project|Microsoft Project 事件。|
-|36|SharepointListOperation|Sharepoint List 事件。|
+|36|SharePointListOperation|Sharepoint 列表事件。|
 |38|DataGovernance|与安全与合规中心中的保留策略和保留标签相关的事件|
 |40|SecurityComplianceAlerts|安全与合规警报信号。|
 |41|ThreatIntelligenceUrl|Office 365 高级威胁防护中的安全链接信息块时间和信息块覆盖事件。|
+|42|SecurityComplianceInsights|与 Office 365 安全与合规中心中的见解和报告有关的事件。|
 |44|WorkplaceAnalytics|工作区分析事件。|
 |45|PowerAppsApp|PowerApps 应用程序事件。|
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
-|54|SharePointListItemOperation|Sharepoint 列表事件。|
+|49|TeamsHealthcare|与 Microsoft Teams for Healthcare 中的[患者应用程序](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit)相关的事件。|
+|52|DataInsightsRestApiAudit|数据见解 REST API 事件。|
+|54|SharePointListItemOperation|SharePoint 列表项事件。|
 |55|SharePointContentTypeOperation|SharePoint 列表内容类型事件。|
+|56|SharePointFieldOperation|SharePoint 列表字段事件。|
 |64|AirInvestigation|自动事件响应 (AIR) 事件。|
 |66|MicrosoftForms|Microsoft Forms 事件。|
 ||||
@@ -135,10 +140,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |4|System|系统帐户。|
 |5|Application|应用程序。|
 |6|ServicePrincipal|服务主体。|
+|7|CustomPolicy|自定义策略。|
+|8|SystemPolicy|系统策略。|
 ||||
-
-> [!NOTE] 
-> 仅 Exchange 操作包括用户类型。 SharePoint 操作不指定用户类型。 
 
 ### <a name="enum-auditlogscope---type-edmint32"></a>枚举：AuditLogScope - 类型：Edm.Int32
 
