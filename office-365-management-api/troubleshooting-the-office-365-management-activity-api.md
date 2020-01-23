@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: f02088f557a10414539952c78542e09b2dc2d90b
-ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
+ms.openlocfilehash: b751c89194407e57c8654a9317b8070ab2918b03
+ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2019
-ms.locfileid: "35936227"
+ms.lasthandoff: 01/22/2020
+ms.locfileid: "41263287"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -40,7 +40,7 @@ Office 365 管理活动 API（也称为*统一审核 API *）只是 Office 365 �
 
 ## <a name="connecting-to-the-api"></a>连接到 API
 
-大多数应用程序使用简单直观的客户端凭据 OAuth2 流连接到 API。 因此，第一步是创建一个 Azure AD 应用，该应用具有访问管理活动 API 数据所需的权限。 介绍进行 Azure AD 应用注册的步骤不在本文的探讨范围内。 有关详细信息，请参阅[通过 Azure Active Directory 租户注册应用程序](https://docs.microsoft.com/zh-CN/azure/active-directory/develop/active-directory-integrating-applications)。
+大多数应用程序使用简单直观的客户端凭据 OAuth2 流连接到 API。 因此，第一步是创建一个 Azure AD 应用，该应用具有访问管理活动 API 数据所需的权限。 介绍进行 Azure AD 应用注册的步骤不在本文的探讨范围内。 有关详细信息，请参阅[通过 Azure Active Directory 租户注册应用程序](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications)。
 
 ### <a name="azure-application-permissions"></a>Azure 应用程序权限
 

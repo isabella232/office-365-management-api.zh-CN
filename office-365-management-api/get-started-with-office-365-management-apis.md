@@ -6,12 +6,12 @@ ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 08f510302c1d19cf3e3e2385f1baab6133153f07
-ms.sourcegitcommit: 37737b849f1b2d0484e626002978b1d4ece2c742
+ms.openlocfilehash: f444aa9411e0520be42ce68b2f618efe5228ac75
+ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2019
-ms.locfileid: "35936234"
+ms.lasthandoff: 01/22/2020
+ms.locfileid: "41263238"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Office 365 管理 API 入门
 
@@ -42,7 +42,7 @@ Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全
 
 ### <a name="prerequisites"></a>先决条件
 
-必须有 Office 365 订阅以及与 Office 365 订阅关联的 Azure 订阅，才能在 Azure AD 中注册应用程序。 可以从 Office 365 和 Azure 这两款产品的试用订阅入手。 有关详细信息，请参阅[欢迎加入 Office 365 开发人员计划](https://docs.microsoft.com/zh-CN/office/developer-program/office-365-developer-program)。
+必须有 Office 365 订阅以及与 Office 365 订阅关联的 Azure 订阅，才能在 Azure AD 中注册应用程序。 可以从 Office 365 和 Azure 这两款产品的试用订阅入手。 有关详细信息，请参阅[欢迎加入 Office 365 开发人员计划](https://docs.microsoft.com/office/developer-program/office-365-developer-program)。
 
 
 ### <a name="use-the-azure-management-portal-to-register-your-application-in-azure-ad"></a>使用 Azure 管理门户在 Azure AD 中注册应用程序
@@ -80,7 +80,7 @@ Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全
 
 至此，应用程序已注册，必须指定几个重要属性，以确定应用程序如何在 Azure AD 中运行，以及租户管理员如何同意允许应用程序使用 Office 365 管理 API 访问管理员租户数据。
 
-若要详细了解 Azure AD 应用程序常规配置，请参阅[应用程序对象属性](https://docs.microsoft.com/zh-CN/azure/active-directory/develop/active-directory-application-objects)。
+若要详细了解 Azure AD 应用程序常规配置，请参阅[应用程序对象属性](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects)。
 
 
 1. **客户端 ID**。 此值由 Azure AD 自动生成。 应用程序在请求获取租户管理员同意时，以及在从 Azure AD 请求获取仅应用程序令牌时使用此值。
@@ -115,7 +115,7 @@ Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全
 
 在后台运行的应用程序（如守护程序或服务）可使用客户端凭据，以请求获取仅应用程序访问令牌，而无需在获取初始同意后重复请求获取租户管理员同意。 
 
-有关详细信息，请参阅[使用客户端凭据执行服务到服务调用](https://msdn.microsoft.com/zh-CN/library/azure/dn645543.aspx)。
+有关详细信息，请参阅[使用客户端凭据执行服务到服务调用](https://msdn.microsoft.com/library/azure/dn645543.aspx)。
 
 必须为应用程序配置 X.509 证书，以用作在从 Azure AD 请求获取仅应用程序访问令牌时所需的客户端凭据。 此过程分为两步：
 
@@ -249,9 +249,9 @@ http://www.mycompany.com/myapp/?code=AAABAAAAvPM1KaPlrEqdFSB...
 
 从 Azure AD 请求获取访问令牌的方法有以下两种：
 
-- [授权代码授予流](https://msdn.microsoft.com/en-us/library/azure/dn645542.aspx)：让租户管理员明确授予同意，以向应用程序返回授权代码。 然后，应用程序用授权代码交换访问令牌。 必须使用这种方法，才能获取应用程序使用 API 访问租户数据所需的初始同意；并且必须有第一个访问令牌，才能获取并存储租户 ID。
+- [授权代码授予流](https://msdn.microsoft.com/library/azure/dn645542.aspx)：让租户管理员明确授予同意，以向应用程序返回授权代码。 然后，应用程序用授权代码交换访问令牌。 必须使用这种方法，才能获取应用程序使用 API 访问租户数据所需的初始同意；并且必须有第一个访问令牌，才能获取并存储租户 ID。
     
-- [客户端凭据授予流](https://msdn.microsoft.com/zh-CN/library/azure/dn645543.aspx)：允许应用程序在旧版访问令牌到期时请求获取后续访问令牌，而无需请求租户管理员登录并明确授予同意。 必须对在初始租户管理员同意授予后在后台连续运行并调用 API 的应用程序使用这种方法。
+- [客户端凭据授予流](https://msdn.microsoft.com/library/azure/dn645543.aspx)：允许应用程序在旧版访问令牌到期时请求获取后续访问令牌，而无需请求租户管理员登录并明确授予同意。 必须对在初始租户管理员同意授予后在后台连续运行并调用 API 的应用程序使用这种方法。
     
 
 ### <a name="request-an-access-token-using-the-authorization-code"></a>使用授权代码请求获取访问令牌
@@ -335,7 +335,7 @@ Content-Length: 3265
 
 在租户 ID 已知后，应用程序便可以对 Azure AD 执行服务到服务调用，以在访问令牌到期时请求获取其他访问令牌。 这些令牌仅包含发出请求的应用程序的相关信息，并不包含最初授予同意的管理员的相关信息。 若要执行服务到服务调用，应用程序必须使用 X.509 证书创建客户端断言（形式为经过 base64 编码的 SHA256 签名 JWT 持有者令牌）。
 
-在 .NET 中开发应用程序时，可使用 [Azure AD 身份验证库 (ADAL)](https://docs.microsoft.com/zh-CN/azure/active-directory/develop/active-directory-authentication-libraries) 创建客户端断言。 其他开发平台应该有类似的库。
+在 .NET 中开发应用程序时，可使用 [Azure AD 身份验证库 (ADAL)](https://docs.microsoft.com/azure/active-directory/develop/active-directory-authentication-libraries) 创建客户端断言。 其他开发平台应该有类似的库。
 
 未编码的 JWT 令牌由具有以下属性的头和有效负载组成。
 
