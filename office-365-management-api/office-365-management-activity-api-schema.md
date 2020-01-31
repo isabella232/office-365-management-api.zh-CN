@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: f05cf59e720c56b1b43db153519ea0fbee548895
-ms.sourcegitcommit: f959ebd84b3df57171f8d8ca2485adc1b69b4008
+ms.openlocfilehash: 7a12fc60894742ebdcc41457930225a4dd9bfc02
+ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/06/2019
-ms.locfileid: "39872223"
+ms.lasthandoff: 01/22/2020
+ms.locfileid: "41263273"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -105,7 +105,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |24|Discovery|通过在安全与合规中心中运行内容搜索和管理电子数据展示案例执行的电子数据展示活动事件。|
 |25|MicrosoftTeams|Microsoft Teams 中的事件。|
 |28|ThreatIntelligence|Exchange Online Protection 和 Office 365 高级威胁防护中的网络钓鱼和恶意软件事件。|
-|30|MicrosoftFlow|Microsoft Flow 事件。|
+|30|MicrosoftFlow|Microsoft Power Automate（以前称为 Microsoft Flow）事件。|
 |31|AeD|高级电子数据展示事件。|
 |32|MicrosoftStream|Microsoft Stream 事件。|
 |33|ComplianceDLPSharePointClassification|与 SharePoint 中 DLP 分类有关的事件。|
@@ -116,7 +116,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |41|ThreatIntelligenceUrl|Office 365 高级威胁防护中的安全链接信息块时间和信息块覆盖事件。|
 |42|SecurityComplianceInsights|与 Office 365 安全与合规中心中的见解和报告有关的事件。|
 |44|WorkplaceAnalytics|工作区分析事件。|
-|45|PowerAppsApp|PowerApps 应用程序事件。|
+|45|PowerAppsApp|Power Apps 事件。|
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
 |49|TeamsHealthcare|与 Microsoft Teams for Healthcare 中的[患者应用程序](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit)相关的事件。|
 |52|DataInsightsRestApiAudit|数据见解 REST API 事件。|
@@ -359,7 +359,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-file-operations"></a>SharePoint 文件操作
 
-在[在 Office 365 保护中心搜索审核日志](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)的“文件和文件夹活动”部分列出的与文件相关的 SharePoint 事件使用此架构。
+在[在安全与合规中心内搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance)的“文件和文件夹活动”部分列出的与文件相关的 SharePoint 事件使用此架构。
 
 
 
@@ -379,7 +379,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-sharing-schema"></a>SharePoint 共享架构
 
- 与文件共享相关的 SharePoint 事件。 它们不同于与文件和文件夹相关的事件，因为用户正在执行对另一个用户有一定影响的操作。 有关 SharePoint 共享架构信息，请参阅[在 Office 365 审核日志中使用共享审核](https://support.office.com/en-us/article/Use-sharing-auditing-in-the-Office-365-audit-log-50bbf89f-7870-4c2a-ae14-42635e0cfc01?ui=en-US&amp;rs=en-US&amp;ad=US)。
+ 与文件共享相关的 SharePoint 事件。 它们不同于与文件和文件夹相关的事件，因为用户正在执行对另一个用户有一定影响的操作。 有关 SharePoint 共享架构信息，请参阅[在 Office 365 审核日志中使用共享审核](https://docs.microsoft.com/microsoft-365/compliance/use-sharing-auditing
+)。
 
 
 
@@ -393,7 +394,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-schema"></a>SharePoint 架构
 
-在[在 Office 365 保护中心搜索审核日志](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 SharePoint 事件（除了文件和文件夹事件）使用此架构。
+在[在安全与合规中心内搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance)中列出的 SharePoint 事件（除了文件和文件夹事件）使用此架构。
 
 
 |**参数**|**类型**|**强制？**|**说明**|
@@ -897,7 +898,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 
 ## <a name="sway-schema"></a>Sway 架构
 
-在[在 Office 365 保护中心搜索审核日志](https://support.office.com/en-us/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 Sway 事件（除了文件和文件夹事件）将使用此架构。
+在[在 Office 365 保护中心搜索审核日志](https://support.office.com/article/Search-the-audit-log-in-the-Office-365-Security-Compliance-Center-0d4d0f35-390b-4518-800e-0c7ec95e946c?ui=en-US&amp;rs=en-US&amp;ad=US)中列出的 Sway 事件（除了文件和文件夹事件）将使用此架构。
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -1082,7 +1083,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 
 [Office 365 高级威胁防护](https://docs.microsoft.com/office365/securitycompliance/office-365-atp) (ATP) 与威胁调查和响应事件适用于具有 Office 365 高级威胁防护计划 1、Office 365 高级威胁防护计划 2 或 E5 订阅的 Office 365 客户。 Office 365 ATP 源中的每个事件对应以下确定为包含威胁的事件：
 
-- 由组织中的用户发送或接收电子邮件，同时对送达的邮件进行检测，并从[零时差自动清除](https://support.office.com/zh-CN/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)检测邮件。 
+- 由组织中的用户发送或接收电子邮件，同时对送达的邮件进行检测，并从[零时差自动清除](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)检测邮件。 
 
 - 组织中的用户单击 URL，基于 [Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)保护被检测为恶意。  
 
@@ -1098,7 +1099,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |AttachmentData|Collection(Self.[AttachmentData](#attachmentdata))|否|有关触发事件的电子邮件中附件的数据。|
-|DetectionType|Edm.String|是|检测类型（例如，“Inline”**** - 在传递时检测到；“Delayed”**** - 在传递后检测到；“ZAP”**** - 消息由[零时差自动清除](https://support.office.com/zh-CN/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)删除）。 使用 ZAP 检测类型的事件通常前面是“Delayed”**** 检测类型的邮件。|
+|DetectionType|Edm.String|是|检测类型（例如，“Inline”**** - 在传递时检测到；“Delayed”**** - 在传递后检测到；“ZAP”**** - 消息由[零时差自动清除](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)删除）。 使用 ZAP 检测类型的事件通常前面是“Delayed”**** 检测类型的邮件。|
 |DetectionMethod|Edm.String|是|Office 365 ATP 用于检测的方法或技术。|
 |InternetMessageId|Edm.String|是|Internet 邮件 ID。|
 |NetworkMessageId|Edm.String|是|Exchange Online 网络消息 ID。|
