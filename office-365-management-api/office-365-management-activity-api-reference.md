@@ -6,12 +6,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: cd08108108db55008d21301bdcce783f79f424b0
-ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
+ms.openlocfilehash: 858829d304c85e3c6658b3f6a1215d923871283a
+ms.sourcegitcommit: 967a95b214c620ca58875af6b5a96e28482c85aa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2020
-ms.locfileid: "41263266"
+ms.lasthandoff: 02/08/2020
+ms.locfileid: "41857284"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
@@ -576,14 +576,14 @@ HTTP/1.1 200 OK
 
 ## <a name="api-throttling"></a>API 限制
 
-每个对 API 编码的供应商都有专用的请求限制配额，即每分钟 6 万个。 若要获取专用配额，请在所有请求中指定 PublisherIdentifier 参数。 包含相同 PublisherIdentifier 的请求会共用同一配额。 所有未指定 PublisherIdentifier 的请求与 GUID 00000000-0000-0000-0000-000000000000 共用同一配额。
+通过 Office 365 管理活动 API 访问审核日志的组织，会因发布者级别限制而受限。 这意味着，对于代表多个客户请求数据的发布者而言，限制由所有这些客户共享。
 
-如果 Office 365 需要对某些问题向你反向上报，请确保 GUID 已用作 PublisherIdentifier 的租户的订阅是最新的，且已使用正确的联系信息进行更新。 对于此租户，没有任何订阅要求。
+我们正在从发布者级别限制迁移至租户级别限制。 结果是每个组织都会获得自己完全分配的带宽配额，以访问其审核数据。 所有组织最初每分钟分配 2000 个请求基线。 这不是一个静态的预定义的限制，但根据组合因素进行建模，包括组织中的席位数， Office 365 和 Microsoft 365 E5 组织的带宽大约为非 E5 组织的两倍。 这也是最大宽带的上限，以保护服务的健康。
 
-对于使用此 API 开发自己的解决方案的客户，建议使用自己的租户 GUID，以免因有限共享配额导致竞争。
+有关详细信息，参见 “[Microsoft 365 高级审核](https://docs.microsoft.com/microsoft-365/compliance/advanced-audit#high-bandwidth-access-to-the-office-365-management-activity-api)”中的“Office 365 管理活动 API”。
 
 > [!NOTE] 
-> 尽管每个发布者每分钟最多可提交 6 万个请求，Microsoft 也无法保证响应速率。 响应速率取决于各种因素，如客户端系统性能、网络容量和网络速度。  发布者每分钟最多可提交 6 万个请求，但无法在这同一分钟内收到所有 6 万个请求的响应。 如果发布者要对客户端应用程序进行基准校验，他们应在计划运行客户端应用程序的各个不同环境中这样做，因为结果因环境而异。
+> 尽管每个租户最初每分钟最多可提交 2000 个请求，Microsoft 也无法保证响应速率。 响应速率取决于各种因素，如客户端系统性能、网络容量和网络速度。 
 
 ## <a name="errors"></a>错误
 
