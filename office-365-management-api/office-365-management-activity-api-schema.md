@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 7a12fc60894742ebdcc41457930225a4dd9bfc02
-ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
+ms.openlocfilehash: 38905a88f8be1924d0df02f10362caa624b34bd8
+ms.sourcegitcommit: 8aa0be26e0e69dd7908b3bcece3a71eafb973705
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2020
-ms.locfileid: "41263273"
+ms.lasthandoff: 03/10/2020
+ms.locfileid: "42586301"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
  
@@ -73,7 +73,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |Workload|Edm.String|否|其中发生活动的 Office 365 服务。 
 |ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为：**Succeeded**、**PartiallySucceeded** 或 **Failed**。 对于 Exchange 管理员活动，值为 **True** 或 **False**。<br/><br/>**重要说明**：不同的工作负载可能会覆盖 ResultStatus 属性的值。 例如，对于 Azure Active Directory STS 登录事件，ResultStatus 的“**已成功**”值仅指示 HTTP 操作成功；这并不意味着登录成功。 若要确定实际登录是否成功，请参阅 [Azure Active Directory STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)中的 LogonError 属性。 如果登录失败，则此属性的值将包含登录尝试失败的原因。 |
 |ObjectId|Edm.string|否|对于 SharePoint 和 OneDrive for Business 活动，用户访问的文件或文件夹的完整路径名称。 对于 Exchange 管理员审核日志，通过 cmdlet 修改的对象的名称。|
-|UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。|
+|UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。 在 SharePoint 中，UserId 属性中的另一个数值显示为 app@sharepoint。 这表明执行活动的“用户”是在 SharePoint 中拥有必要权限的应用程序，代表用户、管理员或服务执行组织范围内操作（例如，搜索 SharePoint 网站或 OneDrive 帐户）。 有关详细信息，请参阅[审核记录中的 app@sharepoint 用户](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records)。 |
 |ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。<br/><br/>对于某些服务，此属性中显示的值可能是代表用户调用服务的受信任应用程序（例如，Web 应用上的 Office）的 IP 地址，而不是执行活动的人员使用的设备的 IP 地址。 <br/><br/>此外，对于与 Azure Active Directory 相关的事件，不会记录 IP 地址，并且 ClientIP 属性的值为 `null`。|
 |范围|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？ 可能的值为 **online** 和 **onprem**。 请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
 |||||
@@ -105,6 +105,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |24|Discovery|通过在安全与合规中心中运行内容搜索和管理电子数据展示案例执行的电子数据展示活动事件。|
 |25|MicrosoftTeams|Microsoft Teams 中的事件。|
 |28|ThreatIntelligence|Exchange Online Protection 和 Office 365 高级威胁防护中的网络钓鱼和恶意软件事件。|
+|29|MailSubmission|Exchange Online Protection 和 Office 365 高级威胁防护中的提交事件。|
 |30|MicrosoftFlow|Microsoft Power Automate（以前称为 Microsoft Flow）事件。|
 |31|AeD|高级电子数据展示事件。|
 |32|MicrosoftStream|Microsoft Stream 事件。|
@@ -124,6 +125,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |55|SharePointContentTypeOperation|SharePoint 列表内容类型事件。|
 |56|SharePointFieldOperation|SharePoint 列表字段事件。|
 |64|AirInvestigation|自动事件响应 (AIR) 事件。|
+|65|Quarantine|隔离事件。|
 |66|MicrosoftForms|Microsoft Forms 事件。|
 ||||
 
@@ -815,7 +817,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |||||
 
 ### <a name="sensitiveinformationdetections-complex-type"></a>SensitiveInformationDetections 复杂类型 
-DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户的活动源 API 中获得。 
+只有已拥有“读取 DLP 敏感数据”权限的用户，才能通过活动源 API 访问 DLP 敏感数据。 
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -843,7 +845,7 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 |EffectiveOrganization|Edm.String|否|受 cmdlet 影响的组织 GUID。 （弃用：此参数以后将停止显示。）|
 |UserServicePlan|Edm.String|否|分配给执行 cmdlet 的用户的 Exchange Online Protection 服务计划。|
 |ClientApplication|Edm.String|否|如果 cmdlet 由应用程序执行，而不是由远程 powershell 执行，则此字段包含该应用程序的名称。|
-|Parameters|Edm.String|否|与不包含个人身份信息的 cmdlet 结合使用的参数的名称和值。|
+|参数|Edm.String|否|与不包含个人身份信息的 cmdlet 结合使用的参数的名称和值。|
 |NonPiiParameters|Edm.String|否|与包含个人身份信息的 cmdlet 结合使用的参数的名称和值。 （弃用：此字段将在以后停止显示，其内容将与 Parameters 字段合并。）|
 |||||
 
@@ -1264,113 +1266,113 @@ DLP 敏感数据仅可在已获得“读取 DLP 敏感数据”权限的用户�
 
 ### <a name="main-investigation-schema"></a>主调查架构 
 
-|名称   |类型   |说明  |
+|名称    |类型    |说明  |
 |----|----|----|
-|InvestigationId    |Edm.String |调查 ID/GUID |
-|InvestigationName  |Edm.String |调查的名称 |
-|InvestigationType  |Edm.String |调查的类型。 可以是下列值之一：<br/>- 用户报告的邮件<br/>- 零时差自动清除恶意软件<br/>- 零时差自动清除网络钓鱼<br/>- URL 裁定更改<p>（目前尚未提供手动调查，即将推出。） |
-|LastUpdateTimeUtc  |Edm.Date   |上次更新调查的 UTC 时间 |
-|StartTimeUtc   |Edm.Date   |调查的开始时间 |
+|InvestigationId    |Edm.String    |调查 ID/GUID |
+|InvestigationName    |Edm.String    |调查的名称 |
+|InvestigationType    |Edm.String    |调查的类型。 可以是下列值之一：<br/>- 用户报告的邮件<br/>- 零时差自动清除恶意软件<br/>- 零时差自动清除网络钓鱼<br/>- URL 裁定更改<p>（目前尚未提供手动调查，即将推出。） |
+|LastUpdateTimeUtc    |Edm.Date    |上次更新调查的 UTC 时间 |
+|StartTimeUtc    |Edm.Date    |调查的开始时间 |
 |状态     |Edm.String     |调查的状态，正在运行、挂起的操作等。 |
-|DeeplinkURL    |Edm.String |Office 365 安全与合规中心中的调查的深度链接 URL |
-|操作 |集合 (Edm.String)   |调查建议的操作集合 |
-|Data   |Edm.String |数据字符串，其中包含有关调查实体的更多详细信息，以及有关调查警报的信息。 实体位于数据 Blob 内的单独节点中。 |
+|DeeplinkURL    |Edm.String    |Office 365 安全与合规中心中的调查的深度链接 URL |
+|操作 |集合 (Edm.String)    |调查建议的操作集合 |
+|Data    |Edm.String    |数据字符串，其中包含有关调查实体的更多详细信息，以及有关调查警报的信息。 实体位于数据 Blob 内的单独节点中。 |
 ||||
 
 ### <a name="actions"></a>操作
 
-|字段  |类型   |说明 |
+|字段    |类型    |说明 |
 |----|----|----|
-|ID     |Edm.String |操作 ID|
-|ActionType |Edm.String |操作的类型，如电子邮件修正 |
-|ActionStatus   |Edm.String |值包括： <br/>- 挂起<br/>- 正在运行<br/>- 正在等待资源<br/>- 已完成<br/>- 已失败 |
-|ApprovedBy |Edm.String |如果自动批准，则为 Null；否则，则为用户名/ID（即将推出） |
-|TimestampUtc   |Edm.DateTime   |操作状态更改的时间戳 |
-|ActionId   |Edm.String |操作的唯一标识符 |
-|InvestigationId    |Edm.String |调查的唯一标识符 |
-|RelatedAlertIds    |Collection(Edm.String) |有关调查的警报 |
-|StartTimeUtc   |Edm.DateTime   |操作创建的时间戳 |
-|EndTimeUtc |Edm.DateTime   |操作最终状态更新时间戳 |
-|资源标识符   |Edm.String  |包含 Azure Active Directory 租户 ID。|
-|实体   |Collection(Edm.String) |按操作列出的一个或多个受影响的实体 |
-|相关警报 ID  |Edm.String |与调查相关的警报 |
+|ID     |Edm.String    |操作 ID|
+|ActionType    |Edm.String    |操作的类型，如电子邮件修正 |
+|ActionStatus    |Edm.String    |值包括： <br/>- 挂起<br/>- 正在运行<br/>- 正在等待资源<br/>- 已完成<br/>- 已失败 |
+|ApprovedBy    |Edm.String    |如果自动批准，则为 Null；否则，则为用户名/ID（即将推出） |
+|TimestampUtc    |Edm.DateTime    |操作状态更改的时间戳 |
+|ActionId    |Edm.String    |操作的唯一标识符 |
+|InvestigationId    |Edm.String    |调查的唯一标识符 |
+|RelatedAlertIds    |Collection(Edm.String)    |有关调查的警报 |
+|StartTimeUtc    |Edm.DateTime    |操作创建的时间戳 |
+|EndTimeUtc    |Edm.DateTime    |操作最终状态更新时间戳 |
+|资源标识符     |Edm.String     |包含 Azure Active Directory 租户 ID。|
+|实体    |Collection(Edm.String)    |按操作列出的一个或多个受影响的实体 |
+|相关警报 ID    |Edm.String    |与调查相关的警报 |
 ||||
 
 ### <a name="entities"></a>实体
 
 #### <a name="mailmessage-email"></a>MailMessage（电子邮件） 
 
-|字段  |类型   |说明  |
+|字段    |类型    |说明  |
 |----|----|----|
-|类型   |Edm.String |“邮件-消息”  |
-|文件  |集合 (Self.File) |有关此邮件附件中的文件的详细信息 |
-|收件人  |Edm.String |此邮件的收件人 |
-|URL   |集合 (Self.URL) |此邮件中包含的 URL  |
-|发件人 |Edm.String |发件人的电子邮件地址  |
-|SenderIP   |Edm.String |发件人的 IP 地址  |
-|ReceivedDate   |Edm.DateTime   |此邮件的接收日期  |
-|NetworkMessageId   |Edm.Guid   |此邮件消息的网络消息 ID  |
-|InternetMessageId  |Edm.String  |此邮件消息的 Internet 消息 ID |
-|Subject    |Edm.String |此邮件的主题  |
+|类型    |Edm.String    |“邮件-消息”  |
+|文件    |集合 (Self.File) |有关此邮件附件中的文件的详细信息 |
+|收件人    |Edm.String    |此邮件的收件人 |
+|URL    |集合 (Self.URL) |此邮件中包含的 URL  |
+|发件人    |Edm.String    |发件人的电子邮件地址  |
+|SenderIP    |Edm.String    |发件人的 IP 地址  |
+|ReceivedDate    |Edm.DateTime    |此邮件的接收日期  |
+|NetworkMessageId    |Edm.Guid     |此邮件消息的网络消息 ID  |
+|InternetMessageId    |Edm.String  |此邮件消息的 Internet 消息 ID |
+|Subject    |Edm.String    |此邮件的主题  |
 ||||
 
 #### <a name="ip"></a>IP
 
-|字段  |类型   |说明  |
+|字段    |类型    |说明  |
 |----|----|----|
-|类型   |Edm.String |“ip” |
-|地址    |Edm.String |字符串形式的 IP 地址，例如 `127.0.0.1`
+|类型    |Edm.String    |“ip” |
+|地址    |Edm.String    |字符串形式的 IP 地址，例如 `127.0.0.1`
 ||||
 
 #### <a name="url"></a>URL
 
-|字段  |类型   |说明  |
+|字段    |类型    |说明  |
 |----|----|----|
-|类型   |Edm.String |“url” |
-|URL    |Edm.String |实体指向的完整 URL  |
+|类型    |Edm.String    |“url” |
+|URL    |Edm.String    |实体指向的完整 URL  |
 ||||
 
 #### <a name="mailbox-also-equivalent-to-the-user"></a>邮箱（也相当于用户） 
 
-|字段  |类型   |说明 |
+|字段    |类型    |说明 |
 |----|----|----|
-|类型   |Edm.String |“邮箱”  |
-|MailboxPrimaryAddress  |Edm.String |邮箱的主要地址  |
-|DisplayName    |Edm.String |邮箱的显示名称 |
-|UPN    |Edm.String |邮箱的 UPN  |
+|类型    |Edm.String    |“邮箱”  |
+|MailboxPrimaryAddress    |Edm.String    |邮箱的主要地址  |
+|DisplayName    |Edm.String    |邮箱的显示名称 |
+|UPN    |Edm.String    |邮箱的 UPN  |
 ||||
 
 #### <a name="file"></a>文件
 
-|字段  |类型   |说明  |
+|字段    |类型    |说明  |
 |----|----|----|
-|类型   |Edm.String |“文件” |
-|名称   |Edm.String |不带路径的文件名 |
-FileHashes |集合 (Edm.String) |与文件关联的文件哈希 |
+|类型    |Edm.String    |“文件” |
+|名称    |Edm.String    |不带路径的文件名 |
+FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 ||||
 
 #### <a name="filehash"></a>FileHash
 
-|字段  |类型   |说明 |
+|字段    |类型    |说明 |
 |----|----|----|
-|类型   |Edm.String |“filehash” |
-|算法  |Edm.String |哈希算法类型，可为以下值之一：<br/>- 未知<br/>- MD5<br/>- SHA1<br/>- SHA256<br/>- SHA256AC
-|值  |Edm.String |哈希值  |
+|类型    |Edm.String    |“filehash” |
+|算法    |Edm.String    |哈希算法类型，可为以下值之一：<br/>- 未知<br/>- MD5<br/>- SHA1<br/>- SHA256<br/>- SHA256AC
+|值    |Edm.String    |哈希值  |
 ||||
 
 #### <a name="mailcluster"></a>MailCluster
 
-|字段  |类型   |说明   |
+|字段    |类型    |说明   |
 |----|----|----|
-|类型   |Edm.String |“MailCluster” <br/>确定所讨论的实体类型 |
-|NetworkMessageIds  |集合 (Edm.String)    |作为邮件群集一部分的邮件消息 ID 列表 |
-|CountByDeliveryStatus  |集合 (Edm.String)   |通过 DeliveryStatus 字符串表示的邮件消息计数 |
-|CountByThreatType  |集合 (Edm.String) |通过 ThreatType 字符串表示的邮件消息计数 |
-|威胁    |集合 (Edm.String)   |作为邮件群集一部分的邮件消息威胁数。 威胁包括网络钓鱼和恶意软件等值。 |
-|查询  |Edm.String |用于标识邮件群集消息的查询  |
-|QueryTime  |Edm.DateTime   |查询时间  |
-|MailCount  |Edm.Int    |作为邮件群集一部分的邮件消息数  |
-|Source |字符串 |邮件群集的来源；群集源的值。 |
+|类型    |Edm.String    |“MailCluster” <br/>确定所讨论的实体类型 |
+|NetworkMessageIds    |集合 (Edm.String)    |作为邮件群集一部分的邮件消息 ID 列表 |
+|CountByDeliveryStatus    |集合 (Edm.String)    |通过 DeliveryStatus 字符串表示的邮件消息计数 |
+|CountByThreatType    |集合 (Edm.String) |通过 ThreatType 字符串表示的邮件消息计数 |
+|威胁    |集合 (Edm.String)    |作为邮件群集一部分的邮件消息威胁数。 威胁包括网络钓鱼和恶意软件等值。 |
+|查询    |Edm.String    |用于标识邮件群集消息的查询  |
+|QueryTime    |Edm.DateTime    |查询时间  |
+|MailCount    |Edm.Int    |作为邮件群集一部分的邮件消息数  |
+|Source    |字符串    |邮件群集的来源；群集源的值。 |
 ||||
 
 ## <a name="power-bi-schema"></a>Power BI 架构
