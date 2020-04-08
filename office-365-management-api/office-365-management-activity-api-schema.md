@@ -6,21 +6,21 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 38905a88f8be1924d0df02f10362caa624b34bd8
-ms.sourcegitcommit: 8aa0be26e0e69dd7908b3bcece3a71eafb973705
+ms.openlocfilehash: 2ce104849e7aeafcb12bf25720548a84a5ea73f4
+ms.sourcegitcommit: 2c592abf7005b4c73311ea9a4d1804994084bca4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/10/2020
-ms.locfileid: "42586301"
+ms.lasthandoff: 04/07/2020
+ms.locfileid: "42941472"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
- 
+
 Office 365 管理活动 API 架构作为两层数据服务提供：
 
 - **常见架构**。 用于访问核心 Office 365 审核概念（如 Record Type、Creation Time、User Type 和 Action），以及提供核心维度（如 User ID）、具体位置细节（如 Client IP address）和特定于产品的属性（如 Object ID）的接口。 它建立一致且统一的视图，以便用户使用适当参数在少数顶级视图中提取所有 Office 365 审核数据，并为所有数据源提供固定架构，从而极大地降低了学习成本。 常见架构源自于归每个产品团队（如 Exchange、SharePoint、Azure Active Directory、Yammer 和 OneDrive for Business）所有的产品数据。 Object ID 字段可由产品团队扩展，添加特定于产品的属性。
-    
+
 - **特定于产品的架构**。 基于常见架构，提供一组特定于产品的属性；例如，Sway 架构、SharePoint 架构、OneDrive for Business 架构以及 Exchange 管理员架构。
-    
+
 **对于你自身的情况应使用哪个层？**
 一般情况下，如果数据在较高层中可用，则不要回到较低层。 换言之，如果可在特定于产品的架构中满足数据要求，则不需要返回到常见架构。 
 
@@ -51,9 +51,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[数据中心安全 Cmdlet 架构](#data-center-security-cmdlet-schema)|使用特定于所有数据中心安全 cmdlet 审核数据的属性扩展数据中心安全基本架构。|
 |[Microsoft Teams 架构](#microsoft-teams-schema)|使用特定于所有 Microsoft Teams 事件的属性扩展常见架构。|
 |[Office 365 高级威胁防护和威胁调查与响应](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|使用特定于 Office 365 高级威胁防护与威胁调查和响应数据的属性扩展常见架构。|
-|[自动调查和响应事件](#automated-investigation-and-response-events-in-office-365)|使用特定于 Office 365 自动调查和响应 (AIR) 事件的属性扩展常见架构。|
+|[自动调查和响应事件架构](#automated-investigation-and-response-events-in-office-365)|使用特定于 Office 365 自动调查和响应 (AIR) 事件的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
-|[工作区分析](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
+|[工作过去分析架构](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
+|[隔离架构](#quarantine-schema)|使用特定于所有隔离事件的属性扩展常见架构。|
 |[Microsoft Forms 架构](#microsoft-forms-schema)|使用特定于所有 Microsoft Forms 事件的属性扩展常见架构。|
 |||
 
@@ -972,7 +973,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |1|Create|用户创建 Sway。|
 |2|Delete|用户删除 Sway。|
 |3|View|用户查看 Sway。|
-|4|Edit|用户编辑 Sway。|
+|4|编辑|用户编辑 Sway。|
 |5|Duplicate|用户复制 Sway。|
 |7|Share|用户启动共享 Sway。 此事件捕获在 Sway 共享菜单中单击特定共享目标的用户操作。 该事件并不表示用户是否真正执行并完成共享操作。|
 |8|ChangeShareLevel|用户更改 Sway 的共享级别。 此事件捕获用户更改与 Sway 关联的共享范围。 例如，从组织内更改为公开。|
@@ -1421,6 +1422,38 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 | OperationDetails   | 集合 (Common.NameValuePair)    | 否 | 已更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value**。|
 ||||
 
+## <a name="quarantine-schema"></a>隔离架构
+
+[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#quarantine-activities)中列出的隔离事件将使用此架构。 有关隔离的详细信息，请参阅 [Office 365 中的隔离电子邮件](https://docs.microsoft.com/microsoft-365/security/office-365-security/quarantine-email-messages)。
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|RequestType|Self.[RequestType](#enum-requesttype---type-edmint32)|否|由用户执行的隔离请求的类型。|
+|RequestSource|Self.[RequestSource](#enum-requestsource---type-edmint32)|否|隔离请求的来源可以是安全与合规中心 (SCC)、cmdlet 或 URLlink。|
+|NetworkMessageId|Edm.String|否|已隔离的电子邮件的网络消息 ID。|
+|ReleaseTo|Edm.String|否|电子邮件的收件人。|
+|||||
+
+### <a name="enum-requesttype---type-edmint32"></a>Enum: RequestType - Type: Edm.Int32
+
+|**值**|**成员名称**|**说明**|
+|:-----|:-----|:-----|
+|0|预览|这是用户预览被视为有害的电子邮件的请求。|
+|1|删除|这是用户删除被视为有害的电子邮件的请求。|
+|2|发布|这是用户发布被视为有害的电子邮件的请求。|
+|3|导出|这是用户导出被视为有害的电子邮件的请求。|
+|4|ViewHeader|这是用户查看被视为有害的电子邮件标头的请求。|
+||||
+
+### <a name="enum-requestsource---type-edmint32"></a>Enum: RequestSource - Type: Edm.Int32
+
+|**值**|**成员名称**|**说明**|
+|:-----|:-----|:-----|
+|0|SCC|安全与合规中心 (SCC) 是用户预览、删除、发布、导出或查看潜在有害电子邮件标头的请求可能源自的来源。 |
+|1|Cmdlet|Cmdlet 是用户预览、删除、发布、导出或查看潜在有害电子邮件标头的请求可能源自的来源。|
+|2|URLlink|它是用户预览、删除、发布、导出或查看潜在有害电子邮件标头的请求可能源自的来源。|
+||||
+
 ## <a name="microsoft-forms-schema"></a>Microsoft Forms 架构
 
 [在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities)中列出的 Micorosft Forms 事件将使用此架构。
@@ -1457,3 +1490,4 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |1|测验|使用“新建测验”选项创建的测验。  测验是表单的一种特殊类型，包含得分值、自动和手动评分、批注等附加功能。|
 |2|调查|使用“新建调查”选项创建的调查。  调查是表单的一种特殊类型，包含 CMS 集成和对流程规则的支持等附加功能。|
 ||||
+
