@@ -53,7 +53,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[Office 365 高级威胁防护和威胁调查与响应](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|使用特定于 Office 365 高级威胁防护与威胁调查和响应数据的属性扩展常见架构。|
 |[自动调查和响应事件架构](#automated-investigation-and-response-events-in-office-365)|使用特定于 Office 365 自动调查和响应 (AIR) 事件的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
-|[工作过去分析架构](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
+|[工作区分析架构](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
 |[隔离架构](#quarantine-schema)|使用特定于所有隔离事件的属性扩展常见架构。|
 |[Microsoft Forms 架构](#microsoft-forms-schema)|使用特定于所有 Microsoft Forms 事件的属性扩展常见架构。|
 |||
@@ -1438,20 +1438,20 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
-|0|预览|这是用户预览被视为有害的电子邮件的请求。|
-|1|删除|这是用户删除被视为有害的电子邮件的请求。|
-|2|发布|这是用户发布被视为有害的电子邮件的请求。|
-|3|导出|这是用户导出被视为有害的电子邮件的请求。|
-|4|ViewHeader|这是用户查看被视为有害的电子邮件标头的请求。|
+|0|预览|这是用户请求预览被认为有危害的电子邮件。|
+|1|删除|这是用户请求删除被认为有危害的电子邮件。|
+|2|发布|这是用户请求发布被认为有危害的电子邮件。|
+|3|导出|这是用户请求导出被认为有危害的电子邮件。|
+|4|ViewHeader|这是用户请求查看被认为有危害的电子邮件标头。|
 ||||
 
 ### <a name="enum-requestsource---type-edmint32"></a>Enum: RequestSource - Type: Edm.Int32
 
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
-|0|SCC|安全与合规中心 (SCC) 是用户预览、删除、发布、导出或查看潜在有害电子邮件标头的请求可能源自的来源。 |
-|1|Cmdlet|Cmdlet 是用户预览、删除、发布、导出或查看潜在有害电子邮件标头的请求可能源自的来源。|
-|2|URLlink|它是用户预览、删除、发布、导出或查看潜在有害电子邮件标头的请求可能源自的来源。|
+|0|SCC|安全与合规中心 (SCC) 是用户请求的来源，用户可预览、删除、发布、导出或查看潜在有危害电子邮件可能源头的标头。 |
+|1|Cmdlet|Cmdlet 是用户请求的来源，用户可预览、删除、发布、导出或查看潜在有危害电子邮件可能源头的标头。|
+|2|URLlink|它是是用户请求的来源，用户可预览、删除、发布、导出或查看潜在有危害电子邮件可能源头的标头。|
 ||||
 
 ## <a name="microsoft-forms-schema"></a>Microsoft Forms 架构
