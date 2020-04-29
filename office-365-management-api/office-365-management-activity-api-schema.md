@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 2ce104849e7aeafcb12bf25720548a84a5ea73f4
-ms.sourcegitcommit: 2c592abf7005b4c73311ea9a4d1804994084bca4
+ms.openlocfilehash: 7a636bcdf86dd4513d7ea7809066b5becb68de83
+ms.sourcegitcommit: 9d32000d9b9af3f008d93745379697bc74e4703c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "42941472"
+ms.lasthandoff: 04/22/2020
+ms.locfileid: "43785563"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -120,7 +120,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |44|WorkplaceAnalytics|工作区分析事件。|
 |45|PowerAppsApp|Power Apps 事件。|
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
+|48|LabelContentExplorer|与[数据分类内容资源管理器](https://docs.microsoft.com/microsoft-365/compliance/data-classification-content-explorer)相关的事件。|
 |49|TeamsHealthcare|与 Microsoft Teams for Healthcare 中的[患者应用程序](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit)相关的事件。|
+|51|HygieneEvent|与反垃圾邮件和邮件卫生相关的事件。|
 |52|DataInsightsRestApiAudit|数据见解 REST API 事件。|
 |54|SharePointListItemOperation|SharePoint 列表项事件。|
 |55|SharePointContentTypeOperation|SharePoint 列表内容类型事件。|
@@ -156,7 +158,6 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |0|Online|此事件由托管的 O365 服务创建。|
 |1|Onprem|此事件由本地服务器创建。|
 ||||
-
 
 ## <a name="sharepoint-base-schema"></a>SharePoint 基本架构
 
@@ -971,7 +972,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |1|Create|用户创建 Sway。|
-|2|Delete|用户删除 Sway。|
+|2|删除|用户删除 Sway。|
 |3|View|用户查看 Sway。|
 |4|编辑|用户编辑 Sway。|
 |5|Duplicate|用户复制 Sway。|
@@ -1165,7 +1166,9 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |12|Anti-malware, ZAPM| 应用于零时差自动清除 (ZAP) 的反恶意软件策略中的恶意软件策略操作。|
 |13|Anti-phish, ZAPP| 应用于 ZAP 的反钓鱼策略中的钓鱼策略操作。|
 |14|Anti-phish, ZAPS| 应用于 ZAP 的反垃圾邮件策略中的垃圾邮件策略操作。|
-
+|15|反垃圾邮件、高可信度钓鱼电子邮件 (HPHISH)|反垃圾邮件策略中的高可信度钓鱼策略操作。|
+|17|反垃圾邮件、出站垃圾邮件策略 (OSPM)|反垃圾邮件中出站垃圾邮件筛选策略中的策略操作。|
+||||
 
 ### <a name="enum-policyaction---type-edmint32"></a>枚举：PolicyAction - 类型：Edm.Int32
 
