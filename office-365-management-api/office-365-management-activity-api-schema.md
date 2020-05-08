@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 7a636bcdf86dd4513d7ea7809066b5becb68de83
-ms.sourcegitcommit: 9d32000d9b9af3f008d93745379697bc74e4703c
+ms.openlocfilehash: b30664fd9937f3a0eee3d1c35d9b7bf297c89dbe
+ms.sourcegitcommit: 12b8771c3d2bca8eeb6a66d6f22b60f45b8f7a89
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2020
-ms.locfileid: "43785563"
+ms.lasthandoff: 05/06/2020
+ms.locfileid: "44049486"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -52,10 +52,12 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[Microsoft Teams 架构](#microsoft-teams-schema)|使用特定于所有 Microsoft Teams 事件的属性扩展常见架构。|
 |[Office 365 高级威胁防护和威胁调查与响应](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|使用特定于 Office 365 高级威胁防护与威胁调查和响应数据的属性扩展常见架构。|
 |[自动调查和响应事件架构](#automated-investigation-and-response-events-in-office-365)|使用特定于 Office 365 自动调查和响应 (AIR) 事件的属性扩展常见架构。|
+|[卫生事件架构](#hygiene-events-schema)|使用特定于 Exchange Online Protection 和高级威胁防护中的事件的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
 |[工作区分析架构](#workplace-analytics-schema)|使用特定于所有 Microsoft 工作区分析事件的属性扩展常见架构。|
 |[隔离架构](#quarantine-schema)|使用特定于所有隔离事件的属性扩展常见架构。|
 |[Microsoft Forms 架构](#microsoft-forms-schema)|使用特定于所有 Microsoft Forms 事件的属性扩展常见架构。|
+|[MIP 标签架构](#mip-label-schema)|使用特定于通过手动或自动方式应用到电子邮件的敏感度标签的属性扩展常见架构。|
 |||
 
 ## <a name="common-schema"></a>常见架构
@@ -117,12 +119,13 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |40|SecurityComplianceAlerts|安全与合规警报信号。|
 |41|ThreatIntelligenceUrl|Office 365 高级威胁防护中的安全链接信息块时间和信息块覆盖事件。|
 |42|SecurityComplianceInsights|与 Office 365 安全与合规中心中的见解和报告有关的事件。|
+|43|MIPLabel|与检测传输管道中（以手动或自动方式）标记了敏感度标签的电子邮件相关的事件。 |
 |44|WorkplaceAnalytics|工作区分析事件。|
 |45|PowerAppsApp|Power Apps 事件。|
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
 |48|LabelContentExplorer|与[数据分类内容资源管理器](https://docs.microsoft.com/microsoft-365/compliance/data-classification-content-explorer)相关的事件。|
 |49|TeamsHealthcare|与 Microsoft Teams for Healthcare 中的[患者应用程序](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit)相关的事件。|
-|51|HygieneEvent|与反垃圾邮件和邮件卫生相关的事件。|
+|51|HygieneEvent|与出站垃圾邮件保护相关的事件。 |
 |52|DataInsightsRestApiAudit|数据见解 REST API 事件。|
 |54|SharePointListItemOperation|SharePoint 列表项事件。|
 |55|SharePointContentTypeOperation|SharePoint 列表内容类型事件。|
@@ -197,7 +200,6 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |0|SharePoint|事件源是 SharePoint。|
 |1|ObjectModel|事件源是 ObjectModel。|
 ||||
-
 
 ### <a name="enum-sharepointauditoperation---type-edmint32"></a>枚举：SharePointAuditOperation - 类型：Edm.Int32
 
@@ -1185,7 +1187,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |6|NoAction| 策略被配置为不对电子邮件执行任何操作。|
 |7|BccMessage|策略操作是将电子邮件密送至筛选策略指定的电子邮件地址。|
 |8|ReplaceAttachment|策略操作是按照筛选策略指定的信息更换电子邮件中的附件。|
-
+||||
 
 ### <a name="url-time-of-click-events"></a>URL 单击时事件
 
@@ -1379,6 +1381,23 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |Source    |字符串    |邮件群集的来源；群集源的值。 |
 ||||
 
+## <a name="hygiene-events-schema"></a>卫生事件架构
+
+与出站垃圾邮件保护相关的卫生事件。 这些事件与被限制发送电子邮件的用户相关。 有关更多信息，请参阅：
+
+- [出站垃圾邮件保护](https://docs.microsoft.com/microsoft-365/security/office-365-security/outbound-spam-controls)
+
+- [在 Office 365 中从“受限的用户”门户中删除被阻止的用户](https://docs.microsoft.com/microsoft-365/security/office-365-security/removing-user-from-restricted-users-portal-after-spam)
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|Audit|Edm.String|否|与卫生事件相关的系统信息。|
+|Event|Edm.String|否|卫生事件的类型。 此参数的值为**已列出**或**已从列表中删除**。|
+|EventId|Edm.Int64|否|卫生事件类型的 ID。|
+|EventValue|Edm.String|否|受影响的用户。|
+|Reason|Edm.String|否|有关卫生事件的详细信息。|
+|||||
+
 ## <a name="power-bi-schema"></a>Power BI 架构
 
 在[在 Office 365 保护中心搜索审核日志](/power-bi/service-admin-auditing#activities-audited-by-power-bi)中列出的 Power BI 事件将使用此架构。
@@ -1494,3 +1513,24 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |2|调查|使用“新建调查”选项创建的调查。  调查是表单的一种特殊类型，包含 CMS 集成和对流程规则的支持等附加功能。|
 ||||
 
+## <a name="mip-label-schema"></a>MIP 标签架构
+
+如果 Microsoft 365 检测到由应用了敏感度标签的传输管道中的代理处理的电子邮件，将触发 Microsoft 信息保护 (MIP) 标签架构中的事件。 敏感度标签可能是手动或自动应用的，也可能是在传输管道内部或外部应用的。 可通过自动应用标签策略将敏感度标签自动应用到电子邮件。
+
+此审核架构的目的即表示全部带有敏感度标签的电子邮件活动的总和。 换句话说，组织里的用户收发的所有带有敏感度标签的电子邮件都应该有一个记录下来的审计活动，而与应用敏感度标签的时间或方式无关。 有关敏感度标签的详细信息，请参阅：
+
+- [了解敏感性标签](https://docs.microsoft.com/microsoft-365/compliance/sensitivity-labels)
+
+- [将敏感度标签自动应用于内容](https://docs.microsoft.com/microsoft-365/compliance/apply-sensitivity-label-automatically)
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|发件人|Edm.String|否|电子邮件的“发件人”字段中的电子邮件地址。|
+|收件人|Collection(Edm.String)|否|电子邮件的“收件人”、“抄送”和“密件抄送”字段中的所有电子邮件地址。|
+|ItemName|Edm.String|否|电子邮件的“主题”字段中的字符串。|
+|LabelId|Edm.Guid|否|应用于电子邮件的敏感度标签的 GUID。|
+|LabelName|Edm.String|否|应用于电子邮件的敏感度标签的名称。|
+|LabelAction|Edm.String|否|敏感度标签所指定的操作会在邮件进入邮件传输管道之前应用于电子邮件。|
+|LabelAppliedDateTime|Edm.Date|否|将敏感度标签应用于电子邮件的日期。|
+|ApplicationMode|Edm.String|否|指定敏感度标签应用于电子邮件的方式。 **Privileged** 值表示用户已手动应用该标签。 **Standard** 值表示标签已由客户端或服务端标记流程自动应用。|
+|||||
