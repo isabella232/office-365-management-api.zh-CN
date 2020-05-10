@@ -6,12 +6,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 858829d304c85e3c6658b3f6a1215d923871283a
-ms.sourcegitcommit: 967a95b214c620ca58875af6b5a96e28482c85aa
+ms.openlocfilehash: 48065e1770e485ffa04778d662a170ae14916354
+ms.sourcegitcommit: d55928a0d535090fa2dbe94f38c7316d0e52e9a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/08/2020
-ms.locfileid: "41857284"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "44173139"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
@@ -57,14 +57,29 @@ Office 365 管理活动 API 将操作和事件聚合到租户专用内容 blob �
 
 ## <a name="activity-api-operations"></a>活动 API 操作
 
-所有 API 操作的范围都限定为一个租户，此 API 的根 URL 包含指定租户上下文的租户 ID。 租户 ID 为 GUID。 若要详细了解如何获取 GUID，请参阅 [Office 365 管理 API 入门](get-started-with-office-365-management-apis.md)。
+所有 API 操作的范围都限定为一个租户，此 API 的根 URL 包含指定租户上下文的租户 ID。 租户 ID 为 GUID。 若要详细了解如何获取 GUID，请参阅 [Office 365 管理 API 入门](get-started-with-office-365-management-apis.md)。 
 
+由于我们发送到 Webhook 的通知包含租户 ID，因此你可使用相同的 Webhook 来接收所有租户的通知。
+
+你所使用的 API 终结点的 URL 基于贵公司 Microsoft 365 或 Office 365 订阅计划的类型。
+
+**企业版计划和 GCC 政府版计划**
 
 ```http
 https://manage.office.com/api/v1.0/{tenant_id}/activity/feed/{operation}
 ```
 
-由于我们发送到 Webhook 的通知包含**租户 ID**，因此你可使用相同的 Webhook 来接收所有租户的通知。
+**GCC （政府）高级版计划**
+
+```http
+https://manage.office365.us/api/v1.0/{tenant_id}/activity/feed/{operation}
+```
+
+**DoD 政府计划**
+
+```http
+https://manage.protection.apps.mil/api/v1.0/{tenant_id}/activity/feed/{operation}
+```
 
 所有 API 操作都要求，必须有包含从 Azure AD 获取的访问令牌的授权 HTTP 头。 访问令牌中的租户 ID 必须与 API 根 URL 中的租户 ID 一致，且访问令牌必须包含 ActivityFeed.Read 声明（此声明对应于在 Azure AD 中为应用程序配置的[读取组织的活动数据]权限）。
 

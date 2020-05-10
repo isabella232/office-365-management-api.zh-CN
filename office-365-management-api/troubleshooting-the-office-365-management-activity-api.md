@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: b751c89194407e57c8654a9317b8070ab2918b03
-ms.sourcegitcommit: 2c592abf7005b4c73311ea9a4d1804994084bca4
+ms.openlocfilehash: 0552456c2340ad170355953e274a455ff681e2c9
+ms.sourcegitcommit: d55928a0d535090fa2dbe94f38c7316d0e52e9a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "42941552"
+ms.lasthandoff: 05/09/2020
+ms.locfileid: "44173132"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -55,7 +55,13 @@ Office 365 管理活动 API（也称为*统一审核 API *）只是 Office 365 �
 
 ### <a name="getting-an-access-token"></a>获取访问令牌
 
-以下 PowerShell 脚本使用应用 ID 和客户端密码从管理活动 API 身份验证端点获取 OAuth2 令牌。 然后，它将访问令牌放置到 `$headerParams` 数组变量，该变量将附加到 HTTP 请求中： 
+以下 PowerShell 脚本使用应用 ID 和客户端密码从管理活动 API 身份验证端点获取 OAuth2 令牌。 然后，它将访问令牌放置到 `$headerParams` 数组变量，该变量将附加到 HTTP 请求中。 对于 API 终结点的值（在 $resource 变量中），请使用基于组织的 Microsoft 365 或 Office 365 订阅计划的以下值之一：
+
+- 企业版计划和 GCC 政府版计划： `manage.office.com`
+
+- GCC （政府）高级版计划： `manage.office365.us`
+
+- DoD 政府计划： `manage.protection.apps.mil`
 
 ```powershell
 # Create app of type Web app / API in Azure AD, generate a Client Secret, and update the client id and client secret here
@@ -63,9 +69,9 @@ $ClientID = "<YOUR_APPLICATION_ID"
 $ClientSecret = "<YOUR_CLIENT_SECRET>"
 $loginURL = "https://login.microsoftonline.com/"
 $tenantdomain = "<YOUR_DOMAIN>.onmicrosoft.com"
-# Get the tenant GUID from Properties | Directory ID under the Azure Active Directory section
+# Get the tenant GUID from Properties | Directory ID under the Azure Active Directory section. For $resource, use one of these endpoint values based on your subscription plan: Enterprise and GCC - manage.office.com; GCC High: manage.office365.us; DoD: manage.protection.apps.mil
 $TenantGUID = "<YOUR_TENANT_GUID>"
-$resource = "https://manage.office.com"
+$resource = "https://<YOUR_API_ENDPOINT>"
 # auth
 $body = @{grant_type="client_credentials";resource=$resource;client_id=$ClientID;client_secret=$ClientSecret}
 $oauth = Invoke-RestMethod -Method Post -Uri $loginURL/$tenantdomain/oauth2/token?api-version=1.0 -Body $body
@@ -89,7 +95,7 @@ access_token   : eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IjJLVmN1enFBaWRPTHF
 如果出现到现有管理活动 API 客户端或解决方案的数据流中断的问题，你可能想知道订阅是否出现某些问题。 要检查活动的订阅，请将以下内容添加到上一个脚本：
 
 ```powershell
-Invoke-WebRequest -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenantGUID/activity/feed/subscriptions/list" 
+Invoke-WebRequest -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/list" 
 ```
 
 #### <a name="sample-response"></a>示例响应 
@@ -119,10 +125,16 @@ RawContentLength  : 266
 
 ## <a name="creating-a-new-subscription"></a>创建新订阅
 
-要创建新订阅，请使用 /start 操作：
+要创建新订阅，请使用 /start 操作。 对于 API 终结点，请在订阅计划中使用以下值之一：
+
+- 企业版计划和 GCC 政府版计划： `manage.office.com`
+
+- GCC （政府）高级版计划： `manage.office365.us`
+
+- DoD 政府计划： `manage.protection.apps.mil`
 
 ```powershell
-Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenantGUID/activity/feed/subscriptions/start?contentType=Audit.AzureActiveDirectory"
+Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://<YOUR_API_ENDPOINT>/api/v1.0/$tenantGUID/activity/feed/subscriptions/start?contentType=Audit.AzureActiveDirectory"
 ```
 
 > [!NOTE] 
@@ -132,25 +144,25 @@ Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://manage.offic
 
 ## <a name="checking-content-availability"></a>检查内容可用性
 
-要检查在特定时间段内创建了哪些内容 blob，可以在“连接到 API”部分中将以下行添加到脚本中：
+要检查在特定时间段内创建了哪些内容 blob，可以在“连接到 API”部分中将以下行添加到脚本中。
 
 ```powershell
-Invoke-WebRequest -Method GET -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint"
+Invoke-WebRequest -Method GET -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint"
 ```
 
 前面的示例将获取今天可用的所有内容通知，即从 UTC 时间中午 12:00 到当前时间。 如果要指定不同的时间段（请记住，可以查询的最长时间段为 24 小时），请将 *starttime* 和 *endtime* 参数添加到 URI 中，例如：
 
 ```powershell
-Invoke-WebRequest -Method GET -Headers $headerParams -Uri "https://manage.office.com/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint&startTime=2017-10-13T00:00&endTime=2017-10-13T11:59"
+Invoke-WebRequest -Method GET -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint&startTime=2017-10-13T00:00&endTime=2017-10-13T11:59"
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > 要么必须同时使用 *starttime* 和 *endtime* 参数，要么两个参数都不使用。
 
 上一个请求将返回一个 JSON 对象，其中包含在你所指定的时间段内可用的通知集合。 响应如下所示：
 
 ```json
-[{      "contentUri" : "https://manage.office.com/api/v1.0/<<your_tenant_guid>>/activity/feed/audit/20171014180051748005825$20171014180051748005825$audit_sharepoint$Audit_SharePoint",
+[{      "contentUri" : "https://<your_API_endpoint>/api/v1.0/<your_tenant_guid>/activity/feed/audit/20171014180051748005825$20171014180051748005825$audit_sharepoint$Audit_SharePoint",
         "contentId" : "20171014180051748005825$20171014180051748005825$audit_sharepoint$Audit_SharePoint",
         "contentType" : "Audit.SharePoint",
         "contentCreated" : "2017-10-13T18:00:51.748Z",
@@ -158,8 +170,10 @@ Invoke-WebRequest -Method GET -Headers $headerParams -Uri "https://manage.office
 }]
 ```
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
+>
 > - *contentUri* 属性是你可以从中检索内容 blob 的 URI。 blob 本身包含事件详细信息，它将包含有关 1 - N 事件的详细信息。 虽然集合中可能有 30 个 JSON 对象，但在这 30 个内容 URI 中可能详述了更多事件。
+>
 > - *contentCreated* 属性不是创建所通知的事件的日期， 而是创建通知的日期。 可以在创建内容 blob 之前创建该 blob 中详述的事件。 因此，永远不能直接查询任何给定时间段内发生的事件的 API。
 
 ### <a name="paging-contents-for-busy-tenants"></a>繁忙租户的分页内容
@@ -211,7 +225,7 @@ Invoke-RestMethod -Method Post -uri $uri -Headers $headerParams -Body $body
 
 ## <a name="requesting-content-blobs-and-throttling"></a>请求内容 blob 和限制
 
-获取内容 URI 列表后，必须请求 URI 指定的 blob。 以下是使用 PowerShell 请求内容 blob 的示例。 此示例假定你已使用本文[获取访问令牌](#getting-an-access-token)部分中的上一个示例获取访问令牌并已正确填充 `$headerParams` 变量。
+获取内容 URI 列表后，必须请求 URI 指定的 blob。 下面是使用 PowerShell 请求内容 blob （使用企业或 GCC 组织的 manage.office.com API 端点）的示例。 此示例假定你已使用本文[获取访问令牌](#getting-an-access-token)部分中的上一个示例获取访问令牌并已正确填充 `$headerParams` 变量。
 
 ```powershell
 # Get a content blob
