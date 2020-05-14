@@ -55,13 +55,13 @@ Office 365 管理活动 API（也称为*统一审核 API *）只是 Office 365 �
 
 ### <a name="getting-an-access-token"></a>获取访问令牌
 
-以下 PowerShell 脚本使用应用 ID 和客户端密码从管理活动 API 身份验证端点获取 OAuth2 令牌。 然后，它将访问令牌放置到 `$headerParams` 数组变量，该变量将附加到 HTTP 请求中。 对于 API 终结点的值（在 $resource 变量中），请使用基于组织的 Microsoft 365 或 Office 365 订阅计划的以下值之一：
+以下 PowerShell 脚本使用应用 ID 和客户端密码从管理活动 API 身份验证端点获取 OAuth2 令牌。 然后，它将访问令牌放置到 `$headerParams` 数组变量，该变量将附加到 HTTP 请求中。 对于 API 终结点的值（在 $resource 变量中），请使用基于组织的 Microsoft 365 或 Office 365 订阅计划的以下任一值:
 
-- 企业版计划和 GCC 政府版计划： `manage.office.com`
+- 企业版计划和 GCC 政府版计划: `manage.office.com`
 
-- GCC （政府）高级版计划： `manage.office365.us`
+- GCC 高级政府版计划: `manage.office365.us`
 
-- DoD 政府计划： `manage.protection.apps.mil`
+- DoD 政府版计划: `manage.protection.apps.mil`
 
 ```powershell
 # Create app of type Web app / API in Azure AD, generate a Client Secret, and update the client id and client secret here
@@ -125,13 +125,13 @@ RawContentLength  : 266
 
 ## <a name="creating-a-new-subscription"></a>创建新订阅
 
-要创建新订阅，请使用 /start 操作。 对于 API 终结点，请在订阅计划中使用以下值之一：
+要创建新订阅，请使用 /start 操作。 对于 API 终结点，请使用基于订阅计划的以下任一值:
 
-- 企业版计划和 GCC 政府版计划： `manage.office.com`
+- 企业版计划和 GCC 政府版计划: `manage.office.com`
 
-- GCC （政府）高级版计划： `manage.office365.us`
+- GCC 高级政府版计划: `manage.office365.us`
 
-- DoD 政府计划： `manage.protection.apps.mil`
+- DoD 政府版计划: `manage.protection.apps.mil`
 
 ```powershell
 Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://<YOUR_API_ENDPOINT>/api/v1.0/$tenantGUID/activity/feed/subscriptions/start?contentType=Audit.AzureActiveDirectory"
@@ -144,7 +144,7 @@ Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://<YOUR_API_EN
 
 ## <a name="checking-content-availability"></a>检查内容可用性
 
-要检查在特定时间段内创建了哪些内容 blob，可以在“连接到 API”部分中将以下行添加到脚本中。
+要检查在特定时间段内创建了哪些内容 Blob，可以将以下行添加到脚本中的“连接到 API”部分。
 
 ```powershell
 Invoke-WebRequest -Method GET -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint"
@@ -225,7 +225,7 @@ Invoke-RestMethod -Method Post -uri $uri -Headers $headerParams -Body $body
 
 ## <a name="requesting-content-blobs-and-throttling"></a>请求内容 blob 和限制
 
-获取内容 URI 列表后，必须请求 URI 指定的 blob。 下面是使用 PowerShell 请求内容 blob （使用企业或 GCC 组织的 manage.office.com API 端点）的示例。 此示例假定你已使用本文[获取访问令牌](#getting-an-access-token)部分中的上一个示例获取访问令牌并已正确填充 `$headerParams` 变量。
+获取内容 URI 列表后，必须请求 URI 指定的 blob。 下面是使用 PowerShell 请求内容 Blob（使用适用于企业或 GCC 组织的 manage.office.com API 终结点）的示例。 此示例假定你已使用本文[获取访问令牌](#getting-an-access-token)部分中的上一个示例获取访问令牌并已正确填充 `$headerParams` 变量。
 
 ```powershell
 # Get a content blob
