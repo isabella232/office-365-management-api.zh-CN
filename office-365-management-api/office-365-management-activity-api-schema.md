@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: b30664fd9937f3a0eee3d1c35d9b7bf297c89dbe
-ms.sourcegitcommit: 12b8771c3d2bca8eeb6a66d6f22b60f45b8f7a89
-ms.translationtype: HT
+ms.openlocfilehash: f46e1c80f13d3001335ee37a9564a5ae06700ff0
+ms.sourcegitcommit: 99d7c8709a35c33a30b3784da2662712b001fcfe
+ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/06/2020
-ms.locfileid: "44049486"
+ms.lasthandoff: 05/18/2020
+ms.locfileid: "44275568"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -58,6 +58,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[隔离架构](#quarantine-schema)|使用特定于所有隔离事件的属性扩展常见架构。|
 |[Microsoft Forms 架构](#microsoft-forms-schema)|使用特定于所有 Microsoft Forms 事件的属性扩展常见架构。|
 |[MIP 标签架构](#mip-label-schema)|使用特定于通过手动或自动方式应用到电子邮件的敏感度标签的属性扩展常见架构。|
+|[通信合规性 Exchange 架构](#communication-compliance-exchange-schema)|使用特定于通信合规性攻击性语言模型的属性扩展常见架构。|
 |||
 
 ## <a name="common-schema"></a>常见架构
@@ -87,26 +88,26 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 |值|成员名称|说明|
 |:-----|:-----|:-----|
-|1|ExchangeAdmin|来自 Exchange 管理员审核日志的事件。|
-|2|ExchangeItem|来自 Exchange 邮箱审核日志的事件，用于对单个项执行的操作，例如创建或接收电子邮件。|
-|3|ExchangeItemGroup|来自 Exchange 邮箱审核日志的事件，用于可对多个项执行的操作，例如移动或删除一个或多个电子邮件。|
-|4|SharePoint|SharePoint 事件。|
-|6|SharePointFileOperation|SharePoint 文件操作事件。|
-|8|AzureActiveDirectory|Azure Active Directory 事件。|
-|9|AzureActiveDirectoryAccountLogon|Azure Active Directory OrgId 徽标事件（弃用）。|
-|10|DataCenterSecurityCmdlet|数据中心安全 cmdlet 事件。|
-|11|ComplianceDLPSharePoint|SharePoint 和 OneDrive for Business 中的数据丢失保护 (DLP) 事件。|
-|12|Sway|来自 Sway 服务和客户端的事件。|
-|13|ComplianceDLPExchange|通过统一 DLP 策略配置时，Exchange 中的数据丢失保护 (DLP) 事件。 不支持基于 Exchange 传输规则的 DLP 事件。|
-|14|SharePointSharingOperation|SharePoint 共享事件。|
-|15|AzureActiveDirectoryStsLogon|Azure Active Directory 中安全令牌服务 (STS) 登录事件。|
-|18|SecurityComplianceCenterEOPCmdlet|来自安全与合规中心的 Admin 操作。|
+|1 |ExchangeAdmin|来自 Exchange 管理员审核日志的事件。|
+|2 |ExchangeItem|来自 Exchange 邮箱审核日志的事件，用于对单个项执行的操作，例如创建或接收电子邮件。|
+|第三章|ExchangeItemGroup|来自 Exchange 邮箱审核日志的事件，用于可对多个项执行的操作，例如移动或删除一个或多个电子邮件。|
+|4 |SharePoint|SharePoint 事件。|
+|6 |SharePointFileOperation|SharePoint 文件操作事件。|
+|8 |AzureActiveDirectory|Azure Active Directory 事件。|
+|9 |AzureActiveDirectoryAccountLogon|Azure Active Directory OrgId 徽标事件（弃用）。|
+|10  |DataCenterSecurityCmdlet|数据中心安全 cmdlet 事件。|
+|11x17|ComplianceDLPSharePoint|SharePoint 和 OneDrive for Business 中的数据丢失保护 (DLP) 事件。|
+|12 |Sway|来自 Sway 服务和客户端的事件。|
+|13 |ComplianceDLPExchange|通过统一 DLP 策略配置时，Exchange 中的数据丢失保护 (DLP) 事件。 不支持基于 Exchange 传输规则的 DLP 事件。|
+|14 |SharePointSharingOperation|SharePoint 共享事件。|
+|15 |AzureActiveDirectoryStsLogon|Azure Active Directory 中安全令牌服务 (STS) 登录事件。|
+|18 |SecurityComplianceCenterEOPCmdlet|来自安全与合规中心的 Admin 操作。|
 |20|PowerBIAudit|Power BI 事件。|
-|21|CRM|Microsoft CRM 事件。|
+| 21|CRM|Microsoft CRM 事件。|
 |22|Yammer|Yammer 事件。|
-|23|SkypeForBusinessCmdlets|Skype for Business 事件。|
+|上午|SkypeForBusinessCmdlets|Skype for Business 事件。|
 |24|Discovery|通过在安全与合规中心中运行内容搜索和管理电子数据展示案例执行的电子数据展示活动事件。|
-|25|MicrosoftTeams|Microsoft Teams 中的事件。|
+|word|MicrosoftTeams|Microsoft Teams 中的事件。|
 |28|ThreatIntelligence|Exchange Online Protection 和 Office 365 高级威胁防护中的网络钓鱼和恶意软件事件。|
 |29|MailSubmission|Exchange Online Protection 和 Office 365 高级威胁防护中的提交事件。|
 |30|MicrosoftFlow|Microsoft Power Automate（以前称为 Microsoft Flow）事件。|
@@ -133,6 +134,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |64|AirInvestigation|自动事件响应 (AIR) 事件。|
 |65|Quarantine|隔离事件。|
 |66|MicrosoftForms|Microsoft Forms 事件。|
+|68|ComplianceSupervisionExchange|由通信合规性攻击性语言模型跟踪的事件。|
 ||||
 
 ### <a name="enum-user-type---type-edmint32"></a>枚举：User Type - 类型：Edm.Int32
@@ -142,14 +144,14 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |值|成员名称|说明|
 |:-----|:-----|:-----|
 |0|Regular|常规用户。|
-|1|Reserved|保留的用户。|
-|2|Admin|管理员。|
-|3|DcAdmin|Microsoft 数据中心操作员。|
-|4|System|系统帐户。|
-|5|Application|应用程序。|
-|6|ServicePrincipal|服务主体。|
-|7|CustomPolicy|自定义策略。|
-|8|SystemPolicy|系统策略。|
+|1 |Reserved|保留的用户。|
+|2 |Admin|管理员。|
+|第三章|DcAdmin|Microsoft 数据中心操作员。|
+|4 |System|系统帐户。|
+|5 |Application|应用程序。|
+|6 |ServicePrincipal|服务主体。|
+|7 |CustomPolicy|自定义策略。|
+|8 |SystemPolicy|系统策略。|
 ||||
 
 ### <a name="enum-auditlogscope---type-edmint32"></a>枚举：AuditLogScope - 类型：Edm.Int32
@@ -159,7 +161,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |值|成员名称|说明|
 |:-----|:-----|:-----|
 |0|Online|此事件由托管的 O365 服务创建。|
-|1|Onprem|此事件由本地服务器创建。|
+|1 |Onprem|此事件由本地服务器创建。|
 ||||
 
 ## <a name="sharepoint-base-schema"></a>SharePoint 基本架构
@@ -182,13 +184,13 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|Invalid|项目不是其他项目类型（在此表中列出）。|
-|1|File|项目为文件。|
-|5|Folder|项目为文件夹。|
-|6|Web|项目为 Web。|
-|7|Site|项目为网站。|
-|8|Tenant|项目为租户。|
-|9|DocumentLibrary|项目为文档库。|
-|11|Page|项目为页面。|
+|1 |File|项目为文件。|
+|5 |Folder|项目为文件夹。|
+|6 |Web|项目为 Web。|
+|7 |Site|项目为网站。|
+|8 |Tenant|项目为租户。|
+|9 |DocumentLibrary|项目为文档库。|
+|11x17|Page|项目为页面。|
 ||||
 
 ### <a name="enum-eventsource---type-edmint32"></a>枚举：EventSource - 类型：Edm.Int32
@@ -198,7 +200,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|SharePoint|事件源是 SharePoint。|
-|1|ObjectModel|事件源是 ObjectModel。|
+|1 |ObjectModel|事件源是 ObjectModel。|
 ||||
 
 ### <a name="enum-sharepointauditoperation---type-edmint32"></a>枚举：SharePointAuditOperation - 类型：Edm.Int32
@@ -531,12 +533,12 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|Owner|邮箱所有者。|
-|1|Admin|对某人的邮箱具有管理权限的人员。|
-|2|Delegated|对某人的邮箱具有委派权限的人员。|
-|3|Transport|Microsoft 数据中心的传输服务。|
-|4|SystemService|中Microsoft 数据中心的服务帐户|
-|5|BestAccess|仅供内部使用。|
-|6|DelegatedAdmin|委派的管理员。|
+|1 |Admin|对某人的邮箱具有管理权限的人员。|
+|2 |Delegated|对某人的邮箱具有委派权限的人员。|
+|第三章|Transport|Microsoft 数据中心的传输服务。|
+|4 |SystemService|中Microsoft 数据中心的服务帐户|
+|5 |BestAccess|仅供内部使用。|
+|6 |DelegatedAdmin|委派的管理员。|
 |||||
 
 ### <a name="exchangemailboxauditgrouprecord-schema"></a>ExchangeMailboxAuditGroupRecord 架构
@@ -629,14 +631,14 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|
 |-1|Other|其他身份验证。|
 |0|Password|用户凭据是用户名和密码。|
-|1|MobilePhone|用户凭据是移动电话。|
-|2|SecretQuestion|用户凭据是机密问题。|
-|3|SecurePin|用户凭据是安全 PIN。|
-|4|SecurePinReset|用户凭据是安全 PIN 重置。|
-|11|EasyID|用户凭据是 EasyID。|
-|14|PasswordIndexCredentialType|用户凭据是 PasswordIndexCredentialType。|
-|16|Device|用户凭据是设备。|
-|17|ForeignRealmIndex|用户凭据是 ForeignRealmIndex。|
+|1 |MobilePhone|用户凭据是移动电话。|
+|2 |SecretQuestion|用户凭据是机密问题。|
+|第三章|SecurePin|用户凭据是安全 PIN。|
+|4 |SecurePinReset|用户凭据是安全 PIN 重置。|
+|11x17|EasyID|用户凭据是 EasyID。|
+|14 |PasswordIndexCredentialType|用户凭据是 PasswordIndexCredentialType。|
+|16 |Device|用户凭据是设备。|
+|17 |ForeignRealmIndex|用户凭据是 ForeignRealmIndex。|
 |||||
 
 ### <a name="enum-logintype---type-edmint32"></a>枚举：LoginType - 类型：Edm.Int32
@@ -645,9 +647,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |-1|Other|其他 i 类型。|
-|1|InitialAuth|使用初始身份验证登录|
-|2|CookieCopy|使用 cookie 登录。|
-|3|SilentReAuth|通过无提示重新身份验证登录。|
+|1 |InitialAuth|使用初始身份验证登录|
+|2 |CookieCopy|使用 cookie 登录。|
+|第三章|SilentReAuth|通过无提示重新身份验证登录。|
 |||||
 
 ### <a name="enum-authenticationmethod---type-edmint32"></a>枚举：AuthenticationMethod - 类型：Edm.Int32
@@ -656,25 +658,25 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|Min|身份验证方法是 Min|
-|1|Password|身份验证方法是密码。|
-|2|Digest|身份验证方法是摘要。|
-|3|ProxyAuth|身份验证方法是 ProxyAuth。|
-|4|InfoCard|身份验证方法是 InfoCard。|
-|5|DAToken|身份验证方法是 DAToken。|
-|6|Sha1RememberMyPassword|身份验证方法是 Sha1RememberMyPassword。|
-|7|LMPasswordHash|身份验证方法是 LMPasswordHash。|
-|8|ADFSFederatedToken|身份验证方法是 ADFSFederatedToken。|
-|9|EID|身份验证方法是 EID。|
-|10|DeviceID|身份验证方法是 DeviceID。 |
-|11|MD5|身份验证方法是 MD5。|
-|12|EncProxyPasswordHash|身份验证方法是 EncProxyPasswordHash。|
-|13|LWAFederation|身份验证方法是 LWAFederation。|
-|14|Sha1HashedPassword|身份验证方法是 Sha1HashedPassword。|
-|15|SecurePin|身份验证方法是安全 Pin。|
-|16|SecurePinReset|身份验证方法是安全 PIN 重置。|
-|17|SAML20PostSimpleSign|身份验证方法是 SAML20PostSimpleSign。|
-|18|SAML20Post|身份验证方法是 SAML20Post。|
-|19|OneTimeCode|身份验证方法是一次性代码。|
+|1 |Password|身份验证方法是密码。|
+|2 |Digest|身份验证方法是摘要。|
+|第三章|ProxyAuth|身份验证方法是 ProxyAuth。|
+|4 |InfoCard|身份验证方法是 InfoCard。|
+|5 |DAToken|身份验证方法是 DAToken。|
+|6 |Sha1RememberMyPassword|身份验证方法是 Sha1RememberMyPassword。|
+|7 |LMPasswordHash|身份验证方法是 LMPasswordHash。|
+|8 |ADFSFederatedToken|身份验证方法是 ADFSFederatedToken。|
+|9 |EID|身份验证方法是 EID。|
+|10  |DeviceID|身份验证方法是 DeviceID。 |
+|11x17|MD5|身份验证方法是 MD5。|
+|12 |EncProxyPasswordHash|身份验证方法是 EncProxyPasswordHash。|
+|13 |LWAFederation|身份验证方法是 LWAFederation。|
+|14 |Sha1HashedPassword|身份验证方法是 Sha1HashedPassword。|
+|15 |SecurePin|身份验证方法是安全 Pin。|
+|16 |SecurePinReset|身份验证方法是安全 PIN 重置。|
+|17 |SAML20PostSimpleSign|身份验证方法是 SAML20PostSimpleSign。|
+|18 |SAML20Post|身份验证方法是 SAML20Post。|
+|合|OneTimeCode|身份验证方法是一次性代码。|
 |||||
 
 
@@ -925,8 +927,8 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|Sway|从 Sway 触发事件。|
-|1|SwayEmbedded|从嵌入主机的 Sway 触发事件。|
-|2|SwayAdminPortal|从 Office 365 管理门户的 Sway 服务设置触发事件。|
+|1 |SwayEmbedded|从嵌入主机的 Sway 触发事件。|
+|2 |SwayAdminPortal|从 Office 365 管理门户的 Sway 服务设置触发事件。|
 |||||
 
 
@@ -937,7 +939,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|Succeeded|事件成功。|
-|1|Failed|事件失败。|
+|1 |Failed|事件失败。|
 |||||
 
 
@@ -948,9 +950,9 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|SwayWeb|使用 Sway Web 客户端触发事件。|
-|1|SwayIOS|使用 Sway iOS 客户端触发事件。|
-|2|SwayWindows|使用 Sway Windows 客户端触发事件。|
-|3|SwayAndroid|使用 Sway Android 客户端触发事件。|
+|1 |SwayIOS|使用 Sway iOS 客户端触发事件。|
+|2 |SwayWindows|使用 Sway Windows 客户端触发事件。|
+|第三章|SwayAndroid|使用 Sway Android 客户端触发事件。|
 |||||
 
 
@@ -961,8 +963,8 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|桌面|使用桌面触发事件。|
-|1|移动设备|使用移动设备触发事件。|
-|2|平板电脑|使用平板电脑设备触发事件。|
+|1 |移动设备|使用移动设备触发事件。|
+|2 |平板电脑|使用平板电脑设备触发事件。|
 |||||
 
 
@@ -974,19 +976,19 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |1|Create|用户创建 Sway。|
-|2|删除|用户删除 Sway。|
-|3|View|用户查看 Sway。|
-|4|编辑|用户编辑 Sway。|
-|5|Duplicate|用户复制 Sway。|
-|7|Share|用户启动共享 Sway。 此事件捕获在 Sway 共享菜单中单击特定共享目标的用户操作。 该事件并不表示用户是否真正执行并完成共享操作。|
-|8|ChangeShareLevel|用户更改 Sway 的共享级别。 此事件捕获用户更改与 Sway 关联的共享范围。 例如，从组织内更改为公开。|
-|9|RevokeShare|用户通过撤销访问来停止共享 Sway。 撤销访问更改与 Sway 关联的链接。|
-|10|EnableDuplication|用户启用 Sway 的复制功能（默认启用）。|
-|11|DisableDuplication|用户禁用 Sway 的复制功能（默认禁用）。|
-|12|ServiceOn|用户通过 Office 365 管理中心对整个组织启用 Sway（默认启用）。|
-|13|ServiceOff|用户通过 Office 365 管理中心对整个组织禁用 Sway（默认禁用）。|
-|14|ExternalSharingOn|用户通过 Office 365 管理中心对整个组织启用外部共享。|
-|15|ExternalSharingOff|用户通过 Office 365 管理中心对整个组织禁用外部共享。|
+|2 |删除|用户删除 Sway。|
+|第三章|View|用户查看 Sway。|
+|4 |编辑|用户编辑 Sway。|
+|5 |Duplicate|用户复制 Sway。|
+|7 |Share|用户启动共享 Sway。 此事件捕获在 Sway 共享菜单中单击特定共享目标的用户操作。 该事件并不表示用户是否真正执行并完成共享操作。|
+|8 |ChangeShareLevel|用户更改 Sway 的共享级别。 此事件捕获用户更改与 Sway 关联的共享范围。 例如，从组织内更改为公开。|
+|9 |RevokeShare|用户通过撤销访问来停止共享 Sway。 撤销访问更改与 Sway 关联的链接。|
+|10  |EnableDuplication|用户启用 Sway 的复制功能（默认启用）。|
+|11x17|DisableDuplication|用户禁用 Sway 的复制功能（默认禁用）。|
+|12 |ServiceOn|用户通过 Office 365 管理中心对整个组织启用 Sway（默认启用）。|
+|13 |ServiceOff|用户通过 Office 365 管理中心对整个组织禁用 Sway（默认禁用）。|
+|14 |ExternalSharingOn|用户通过 Office 365 管理中心对整个组织启用外部共享。|
+|15 |ExternalSharingOff|用户通过 Office 365 管理中心对整个组织禁用外部共享。|
 |||||
 
 ## <a name="data-center-security-base-schema"></a>数据中心安全基本架构
@@ -1061,8 +1063,8 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|Member|属于团队成员的用户。|
-|1|Owner|担任团队所有者的用户。|
-|2|Guest|不属于团队成员的用户。|
+|1 |Owner|担任团队所有者的用户。|
+|2 |Guest|不属于团队成员的用户。|
 ||||
 
 ### <a name="keyvaluepair-complex-type"></a>KeyValuePair 复杂类型
@@ -1081,8 +1083,8 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |1|Bot|Microsoft Teams 机器人。|
-|2|Connector|Microsoft Teams 连接器。|
-|3|Tab|Microsoft Teams 选项卡。|
+|2 |Connector|Microsoft Teams 连接器。|
+|第三章|Tab|Microsoft Teams 选项卡。|
 ||||
 
 ## <a name="office-365-advanced-threat-protection-and-threat-investigation-and-response-schema"></a>Office 365 高级威胁防护与威胁调查和响应架构
@@ -1142,7 +1144,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|Good|未检测到任何威胁。|
-|1|Bad|在附件中发现恶意软件。|
+|1 |Bad|在附件中发现恶意软件。|
 |-1|Error|扫描/分析错误。|
 |-2|Timeout|扫描/分析超时。|
 |-3|Pending|扫描/分析未完成。|
@@ -1154,22 +1156,22 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
-|1|Anti-spam, HSPM|反垃圾邮件策略中的高可信度垃圾邮件 (HSPM) 操作。|
-|2|Anti-spam, SPM|反垃圾邮件策略中的垃圾邮件 (SPM) 操作。|
-|3|Anti-spam, Bulk|反垃圾邮件策略中的批量操作。|
-|4|Anti-spam, PHSH|反垃圾邮件策略中的网络钓鱼 (PHSH) 操作。|
-|5|Anti-phish, DIMP|反钓鱼策略中的域模拟 (DIMP) 操作。|
-|6|Anti-phish, UIMP|反钓鱼策略中的用户模拟 (UIMP) 操作。|
-|7|Anti-phish, SPOOF|反钓鱼策略中的欺骗操作。|
-|8|Anti-phish, GIMP|反钓鱼策略中的邮箱智能操作。|
-|9|Anti-malware, AMP| 反恶意软件策略中的恶意软件策略操作。|
-|10|Safe attachment, SAP| Office 365 ATP 安全附件策略中的策略操作。|
-|11|Exchange transport rule, ETR| Exchange 传输规则中的策略操作。|
-|12|Anti-malware, ZAPM| 应用于零时差自动清除 (ZAP) 的反恶意软件策略中的恶意软件策略操作。|
-|13|Anti-phish, ZAPP| 应用于 ZAP 的反钓鱼策略中的钓鱼策略操作。|
-|14|Anti-phish, ZAPS| 应用于 ZAP 的反垃圾邮件策略中的垃圾邮件策略操作。|
-|15|反垃圾邮件、高可信度钓鱼电子邮件 (HPHISH)|反垃圾邮件策略中的高可信度钓鱼策略操作。|
-|17|反垃圾邮件、出站垃圾邮件策略 (OSPM)|反垃圾邮件中出站垃圾邮件筛选策略中的策略操作。|
+|1 |Anti-spam, HSPM|反垃圾邮件策略中的高可信度垃圾邮件 (HSPM) 操作。|
+|2 |Anti-spam, SPM|反垃圾邮件策略中的垃圾邮件 (SPM) 操作。|
+|第三章|Anti-spam, Bulk|反垃圾邮件策略中的批量操作。|
+|4 |Anti-spam, PHSH|反垃圾邮件策略中的网络钓鱼 (PHSH) 操作。|
+|5 |Anti-phish, DIMP|反钓鱼策略中的域模拟 (DIMP) 操作。|
+|6 |Anti-phish, UIMP|反钓鱼策略中的用户模拟 (UIMP) 操作。|
+|7 |Anti-phish, SPOOF|反钓鱼策略中的欺骗操作。|
+|8 |Anti-phish, GIMP|反钓鱼策略中的邮箱智能操作。|
+|9 |Anti-malware, AMP| 反恶意软件策略中的恶意软件策略操作。|
+|10  |Safe attachment, SAP| Office 365 ATP 安全附件策略中的策略操作。|
+|11x17|Exchange transport rule, ETR| Exchange 传输规则中的策略操作。|
+|12 |Anti-malware, ZAPM| 应用于零时差自动清除 (ZAP) 的反恶意软件策略中的恶意软件策略操作。|
+|13 |Anti-phish, ZAPP| 应用于 ZAP 的反钓鱼策略中的钓鱼策略操作。|
+|14 |Anti-phish, ZAPS| 应用于 ZAP 的反垃圾邮件策略中的垃圾邮件策略操作。|
+|15 |反垃圾邮件、高可信度钓鱼电子邮件 (HPHISH)|反垃圾邮件策略中的高可信度钓鱼策略操作。|
+|17 |反垃圾邮件、出站垃圾邮件策略 (OSPM)|反垃圾邮件中出站垃圾邮件筛选策略中的策略操作。|
 ||||
 
 ### <a name="enum-policyaction---type-edmint32"></a>枚举：PolicyAction - 类型：Edm.Int32
@@ -1179,14 +1181,14 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|MoveToJMF|策略操作是移动到“垃圾邮件”文件夹。|
-|1|AddXHeader|策略操作是将 X 标头添加到电子邮件。|
-|2|ModifySubject|策略操作是使用筛选策略指定的信息修改电子邮件中的主题。|
-|3|Redirect|策略操作是将电子邮件重定向到筛选策略指定的电子邮件地址。|
-|4|Delete|策略操作是删除电子邮件。|
-|5|Quarantine|策略操作是隔离电子邮件。|
-|6|NoAction| 策略被配置为不对电子邮件执行任何操作。|
-|7|BccMessage|策略操作是将电子邮件密送至筛选策略指定的电子邮件地址。|
-|8|ReplaceAttachment|策略操作是按照筛选策略指定的信息更换电子邮件中的附件。|
+|1 |AddXHeader|策略操作是将 X 标头添加到电子邮件。|
+|2 |ModifySubject|策略操作是使用筛选策略指定的信息修改电子邮件中的主题。|
+|第三章|Redirect|策略操作是将电子邮件重定向到筛选策略指定的电子邮件地址。|
+|4 |Delete|策略操作是删除电子邮件。|
+|5 |Quarantine|策略操作是隔离电子邮件。|
+|6 |NoAction| 策略被配置为不对电子邮件执行任何操作。|
+|7 |BccMessage|策略操作是将电子邮件密送至筛选策略指定的电子邮件地址。|
+|8 |ReplaceAttachment|策略操作是按照筛选策略指定的信息更换电子邮件中的附件。|
 ||||
 
 ### <a name="url-time-of-click-events"></a>URL 单击时事件
@@ -1208,10 +1210,10 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
-|2|Blockpage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL。|
-|3|PendingDetonationPage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆待定页。|
-|4|BlockPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL；但用户忽略阻碍以导航到该 URL。|
-|5|PendingDetonationPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆页；但用户忽略以导航到该 URL。|
+|2 |Blockpage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL。|
+|第三章|PendingDetonationPage|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆待定页。|
+|4 |BlockPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL；但用户忽略阻碍以导航到该 URL。|
+|5 |PendingDetonationPageOverride|[Office 365 ATP 安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆页；但用户忽略以导航到该 URL。|
 |||||
 
 
@@ -1249,8 +1251,8 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**值**|**成员名称**|
 |:-----|:-----|
 |0|SharePoint Online|
-|1|OneDrive for Business|
-|2|Microsoft Teams|
+|1 |OneDrive for Business|
+|2 |Microsoft Teams|
 |||||
 
 ## <a name="automated-investigation-and-response-events-in-office-365"></a>Office 365 中的自动调查和响应事件
@@ -1461,10 +1463,10 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|预览|这是用户请求预览被认为有危害的电子邮件。|
-|1|删除|这是用户请求删除被认为有危害的电子邮件。|
-|2|发布|这是用户请求发布被认为有危害的电子邮件。|
-|3|导出|这是用户请求导出被认为有危害的电子邮件。|
-|4|ViewHeader|这是用户请求查看被认为有危害的电子邮件标头。|
+|1 |删除|这是用户请求删除被认为有危害的电子邮件。|
+|2 |发布|这是用户请求发布被认为有危害的电子邮件。|
+|第三章|导出|这是用户请求导出被认为有危害的电子邮件。|
+|4 |ViewHeader|这是用户请求查看被认为有危害的电子邮件标头。|
 ||||
 
 ### <a name="enum-requestsource---type-edmint32"></a>Enum: RequestSource - Type: Edm.Int32
@@ -1472,8 +1474,8 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
 |0|SCC|安全与合规中心 (SCC) 是用户请求的来源，用户可预览、删除、发布、导出或查看潜在有危害电子邮件可能源头的标头。 |
-|1|Cmdlet|Cmdlet 是用户请求的来源，用户可预览、删除、发布、导出或查看潜在有危害电子邮件可能源头的标头。|
-|2|URLlink|它是是用户请求的来源，用户可预览、删除、发布、导出或查看潜在有危害电子邮件可能源头的标头。|
+|1 |Cmdlet|Cmdlet 是用户请求的来源，用户可预览、删除、发布、导出或查看潜在有危害电子邮件可能源头的标头。|
+|2 |URLlink|它是是用户请求的来源，用户可预览、删除、发布、导出或查看潜在有危害电子邮件可能源头的标头。|
 ||||
 
 ## <a name="microsoft-forms-schema"></a>Microsoft Forms 架构
@@ -1497,9 +1499,9 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |**值**|**表单用户类型**|**说明**|
 |:-----|:-----|:-----|
 |0|管理员|有权访问表单的管理员。|
-|1|所有者|担任表单所有者的用户。|
-|2|响应者|已向表单提交回复的用户。|
-|3|合著者|已使用表单所有者提供的协作链接登录和编辑表单的用户。|
+|1 |所有者|担任表单所有者的用户。|
+|2 |响应者|已向表单提交回复的用户。|
+|第三章|合著者|已使用表单所有者提供的协作链接登录和编辑表单的用户。|
 ||||
 
 ### <a name="enum-formtypes---type-edmint32"></a>枚举：FormTypes - 类型：Edm.Int32
@@ -1509,8 +1511,8 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |**值**|**表单类型**|**说明**|
 |:-----|:-----|:-----|
 |0|表单|使用“新建表单”选项创建的表单。|
-|1|测验|使用“新建测验”选项创建的测验。  测验是表单的一种特殊类型，包含得分值、自动和手动评分、批注等附加功能。|
-|2|调查|使用“新建调查”选项创建的调查。  调查是表单的一种特殊类型，包含 CMS 集成和对流程规则的支持等附加功能。|
+|1 |测验|使用“新建测验”选项创建的测验。  测验是表单的一种特殊类型，包含得分值、自动和手动评分、批注等附加功能。|
+|2 |调查|使用“新建调查”选项创建的调查。  调查是表单的一种特殊类型，包含 CMS 集成和对流程规则的支持等附加功能。|
 ||||
 
 ## <a name="mip-label-schema"></a>MIP 标签架构
@@ -1534,3 +1536,39 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |LabelAppliedDateTime|Edm.Date|否|将敏感度标签应用于电子邮件的日期。|
 |ApplicationMode|Edm.String|否|指定敏感度标签应用于电子邮件的方式。 **Privileged** 值表示用户已手动应用该标签。 **Standard** 值表示标签已由客户端或服务端标记流程自动应用。|
 |||||
+
+## <a name="communication-compliance-exchange-schema"></a>通信合规性 Exchange 架构
+
+Office 365 审核日志中列出的通信合规性事件使用此架构。 这包括**SupervisoryReviewOLAudit**操作的审核记录，当电子邮件内容包含反垃圾邮件模型（其匹配精度 = 99.5%）标识的冒犯性语言时，会生成这些记录 \> 。
+
+|**参数**  |**类型**|**强制？** |**说明**|
+|:---------------|:-------|:--------------|:--------------|
+| ExchangeDetails |[ExchangeDetails](#exchangedetails)|否|触发 SupervisoryReviewOLAudit 事件的电子邮件的属性。|
+|||||
+
+### <a name="enum-exchangedetails---type-exchangedetails"></a>枚举： ExchangeDetails-类型： ExchangeDetails
+
+#### <a name="exchangedetails"></a>ExchangeDetails
+
+| **成员名称**   | **类型**| **说明**|
+|:----------------- | :-------|:---------------|
+| NetworkMessageId  |Edm.Guid|电子邮件的网络邮件 ID。|
+| InternetMessageId |Edm.String|电子邮件的 internet 邮件 ID。|
+| AttachmentData|集合（[AttachmentDetails](#attachmentdetails)）|有关附加到电子邮件的文件的信息。|
+| Recipients|Collection(Edm.String)|电子邮件的 "收件人"、"抄送" 和 "密件抄送" 字段中的电子邮件地址。 |
+| Subject|Edm.String|电子邮件的 "主题" 字段中的文本。|
+| MessageTime|Edm.Date|电子邮件的发送日期和时间。|
+| From| Edm.String|电子邮件的“发件人”字段中的电子邮件地址。|
+| 方向性|Edm.String|电子邮件的来源状态。|
+||||
+
+### <a name="enum-attachmentdetails---type-edmint32"></a>枚举： AttachmentDetails-类型： Edm
+
+#### <a name="attachmentdetails"></a>AttachmentDetails
+
+| **成员名称** | **类型**   | **说明**|
+|:--------------- |:---------- | :--------------|
+| FileName        | Edm.String | 附加到电子邮件的文件的名称。|
+| FileType        | Edm.String | 附加到电子邮件的文件的文件扩展名。|
+| SHA256          | Edm.String | 附加到电子邮件的文件的 SHA-256 哈希。|
+||||
