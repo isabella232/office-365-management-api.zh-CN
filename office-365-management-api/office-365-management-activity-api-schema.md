@@ -6,12 +6,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 882967c45d8cee813ec1abb6064258e49a98a1e0
-ms.sourcegitcommit: 91db29fbd6695c92ca5e5647b336d8f10ca267bb
+ms.openlocfilehash: 311fbfedbef52c12f40bc275b66acd5f791e1b47
+ms.sourcegitcommit: 18a48948fb8973efd51e29a1287c1b130bcff44b
 ms.translationtype: MT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/28/2020
-ms.locfileid: "44407439"
+ms.lasthandoff: 06/18/2020
+ms.locfileid: "44803449"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -210,7 +210,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|
 |AccessInvitationAccepted*|邀请查看或编辑共享文件（或文件夹）的收件人已通过单击邀请中的链接访问共享文件。|
 |AccessInvitationCreated*|用户向其他人发出邀请（在其组织内部或外部）来查看或编辑 SharePoint 或 OneDrive for Business 网站上的共享文件或文件夹。 事件条目的详细信息标识共享文件的名称、接收邀请的用户以及发送邀请的人员所选择的共享权限的类型。|
-|AccessInvitationExpired*|向外部用户发送的邀请过期。默认情况下，如果未接受邀请，向您组织之外的某个用户发送的邀请将在 7 天之后过期。|
+|AccessInvitationExpired*|An invitation sent to an external user expires. By default, an invitation sent to a user outside of your organization expires after 7 days if the invitation isn't accepted.|
 |AccessInvitationRevoked*|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者撤回发送给组织外部用户的邀请。 邀请只有在被接受之前才能撤回。|
 |AccessInvitationUpdated*|在 SharePoint 或 OneDrive for Business 网站上创建并向其他人发送邀请以查看或编辑共享文件（或文件夹）的用户可以重新发送邀请。|
 |AccessRequestApproved|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者批准用户访问网站或文档的请求。|
@@ -246,7 +246,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |EntityForceCheckedIn|用户在 Project Web App 中的日历、自定义字段或查找表上强制签入。|
 |ExemptUserAgentSet*|全局管理员向 SharePoint 管理中心的豁免用户代理列表添加用户代理。|
 |FileAccessed|用户或系统帐户访问 SharePoint 或 OneDrive for Business 网站上的文件。 系统帐户还可以生成 FileAccessed 事件。|
-|FileCheckOutDiscarded*|用户放弃（或撤消）签出的文件。这意味着将放弃签出文件时对其所做的更改，而不将其保存到文档库中的文档版本。|
+|FileCheckOutDiscarded*|User discards (or undos) a checked out file. That means any changes they made to the file when it was checked out are discarded, and not saved to the version of the document in the document library.|
 |FileCheckedIn*|用户签入在 SharePoint 或 OneDrive for Business 文档库中签出的文档。|
 |FileCheckedOut*|用户签出位于 SharePoint 或 OneDrive for Business 文档库的文档。 用户可以对与其共享的文档执行签出和更改操作。|
 |FileCopied|用户从 SharePoint 或 OneDrive for Business 网站复制文档。 可以将复制的文件保存到网站上的另一个文件夹。|
@@ -335,7 +335,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |SharedLinkCreated|用户在 SharePoint 或 OneDrive for Business 中创建共享文件的链接。 此链接可以发送给其他人，以便授予其对文件的访问权限。 用户可创建两个类型的链接：允许用户查看和编辑共享文件的链接，或仅允许用户查看文件的链接。|
 |SharedLinkDisabled*|用户禁用（永久）为共享文件而创建的链接。|
 |SharingInvitationAccepted*|用户接受共享文件或文件夹的邀请。 当用户与其他用户共享文件时，将记录此事件。|
-|SharingRevoked*|用户取消共享以前与其他用户共享的文件或文件夹。当用户停止与其他用户共享文件时，会记录此事件。|
+|SharingRevoked*|User unshares a file or folder that was previously shared with other users. This event is logged when a user stops sharing a file with other users.|
 |SharingSet|用户与组织内的其他用户共享位于 SharePoint 或 OneDrive for Business 中的文件或文件夹。|
 |SiteAdminChangeRequest*|用户请求添加为 SharePoint 网站集的网站集管理员。 网站集管理员具有网站集和所有子网站的完全控制权限。|
 |SiteCollectionAdminAdded*|网站集管理员或所有者添加人员，作为 SharePoint 或 OneDrive for Business 网站的网站集管理员。 网站集管理员具有网站集和所有子网站的完全控制权限。|
@@ -861,11 +861,13 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 - 基于[安全与合规中心的警报策略](https://docs.microsoft.com/office365/securitycompliance/alert-policies#default-alert-policies)生成的所有警报。
 - 在 [Office 365 云应用安全](https://docs.microsoft.com/office365/securitycompliance/office-365-cas-overview)和 [Microsoft Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security) 中生成的 Office 365 相关警报。
 
-这些事件的 UserId 和 UserKey 始终为 SecurityComplianceAlerts。 有两种类型的警报信号，它们被存储为常见架构的 Operation 属性值：
+这些事件的 UserId 和 UserKey 始终为 SecurityComplianceAlerts。 有三种类型的警报事件存储为常见架构的 Operation 属性值：
 
 - AlertTriggered：由于策略匹配而生成新警报。
 
-- AlertEntityGenerated：向警报添加新实体。 此事件仅适用于基于 Office 365 安全与合规中心的警报策略生成的警报。 每个生成的警报都可与一个或多个上述事件相关联。 例如，如果任何用户在 5 分钟内删除了超过 100 个文件，则定义警报策略以触发警报。 如果两个用户几乎同时超过阈值，则会有两个 AlertEntityGenerated 事件，但只有一个 AlertTriggered 事件。
+- AlertEntityGenerated：向警报添加新实体。 此事件仅适用于基于安全与合规中心中的警报策略生成的警报。 每个生成的警报都可与一个或多个上述事件相关联。 例如，如果任何用户在 5 分钟内删除了超过 100 个文件，则定义警报策略以触发警报。 如果两个用户几乎同时超过阈值，则会有两个 AlertEntityGenerated 事件，但只有一个 AlertTriggered 事件。
+
+- AlertUpdated-对警报的元数据进行了更新。 当警报的状态更改时（例如，从 "活动" 更改为 "已解决"），如果有人向警报添加注释，则会记录此事件。
 
 |**参数**|**类型**|**强制**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -1456,7 +1458,7 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |:------------------ | :------------------ | :--------------|:--------------|
 |EntityId|Edm.Guid|否|实体的唯一标识符。|
 |EntityName|Edm.String|是|组织中实体的名称。 实体的示例包括 `contact` 或 `authentication` 。|
-|消息|Edm.String|是|此参数包含在与实体相关时执行的操作。 例如，如果创建了新的联系人，则 Message 属性的值为， `Create` EntityName 属性的相应值为 `contact` 。|
+|Message|Edm.String|是|此参数包含在与实体相关时执行的操作。 例如，如果创建了新的联系人，则 Message 属性的值为， `Create` EntityName 属性的相应值为 `contact` 。|
 |查询|Edm.String|否|在执行 FetchXML 操作时使用的筛选器查询的参数。|
 |PrimaryFieldValue|Edm.String|否|指示作为实体的主字段的属性的值。|
 |||||
