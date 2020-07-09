@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 0552456c2340ad170355953e274a455ff681e2c9
-ms.sourcegitcommit: d55928a0d535090fa2dbe94f38c7316d0e52e9a9
+ms.openlocfilehash: 459143049732df246edf4877551ca2dd8f7cbafe
+ms.sourcegitcommit: 745a6e43dc3a9849897a5b57eadb3e7c57511c6f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "44173132"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "45083713"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -288,15 +288,3 @@ $contents = Invoke-WebRequest -Method GET -Headers $headerParams -Uri $uri
 #### <a name="if-there-is-a-24-hour-delay-in-getting-a-notification-doesnt-that-mean-i-will-have-only-6-days-to-retrieve-the-content-blob"></a>如果通知延迟 24 小时才收到，这是不是意味着我只有 6 天的时间来检索内容 blob？
 
 不是。 即使通知延迟了很长的时间（例如服务中断的情况），你仍然可以在第一次收到通知后的 7 天内下载与原始事件相关的内容 blob。
-
-
-
-
-
-
-
-
-
-
-
-

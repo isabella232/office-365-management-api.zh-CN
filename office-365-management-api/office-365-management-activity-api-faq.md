@@ -6,12 +6,12 @@ ms.ContentId: ''
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 19603e9f22d65c51ee01c9b410c61cb46ca97434
-ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
+ms.openlocfilehash: 4ceec751e72bc5bec3d8c0412d48aafa38d40596
+ms.sourcegitcommit: 745a6e43dc3a9849897a5b57eadb3e7c57511c6f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2020
-ms.locfileid: "41263231"
+ms.lasthandoff: 07/08/2020
+ms.locfileid: "45083692"
 ---
 # <a name="office-365-management-activity-api-frequently-asked-questions"></a>Office 365 管理活动 API 常见问题解答
 
@@ -46,10 +46,6 @@ ms.locfileid: "41263231"
 #### <a name="arent-webhook-notifications-more-immediate-after-all-arent-they-event-driven"></a>Webhook 通知不是更即时吗？ 毕竟它们是事件驱动通知，不是吗？
 
 不是。 Webhook 通知并不是事件触发通知意义上的事件驱动通知。 仍必须创建内容 blob，而创建内容 blob 则会触发通知传递。 最近，与直接使用 */content* 操作查询 API 相比，使用 Webhook 的通知等待时间更长。 因此，不得将管理活动 API 视为实时安全警报系统。 对于这一领域，Microsoft 有其他产品。 就安全性而言，管理活动 API 事件通知可能更适用于确定长时间的使用模式。
-
-#### <a name="when-pulling-the-data-from-the-management-activity-api-there-is-sometimes-a-delay-of-more-than-3-to-5-days-why-is-this"></a>使用管理活动 API 拉取数据时，有时会有超过 3 到 5 天的延迟。 这是什么原因？
-
-有时，Office 365 服务会出现暂时中断或其他问题。 在这种情况下，一些审核记录会遭删除，而服务则会尝试回填这些记录。 虽然只有大约 5% 到 10% 的记录会出现这种情况，但正是这些记录导致了在某些情况下可能会发生的延迟。 如果延迟超过 5 天，请检查 Office 365 管理中心内的服务运行状况仪表板。 如果需要，还可以开启 [Microsoft 支持](https://support.office.com/article/contact-support-for-business-products-admin-help-32a17ca7-6fa0-4870-8a8d-e25ba4ccfd4b#ID0EAADAAA=online)票证。
 
 #### <a name="im-encountering-a-throttling-error-in-the-management-activity-api-what-should-i-do"></a>我在使用管理活动 API 时遇到了限制错误。 该怎么办？
 
