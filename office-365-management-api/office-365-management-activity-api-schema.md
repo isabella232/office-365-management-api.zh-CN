@@ -211,7 +211,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|
 |AccessInvitationAccepted*|邀请查看或编辑共享文件（或文件夹）的收件人已通过单击邀请中的链接访问共享文件。|
 |AccessInvitationCreated*|用户向其他人发出邀请（在其组织内部或外部）来查看或编辑 SharePoint 或 OneDrive for Business 网站上的共享文件或文件夹。 事件条目的详细信息标识共享文件的名称、接收邀请的用户以及发送邀请的人员所选择的共享权限的类型。|
-|AccessInvitationExpired*|An invitation sent to an external user expires. By default, an invitation sent to a user outside of your organization expires after 7 days if the invitation isn't accepted.|
+|AccessInvitationExpired*|向外部用户发送的邀请过期。默认情况下，如果未接受邀请，向您组织之外的某个用户发送的邀请将在 7 天之后过期。|
 |AccessInvitationRevoked*|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者撤回发送给组织外部用户的邀请。 邀请只有在被接受之前才能撤回。|
 |AccessInvitationUpdated*|在 SharePoint 或 OneDrive for Business 网站上创建并向其他人发送邀请以查看或编辑共享文件（或文件夹）的用户可以重新发送邀请。|
 |AccessRequestApproved|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者批准用户访问网站或文档的请求。|
@@ -247,7 +247,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |EntityForceCheckedIn|用户在 Project Web App 中的日历、自定义字段或查找表上强制签入。|
 |ExemptUserAgentSet*|全局管理员向 SharePoint 管理中心的豁免用户代理列表添加用户代理。|
 |FileAccessed|用户或系统帐户访问 SharePoint 或 OneDrive for Business 网站上的文件。 系统帐户还可以生成 FileAccessed 事件。|
-|FileCheckOutDiscarded*|User discards (or undos) a checked out file. That means any changes they made to the file when it was checked out are discarded, and not saved to the version of the document in the document library.|
+|FileCheckOutDiscarded*|用户放弃（或撤消）签出的文件。这意味着将放弃签出文件时对其所做的更改，而不将其保存到文档库中的文档版本。|
 |FileCheckedIn*|用户签入在 SharePoint 或 OneDrive for Business 文档库中签出的文档。|
 |FileCheckedOut*|用户签出位于 SharePoint 或 OneDrive for Business 文档库的文档。 用户可以对与其共享的文档执行签出和更改操作。|
 |FileCopied|用户从 SharePoint 或 OneDrive for Business 网站复制文档。 可以将复制的文件保存到网站上的另一个文件夹。|
@@ -336,7 +336,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |SharedLinkCreated|用户在 SharePoint 或 OneDrive for Business 中创建共享文件的链接。 此链接可以发送给其他人，以便授予其对文件的访问权限。 用户可创建两个类型的链接：允许用户查看和编辑共享文件的链接，或仅允许用户查看文件的链接。|
 |SharedLinkDisabled*|用户禁用（永久）为共享文件而创建的链接。|
 |SharingInvitationAccepted*|用户接受共享文件或文件夹的邀请。 当用户与其他用户共享文件时，将记录此事件。|
-|SharingRevoked*|User unshares a file or folder that was previously shared with other users. This event is logged when a user stops sharing a file with other users.|
+|SharingRevoked*|用户取消共享以前与其他用户共享的文件或文件夹。当用户停止与其他用户共享文件时，会记录此事件。|
 |SharingSet|用户与组织内的其他用户共享位于 SharePoint 或 OneDrive for Business 中的文件或文件夹。|
 |SiteAdminChangeRequest*|用户请求添加为 SharePoint 网站集的网站集管理员。 网站集管理员具有网站集和所有子网站的完全控制权限。|
 |SiteCollectionAdminAdded*|网站集管理员或所有者添加人员，作为 SharePoint 或 OneDrive for Business 网站的网站集管理员。 网站集管理员具有网站集和所有子网站的完全控制权限。|
