@@ -6,12 +6,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 48065e1770e485ffa04778d662a170ae14916354
-ms.sourcegitcommit: d55928a0d535090fa2dbe94f38c7316d0e52e9a9
+ms.openlocfilehash: 892dff36a9a7320bdfda4ba908581cb1e000c2b0
+ms.sourcegitcommit: a85b79e8586ae83ecbf30de808c4df90e839536b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "44173139"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "46612300"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
@@ -63,10 +63,16 @@ Office 365 管理活动 API 将操作和事件聚合到租户专用内容 blob �
 
 你所使用的 API 终结点的 URL 基于贵公司 Microsoft 365 或 Office 365 订阅计划的类型。
 
-**企业版计划和 GCC 政府版计划**
+**企业版计划**
 
 ```http
 https://manage.office.com/api/v1.0/{tenant_id}/activity/feed/{operation}
+```
+
+**GCC 政府版计划**
+
+```http
+https://manage-gcc.office.com/api/v1.0/{tenant_id}/activity/feed/{operation}
 ```
 
 **GCC （政府）高级版计划**

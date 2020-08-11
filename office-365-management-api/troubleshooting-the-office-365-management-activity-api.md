@@ -6,12 +6,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 459143049732df246edf4877551ca2dd8f7cbafe
-ms.sourcegitcommit: 745a6e43dc3a9849897a5b57eadb3e7c57511c6f
+ms.openlocfilehash: 84a24a2f803a95d2cadaf804f35a358f10ba49be
+ms.sourcegitcommit: a85b79e8586ae83ecbf30de808c4df90e839536b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/08/2020
-ms.locfileid: "45083713"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "46612307"
 ---
 # <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -57,7 +57,9 @@ Office 365 管理活动 API（也称为*统一审核 API *）只是 Office 365 �
 
 以下 PowerShell 脚本使用应用 ID 和客户端密码从管理活动 API 身份验证端点获取 OAuth2 令牌。 然后，它将访问令牌放置到 `$headerParams` 数组变量，该变量将附加到 HTTP 请求中。 对于 API 终结点的值（在 $resource 变量中），请使用基于组织的 Microsoft 365 或 Office 365 订阅计划的以下任一值:
 
-- 企业版计划和 GCC 政府版计划: `manage.office.com`
+- 企业版计划：`manage.office.com`
+
+- GCC 政府版计划：`manage-gcc.office.com`
 
 - GCC 高级政府版计划: `manage.office365.us`
 
@@ -69,7 +71,7 @@ $ClientID = "<YOUR_APPLICATION_ID"
 $ClientSecret = "<YOUR_CLIENT_SECRET>"
 $loginURL = "https://login.microsoftonline.com/"
 $tenantdomain = "<YOUR_DOMAIN>.onmicrosoft.com"
-# Get the tenant GUID from Properties | Directory ID under the Azure Active Directory section. For $resource, use one of these endpoint values based on your subscription plan: Enterprise and GCC - manage.office.com; GCC High: manage.office365.us; DoD: manage.protection.apps.mil
+# Get the tenant GUID from Properties | Directory ID under the Azure Active Directory section. For $resource, use one of these endpoint values based on your subscription plan: Enterprise - manage.office.com; GCC - manage-gcc.office.com; GCC High: manage.office365.us; DoD: manage.protection.apps.mil
 $TenantGUID = "<YOUR_TENANT_GUID>"
 $resource = "https://<YOUR_API_ENDPOINT>"
 # auth
@@ -127,7 +129,9 @@ RawContentLength  : 266
 
 要创建新订阅，请使用 /start 操作。 对于 API 终结点，请使用基于订阅计划的以下任一值:
 
-- 企业版计划和 GCC 政府版计划: `manage.office.com`
+- 企业版计划：`manage.office.com`
+
+- GCC 政府版计划：`manage-gcc.office.com`
 
 - GCC 高级政府版计划: `manage.office365.us`
 
@@ -137,7 +141,7 @@ RawContentLength  : 266
 Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://<YOUR_API_ENDPOINT>/api/v1.0/$tenantGUID/activity/feed/subscriptions/start?contentType=Audit.AzureActiveDirectory"
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > 请记住，在本文的[连接到 API](#connecting-to-the-api)部分列出的脚本的第一部分中填充了 `$headerParams`。
 
 前面的代码将创建一个针对 Audit.AzureActiveDirectory 内容类型的新订阅，其中 webhook 为 null。 然后，你可以使用本文[检查订阅](#checking-your-subscriptions)部分中的代码检查你的订阅。
@@ -225,7 +229,7 @@ Invoke-RestMethod -Method Post -uri $uri -Headers $headerParams -Body $body
 
 ## <a name="requesting-content-blobs-and-throttling"></a>请求内容 blob 和限制
 
-获取内容 URI 列表后，必须请求 URI 指定的 blob。 下面是使用 PowerShell 请求内容 Blob（使用适用于企业或 GCC 组织的 manage.office.com API 终结点）的示例。 此示例假定你已使用本文[获取访问令牌](#getting-an-access-token)部分中的上一个示例获取访问令牌并已正确填充 `$headerParams` 变量。
+获取内容 URI 列表后，必须请求 URI 指定的 blob。 下面是使用 PowerShell 请求内容 Blob（使用适用于企业组织的 manage.office.com API 终结点）的示例。 此示例假定你已使用本文[获取访问令牌](#getting-an-access-token)部分中的上一个示例获取访问令牌并已正确填充 `$headerParams` 变量。
 
 ```powershell
 # Get a content blob
