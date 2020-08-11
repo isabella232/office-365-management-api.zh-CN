@@ -6,12 +6,12 @@ ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: f444aa9411e0520be42ce68b2f618efe5228ac75
-ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
+ms.openlocfilehash: c0c7f69fcb879879244b5e51768f91ea2472faad
+ms.sourcegitcommit: a85b79e8586ae83ecbf30de808c4df90e839536b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2020
-ms.locfileid: "41263238"
+ms.lasthandoff: 08/10/2020
+ms.locfileid: "46612293"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Office 365 管理 API 入门
 
@@ -28,7 +28,6 @@ ms.locfileid: "41263238"
 4. **调用 Office 365 管理 API**。 仅应用程序访问令牌被传递到 Office 365 管理 API，以验证和授权应用程序。
     
 下图展示了获取同意和请求获取访问令牌的顺序。
-
 
 ![管理 API 入门 - 授权流](images/authorization-flow.png)
 
@@ -329,7 +328,6 @@ Content-Length: 3265
   "acr": "1"
 }
 ```
-
 
 ### <a name="request-an-access-token-by-using-client-credentials"></a>使用客户端凭据请求获取访问令牌
 
