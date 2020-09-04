@@ -6,25 +6,25 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 36ef8e548b535fc97f2b1b6d4347184fa18d6ceb
-ms.sourcegitcommit: 78e76d5d1c3e40907ea0936a7c3f016eed4ebd3c
+ms.openlocfilehash: e6024c19457796fb6f3fb94a62a013cc86a95072
+ms.sourcegitcommit: a4ba198b7417e49880905e49a38d0bd1f4ad8802
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/01/2020
-ms.locfileid: "41650848"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "47334886"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Office 365 服务通信 API 参考
 
 Office 365 服务通信 API V2 可用于访问以下数据：
 
 - **获取服务**：获取已订阅服务的列表。
-    
+
 - **获取当前状态**：获取当前正在进行的服务事件的实时视图。
-    
+
 - **获取历史记录状态**：获取服务事件的历史视图。
-    
+
 - **获取消息**：查找事件和消息中心通信。
-    
+
 目前，Office 365 服务通信 API 包含 Office 365、Yammer、Dynamics CRM 和 Microsoft Intune 云服务的数据。
 
 ## <a name="the-fundamentals"></a>基础知识
@@ -52,7 +52,6 @@ Authorization: Bearer {OAuth2 token}
 |**Accept（可选）**|以下是可接受的响应表示形式：<br/>**application/json;odata.metadata=full**<br/>**application/json;odata.metadata=minimal**<br/>[The default if header not specified] **application/json;odata.metadata=none**|
 |**Authorization（必需）**|请求的授权令牌（持有者 JWT Azure AD 令牌）。|
 
-
 <br/>
 
 ### <a name="response-headers"></a>响应标头
@@ -79,7 +78,6 @@ Authorization: Bearer {OAuth2 token}
 <br/>
 
 下文介绍了 Office 365 服务通信 API 操作。
-
 
 ## <a name="get-services"></a>获取服务
 
@@ -135,7 +133,6 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
     ]
 }
 ```
-
 
 ## <a name="get-current-status"></a>获取当前状态
 
@@ -267,21 +264,21 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 
 ### <a name="status-definitions"></a>状态定义
 
-状态定义包括以下值: 
+状态定义包括以下值:
 
 - 正在调查
 - ServiceDegradation
-- ServiceInterruption 
+- ServiceInterruption
 - RestoringService
 - ExtendedRecovery
+- InvestigationSuspended
 - ServiceRestored
-- PostIncidentReportPublished 
+- FalsePositive
+- PostIncidentReportPublished
 - VerifyingService
 - ServiceOperational
-- FalsePositive
 
 有关最新列表及这些状态定义的说明, 请参阅[如何检查 Office 365 服务运行状况](https://docs.microsoft.com/office365/enterprise/view-service-health#status-definitions)。
-
 
 ## <a name="get-historical-status"></a>获取历史状态
 
@@ -483,4 +480,3 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
     } 
 }
 ```
-
