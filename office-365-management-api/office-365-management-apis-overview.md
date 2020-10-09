@@ -1,4 +1,5 @@
 ---
+ms.technology: o365-service-communications
 ms.TocTitle: Office 365 Management APIs overview
 title: Office 365 管理 API 概述
 description: 提供了一个用于执行所有 Office 365 客户和合作伙伴的管理任务的扩展性平台，包括服务通信、安全性、合规性、报告和审核等方面的任务。
@@ -6,12 +7,12 @@ ms.ContentId: 4fca85f9-efa6-3b4b-b10d-a07cb31f803f
 ms.topic: reference (API)
 ms.date: 09/28/2016
 localization_priority: Priority
-ms.openlocfilehash: 88b7e590d769699ed186d7cecaf80e162d79a095
-ms.sourcegitcommit: 36d0167805d24bbb3e2cf1a02d0f011270cc31cb
+ms.openlocfilehash: 4f0e9414b1f2691f43a8b79e92e39bc589beeb89
+ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2020
-ms.locfileid: "41263280"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "48397459"
 ---
 # <a name="office-365-management-apis-overview"></a>Office 365 管理 API 概述
 
