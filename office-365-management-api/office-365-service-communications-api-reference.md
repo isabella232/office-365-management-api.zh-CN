@@ -1,4 +1,5 @@
 ---
+ms.technology: o365-service-communications
 ms.TocTitle: Office 365 Service Communications API reference
 title: Office 365 服务通信 API 参考
 description: 此 API 可用于访问以下数据：“获取服务”、“获取当前状态”、“获取历史状态”和“获取消息”。
@@ -6,91 +7,91 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: a7e99a5920afa03891ac3f48982cdaf40a660e2a
-ms.sourcegitcommit: e9de9dea24789e64be9e7161e5e5de9cb4f9797d
+ms.openlocfilehash: 9845fb5f422160a658b45bd7dd9a5bc6d4635914
+ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/04/2020
-ms.locfileid: "47399534"
+ms.lasthandoff: 10/09/2020
+ms.locfileid: "48397438"
 ---
-# <a name="office-365-service-communications-api-reference"></a><span data-ttu-id="31c42-103">Office 365 服务通信 API 参考</span><span class="sxs-lookup"><span data-stu-id="31c42-103">Office 365 Service Communications API reference</span></span>
+# <a name="office-365-service-communications-api-reference"></a><span data-ttu-id="9d9ba-103">Office 365 服务通信 API 参考</span><span class="sxs-lookup"><span data-stu-id="9d9ba-103">Office 365 Service Communications API reference</span></span>
 
-<span data-ttu-id="31c42-104">Office 365 服务通信 API V2 可用于访问以下数据：</span><span class="sxs-lookup"><span data-stu-id="31c42-104">You can use the Office 365 Service Communications API V2 to access the following data:</span></span>
+<span data-ttu-id="9d9ba-104">Office 365 服务通信 API V2 可用于访问以下数据：</span><span class="sxs-lookup"><span data-stu-id="9d9ba-104">You can use the Office 365 Service Communications API V2 to access the following data:</span></span>
 
-- <span data-ttu-id="31c42-105">**获取服务**：获取已订阅服务的列表。</span><span class="sxs-lookup"><span data-stu-id="31c42-105">**Get Services**: Get the list of subscribed services.</span></span>
+- <span data-ttu-id="9d9ba-105">**获取服务**：获取已订阅服务的列表。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-105">**Get Services**: Get the list of subscribed services.</span></span>
 
-- <span data-ttu-id="31c42-106">**获取当前状态**：获取当前正在进行的服务事件的实时视图。</span><span class="sxs-lookup"><span data-stu-id="31c42-106">**Get Current Status**: Get a real-time view of current and ongoing service incidents.</span></span>
+- <span data-ttu-id="9d9ba-106">**获取当前状态**：获取当前正在进行的服务事件的实时视图。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-106">**Get Current Status**: Get a real-time view of current and ongoing service incidents.</span></span>
 
-- <span data-ttu-id="31c42-107">**获取历史记录状态**：获取服务事件的历史视图。</span><span class="sxs-lookup"><span data-stu-id="31c42-107">**Get Historical Status**: Get a historical view of service incidents.</span></span>
+- <span data-ttu-id="9d9ba-107">**获取历史记录状态**：获取服务事件的历史视图。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-107">**Get Historical Status**: Get a historical view of service incidents.</span></span>
 
-- <span data-ttu-id="31c42-108">**获取消息**：查找事件和消息中心通信。</span><span class="sxs-lookup"><span data-stu-id="31c42-108">**Get Messages**: Find Incident and Message Center communications.</span></span>
+- <span data-ttu-id="9d9ba-108">**获取消息**：查找事件和消息中心通信。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-108">**Get Messages**: Find Incident and Message Center communications.</span></span>
 
-<span data-ttu-id="31c42-109">目前，Office 365 服务通信 API 包含 Office 365、Yammer、Dynamics CRM 和 Microsoft Intune 云服务的数据。</span><span class="sxs-lookup"><span data-stu-id="31c42-109">Currently, the Office 365 Service Communications API contains data for Office 365, Yammer, Dynamics CRM and Microsoft Intune cloud services.</span></span>
+<span data-ttu-id="9d9ba-109">目前，Office 365 服务通信 API 包含 Office 365、Yammer、Dynamics CRM 和 Microsoft Intune 云服务的数据。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-109">Currently, the Office 365 Service Communications API contains data for Office 365, Yammer, Dynamics CRM and Microsoft Intune cloud services.</span></span>
 
-## <a name="the-fundamentals"></a><span data-ttu-id="31c42-110">基础知识</span><span class="sxs-lookup"><span data-stu-id="31c42-110">The fundamentals</span></span>
+## <a name="the-fundamentals"></a><span data-ttu-id="9d9ba-110">基础知识</span><span class="sxs-lookup"><span data-stu-id="9d9ba-110">The fundamentals</span></span>
 
-<span data-ttu-id="31c42-111">此 API 的根 URL 包含将操作范围限定为一个租户的租户标识符：</span><span class="sxs-lookup"><span data-stu-id="31c42-111">The root URL of the API includes a tenant identifier that scopes the operations to a single tenant:</span></span>
+<span data-ttu-id="9d9ba-111">此 API 的根 URL 包含将操作范围限定为一个租户的租户标识符：</span><span class="sxs-lookup"><span data-stu-id="9d9ba-111">The root URL of the API includes a tenant identifier that scopes the operations to a single tenant:</span></span>
 
 ```http
 https://manage.office.com/api/v1.0/{tenant_identifier}/ServiceComms/{operation}
 ```
 
-<span data-ttu-id="31c42-112">借助 **Office 365 服务通信 API** 这项 REST 服务，可开发使用任何 Web 语言和宿主环境（支持 HTTPS 和 X.509 证书）的解决方案。</span><span class="sxs-lookup"><span data-stu-id="31c42-112">The **Office 365 Service Communications API** is a REST service that allows you to develop solutions using any web language and hosting environment that supports HTTPS and X.509 certificates.</span></span> <span data-ttu-id="31c42-113">此 API 依赖 **Microsoft Azure Active Directory** 和 **OAuth2** 协议进行身份验证和授权。</span><span class="sxs-lookup"><span data-stu-id="31c42-113">The API relies on **Microsoft Azure Active Directory** and the **OAuth2** protocol for authentication and authorization.</span></span> <span data-ttu-id="31c42-114">若要在应用程序中访问此 API，必须先在 Azure AD 中注册应用程序，并为它配置适当范围的权限。</span><span class="sxs-lookup"><span data-stu-id="31c42-114">To access the API from your application, you'll need to first register it in Azure AD and configure it with permissions at the appropriate scope.</span></span> <span data-ttu-id="31c42-115">这样，应用程序便能请求获取调用此 API 所需的 OAuth2 访问令牌。</span><span class="sxs-lookup"><span data-stu-id="31c42-115">This will enable your application to request OAuth2 access tokens necessary for calling the API.</span></span> <span data-ttu-id="31c42-116">若要详细了解如何在 Azure AD 中注册和配置应用程序，请参阅 [Office 365 管理 API 入门](get-started-with-office-365-management-apis.md)。</span><span class="sxs-lookup"><span data-stu-id="31c42-116">You can find more information about registering and configuring an application in Azure AD at [Office 365 Management APIs getting started](get-started-with-office-365-management-apis.md).</span></span>
+<span data-ttu-id="9d9ba-112">借助 **Office 365 服务通信 API** 这项 REST 服务，可开发使用任何 Web 语言和宿主环境（支持 HTTPS 和 X.509 证书）的解决方案。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-112">The **Office 365 Service Communications API** is a REST service that allows you to develop solutions using any web language and hosting environment that supports HTTPS and X.509 certificates.</span></span> <span data-ttu-id="9d9ba-113">此 API 依赖 **Microsoft Azure Active Directory** 和 **OAuth2** 协议进行身份验证和授权。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-113">The API relies on **Microsoft Azure Active Directory** and the **OAuth2** protocol for authentication and authorization.</span></span> <span data-ttu-id="9d9ba-114">若要在应用程序中访问此 API，必须先在 Azure AD 中注册应用程序，并为它配置适当范围的权限。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-114">To access the API from your application, you'll need to first register it in Azure AD and configure it with permissions at the appropriate scope.</span></span> <span data-ttu-id="9d9ba-115">这样，应用程序便能请求获取调用此 API 所需的 OAuth2 访问令牌。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-115">This will enable your application to request OAuth2 access tokens necessary for calling the API.</span></span> <span data-ttu-id="9d9ba-116">若要详细了解如何在 Azure AD 中注册和配置应用程序，请参阅 [Office 365 管理 API 入门](get-started-with-office-365-management-apis.md)。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-116">You can find more information about registering and configuring an application in Azure AD at [Office 365 Management APIs getting started](get-started-with-office-365-management-apis.md).</span></span>
 
-<span data-ttu-id="31c42-117">所有 API 请求都要求，授权 HTTP 头中必须有从 Azure AD 中获取的包含 **ServiceHealth.Read** 声明的有效 OAuth2 JWT 访问令牌；且租户标识符必须与根 URL 中的租户标识符一致。</span><span class="sxs-lookup"><span data-stu-id="31c42-117">All API requests require an Authorization HTTP header that has a valid OAuth2 JWT access token obtained from Azure AD that contains the **ServiceHealth.Read** claim; and the tenant identifier must match the tenant identifier in the root URL.</span></span>
+<span data-ttu-id="9d9ba-117">所有 API 请求都要求，授权 HTTP 头中必须有从 Azure AD 中获取的包含 **ServiceHealth.Read** 声明的有效 OAuth2 JWT 访问令牌；且租户标识符必须与根 URL 中的租户标识符一致。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-117">All API requests require an Authorization HTTP header that has a valid OAuth2 JWT access token obtained from Azure AD that contains the **ServiceHealth.Read** claim; and the tenant identifier must match the tenant identifier in the root URL.</span></span>
 
 ```json
 Authorization: Bearer {OAuth2 token}
 ```
 
-### <a name="request-headers"></a><span data-ttu-id="31c42-118">请求标头</span><span class="sxs-lookup"><span data-stu-id="31c42-118">Request headers</span></span>
+### <a name="request-headers"></a><span data-ttu-id="9d9ba-118">请求标头</span><span class="sxs-lookup"><span data-stu-id="9d9ba-118">Request headers</span></span>
 
-<span data-ttu-id="31c42-119">以下是所有 Office 365 服务通信 API 操作支持的请求头。</span><span class="sxs-lookup"><span data-stu-id="31c42-119">These are the supported request headers for all Office 365 Service Communications API operations.</span></span>
+<span data-ttu-id="9d9ba-119">以下是所有 Office 365 服务通信 API 操作支持的请求头。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-119">These are the supported request headers for all Office 365 Service Communications API operations.</span></span>
 
-|<span data-ttu-id="31c42-120">头</span><span class="sxs-lookup"><span data-stu-id="31c42-120">Header</span></span>|<span data-ttu-id="31c42-121">说明</span><span class="sxs-lookup"><span data-stu-id="31c42-121">Description</span></span>|
+|<span data-ttu-id="9d9ba-120">头</span><span class="sxs-lookup"><span data-stu-id="9d9ba-120">Header</span></span>|<span data-ttu-id="9d9ba-121">说明</span><span class="sxs-lookup"><span data-stu-id="9d9ba-121">Description</span></span>|
 |:-----|:-----|
-|<span data-ttu-id="31c42-122">**Accept（可选）**</span><span class="sxs-lookup"><span data-stu-id="31c42-122">**Accept (Optional)**</span></span>|<span data-ttu-id="31c42-123">以下是可接受的响应表示形式：</span><span class="sxs-lookup"><span data-stu-id="31c42-123">The following are acceptable representations for the response:</span></span><br/><span data-ttu-id="31c42-124">**application/json;odata.metadata=full**</span><span class="sxs-lookup"><span data-stu-id="31c42-124">**application/json;odata.metadata=full**</span></span><br/><span data-ttu-id="31c42-125">**application/json;odata.metadata=minimal**</span><span class="sxs-lookup"><span data-stu-id="31c42-125">**application/json;odata.metadata=minimal**</span></span><br/><span data-ttu-id="31c42-126">[The default if header not specified] **application/json;odata.metadata=none**</span><span class="sxs-lookup"><span data-stu-id="31c42-126">[The default if header not specified] **application/json;odata.metadata=none**</span></span>|
-|<span data-ttu-id="31c42-127">**Authorization（必需）**</span><span class="sxs-lookup"><span data-stu-id="31c42-127">**Authorization (Required)**</span></span>|<span data-ttu-id="31c42-128">请求的授权令牌（持有者 JWT Azure AD 令牌）。</span><span class="sxs-lookup"><span data-stu-id="31c42-128">Authorization token (Bearer JWT Azure AD Token) for the request.</span></span>|
+|<span data-ttu-id="9d9ba-122">**Accept（可选）**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-122">**Accept (Optional)**</span></span>|<span data-ttu-id="9d9ba-123">以下是可接受的响应表示形式：</span><span class="sxs-lookup"><span data-stu-id="9d9ba-123">The following are acceptable representations for the response:</span></span><br/><span data-ttu-id="9d9ba-124">**application/json;odata.metadata=full**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-124">**application/json;odata.metadata=full**</span></span><br/><span data-ttu-id="9d9ba-125">**application/json;odata.metadata=minimal**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-125">**application/json;odata.metadata=minimal**</span></span><br/><span data-ttu-id="9d9ba-126">[The default if header not specified] **application/json;odata.metadata=none**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-126">[The default if header not specified] **application/json;odata.metadata=none**</span></span>|
+|<span data-ttu-id="9d9ba-127">**Authorization（必需）**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-127">**Authorization (Required)**</span></span>|<span data-ttu-id="9d9ba-128">请求的授权令牌（持有者 JWT Azure AD 令牌）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-128">Authorization token (Bearer JWT Azure AD Token) for the request.</span></span>|
 
 <br/>
 
-### <a name="response-headers"></a><span data-ttu-id="31c42-129">响应标头</span><span class="sxs-lookup"><span data-stu-id="31c42-129">Response headers</span></span>
+### <a name="response-headers"></a><span data-ttu-id="9d9ba-129">响应标头</span><span class="sxs-lookup"><span data-stu-id="9d9ba-129">Response headers</span></span>
 
-<span data-ttu-id="31c42-130">以下是所有 Office 365 服务通信 API 操作返回的响应头：</span><span class="sxs-lookup"><span data-stu-id="31c42-130">These are the response headers returned for all Office 365 Service Communications API operations:</span></span>
+<span data-ttu-id="9d9ba-130">以下是所有 Office 365 服务通信 API 操作返回的响应头：</span><span class="sxs-lookup"><span data-stu-id="9d9ba-130">These are the response headers returned for all Office 365 Service Communications API operations:</span></span>
 
-|<span data-ttu-id="31c42-131">头</span><span class="sxs-lookup"><span data-stu-id="31c42-131">Header</span></span>|<span data-ttu-id="31c42-132">说明</span><span class="sxs-lookup"><span data-stu-id="31c42-132">Description</span></span>|
+|<span data-ttu-id="9d9ba-131">头</span><span class="sxs-lookup"><span data-stu-id="9d9ba-131">Header</span></span>|<span data-ttu-id="9d9ba-132">说明</span><span class="sxs-lookup"><span data-stu-id="9d9ba-132">Description</span></span>|
 |:-----|:-----|
-|<span data-ttu-id="31c42-133">**Content-Length**</span><span class="sxs-lookup"><span data-stu-id="31c42-133">**Content-Length**</span></span>|<span data-ttu-id="31c42-134">响应正文长度。</span><span class="sxs-lookup"><span data-stu-id="31c42-134">The length of the response body.</span></span>|
-|<span data-ttu-id="31c42-135">**Content-Type**</span><span class="sxs-lookup"><span data-stu-id="31c42-135">**Content-Type**</span></span>|<span data-ttu-id="31c42-136">响应表示形式：</span><span class="sxs-lookup"><span data-stu-id="31c42-136">Representation of the response:</span></span><br/><span data-ttu-id="31c42-137">**application/json**</span><span class="sxs-lookup"><span data-stu-id="31c42-137">**application/json**</span></span><br/><span data-ttu-id="31c42-138">**application/json;odata.metadata=full**</span><span class="sxs-lookup"><span data-stu-id="31c42-138">**application/json;odata.metadata=full**</span></span><br/><span data-ttu-id="31c42-139">**application/json;odata.metadata=minimal**</span><span class="sxs-lookup"><span data-stu-id="31c42-139">**application/json;odata.metadata=minimal**</span></span><br/><span data-ttu-id="31c42-140">**application/json;odata.metadata=none**</span><span class="sxs-lookup"><span data-stu-id="31c42-140">**application/json;odata.metadata=none**</span></span><br/><span data-ttu-id="31c42-141">**odata.streaming=true**</span><span class="sxs-lookup"><span data-stu-id="31c42-141">**odata.streaming=true**</span></span>|
-|<span data-ttu-id="31c42-142">**Cache-Control**</span><span class="sxs-lookup"><span data-stu-id="31c42-142">**Cache-Control**</span></span>|<span data-ttu-id="31c42-143">用于指定请求/响应链上的所有缓存机制都必须遵守的指令。</span><span class="sxs-lookup"><span data-stu-id="31c42-143">Used to specify directives that all caching mechanisms along the request/response chain must obey.</span></span>|
-|<span data-ttu-id="31c42-144">**Pragma**</span><span class="sxs-lookup"><span data-stu-id="31c42-144">**Pragma**</span></span>|<span data-ttu-id="31c42-145">实现专属行为。</span><span class="sxs-lookup"><span data-stu-id="31c42-145">Implementation-specific behaviors.</span></span>|
-|<span data-ttu-id="31c42-146">**Expires**</span><span class="sxs-lookup"><span data-stu-id="31c42-146">**Expires**</span></span>|<span data-ttu-id="31c42-147">客户端何时应让资源到期。</span><span class="sxs-lookup"><span data-stu-id="31c42-147">When the client should make the resource expire.</span></span>|
-|<span data-ttu-id="31c42-148">**X-Activity-Id**</span><span class="sxs-lookup"><span data-stu-id="31c42-148">**X-Activity-Id**</span></span>|<span data-ttu-id="31c42-149">服务器生成的活动 ID。</span><span class="sxs-lookup"><span data-stu-id="31c42-149">The server-generated activity Id.</span></span>|
-|<span data-ttu-id="31c42-150">**OData-Version**</span><span class="sxs-lookup"><span data-stu-id="31c42-150">**OData-Version**</span></span>|<span data-ttu-id="31c42-151">受支持的 OData 版本 (4.0)。</span><span class="sxs-lookup"><span data-stu-id="31c42-151">The supported OData Version (4.0).</span></span>|
-|<span data-ttu-id="31c42-152">**Date**</span><span class="sxs-lookup"><span data-stu-id="31c42-152">**Date**</span></span>|<span data-ttu-id="31c42-153">服务器发送响应的日期 (UTC)。</span><span class="sxs-lookup"><span data-stu-id="31c42-153">The date in UTC when the response was sent from the server.</span></span>|
-|<span data-ttu-id="31c42-154">**X-Time-Taken**</span><span class="sxs-lookup"><span data-stu-id="31c42-154">**X-Time-Taken**</span></span>|<span data-ttu-id="31c42-155">响应生成耗时（以毫秒为单位）。</span><span class="sxs-lookup"><span data-stu-id="31c42-155">The time it took to generate the response (ms).</span></span>|
-|<span data-ttu-id="31c42-156">**X-Instance-Name**</span><span class="sxs-lookup"><span data-stu-id="31c42-156">**X-Instance-Name**</span></span>|<span data-ttu-id="31c42-157">用于生成响应的 Azure 实例的标识符（用于调试目的）。</span><span class="sxs-lookup"><span data-stu-id="31c42-157">The identifier of the Azure instance used to generate the response (for debugging purposes).</span></span>|
-|<span data-ttu-id="31c42-158">**Server**</span><span class="sxs-lookup"><span data-stu-id="31c42-158">**Server**</span></span>|<span data-ttu-id="31c42-159">用于生成响应的服务器（用于调试目的）。</span><span class="sxs-lookup"><span data-stu-id="31c42-159">The server used to generate the response (for debugging purposes).</span></span>|
-|<span data-ttu-id="31c42-160">**X-ASPNET-Version**</span><span class="sxs-lookup"><span data-stu-id="31c42-160">**X-ASPNET-Version**</span></span>|<span data-ttu-id="31c42-161">生成响应的服务器使用的 ASP.Net 版本（用于调试目的）。</span><span class="sxs-lookup"><span data-stu-id="31c42-161">The version of ASP.Net used by the server that generated the response (for debugging purposes).</span></span>|
-|<span data-ttu-id="31c42-162">**X-Powered-By**</span><span class="sxs-lookup"><span data-stu-id="31c42-162">**X-Powered-By**</span></span>|<span data-ttu-id="31c42-163">生成响应的服务器使用的技术（用于调试目的）。</span><span class="sxs-lookup"><span data-stu-id="31c42-163">The technologies used in the server that generated the response (for debugging purposes).</span></span>|
+|<span data-ttu-id="9d9ba-133">**Content-Length**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-133">**Content-Length**</span></span>|<span data-ttu-id="9d9ba-134">响应正文长度。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-134">The length of the response body.</span></span>|
+|<span data-ttu-id="9d9ba-135">**Content-Type**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-135">**Content-Type**</span></span>|<span data-ttu-id="9d9ba-136">响应表示形式：</span><span class="sxs-lookup"><span data-stu-id="9d9ba-136">Representation of the response:</span></span><br/><span data-ttu-id="9d9ba-137">**application/json**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-137">**application/json**</span></span><br/><span data-ttu-id="9d9ba-138">**application/json;odata.metadata=full**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-138">**application/json;odata.metadata=full**</span></span><br/><span data-ttu-id="9d9ba-139">**application/json;odata.metadata=minimal**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-139">**application/json;odata.metadata=minimal**</span></span><br/><span data-ttu-id="9d9ba-140">**application/json;odata.metadata=none**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-140">**application/json;odata.metadata=none**</span></span><br/><span data-ttu-id="9d9ba-141">**odata.streaming=true**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-141">**odata.streaming=true**</span></span>|
+|<span data-ttu-id="9d9ba-142">**Cache-Control**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-142">**Cache-Control**</span></span>|<span data-ttu-id="9d9ba-143">用于指定请求/响应链上的所有缓存机制都必须遵守的指令。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-143">Used to specify directives that all caching mechanisms along the request/response chain must obey.</span></span>|
+|<span data-ttu-id="9d9ba-144">**Pragma**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-144">**Pragma**</span></span>|<span data-ttu-id="9d9ba-145">实现专属行为。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-145">Implementation-specific behaviors.</span></span>|
+|<span data-ttu-id="9d9ba-146">**Expires**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-146">**Expires**</span></span>|<span data-ttu-id="9d9ba-147">客户端何时应让资源到期。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-147">When the client should make the resource expire.</span></span>|
+|<span data-ttu-id="9d9ba-148">**X-Activity-Id**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-148">**X-Activity-Id**</span></span>|<span data-ttu-id="9d9ba-149">服务器生成的活动 ID。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-149">The server-generated activity Id.</span></span>|
+|<span data-ttu-id="9d9ba-150">**OData-Version**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-150">**OData-Version**</span></span>|<span data-ttu-id="9d9ba-151">受支持的 OData 版本 (4.0)。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-151">The supported OData Version (4.0).</span></span>|
+|<span data-ttu-id="9d9ba-152">**Date**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-152">**Date**</span></span>|<span data-ttu-id="9d9ba-153">服务器发送响应的日期 (UTC)。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-153">The date in UTC when the response was sent from the server.</span></span>|
+|<span data-ttu-id="9d9ba-154">**X-Time-Taken**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-154">**X-Time-Taken**</span></span>|<span data-ttu-id="9d9ba-155">响应生成耗时（以毫秒为单位）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-155">The time it took to generate the response (ms).</span></span>|
+|<span data-ttu-id="9d9ba-156">**X-Instance-Name**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-156">**X-Instance-Name**</span></span>|<span data-ttu-id="9d9ba-157">用于生成响应的 Azure 实例的标识符（用于调试目的）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-157">The identifier of the Azure instance used to generate the response (for debugging purposes).</span></span>|
+|<span data-ttu-id="9d9ba-158">**Server**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-158">**Server**</span></span>|<span data-ttu-id="9d9ba-159">用于生成响应的服务器（用于调试目的）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-159">The server used to generate the response (for debugging purposes).</span></span>|
+|<span data-ttu-id="9d9ba-160">**X-ASPNET-Version**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-160">**X-ASPNET-Version**</span></span>|<span data-ttu-id="9d9ba-161">生成响应的服务器使用的 ASP.Net 版本（用于调试目的）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-161">The version of ASP.Net used by the server that generated the response (for debugging purposes).</span></span>|
+|<span data-ttu-id="9d9ba-162">**X-Powered-By**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-162">**X-Powered-By**</span></span>|<span data-ttu-id="9d9ba-163">生成响应的服务器使用的技术（用于调试目的）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-163">The technologies used in the server that generated the response (for debugging purposes).</span></span>|
 |||
 
 <br/>
 
-<span data-ttu-id="31c42-164">下文介绍了 Office 365 服务通信 API 操作。</span><span class="sxs-lookup"><span data-stu-id="31c42-164">Following are the Office 365 Service Communications API operations.</span></span>
+<span data-ttu-id="9d9ba-164">下文介绍了 Office 365 服务通信 API 操作。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-164">Following are the Office 365 Service Communications API operations.</span></span>
 
-## <a name="get-services"></a><span data-ttu-id="31c42-165">获取服务</span><span class="sxs-lookup"><span data-stu-id="31c42-165">Get Services</span></span>
+## <a name="get-services"></a><span data-ttu-id="9d9ba-165">获取服务</span><span class="sxs-lookup"><span data-stu-id="9d9ba-165">Get Services</span></span>
 
-<span data-ttu-id="31c42-166">返回已订阅服务的列表。</span><span class="sxs-lookup"><span data-stu-id="31c42-166">Returns the list of subscribed services.</span></span>
+<span data-ttu-id="9d9ba-166">返回已订阅服务的列表。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-166">Returns the list of subscribed services.</span></span>
 
-||<span data-ttu-id="31c42-167">服务</span><span class="sxs-lookup"><span data-stu-id="31c42-167">Service</span></span>|<span data-ttu-id="31c42-168">说明</span><span class="sxs-lookup"><span data-stu-id="31c42-168">Description</span></span>|
+|<span data-ttu-id="9d9ba-167">信息</span><span class="sxs-lookup"><span data-stu-id="9d9ba-167">Information</span></span>|<span data-ttu-id="9d9ba-168">服务</span><span class="sxs-lookup"><span data-stu-id="9d9ba-168">Service</span></span>|<span data-ttu-id="9d9ba-169">说明</span><span class="sxs-lookup"><span data-stu-id="9d9ba-169">Description</span></span>|
 |:-----|:-----|:-----|
-|<span data-ttu-id="31c42-169">**路径**</span><span class="sxs-lookup"><span data-stu-id="31c42-169">**Path**</span></span>| `/Services`||
-|<span data-ttu-id="31c42-170">**查询选项**</span><span class="sxs-lookup"><span data-stu-id="31c42-170">**Query-option**</span></span>|<span data-ttu-id="31c42-171">$select</span><span class="sxs-lookup"><span data-stu-id="31c42-171">$select</span></span>|<span data-ttu-id="31c42-172">选择一部分属性。</span><span class="sxs-lookup"><span data-stu-id="31c42-172">Pick a subset of properties.</span></span>|
-|<span data-ttu-id="31c42-173">**响应**</span><span class="sxs-lookup"><span data-stu-id="31c42-173">**Response**</span></span>|<span data-ttu-id="31c42-174">“Service”实体列表</span><span class="sxs-lookup"><span data-stu-id="31c42-174">List of "Service" entities</span></span>|<span data-ttu-id="31c42-175">“Service”实体包含“Id”(String)、“DisplayName”(String) 和“FeatureNames”（String 列表）。</span><span class="sxs-lookup"><span data-stu-id="31c42-175">"Service" entity contains "Id" (String), "DisplayName" (String), and "FeatureNames" (list of Strings).</span></span>|
+|<span data-ttu-id="9d9ba-170">**路径**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-170">**Path**</span></span>| `/Services`||
+|<span data-ttu-id="9d9ba-171">**查询选项**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-171">**Query-option**</span></span>|<span data-ttu-id="9d9ba-172">$select</span><span class="sxs-lookup"><span data-stu-id="9d9ba-172">$select</span></span>|<span data-ttu-id="9d9ba-173">选择一部分属性。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-173">Pick a subset of properties.</span></span>|
+|<span data-ttu-id="9d9ba-174">**响应**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-174">**Response**</span></span>|<span data-ttu-id="9d9ba-175">“Service”实体列表</span><span class="sxs-lookup"><span data-stu-id="9d9ba-175">List of "Service" entities</span></span>|<span data-ttu-id="9d9ba-176">“Service”实体包含“Id”(String)、“DisplayName”(String) 和“FeatureNames”（String 列表）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-176">"Service" entity contains "Id" (String), "DisplayName" (String), and "FeatureNames" (list of Strings).</span></span>|
 ||||
 
-### <a name="sample-request"></a><span data-ttu-id="31c42-176">示例请求</span><span class="sxs-lookup"><span data-stu-id="31c42-176">Sample request</span></span>
+### <a name="sample-request"></a><span data-ttu-id="9d9ba-177">示例请求</span><span class="sxs-lookup"><span data-stu-id="9d9ba-177">Sample request</span></span>
 
 ```json
 GET https://manage.office.com/api/v1.0/contoso.com/ServiceComms/Services 
@@ -98,7 +99,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 
 ```
 
-### <a name="sample-response"></a><span data-ttu-id="31c42-177">示例响应</span><span class="sxs-lookup"><span data-stu-id="31c42-177">Sample response</span></span>
+### <a name="sample-response"></a><span data-ttu-id="9d9ba-178">示例响应</span><span class="sxs-lookup"><span data-stu-id="9d9ba-178">Sample response</span></span>
 
 ```json
 {
@@ -134,31 +135,31 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 }
 ```
 
-## <a name="get-current-status"></a><span data-ttu-id="31c42-178">获取当前状态</span><span class="sxs-lookup"><span data-stu-id="31c42-178">Get Current Status</span></span>
+## <a name="get-current-status"></a><span data-ttu-id="9d9ba-179">获取当前状态</span><span class="sxs-lookup"><span data-stu-id="9d9ba-179">Get Current Status</span></span>
 
-<span data-ttu-id="31c42-179">返回过去 24 小时的服务状态。</span><span class="sxs-lookup"><span data-stu-id="31c42-179">Returns the status of the service from the previous 24 hours.</span></span>
+<span data-ttu-id="9d9ba-180">返回过去 24 小时的服务状态。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-180">Returns the status of the service from the previous 24 hours.</span></span>
 
 > [!NOTE] 
-> <span data-ttu-id="31c42-180">服务响应将包含过去 24 小时内的状态和所有事件。</span><span class="sxs-lookup"><span data-stu-id="31c42-180">The service response will contain the status and any incidents within the previous 24 hours.</span></span> <span data-ttu-id="31c42-181">返回的 StatusDate 或 StatusTime 值将正好是过去 24 小时。</span><span class="sxs-lookup"><span data-stu-id="31c42-181">The StatusDate or StatusTime value returned will be exactly 24 hours in the past.</span></span> <span data-ttu-id="31c42-182">若要获取特定事件的最近一次更新信息, 请使用 "获取消息" 功能并从与事件 ID 匹配的响应记录中读取 LastUpdatedTime 值。</span><span class="sxs-lookup"><span data-stu-id="31c42-182">To get the last update for a particular incident, use the Get Messages functionality and read the LastUpdatedTime value from the response record that matches your incident ID.</span></span> <br/>
+> <span data-ttu-id="9d9ba-181">服务响应将包含过去 24 小时内的状态和所有事件。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-181">The service response will contain the status and any incidents within the previous 24 hours.</span></span> <span data-ttu-id="9d9ba-182">返回的 StatusDate 或 StatusTime 值将正好是过去 24 小时。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-182">The StatusDate or StatusTime value returned will be exactly 24 hours in the past.</span></span> <span data-ttu-id="9d9ba-183">若要获取特定事件的最近一次更新信息, 请使用 "获取消息" 功能并从与事件 ID 匹配的响应记录中读取 LastUpdatedTime 值。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-183">To get the last update for a particular incident, use the Get Messages functionality and read the LastUpdatedTime value from the response record that matches your incident ID.</span></span> <br/>
 
 <br/>
 
-||<span data-ttu-id="31c42-183">服务</span><span class="sxs-lookup"><span data-stu-id="31c42-183">Service</span></span>|<span data-ttu-id="31c42-184">说明</span><span class="sxs-lookup"><span data-stu-id="31c42-184">Description</span></span>|
+|<span data-ttu-id="9d9ba-184">信息</span><span class="sxs-lookup"><span data-stu-id="9d9ba-184">Information</span></span>|<span data-ttu-id="9d9ba-185">服务</span><span class="sxs-lookup"><span data-stu-id="9d9ba-185">Service</span></span>|<span data-ttu-id="9d9ba-186">说明</span><span class="sxs-lookup"><span data-stu-id="9d9ba-186">Description</span></span>|
 |:-----|:-----|:-----|
-|<span data-ttu-id="31c42-185">**路径**</span><span class="sxs-lookup"><span data-stu-id="31c42-185">**Path**</span></span>| `/CurrentStatus`||
-|<span data-ttu-id="31c42-186">**筛选器**</span><span class="sxs-lookup"><span data-stu-id="31c42-186">**Filter**</span></span>|<span data-ttu-id="31c42-187">Workload</span><span class="sxs-lookup"><span data-stu-id="31c42-187">Workload</span></span>|<span data-ttu-id="31c42-188">按 Workload 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="31c42-188">Filter by workload (String, default: all).</span></span>|
-|<span data-ttu-id="31c42-189">**查询选项**</span><span class="sxs-lookup"><span data-stu-id="31c42-189">**Query-option**</span></span>|<span data-ttu-id="31c42-190">$select</span><span class="sxs-lookup"><span data-stu-id="31c42-190">$select</span></span>|<span data-ttu-id="31c42-191">选择一部分属性。</span><span class="sxs-lookup"><span data-stu-id="31c42-191">Pick a subset of properties.</span></span>|
-|<span data-ttu-id="31c42-192">**响应**</span><span class="sxs-lookup"><span data-stu-id="31c42-192">**Response**</span></span>|<span data-ttu-id="31c42-193">“WorkloadStatus”实体列表。</span><span class="sxs-lookup"><span data-stu-id="31c42-193">List of "WorkloadStatus" entities.</span></span>|<span data-ttu-id="31c42-194">“WorkloadStatus”实体包含“Id”(String)、“Workload”(String)、“StatusTime”(DateTimeOffset)、“WorkloadDisplayName”(String)、“Status”(String)、“IncidentIds”（String 列表）和“FeatureGroupStatusCollection”（“FeatureStatus”列表）。</span><span class="sxs-lookup"><span data-stu-id="31c42-194">"WorkloadStatus" entity contains "Id" (String), "Workload" (String), "StatusTime"(DateTimeOffset), "WorkloadDisplayName" (String), "Status" (String), "IncidentIds" (list of Strings), and FeatureGroupStatusCollection (list of "FeatureStatus").</span></span><br/><br/><span data-ttu-id="31c42-195">“FeatureStatus”实体包含“Feature”(String)、“FeatureGroupDisplayName”(String) 和“FeatureStatus”(String)。</span><span class="sxs-lookup"><span data-stu-id="31c42-195">"FeatureStatus" entity contains "Feature" (String), "FeatureGroupDisplayName" (String), and "FeatureStatus" (String).</span></span>|
+|<span data-ttu-id="9d9ba-187">**路径**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-187">**Path**</span></span>| `/CurrentStatus`||
+|<span data-ttu-id="9d9ba-188">**筛选器**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-188">**Filter**</span></span>|<span data-ttu-id="9d9ba-189">Workload</span><span class="sxs-lookup"><span data-stu-id="9d9ba-189">Workload</span></span>|<span data-ttu-id="9d9ba-190">按 Workload 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-190">Filter by workload (String, default: all).</span></span>|
+|<span data-ttu-id="9d9ba-191">**查询选项**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-191">**Query-option**</span></span>|<span data-ttu-id="9d9ba-192">$select</span><span class="sxs-lookup"><span data-stu-id="9d9ba-192">$select</span></span>|<span data-ttu-id="9d9ba-193">选择一部分属性。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-193">Pick a subset of properties.</span></span>|
+|<span data-ttu-id="9d9ba-194">**响应**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-194">**Response**</span></span>|<span data-ttu-id="9d9ba-195">“WorkloadStatus”实体列表。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-195">List of "WorkloadStatus" entities.</span></span>|<span data-ttu-id="9d9ba-196">“WorkloadStatus”实体包含“Id”(String)、“Workload”(String)、“StatusTime”(DateTimeOffset)、“WorkloadDisplayName”(String)、“Status”(String)、“IncidentIds”（String 列表）和“FeatureGroupStatusCollection”（“FeatureStatus”列表）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-196">"WorkloadStatus" entity contains "Id" (String), "Workload" (String), "StatusTime"(DateTimeOffset), "WorkloadDisplayName" (String), "Status" (String), "IncidentIds" (list of Strings), and FeatureGroupStatusCollection (list of "FeatureStatus").</span></span><br/><br/><span data-ttu-id="9d9ba-197">“FeatureStatus”实体包含“Feature”(String)、“FeatureGroupDisplayName”(String) 和“FeatureStatus”(String)。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-197">"FeatureStatus" entity contains "Feature" (String), "FeatureGroupDisplayName" (String), and "FeatureStatus" (String).</span></span>|
 ||||
 
-### <a name="sample-request"></a><span data-ttu-id="31c42-196">示例请求</span><span class="sxs-lookup"><span data-stu-id="31c42-196">Sample request</span></span>
+### <a name="sample-request"></a><span data-ttu-id="9d9ba-198">示例请求</span><span class="sxs-lookup"><span data-stu-id="9d9ba-198">Sample request</span></span>
 
 ```json
 GET https://manage.office.com/api/v1.0/contoso.com/ServiceComms/CurrentStatus
 Authorization: Bearer {AAD_Bearer_JWT_Token}
 ```
 
-### <a name="sample-response"></a><span data-ttu-id="31c42-197">示例响应</span><span class="sxs-lookup"><span data-stu-id="31c42-197">Sample response</span></span>
+### <a name="sample-response"></a><span data-ttu-id="9d9ba-199">示例响应</span><span class="sxs-lookup"><span data-stu-id="9d9ba-199">Sample response</span></span>
 
 ```json
 {
@@ -262,44 +263,44 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 }
 ```
 
-### <a name="status-definitions"></a><span data-ttu-id="31c42-198">状态定义</span><span class="sxs-lookup"><span data-stu-id="31c42-198">Status definitions</span></span>
+### <a name="status-definitions"></a><span data-ttu-id="9d9ba-200">状态定义</span><span class="sxs-lookup"><span data-stu-id="9d9ba-200">Status definitions</span></span>
 
-<span data-ttu-id="31c42-199">状态定义包括以下值:</span><span class="sxs-lookup"><span data-stu-id="31c42-199">The status definitions include the following values:</span></span>
+<span data-ttu-id="9d9ba-201">状态定义包括以下值:</span><span class="sxs-lookup"><span data-stu-id="9d9ba-201">The status definitions include the following values:</span></span>
 
-- <span data-ttu-id="31c42-200">正在调查</span><span class="sxs-lookup"><span data-stu-id="31c42-200">Investigating</span></span>
-- <span data-ttu-id="31c42-201">ServiceDegradation</span><span class="sxs-lookup"><span data-stu-id="31c42-201">ServiceDegradation</span></span>
-- <span data-ttu-id="31c42-202">ServiceInterruption</span><span class="sxs-lookup"><span data-stu-id="31c42-202">ServiceInterruption</span></span>
-- <span data-ttu-id="31c42-203">RestoringService</span><span class="sxs-lookup"><span data-stu-id="31c42-203">RestoringService</span></span>
-- <span data-ttu-id="31c42-204">ExtendedRecovery</span><span class="sxs-lookup"><span data-stu-id="31c42-204">ExtendedRecovery</span></span>
-- <span data-ttu-id="31c42-205">InvestigationSuspended</span><span class="sxs-lookup"><span data-stu-id="31c42-205">InvestigationSuspended</span></span>
-- <span data-ttu-id="31c42-206">ServiceRestored</span><span class="sxs-lookup"><span data-stu-id="31c42-206">ServiceRestored</span></span>
-- <span data-ttu-id="31c42-207">FalsePositive</span><span class="sxs-lookup"><span data-stu-id="31c42-207">FalsePositive</span></span>
-- <span data-ttu-id="31c42-208">PostIncidentReportPublished</span><span class="sxs-lookup"><span data-stu-id="31c42-208">PostIncidentReportPublished</span></span>
-- <span data-ttu-id="31c42-209">ServiceOperational</span><span class="sxs-lookup"><span data-stu-id="31c42-209">ServiceOperational</span></span>
+- <span data-ttu-id="9d9ba-202">正在调查</span><span class="sxs-lookup"><span data-stu-id="9d9ba-202">Investigating</span></span>
+- <span data-ttu-id="9d9ba-203">ServiceDegradation</span><span class="sxs-lookup"><span data-stu-id="9d9ba-203">ServiceDegradation</span></span>
+- <span data-ttu-id="9d9ba-204">ServiceInterruption</span><span class="sxs-lookup"><span data-stu-id="9d9ba-204">ServiceInterruption</span></span>
+- <span data-ttu-id="9d9ba-205">RestoringService</span><span class="sxs-lookup"><span data-stu-id="9d9ba-205">RestoringService</span></span>
+- <span data-ttu-id="9d9ba-206">ExtendedRecovery</span><span class="sxs-lookup"><span data-stu-id="9d9ba-206">ExtendedRecovery</span></span>
+- <span data-ttu-id="9d9ba-207">InvestigationSuspended</span><span class="sxs-lookup"><span data-stu-id="9d9ba-207">InvestigationSuspended</span></span>
+- <span data-ttu-id="9d9ba-208">ServiceRestored</span><span class="sxs-lookup"><span data-stu-id="9d9ba-208">ServiceRestored</span></span>
+- <span data-ttu-id="9d9ba-209">FalsePositive</span><span class="sxs-lookup"><span data-stu-id="9d9ba-209">FalsePositive</span></span>
+- <span data-ttu-id="9d9ba-210">PostIncidentReportPublished</span><span class="sxs-lookup"><span data-stu-id="9d9ba-210">PostIncidentReportPublished</span></span>
+- <span data-ttu-id="9d9ba-211">ServiceOperational</span><span class="sxs-lookup"><span data-stu-id="9d9ba-211">ServiceOperational</span></span>
 
-<span data-ttu-id="31c42-210">有关这些状态定义的说明, 请参阅[如何检查 Microsoft 365 服务运行状况](https://docs.microsoft.com/microsoft-365/enterprise/view-service-health#status-definitions)。</span><span class="sxs-lookup"><span data-stu-id="31c42-210">For a description of these status definitions, see [How to check Microsoft 365 service health](https://docs.microsoft.com/microsoft-365/enterprise/view-service-health#status-definitions).</span></span>
+<span data-ttu-id="9d9ba-212">有关这些状态定义的说明, 请参阅[如何检查 Microsoft 365 服务运行状况](https://docs.microsoft.com/microsoft-365/enterprise/view-service-health#status-definitions)。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-212">For a description of these status definitions, see [How to check Microsoft 365 service health](https://docs.microsoft.com/microsoft-365/enterprise/view-service-health#status-definitions).</span></span>
 
-## <a name="get-historical-status"></a><span data-ttu-id="31c42-211">获取历史状态</span><span class="sxs-lookup"><span data-stu-id="31c42-211">Get Historical Status</span></span>
+## <a name="get-historical-status"></a><span data-ttu-id="9d9ba-213">获取历史状态</span><span class="sxs-lookup"><span data-stu-id="9d9ba-213">Get Historical Status</span></span>
 
-<span data-ttu-id="31c42-212">按天返回服务在特定时间范围内的历史状态。</span><span class="sxs-lookup"><span data-stu-id="31c42-212">Returns the historical status of the service, by day, over a certain time range.</span></span>
+<span data-ttu-id="9d9ba-214">按天返回服务在特定时间范围内的历史状态。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-214">Returns the historical status of the service, by day, over a certain time range.</span></span>
 
-||<span data-ttu-id="31c42-213">服务</span><span class="sxs-lookup"><span data-stu-id="31c42-213">Service</span></span>|<span data-ttu-id="31c42-214">说明</span><span class="sxs-lookup"><span data-stu-id="31c42-214">Description</span></span>|
+|<span data-ttu-id="9d9ba-215">信息</span><span class="sxs-lookup"><span data-stu-id="9d9ba-215">Information</span></span>|<span data-ttu-id="9d9ba-216">服务</span><span class="sxs-lookup"><span data-stu-id="9d9ba-216">Service</span></span>|<span data-ttu-id="9d9ba-217">说明</span><span class="sxs-lookup"><span data-stu-id="9d9ba-217">Description</span></span>|
 |:-----|:-----|:-----|
-|<span data-ttu-id="31c42-215">**路径**</span><span class="sxs-lookup"><span data-stu-id="31c42-215">**Path**</span></span>| `/HistoricalStatus`||
-|<span data-ttu-id="31c42-216">**筛选器**</span><span class="sxs-lookup"><span data-stu-id="31c42-216">**Filters**</span></span>|<span data-ttu-id="31c42-217">Workload</span><span class="sxs-lookup"><span data-stu-id="31c42-217">Workload</span></span>|<span data-ttu-id="31c42-218">按 Workload 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="31c42-218">Filter by workload (String, default: all).</span></span>|
-||<span data-ttu-id="31c42-219">StatusTime</span><span class="sxs-lookup"><span data-stu-id="31c42-219">StatusTime</span></span>|<span data-ttu-id="31c42-220">按晚于 StatusTime 的天数进行筛选（DateTimeOffset，默认值：ge CurrentTime - 7 days）。</span><span class="sxs-lookup"><span data-stu-id="31c42-220">Filter by days greater than StatusTime (DateTimeOffset, default: ge CurrentTime - 7 days).</span></span>|
-|<span data-ttu-id="31c42-221">**查询选项**</span><span class="sxs-lookup"><span data-stu-id="31c42-221">**Query-option**</span></span>|<span data-ttu-id="31c42-222">$select</span><span class="sxs-lookup"><span data-stu-id="31c42-222">$select</span></span>|<span data-ttu-id="31c42-223">选择一部分属性。</span><span class="sxs-lookup"><span data-stu-id="31c42-223">Pick a subset of properties.</span></span>|
-|<span data-ttu-id="31c42-224">**响应**</span><span class="sxs-lookup"><span data-stu-id="31c42-224">**Response**</span></span>|<span data-ttu-id="31c42-225">“WorkloadStatus”实体列表。</span><span class="sxs-lookup"><span data-stu-id="31c42-225">List of "WorkloadStatus" entities.</span></span>|<span data-ttu-id="31c42-226">“WorkloadStatus”实体包含“Id”(String)、“Workload”(String)、“StatusTime”(DateTimeOffset)、“WorkloadDisplayName”(String)、“Status”(String)、“IncidentIds”（String 列表）和“FeatureGroupStatusCollection”（“FeatureStatus”列表）。</span><span class="sxs-lookup"><span data-stu-id="31c42-226">"WorkloadStatus" entity contains "Id" (String), "Workload" (String), "StatusTime"(DateTimeOffset), "WorkloadDisplayName" (String), "Status" (String), "IncidentIds" (list of Strings), and FeatureGroupStatusCollection (list of "FeatureStatus").</span></span><br/><br/><span data-ttu-id="31c42-227">“FeatureStatus”实体包含“Feature”(String)、“FeatureGroupDisplayName”(String) 和“FeatureStatus”(String)。</span><span class="sxs-lookup"><span data-stu-id="31c42-227">"FeatureStatus" entity contains "Feature" (String), "FeatureGroupDisplayName" (String), and "FeatureStatus" (String).</span></span>|
+|<span data-ttu-id="9d9ba-218">**路径**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-218">**Path**</span></span>| `/HistoricalStatus`||
+|<span data-ttu-id="9d9ba-219">**筛选器**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-219">**Filters**</span></span>|<span data-ttu-id="9d9ba-220">Workload</span><span class="sxs-lookup"><span data-stu-id="9d9ba-220">Workload</span></span>|<span data-ttu-id="9d9ba-221">按 Workload 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-221">Filter by workload (String, default: all).</span></span>|
+||<span data-ttu-id="9d9ba-222">StatusTime</span><span class="sxs-lookup"><span data-stu-id="9d9ba-222">StatusTime</span></span>|<span data-ttu-id="9d9ba-223">按晚于 StatusTime 的天数进行筛选（DateTimeOffset，默认值：ge CurrentTime - 7 days）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-223">Filter by days greater than StatusTime (DateTimeOffset, default: ge CurrentTime - 7 days).</span></span>|
+|<span data-ttu-id="9d9ba-224">**查询选项**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-224">**Query-option**</span></span>|<span data-ttu-id="9d9ba-225">$select</span><span class="sxs-lookup"><span data-stu-id="9d9ba-225">$select</span></span>|<span data-ttu-id="9d9ba-226">选择一部分属性。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-226">Pick a subset of properties.</span></span>|
+|<span data-ttu-id="9d9ba-227">**响应**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-227">**Response**</span></span>|<span data-ttu-id="9d9ba-228">“WorkloadStatus”实体列表。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-228">List of "WorkloadStatus" entities.</span></span>|<span data-ttu-id="9d9ba-229">“WorkloadStatus”实体包含“Id”(String)、“Workload”(String)、“StatusTime”(DateTimeOffset)、“WorkloadDisplayName”(String)、“Status”(String)、“IncidentIds”（String 列表）和“FeatureGroupStatusCollection”（“FeatureStatus”列表）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-229">"WorkloadStatus" entity contains "Id" (String), "Workload" (String), "StatusTime"(DateTimeOffset), "WorkloadDisplayName" (String), "Status" (String), "IncidentIds" (list of Strings), and FeatureGroupStatusCollection (list of "FeatureStatus").</span></span><br/><br/><span data-ttu-id="9d9ba-230">“FeatureStatus”实体包含“Feature”(String)、“FeatureGroupDisplayName”(String) 和“FeatureStatus”(String)。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-230">"FeatureStatus" entity contains "Feature" (String), "FeatureGroupDisplayName" (String), and "FeatureStatus" (String).</span></span>|
 ||||
 
-### <a name="sample-request"></a><span data-ttu-id="31c42-228">示例请求</span><span class="sxs-lookup"><span data-stu-id="31c42-228">Sample request</span></span>
+### <a name="sample-request"></a><span data-ttu-id="9d9ba-231">示例请求</span><span class="sxs-lookup"><span data-stu-id="9d9ba-231">Sample request</span></span>
 
 ```json
 GET https://manage.office.com/api/v1.0/contoso.com/ServiceComms/HistoricalStatus
 Authorization: Bearer {AAD_Bearer_JWT_Token}
 ```
 
-### <a name="sample-response"></a><span data-ttu-id="31c42-229">示例响应</span><span class="sxs-lookup"><span data-stu-id="31c42-229">Sample response</span></span>
+### <a name="sample-response"></a><span data-ttu-id="9d9ba-232">示例响应</span><span class="sxs-lookup"><span data-stu-id="9d9ba-232">Sample response</span></span>
 
 ```json
 {
@@ -380,36 +381,35 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 }
 ```
 
-## <a name="get-messages"></a><span data-ttu-id="31c42-230">获取消息</span><span class="sxs-lookup"><span data-stu-id="31c42-230">Get Messages</span></span>
+## <a name="get-messages"></a><span data-ttu-id="9d9ba-233">获取消息</span><span class="sxs-lookup"><span data-stu-id="9d9ba-233">Get Messages</span></span>
 
-<span data-ttu-id="31c42-231">返回特定时间范围内关于服务的消息。</span><span class="sxs-lookup"><span data-stu-id="31c42-231">Returns the messages about the service over a certain time range.</span></span> <span data-ttu-id="31c42-232">使用类型筛选器，以筛选出“服务事件”、“计划内维护”或“消息中心”消息。</span><span class="sxs-lookup"><span data-stu-id="31c42-232">Use the type filter to filter for "Service Incident", "Planned Maintenance", or "Message Center" messages.</span></span>
+<span data-ttu-id="9d9ba-234">返回特定时间范围内关于服务的消息。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-234">Returns the messages about the service over a certain time range.</span></span> <span data-ttu-id="9d9ba-235">使用类型筛选器，以筛选出“服务事件”、“计划内维护”或“消息中心”消息。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-235">Use the type filter to filter for "Service Incident", "Planned Maintenance", or "Message Center" messages.</span></span>
 
-||<span data-ttu-id="31c42-233">服务</span><span class="sxs-lookup"><span data-stu-id="31c42-233">Service</span></span>|<span data-ttu-id="31c42-234">说明</span><span class="sxs-lookup"><span data-stu-id="31c42-234">Description</span></span>|
+|<span data-ttu-id="9d9ba-236">信息</span><span class="sxs-lookup"><span data-stu-id="9d9ba-236">Information</span></span>|<span data-ttu-id="9d9ba-237">服务</span><span class="sxs-lookup"><span data-stu-id="9d9ba-237">Service</span></span>|<span data-ttu-id="9d9ba-238">说明</span><span class="sxs-lookup"><span data-stu-id="9d9ba-238">Description</span></span>|
 |:-----|:-----|:-----|
-|<span data-ttu-id="31c42-235">**路径**</span><span class="sxs-lookup"><span data-stu-id="31c42-235">**Path**</span></span>| `/Messages`||
-|<span data-ttu-id="31c42-236">**筛选器**</span><span class="sxs-lookup"><span data-stu-id="31c42-236">**Filters**</span></span>|<span data-ttu-id="31c42-237">Workload</span><span class="sxs-lookup"><span data-stu-id="31c42-237">Workload</span></span>|<span data-ttu-id="31c42-238">按 Workload 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="31c42-238">Filter by workload (String, default: all).</span></span>|
-||<span data-ttu-id="31c42-239">StartTime</span><span class="sxs-lookup"><span data-stu-id="31c42-239">StartTime</span></span>|<span data-ttu-id="31c42-240">按 StartTime 筛选（DateTimeOffset，默认值：ge CurrentTime - 7 days）。</span><span class="sxs-lookup"><span data-stu-id="31c42-240">Filter by Start Time (DateTimeOffset, default: ge CurrentTime - 7 days).</span></span>|
-||<span data-ttu-id="31c42-241">EndTime</span><span class="sxs-lookup"><span data-stu-id="31c42-241">EndTime</span></span>|<span data-ttu-id="31c42-242">按 EndTime 筛选（DateTimeOffset，默认值：le CurrentTime）。</span><span class="sxs-lookup"><span data-stu-id="31c42-242">Filter by End Time (DateTimeOffset, default: le CurrentTime).</span></span>|
-||<span data-ttu-id="31c42-243">MessageType</span><span class="sxs-lookup"><span data-stu-id="31c42-243">MessageType</span></span>|<span data-ttu-id="31c42-244">按 MessageType 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="31c42-244">Filter by MessageType (String, default: all).</span></span>|
-||<span data-ttu-id="31c42-245">ID</span><span class="sxs-lookup"><span data-stu-id="31c42-245">ID</span></span>|<span data-ttu-id="31c42-246">按 ID 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="31c42-246">Filter by ID (String, default: all).</span></span>|
-|<span data-ttu-id="31c42-247">**查询选项**</span><span class="sxs-lookup"><span data-stu-id="31c42-247">**Query-option**</span></span>|<span data-ttu-id="31c42-248">$select</span><span class="sxs-lookup"><span data-stu-id="31c42-248">$select</span></span>|<span data-ttu-id="31c42-249">选择一部分属性。</span><span class="sxs-lookup"><span data-stu-id="31c42-249">Pick a subset of properties.</span></span>|
-||<span data-ttu-id="31c42-250">$top</span><span class="sxs-lookup"><span data-stu-id="31c42-250">$top</span></span>|<span data-ttu-id="31c42-251">选择前多少个结果（默认值和最大值：$top = 100）。</span><span class="sxs-lookup"><span data-stu-id="31c42-251">Pick the top number of results (default and max $top=100).</span></span>|
-||<span data-ttu-id="31c42-252">$skip</span><span class="sxs-lookup"><span data-stu-id="31c42-252">$skip</span></span>|<span data-ttu-id="31c42-253">跳过的结果数（默认值：$skip = 0）。</span><span class="sxs-lookup"><span data-stu-id="31c42-253">Skip number of results (default: $skip=0).</span></span>|
-|<span data-ttu-id="31c42-254">**响应**</span><span class="sxs-lookup"><span data-stu-id="31c42-254">**Response**</span></span>|<span data-ttu-id="31c42-255">“Message”实体列表。</span><span class="sxs-lookup"><span data-stu-id="31c42-255">List of "Message" entities.</span></span>|<span data-ttu-id="31c42-256">“Message”实体包含“Id”(String)、“StartTime”(DateTimeOffset)、“EndTime”(DateTimeOffset)、“Status”(String)、“Messages”（“MessageHistory”实体列表）、“LastUpdatedTime”(DateTimeOffset)、“Workload”(String)、“WorkloadDisplayName”(String)、“Feature”(String)、“FeatureDisplayName”(String) 和“MessageType”（Enum，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="31c42-256">"Message" entity contains "Id" (String), "StartTime" (DateTimeOffset), "EndTime" (DateTimeOffset), "Status" (String), "Messages" (list of "MessageHistory" entity), "LastUpdatedTime" (DateTimeOffset), "Workload" (String), "WorkloadDisplayName" (String), "Feature" (String), "FeatureDisplayName" (String), "MessageType" (Enum, default: all).</span></span><br/><br/><span data-ttu-id="31c42-257">“MessageHistory”实体包含“PublishedTime”(DateTimeOffset) 和“MessageText”(String)。</span><span class="sxs-lookup"><span data-stu-id="31c42-257">"MessageHistory" entity contains "PublishedTime" (DateTimeOffset), "MessageText" (String).</span></span>|
+|<span data-ttu-id="9d9ba-239">**路径**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-239">**Path**</span></span>| `/Messages`||
+|<span data-ttu-id="9d9ba-240">**筛选器**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-240">**Filters**</span></span>|<span data-ttu-id="9d9ba-241">Workload</span><span class="sxs-lookup"><span data-stu-id="9d9ba-241">Workload</span></span>|<span data-ttu-id="9d9ba-242">按 Workload 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-242">Filter by workload (String, default: all).</span></span>|
+||<span data-ttu-id="9d9ba-243">StartTime</span><span class="sxs-lookup"><span data-stu-id="9d9ba-243">StartTime</span></span>|<span data-ttu-id="9d9ba-244">按 StartTime 筛选（DateTimeOffset，默认值：ge CurrentTime - 7 days）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-244">Filter by Start Time (DateTimeOffset, default: ge CurrentTime - 7 days).</span></span>|
+||<span data-ttu-id="9d9ba-245">EndTime</span><span class="sxs-lookup"><span data-stu-id="9d9ba-245">EndTime</span></span>|<span data-ttu-id="9d9ba-246">按 EndTime 筛选（DateTimeOffset，默认值：le CurrentTime）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-246">Filter by End Time (DateTimeOffset, default: le CurrentTime).</span></span>|
+||<span data-ttu-id="9d9ba-247">MessageType</span><span class="sxs-lookup"><span data-stu-id="9d9ba-247">MessageType</span></span>|<span data-ttu-id="9d9ba-248">按 MessageType 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-248">Filter by MessageType (String, default: all).</span></span>|
+||<span data-ttu-id="9d9ba-249">ID</span><span class="sxs-lookup"><span data-stu-id="9d9ba-249">ID</span></span>|<span data-ttu-id="9d9ba-250">按 ID 筛选（String，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-250">Filter by ID (String, default: all).</span></span>|
+|<span data-ttu-id="9d9ba-251">**查询选项**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-251">**Query-option**</span></span>|<span data-ttu-id="9d9ba-252">$select</span><span class="sxs-lookup"><span data-stu-id="9d9ba-252">$select</span></span>|<span data-ttu-id="9d9ba-253">选择一部分属性。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-253">Pick a subset of properties.</span></span>|
+||<span data-ttu-id="9d9ba-254">$top</span><span class="sxs-lookup"><span data-stu-id="9d9ba-254">$top</span></span>|<span data-ttu-id="9d9ba-255">选择前多少个结果（默认值和最大值：$top = 100）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-255">Pick the top number of results (default and max $top=100).</span></span>|
+||<span data-ttu-id="9d9ba-256">$skip</span><span class="sxs-lookup"><span data-stu-id="9d9ba-256">$skip</span></span>|<span data-ttu-id="9d9ba-257">跳过的结果数（默认值：$skip = 0）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-257">Skip number of results (default: $skip=0).</span></span>|
+|<span data-ttu-id="9d9ba-258">**响应**</span><span class="sxs-lookup"><span data-stu-id="9d9ba-258">**Response**</span></span>|<span data-ttu-id="9d9ba-259">“Message”实体列表。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-259">List of "Message" entities.</span></span>|<span data-ttu-id="9d9ba-260">“Message”实体包含“Id”(String)、“StartTime”(DateTimeOffset)、“EndTime”(DateTimeOffset)、“Status”(String)、“Messages”（“MessageHistory”实体列表）、“LastUpdatedTime”(DateTimeOffset)、“Workload”(String)、“WorkloadDisplayName”(String)、“Feature”(String)、“FeatureDisplayName”(String) 和“MessageType”（Enum，默认值：all）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-260">"Message" entity contains "Id" (String), "StartTime" (DateTimeOffset), "EndTime" (DateTimeOffset), "Status" (String), "Messages" (list of "MessageHistory" entity), "LastUpdatedTime" (DateTimeOffset), "Workload" (String), "WorkloadDisplayName" (String), "Feature" (String), "FeatureDisplayName" (String), "MessageType" (Enum, default: all).</span></span><br/><br/><span data-ttu-id="9d9ba-261">“MessageHistory”实体包含“PublishedTime”(DateTimeOffset) 和“MessageText”(String)。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-261">"MessageHistory" entity contains "PublishedTime" (DateTimeOffset), "MessageText" (String).</span></span>|
 ||||
 
-### <a name="sample-request"></a><span data-ttu-id="31c42-258">示例请求</span><span class="sxs-lookup"><span data-stu-id="31c42-258">Sample request</span></span>
+### <a name="sample-request"></a><span data-ttu-id="9d9ba-262">示例请求</span><span class="sxs-lookup"><span data-stu-id="9d9ba-262">Sample request</span></span>
 
 ```json
 GET https://manage.office.com/api/v1.0/contoso.com/ServiceComms/Messages
 Authorization: Bearer {AAD_Bearer_JWT_Token}
 ```
 
-### <a name="sample-response"></a><span data-ttu-id="31c42-259">示例响应</span><span class="sxs-lookup"><span data-stu-id="31c42-259">Sample response</span></span>
+### <a name="sample-response"></a><span data-ttu-id="9d9ba-263">示例响应</span><span class="sxs-lookup"><span data-stu-id="9d9ba-263">Sample response</span></span>
 
 ```json
 {
- {
     "value": [
         {
             "Id": "EX20119",
@@ -453,7 +453,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
                 {
                     "PublishedTime": "2015-04-07T23:26:44.643Z",
                     "MessageText": "Final Status: Engineers have validated that the deployed fix has resolved the issue and that service is restored.\r\n\r\nUser Experience: Affected users were unable to send or receive email while using Exchange Web Services (EWS) on their mobile devices.\r\n\r\nCustomer Impact: Customer impact appeared to be limited during this event. This issue was only affecting customers that use third-party Mobile Device Management software from Good Technology. As a workaround to provide immediate relief from impact, engineers implemented a configuration change for customers who reported this issue to Microsoft Support.\r\n\r\nIncident Start Time: Wednesday, April 1, 2015, at 2:00 PM UTC\r\n\r\nIncident End Time: Tuesday, April 7, 2015, at 10:00 PM UTC\r\n\r\nPreliminary Root Cause: As part of our ongoing efforts to improve service resiliency, an update was deployed to the infrastructure that facilitates connections from multiple Exchange Online protocols to mailbox databases. The update, however, contained a code issue that caused connectivity issues in some scenarios. \r\n\r\nNext Steps: The following is a list of known action item(s) associated with this incident. As part of the Office 365 problem management process, additional engineering actions may be identified to improve the overall service.\r\n- Action: Review the infrastructure update process to prevent reoccurrences of this scenario.\r\n\r\nPlease consider this service notification the final update on the event."
-               }
+                }
             ],
             "LastUpdatedTime": "2015-04-07T23:26:45.08Z",
             "Workload": "Exchange Online",
@@ -466,9 +466,9 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 ```
 
 
-## <a name="errors"></a><span data-ttu-id="31c42-260">错误</span><span class="sxs-lookup"><span data-stu-id="31c42-260">Errors</span></span>
+## <a name="errors"></a><span data-ttu-id="9d9ba-264">错误</span><span class="sxs-lookup"><span data-stu-id="9d9ba-264">Errors</span></span>
 
-<span data-ttu-id="31c42-261">如果遇到错误，服务会使用标准 HTTP 错误代码语法，向调用方报告错误响应代码。</span><span class="sxs-lookup"><span data-stu-id="31c42-261">When the service encounters an error, it reports the error response code to the caller, using standard HTTP error-code syntax.</span></span> <span data-ttu-id="31c42-262">根据 [OData V4 规范](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html)，失败调用的正文中包含其他信息（作为一个 JSON 对象）。</span><span class="sxs-lookup"><span data-stu-id="31c42-262">As per [OData V4 specification](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html), additional information is included in the body of the failed call as a single JSON object.</span></span> <span data-ttu-id="31c42-263">下面的示例展示了完整的 JSON 错误正文：</span><span class="sxs-lookup"><span data-stu-id="31c42-263">The following is an example of a full JSON error body:</span></span>
+<span data-ttu-id="9d9ba-265">如果遇到错误，服务会使用标准 HTTP 错误代码语法，向调用方报告错误响应代码。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-265">When the service encounters an error, it reports the error response code to the caller, using standard HTTP error-code syntax.</span></span> <span data-ttu-id="9d9ba-266">根据 [OData V4 规范](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html)，失败调用的正文中包含其他信息（作为一个 JSON 对象）。</span><span class="sxs-lookup"><span data-stu-id="9d9ba-266">As per [OData V4 specification](http://docs.oasis-open.org/odata/odata/v4.0/odata-v4.0-part1-protocol.html), additional information is included in the body of the failed call as a single JSON object.</span></span> <span data-ttu-id="9d9ba-267">下面的示例展示了完整的 JSON 错误正文：</span><span class="sxs-lookup"><span data-stu-id="9d9ba-267">The following is an example of a full JSON error body:</span></span>
 
 
 ```json
