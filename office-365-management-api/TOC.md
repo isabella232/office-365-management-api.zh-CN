@@ -4,5 +4,4 @@
 ## [服务通信 API](office-365-service-communications-api-reference.md)
 ## [管理活动 API 参考](office-365-management-activity-api-reference.md)
 ## [管理活动 API 架构](office-365-management-activity-api-schema.md)
-## [管理活动 API 疑难解答](troubleshooting-the-office-365-management-activity-api.md)
-## [管理活动 API 常见问题解答](office-365-management-activity-api-faq.md)
+## [管理活动 API 常见问题和疑难解答](troubleshooting-the-office-365-management-activity-api.md)
