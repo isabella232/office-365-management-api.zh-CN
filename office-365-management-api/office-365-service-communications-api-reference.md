@@ -7,24 +7,24 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 9845fb5f422160a658b45bd7dd9a5bc6d4635914
-ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
+ms.openlocfilehash: 7cd91d9a43090b4731a11df701e0bf1aa340800e
+ms.sourcegitcommit: e7f345710dc63003704399419f784c4a9b5fc529
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "48397438"
+ms.lasthandoff: 11/02/2020
+ms.locfileid: "48830467"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Office 365 服务通信 API 参考
 
 Office 365 服务通信 API V2 可用于访问以下数据：
 
-- **获取服务**：获取已订阅服务的列表。
+- **获取服务** ：获取已订阅服务的列表。
 
-- **获取当前状态**：获取当前正在进行的服务事件的实时视图。
+- **获取当前状态** ：获取当前正在进行的服务事件的实时视图。
 
-- **获取历史记录状态**：获取服务事件的历史视图。
+- **获取历史记录状态** ：获取服务事件的历史视图。
 
-- **获取消息**：查找事件和消息中心通信。
+- **获取消息** ：查找事件和消息中心通信。
 
 目前，Office 365 服务通信 API 包含 Office 365、Yammer、Dynamics CRM 和 Microsoft Intune 云服务的数据。
 
@@ -392,7 +392,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 ||StartTime|按 StartTime 筛选（DateTimeOffset，默认值：ge CurrentTime - 7 days）。|
 ||EndTime|按 EndTime 筛选（DateTimeOffset，默认值：le CurrentTime）。|
 ||MessageType|按 MessageType 筛选（String，默认值：all）。|
-||ID|按 ID 筛选（String，默认值：all）。|
+||Id|按 ID 筛选（String，默认值：all）。|
 |**查询选项**|$select|选择一部分属性。|
 ||$top|选择前多少个结果（默认值和最大值：$top = 100）。|
 ||$skip|跳过的结果数（默认值：$skip = 0）。|

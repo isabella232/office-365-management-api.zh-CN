@@ -7,22 +7,25 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 218c0517697f1d71b1557f3b55a4c184fb52ec54
-ms.sourcegitcommit: c9cb078e6c94bcf0bb28cb0fffef39302ec8c197
+ms.openlocfilehash: a5661cd1650ac6412bf6723a5ffc27c3a81c11b1
+ms.sourcegitcommit: e7f345710dc63003704399419f784c4a9b5fc529
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/12/2020
-ms.locfileid: "48425617"
+ms.lasthandoff: 11/02/2020
+ms.locfileid: "48830474"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Office 365 管理活动 API 常见问题和疑难解答
 
-Office 365 管理活动 API（也称为*统一审核 API *）是 Office 365 安全与合规性产品的一部分，它：
+Office 365 管理活动 API（也称为 *统一审核 API* ）是 Office 365 安全与合规性产品的一部分，它：
 
 - 允许以编程方式访问多个审核管道工作负载（例如 SharePoint 和 Exchange）
 
 - 是各种第三方供应商产品使用的主要接口，用于聚合审核数据并对其编制索引
 
 不应将管理活动 API 与 Office 365 服务通信 API 混淆。 管理活动 API 用于审核各种工作负载中的最终用户活动。 服务通信 API 用于审核由 Office 365 中的可用服务（例如 Dynamics CRM 或标识服务）发送的状态和消息。
+ 
+> [!NOTE]
+> 我们目前正在调查以下问题：使用 Office 365 管理活动 API 时，AzureActiveDirectory 内容类型的事件不可用。 该问题在 2020 年 10 月 26 日左右开始出现。 Azure AD 登录事件不会受此问题影响。 我们将在问题得到解决时提供更新。
 
 ## <a name="frequently-asked-questions-about-the-office-365-management-activity-api"></a>有关 Office 365 管理活动 API 的常见问题解答
 
@@ -32,7 +35,7 @@ Office 365 管理活动 API（也称为*统一审核 API *）是 Office 365 安�
 
 **如果我对 Office 365 组织禁用审核，会发生什么情况？我是否仍然可以通过管理活动 API 获取事件？**
 
-否。必须为组织启用 Office 365 统一审核，才能通过管理活动 API 拉取记录。 有关说明，请参阅[启用或禁用审核日志搜索](https://docs.microsoft.com/microsoft-365/compliance/turn-audit-log-search-on-or-off)。
+否。 必须为组织启用 Office 365 统一审核，才能通过管理活动 API 拉取记录。 有关说明，请参阅[启用或禁用审核日志搜索](https://docs.microsoft.com/microsoft-365/compliance/turn-audit-log-search-on-or-off)。
 
 **要对特定 Office 365 服务审核什么事件？**
 
@@ -266,7 +269,7 @@ ELSE exit the loop
 
 ### <a name="using-webhooks"></a>使用 webhook
 
-有两种方法可以获得已创建内容 blob 的通知。 *推送*方法是使用 webhook 端点实现的，该端点是你自己创建和托管的 Web 应用程序或云平台上的 Web 应用程序。 在创建针对已审核内容类型的订阅时注册 webhook。 还可以使用下面显示的方法向现有订阅添加 webhook 注册。 *拉取*方法要求使用 /content 操作查询特定时间段（不超过 24 小时）。 该响应将告诉你在指定时间段内创建了哪些内容 blob。
+有两种方法可以获得已创建内容 blob 的通知。 *推送* 方法是使用 webhook 端点实现的，该端点是你自己创建和托管的 Web 应用程序或云平台上的 Web 应用程序。 在创建针对已审核内容类型的订阅时注册 webhook。 还可以使用下面显示的方法向现有订阅添加 webhook 注册。 *拉取* 方法要求使用 /content 操作查询特定时间段（不超过 24 小时）。 该响应将告诉你在指定时间段内创建了哪些内容 blob。
 
 在添加 webhook 之前，请注意以下两个问题：
 
@@ -317,7 +320,7 @@ $contents = Invoke-WebRequest -Method GET -Headers $headerParams -Uri $uri
 Response Code 403: {'error':{'code':'AF429','message':'Too many requests. Method=GetBlob, PublisherId=00000000-0000-0000-0000-000000000000'}}
 ```
 
-这可能因限制所致。 请注意，Publisherid 参数的值可能表示客户端未在请求中指定 *PublisherIdentifier*。 此外，请记住，正确的参数名称是 *PublisherIdentifier*，即使你在 403 错误响应中看到列出 *PublisherId* 也是如此。
+这可能因限制所致。 请注意，Publisherid 参数的值可能表示客户端未在请求中指定 *PublisherIdentifier* 。 此外，请记住，正确的参数名称是 *PublisherIdentifier* ，即使你在 403 错误响应中看到列出 *PublisherId* 也是如此。
 
 > [!NOTE]
 > 在 API 参考中，在 API 的每个操作中均会列出 *PublisherIdentifier* 参数，但在检索内容 blob 时，它也应包含在针对 contentUri URL 的 GET 请求中。
@@ -326,7 +329,7 @@ Response Code 403: {'error':{'code':'AF429','message':'Too many requests. Method
 
 如果你正在为公司的租户实现客户端，则 *PublisherIdentifier* 是租户 GUID。 如果要为多个客户创建 ISV 应用程序或外接程序，则 *PublisherIdentifier* 应该是 ISV 的租户 GUID，而不是最终用户公司的租户 GUID。
 
-如果包含有效的 *PublisherIdentifier*，那么你将进入一个池，其中每分钟为每个租户分配 6 万个请求。 请求的量是极大的。 但是，如果不包含 *PublisherIdentifier* 参数，则你将进入每分钟为所有租户分配 6 万个请求的常规池。 在这种情况下，你很可能会发现调用受到限制。 为了防止出现这种情况，以下是使用 *PublisherIdentifier* 请求内容 blob 的方法：
+如果包含有效的 *PublisherIdentifier* ，那么你将进入一个池，其中每分钟为每个租户分配 6 万个请求。 请求的量是极大的。 但是，如果不包含 *PublisherIdentifier* 参数，则你将进入每分钟为所有租户分配 6 万个请求的常规池。 在这种情况下，你很可能会发现调用受到限制。 为了防止出现这种情况，以下是使用 *PublisherIdentifier* 请求内容 blob 的方法：
 
 ```json
 $contentUri = ($response.Content | ConvertFrom-Json).contentUri[0]
