@@ -7,12 +7,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: a5661cd1650ac6412bf6723a5ffc27c3a81c11b1
-ms.sourcegitcommit: e7f345710dc63003704399419f784c4a9b5fc529
+ms.openlocfilehash: a65c8dff39d80b57b1c885639be2e228e8119cb7
+ms.sourcegitcommit: 263cfbc04033ea8a1d765215e8777739587818e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2020
-ms.locfileid: "48830474"
+ms.lasthandoff: 11/13/2020
+ms.locfileid: "49021007"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Office 365 管理活动 API 常见问题和疑难解答
 
@@ -25,7 +25,7 @@ Office 365 管理活动 API（也称为 *统一审核 API* ）是 Office 365 安
 不应将管理活动 API 与 Office 365 服务通信 API 混淆。 管理活动 API 用于审核各种工作负载中的最终用户活动。 服务通信 API 用于审核由 Office 365 中的可用服务（例如 Dynamics CRM 或标识服务）发送的状态和消息。
  
 > [!NOTE]
-> 我们目前正在调查以下问题：使用 Office 365 管理活动 API 时，AzureActiveDirectory 内容类型的事件不可用。 该问题在 2020 年 10 月 26 日左右开始出现。 Azure AD 登录事件不会受此问题影响。 我们将在问题得到解决时提供更新。
+> 属于审核的事件存在问题。无法获取 2020 年 10 月 22 日至 11 月 6 日通过 Office 365 管理活动 API 提供的 AzureActiveDirectory 内容类型。 Azure AD 登录事件不会受此问题影响。 将在未来几天内提供影响期限的缺失事件，预计将于 2020 年 11 月 20 日前完成。 在某些情况下，客户可能会发现在 2020 年 10 月 26 日至 11月 5 日之间生成的事件的重复事件数据。
 
 ## <a name="frequently-asked-questions-about-the-office-365-management-activity-api"></a>有关 Office 365 管理活动 API 的常见问题解答
 

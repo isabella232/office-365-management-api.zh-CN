@@ -7,20 +7,20 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c800a099dc102b36f938607599bd0c66ac007ccd
-ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
+ms.openlocfilehash: c56a76a44972d2df4787aa4185300b2643db388a
+ms.sourcegitcommit: 263cfbc04033ea8a1d765215e8777739587818e0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "48397466"
+ms.lasthandoff: 11/13/2020
+ms.locfileid: "49021014"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
 Office 365 管理活动 API 架构作为两层数据服务提供：
 
-- **常见架构**。 用于访问核心 Office 365 审核概念（如 Record Type、Creation Time、User Type 和 Action），以及提供核心维度（如 User ID）、具体位置细节（如 Client IP address）和特定于产品的属性（如 Object ID）的接口。 它建立一致且统一的视图，以便用户使用适当参数在少数顶级视图中提取所有 Office 365 审核数据，并为所有数据源提供固定架构，从而极大地降低了学习成本。 常见架构源自于归每个产品团队（如 Exchange、SharePoint、Azure Active Directory、Yammer 和 OneDrive for Business）所有的产品数据。 Object ID 字段可由产品团队扩展，添加特定于产品的属性。
+- **常见架构** 。 用于访问核心 Office 365 审核概念（如 Record Type、Creation Time、User Type 和 Action），以及提供核心维度（如 User ID）、具体位置细节（如 Client IP address）和特定于产品的属性（如 Object ID）的接口。 它建立一致且统一的视图，以便用户使用适当参数在少数顶级视图中提取所有 Office 365 审核数据，并为所有数据源提供固定架构，从而极大地降低了学习成本。 常见架构源自于归每个产品团队（如 Exchange、SharePoint、Azure Active Directory、Yammer 和 OneDrive for Business）所有的产品数据。 Object ID 字段可由产品团队扩展，添加特定于产品的属性。
 
-- **特定于产品的架构**。 基于常见架构，提供一组特定于产品的属性；例如，SharePoint 架构、OneDrive for Business 架构以及 Exchange 管理员架构。
+- **特定于产品的架构** 。 基于常见架构，提供一组特定于产品的属性；例如，SharePoint 架构、OneDrive for Business 架构以及 Exchange 管理员架构。
 
 **对于你自身的情况应使用哪个层？**
 一般情况下，如果数据在较高层中可用，则不要回到较低层。 换言之，如果可在特定于产品的架构中满足数据要求，则不需要返回到常见架构。 
@@ -64,7 +64,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="common-schema"></a>常见架构
 
-**EntityType 名称**：AuditRecord
+**EntityType 名称** ：AuditRecord
 
 |参数|类型|强制？|说明|
 |:-----|:-----|:-----|:-----|
@@ -76,11 +76,11 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |UserType|Self.[UserType](#user-type)|是|执行操作的用户类型。 有关用户类型的详细信息，请参阅 [UserType](#user-type) 表。|
 |UserKey|Edm.String|是|UserID 属性中标识的用户的备选 ID。 例如，此属性使用 passport 唯一 ID (PUID) 填充，用于 SharePoint、OneDrive for Business 和 Exchange 中用户执行的事件。 此属性还可以为系统帐户执行的其他服务和事件中发生的事件指定与 UserID 属性相同的值。|
 |Workload|Edm.String|否|其中发生活动的 Office 365 服务。 
-|ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为：**Succeeded**、**PartiallySucceeded** 或 **Failed**。 对于 Exchange 管理员活动，值为 **True** 或 **False**。<br/><br/>**重要说明**：不同的工作负载可能会覆盖 ResultStatus 属性的值。 例如，对于 Azure Active Directory STS 登录事件，ResultStatus 的“**已成功**”值仅指示 HTTP 操作成功；这并不意味着登录成功。 若要确定实际登录是否成功，请参阅 [Azure Active Directory STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)中的 LogonError 属性。 如果登录失败，则此属性的值将包含登录尝试失败的原因。 |
+|ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为： **Succeeded** 、 **PartiallySucceeded** 或 **Failed** 。 对于 Exchange 管理员活动，值为 **True** 或 **False** 。<br/><br/>**重要说明** ：不同的工作负载可能会覆盖 ResultStatus 属性的值。 例如，对于 Azure Active Directory STS 登录事件，ResultStatus 的“ **已成功** ”值仅指示 HTTP 操作成功；这并不意味着登录成功。 若要确定实际登录是否成功，请参阅 [Azure Active Directory STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)中的 LogonError 属性。 如果登录失败，则此属性的值将包含登录尝试失败的原因。 |
 |ObjectId|Edm.string|否|对于 SharePoint 和 OneDrive for Business 活动，用户访问的文件或文件夹的完整路径名称。 对于 Exchange 管理员审核日志，通过 cmdlet 修改的对象的名称。|
 |UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。 在 SharePoint 中，UserId 属性中的另一个数值显示为 app@sharepoint。 这表明执行活动的“用户”是在 SharePoint 中拥有必要权限的应用程序，代表用户、管理员或服务执行组织范围内操作（例如，搜索 SharePoint 网站或 OneDrive 帐户）。 有关详细信息，请参阅[审核记录中的 app@sharepoint 用户](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records)。 |
 |ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。<br/><br/>对于某些服务，此属性中显示的值可能是代表用户调用服务的受信任应用程序（例如，Web 应用上的 Office）的 IP 地址，而不是执行活动的人员使用的设备的 IP 地址。 <br/><br/>此外，对于与 Azure Active Directory 相关的事件，不会记录 IP 地址，并且 ClientIP 属性的值为 `null`。|
-|范围|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？ 可能的值为 **online** 和 **onprem**。 请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
+|范围|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？ 可能的值为 **online** 和 **onprem** 。 请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
 |||||
 
 ### <a name="enum-auditlogrecordtype---type-edmint32"></a>枚举：AuditLogRecordType - 类型：Edm.Int32
@@ -94,6 +94,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |3|ExchangeItemGroup|来自 Exchange 邮箱审核日志的事件，用于可对多个项执行的操作，例如移动或删除一个或多个电子邮件。|
 |4|SharePoint|SharePoint 事件。|
 |6|SharePointFileOperation|SharePoint 文件操作事件。|
+|7|OneDrive|Skype for Business 事件。|
 |8|AzureActiveDirectory|Azure Active Directory 事件。|
 |9|AzureActiveDirectoryAccountLogon|Azure Active Directory OrgId 徽标事件（弃用）。|
 |10|DataCenterSecurityCmdlet|数据中心安全 cmdlet 事件。|
@@ -101,7 +102,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |13|ComplianceDLPExchange|通过统一 DLP 策略配置时，Exchange 中的数据丢失保护 (DLP) 事件。 不支持基于 Exchange 传输规则的 DLP 事件。|
 |14|SharePointSharingOperation|SharePoint 共享事件。|
 |15|AzureActiveDirectoryStsLogon|Azure Active Directory 中安全令牌服务 (STS) 登录事件。|
+|16|SkypeForBusinessPSTNUsage|Skype for Business 中的公共交换电话网络 (PSTN) 事件。|
+|17|SkypeForBusinessUsersBlocked|已阻止 Skype for Business 中的用户事件。|
 |18|SecurityComplianceCenterEOPCmdlet|来自安全与合规中心的 Admin 操作。|
+|19|ExchangeAggregatedOperation (19)|聚合 Exchange 邮箱审计事件。|
 |20|PowerBIAudit|Power BI 事件。|
 |21|CRM|Dynamics 365 事件。|
 |22|Yammer|Yammer 事件。|
@@ -114,28 +118,76 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |31|AeD|高级电子数据展示事件。|
 |32|MicrosoftStream|Microsoft Stream 事件。|
 |33|ComplianceDLPSharePointClassification|与 SharePoint 中 DLP 分类有关的事件。|
+|34|ThreatFinder|Microsoft Defender for Office 365 中与活动相关的事件。|
 |35|Project|Microsoft Project 事件。|
 |36|SharePointListOperation|Sharepoint 列表事件。|
+|37|SharePointCommentOperation (37)|SharePoint 批注事件。|
 |38|DataGovernance|与安全与合规中心中的保留策略和保留标签相关的事件|
+|39|Kaizala|Kaizala 事件。|
 |40|SecurityComplianceAlerts|安全与合规警报信号。|
 |41|ThreatIntelligenceUrl|Office 365 高级威胁防护中的安全链接信息块时间和信息块覆盖事件。|
 |42|SecurityComplianceInsights|与 Office 365 安全与合规中心中的见解和报告有关的事件。|
 |43|MIPLabel|与检测传输管道中（以手动或自动方式）标记了敏感度标签的电子邮件相关的事件。 |
 |44|WorkplaceAnalytics|工作区分析事件。|
 |45|PowerAppsApp|Power Apps 事件。|
+|46|PowerAppsPlan|适用于 Power 应用的订阅计划事件。 |
 |47|ThreatIntelligenceAtpContent|在 Office 365 高级威胁防护中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
 |48|LabelContentExplorer|与[数据分类内容资源管理器](https://docs.microsoft.com/microsoft-365/compliance/data-classification-content-explorer)相关的事件。|
 |49|TeamsHealthcare|与 Microsoft Teams for Healthcare 中的[患者应用程序](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit)相关的事件。|
 |50|ExchangeItemAggregated|与 [MailItemsAccessed 邮箱审核操作](https://docs.microsoft.com/microsoft-365/compliance/mailitemsaccessed-forensics-investigations)相关的事件。|
 |51|HygieneEvent|与出站垃圾邮件保护相关的事件。 |
 |52|DataInsightsRestApiAudit|数据见解 REST API 事件。|
+|53|InformationBarrierPolicyApplication|与信息屏障策略的应用有关的事件。|
 |54|SharePointListItemOperation|SharePoint 列表项事件。|
 |55|SharePointContentTypeOperation|SharePoint 列表内容类型事件。|
 |56|SharePointFieldOperation|SharePoint 列表字段事件。|
+|57|MicrosoftTeamsAdmin|Teams 管理员事件。|
+|58|HRSignal|与支持内部风险管理解决方案的 HR 数据信号相关的事件。|
+|59|MicrosoftTeamsDevice|Teams 设备事件。|
+|60|MicrosoftTeamsAnalytics|Teams 分析事件。|
+|61|InformationWorkerProtection|有关已损坏用户警报的事件。|
+|62|Campaign|Microsoft Defender for Office 365 中的电子邮件活动事件。|
+|63|DLPEndpoint|Endpoint DLP 事件。|
 |64|AirInvestigation|自动事件响应 (AIR) 事件。|
 |65|Quarantine|隔离事件。|
 |66|MicrosoftForms|Microsoft Forms 事件。|
+|67|ApplicationAudit|应用程序审核事件。|
 |68|ComplianceSupervisionExchange|由通信合规性的冒犯性语言模型跟踪的事件。|
+|69|CustomerKeyServiceEncryption|与客户密钥加密服务相关的事件。|
+|70|OfficeNative|有关应用于 Office 文档的灵敏度标签的事件。|
+|71|MipAutoLabelSharePointItem|SharePoint 中自动标记的事件。|
+|72|MipAutoLabelSharePointPolicyLocation|SharePoint 中自动标记的策略事件。|
+|73|MicrosoftTeamsShifts|Teams 排班事件。|
+|75|MipAutoLabelExchangeItem|Exchange 中自动标记的事件。|
+|76|CortanaBriefing|工作概述电子邮件事件。|
+|77|搜索|有关在 SharePoint 和 Exchange 中执行搜索查询的事件。|
+|78|WDATPAlerts|与 Windows Defender for Endpoint 生成的警报相关的事件。|
+|81|MDATPAudit|Microsoft Defender 高级威胁防护 (ATP) 事件。|
+|82|SensitivityLabelPolicyMatch|打开或重命名标有灵敏度标签的文件时生成的事件。|
+|83|SensitivityLabelAction|在应用、更新或从文件中删除灵敏度标签时生成的事件。|
+|84|SensitivityLabeledFileAction|打开或重命名标有灵敏度标签的文件时生成的事件。|
+|85|AttackSim|攻击模拟器事件。|
+|86|AirManualInvestigation|有关自动化调查和响应 (AIR) 中手动调查的事件。 |
+|87|SecurityComplianceRBAC|安全性和合规性 RBAC 事件。|
+|88|UserTraining|Microsoft Defender for Office 365 中的攻击仿真程序培训事件。|
+|89|AirAdminActionInvestigation|有关自动化调查和响应 (AIR) 中管理员活动的事件。|
+|90|MSTIC|Microsoft Defender for Office 365 中的威胁智能事件。|
+|91|PhysicalBadgingSignal|与支持内部风险管理解决方案的 无力标记信号相关的事件。|
+|93|AipDiscover|Azure 信息保护 (AIP) 扫描事件。|
+|94|AipSensitivityLabelAction||
+|95|AipProtectionAction||
+|96|AipFileDeleted||
+|97|AipHeartBeat||
+|98|MCASAlerts|由 Microsoft Cloud App Security 触发的警报对应的事件。|
+|99|OnPremisesFileShareScannerDlp|有关扫描文件共享上的敏感数据的事件。|
+|100|OnPremisesSharePointScannerDlp|有关扫描 SharePoint 中敏感数据的事件。|
+|101|ExchangeSearch|有关使用 Outlook 网页版 (OWA) 搜索邮箱项目的相关事件。|
+|102|SharePointSearch|有关搜索组织的 SharePoint 主网站的事件。|
+|103|PrivacyInsights|隐私洞察事件。|
+|105|MyAnalyticsSettings|MyAnalytics 事件。|
+|106|SecurityComplianceUserChange|有关修改或删除用户的事件。|
+|107|ComplianceDLPExchangeClassification|Exchange DLP 分类事件。|
+|109|MipExactDataMatch|精确数据匹配 (EDM) 分类事件。|
 ||||
 
 ### <a name="enum-user-type---type-edmint32"></a>枚举：User Type - 类型：Edm.Int32
@@ -171,8 +223,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|:-----|
 |Site|Edm.Guid|否|用户访问的文件或文件夹所在网站的 GUID。|
 |ItemType|Edm.String String="Microsoft.Office.Audit.Schema.SharePoint.[ItemType](#itemtype)"|否|访问或修改的对象类型。 有关对象类型的详细信息，请参阅 [ItemType](#itemtype) 表。|
-|EventSource|Edm.String String="Microsoft.Office.Audit.Schema.SharePoint.[EventSource](#eventsource)"|否|识别在 SharePoint 中发生的事件。 可能的值为 **SharePoint** 或 **ObjectModel**。|
-|SourceName|Edm.String|否|触发已审核操作的实体。 可能的值为 SharePoint 或 **ObjectModel**。|
+|EventSource|Edm.String String="Microsoft.Office.Audit.Schema.SharePoint.[EventSource](#eventsource)"|否|识别在 SharePoint 中发生的事件。 可能的值为 **SharePoint** 或 **ObjectModel** 。|
+|SourceName|Edm.String|否|触发已审核操作的实体。 可能的值为 SharePoint 或 **ObjectModel** 。|
 |UserAgent|Edm.String|否|有关用户客户端或浏览器的信息。 此信息由客户端或浏览器提供。|
 |MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。 只有在请求中存在该信息时才会报告该信息。|
 |MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。 只有在请求中存在该信息时才会报告该信息。|
@@ -281,7 +333,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |LanguageAddedToTermStore|向术语库中添加了语言。|
 |LanguageRemovedFromTermStore|从术语库中删除了语言。|
 |LegacyWorkflowEnabledSet|网站管理员或所有者向网站添加 SharePoint Workflow Task 内容类型。 全局管理员还可以在 SharePoint 管理中心中对整个组织启用工作流。|
-|LookAndFeelModified|用户修改快速启动、甘特图格式或组格式。 或者用户在 Project Web App 中创建、修改或删除视图。|
+|LookAndFeelModified|用户修改快速启动、甘特图格式或组格式。  或者用户在 Project Web App 中创建、修改或删除视图。|
 |ManagedSyncClientAllowed|用户成功建立与 SharePoint 或 OneDrive for Business 网站的同步关系。 同步关系之所以成功，是因为用户计算机是添加到域列表（称为“安全收件人列表”）的域成员，可以访问组织中的文档库。 有关详细信息，请参阅[使用 SharePoint Online PowerShell ](https://go.microsoft.com/fwlink/p/?LinkID=534609)为安全收件人列表中的域启用 OneDrive 同步。|
 |MaxQuotaModified|修改了网站的最大限额。|
 |MaxResourceUsageModified|修改了网站所允许的最大资源使用量。|
@@ -342,7 +394,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |SiteCollectionCreated| 全局管理员在 SharePoint 组织中创建新的网站集。|
 |SiteRenamed|网站管理员或所有者重命名 SharePoint 或 OneDrive for Business 网站|
 |StatusReportModified|用户在 Project Web App 中创建、修改或删除状态报告。|
-|SyncGetChanges|用户在 SharePoint 或 OneDrive for Business 的操作任务栏中单击“同步”****，以便将对文档库中的文件所做的任何更改都同步到他们的计算机。|
+|SyncGetChanges|用户在 SharePoint 或 OneDrive for Business 的操作任务栏中单击“同步”，以便将对文档库中的文件所做的任何更改都同步到他们的计算机。|
 |TaskStatusAccessed|用户在 Project Web App 中访问一个或多个任务的状态。|
 |TaskStatusApproved|用户在 Project Web App 中批准一个或多个任务的状态更新。|
 |TaskStatusRejected|用户在 Project Web App 中拒绝一个或多个任务的状态更新。|
@@ -353,7 +405,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |TimesheetRejected|用户拒绝 Project Web App 中的时间表。|
 |TimesheetSaved|用户保存 Project Web App 中的时间表。|
 |TimesheetSubmitted|用户在 Project Web App 中提交状态时间表。|
-|UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](https://docs.microsoft.com/powershell/module/sharepoint-online/index?view=sharepoint-ps)。|
+|UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](https://docs.microsoft.com/powershell/module/sharepoint-online/index)。|
 |UpdateSSOApplication|Secure Store Service 中更新了目标应用程序。|
 |UserAddedToGroup|网站管理员或所有者向 SharePoint 或 OneDrive for Business 网站上的组添加人员。 向组添加人员授予用户已分配给组的权限。 |
 |UserRemovedFromGroup|网站管理员或所有者从 SharePoint 或 OneDrive for Business 网站上的组删除人员。 删除该人员后，不再向其授予已分配给组的权限。 |
@@ -367,10 +419,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |SiteUrl|Edm.String|是|用户访问的文件或文件夹所在网站的 URL。|
-|SourceRelativeUrl|Edm.String|否|包含用户访问文件的文件夹的 URL。 _SiteURL_、_SourceRelativeURL_ 和 _SourceFileName_ 参数的值组合与 **ObjectID** 属性的值相同，它是用户访问的文件的完整路径名称。|
+|SourceRelativeUrl|Edm.String|否|包含用户访问文件的文件夹的 URL。 _SiteURL_ 、 _SourceRelativeURL_ 和 _SourceFileName_ 参数的值组合与 **ObjectID** 属性的值相同，它是用户访问的文件的完整路径名称。|
 |SourceFileName|Edm.String|是|用户访问的文件或文件夹名称。|
 |SourceFileExtension|Edm.String|否|用户访问的文件的文件扩展名。 如果访问对象是一个文件夹，则此属性为空。|
-|DestinationRelativeUrl|Edm.String|否|在其中复制或移动文件的目标文件夹的 URL。 _SiteURL_、_DestinationRelativeURL_ 和 _DestinationFileName_ 参数的值组合与 **ObjectID** 属性的值相同，它是复制的文件的完整路径名称。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
+|DestinationRelativeUrl|Edm.String|否|在其中复制或移动文件的目标文件夹的 URL。 _SiteURL_ 、 _DestinationRelativeURL_ 和 _DestinationFileName_ 参数的值组合与 **ObjectID** 属性的值相同，它是复制的文件的完整路径名称。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
 |DestinationFileName|Edm.String|否|复制或移动的文件的名称。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
 |DestinationFileExtension|Edm.String|否|复制或移动的文件的文件扩展名。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
 |UserSharedWith|Edm.String|否|与之共享资源的用户。|
@@ -482,7 +534,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**参数**|**类型**|**强制**|**说明**|
 |:-----|:-----|:-----|:-----|
 |ModifiedObjectResolvedName|Edm.String|否|这是通过 cmdlet 修改的对象的用户友好名称。 只有当 cmdlet 修改对象时才会记录此参数。|
-|参数|Collection(Common.NameValuePair)|否|与 Operations 属性中标识的 cmdlet 结合使用的所有参数的名称和值。|
+|Parameters|Collection(Common.NameValuePair)|否|与 Operations 属性中标识的 cmdlet 结合使用的所有参数的名称和值。|
 |ModifiedProperties|Collection(Common.ModifiedProperty)|否|该属性包含在管理员事件中。 该属性包括已修改属性的名称、已修改属性的新值和已修改对象的先前值。|
 |ExternalAccess|Edm.Boolean|是|指定 cmdlet 是由组织中的用户、Microsoft 数据中心人员或数据中心服务帐户，还是由委托的管理员运行。 值 **False** 表示 cmdlet 由组织中的某人运行。 值 **True** 表示 cmdlet 由数据中心人员、数据中心服务帐户或委托的管理员运行。|
 |OriginatingServer|Edm.String|否|从中执行 cmdlet 的服务器的名称。|
@@ -986,15 +1038,15 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |AttachmentData|Collection(Self.[AttachmentData](#attachmentdata))|否|有关触发事件的电子邮件中附件的数据。|
-|DetectionType|Edm.String|是|检测类型（例如，“Inline”**** - 在传递时检测到；“Delayed”**** - 在传递后检测到；“ZAP”**** - 消息由[零时差自动清除](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)删除）。 使用 ZAP 检测类型的事件通常前面是“Delayed”**** 检测类型的邮件。|
+|DetectionType|Edm.String|是|检测类型（例如，“Inline” - 在传递时检测到；“Delayed” - 在传递后检测到；“ZAP” - 消息由[零时差自动清除](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)删除）。 使用 ZAP 检测类型的事件通常前面是“Delayed”检测类型的邮件。|
 |DetectionMethod|Edm.String|是|Office 365 ATP 用于检测的方法或技术。|
 |InternetMessageId|Edm.String|是|Internet 邮件 ID。|
 |NetworkMessageId|Edm.String|是|Exchange Online 网络消息 ID。|
 |P1Sender|Edm.String|是|电子邮件发件人的返回路径。|
 |P2Sender|Edm.String|是|电子邮件的发件人。|
-|Policy|Self.[Policy](#policy-type-and-action-type)|是|与电子邮件相关的筛选策略类型（例如，“**反垃圾邮件**”或“**反钓鱼**”）和相关操作类型（例如，“**高可信度垃圾邮件**”、“**垃圾邮件**”或“**网络钓鱼**”）。|
-|Policy|Self.[PolicyAction](#policy-action)|是|与电子邮件相关的筛选策略中配置的操作（例如，“**移动到垃圾邮件文件夹**”或“**隔离**”）。|
-|P2Sender|Edm.String|是|电子邮件的“**发件人:**”。|
+|Policy|Self.[Policy](#policy-type-and-action-type)|是|与电子邮件相关的筛选策略类型（例如，“ **反垃圾邮件** ”或“ **反钓鱼** ”）和相关操作类型（例如，“ **高可信度垃圾邮件** ”、“ **垃圾邮件** ”或“ **网络钓鱼** ”）。|
+|Policy|Self.[PolicyAction](#policy-action)|是|与电子邮件相关的筛选策略中配置的操作（例如，“ **移动到垃圾邮件文件夹** ”或“ **隔离** ”）。|
+|P2Sender|Edm.String|是|电子邮件的“ **发件人:** ”。|
 |Recipients|Collection(Edm.String)|是|电子邮件的收件人数组。|
 |SenderIp|Edm.String|是|提交 Office 365 电子邮件的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
 |Subject|Edm.String|是|邮件的主题行。|
@@ -1272,7 +1324,7 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |Audit|Edm.String|否|与卫生事件相关的系统信息。|
-|Event|Edm.String|否|卫生事件的类型。 此参数的值为**已列出**或**已从列表中删除**。|
+|Event|Edm.String|否|卫生事件的类型。 此参数的值为 **已列出** 或 **已从列表中删除** 。|
 |EventId|Edm.Int64|否|卫生事件类型的 ID。|
 |EventValue|Edm.String|否|受影响的用户。|
 |Reason|Edm.String|否|有关卫生事件的详细信息。|
@@ -1350,7 +1402,7 @@ Dynamics 365 中模型驱动应用程的实体事件使用此架构在 Dynamics 
 |:------------------ | :------------------ | :--------------|:--------------|
 | WpaUserRole        | Edm.String | 否     | 执行操作的用户的工作区分析角色。|
 | ModifiedProperties | 集合 (Common.ModifiedProperty) | 否 | 该属性包括已修改属性的名称、已修改属性的新值和已修改属性的先前值。|
-| OperationDetails   | 集合 (Common.NameValuePair)    | 否 | 已更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value**。|
+| OperationDetails   | 集合 (Common.NameValuePair)    | 否 | 已更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value** 。|
 ||||
 
 ## <a name="quarantine-schema"></a>隔离架构
