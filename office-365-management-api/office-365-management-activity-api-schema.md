@@ -7,27 +7,26 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c56a76a44972d2df4787aa4185300b2643db388a
-ms.sourcegitcommit: 263cfbc04033ea8a1d765215e8777739587818e0
+ms.openlocfilehash: 829af6eb582175c99239720c04bfe7d0ce286af9
+ms.sourcegitcommit: e74da95f449e4f8e04ee82e2d376c041f8403524
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "49021014"
+ms.lasthandoff: 11/17/2020
+ms.locfileid: "49086801"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
 Office 365 管理活动 API 架构作为两层数据服务提供：
 
-- **常见架构** 。 用于访问核心 Office 365 审核概念（如 Record Type、Creation Time、User Type 和 Action），以及提供核心维度（如 User ID）、具体位置细节（如 Client IP address）和特定于产品的属性（如 Object ID）的接口。 它建立一致且统一的视图，以便用户使用适当参数在少数顶级视图中提取所有 Office 365 审核数据，并为所有数据源提供固定架构，从而极大地降低了学习成本。 常见架构源自于归每个产品团队（如 Exchange、SharePoint、Azure Active Directory、Yammer 和 OneDrive for Business）所有的产品数据。 Object ID 字段可由产品团队扩展，添加特定于产品的属性。
+- **常见架构**。用于访问核心 Office 365 审核概念（例如记录类型、创建时间、用户类型和操作）并提供核心维度（例如用户 ID）、位置具体信息（例如客户端 IP 地址）和特定于产品的属性（例如对象 ID）的界面。它为用户建立一致且统一的视图，以使用适当的参数在几个顶级视图中提取所有 Office 365 审核数据，并为所有数据源提供固定的架构，从而显著降低学习成本。通用架构源自每个产品团队拥有的产品数据，例如 Exchange、SharePoint、Azure Active Directory、Yammer 和 OneDrive for Business。产品团队可以扩展“对象ID”字段以添加特定于产品的属性。
 
-- **特定于产品的架构** 。 基于常见架构，提供一组特定于产品的属性；例如，SharePoint 架构、OneDrive for Business 架构以及 Exchange 管理员架构。
+- **特定于产品的架构**。基于常见架构，提供一组特定于产品的属性；例如，SharePoint 架构、OneDrive for Business 架构以及 Exchange 管理员架构。
 
-**对于你自身的情况应使用哪个层？**
-一般情况下，如果数据在较高层中可用，则不要回到较低层。 换言之，如果可在特定于产品的架构中满足数据要求，则不需要返回到常见架构。 
+**你的方案应使用哪一层？** 通常，如果数据在较高的层中可用，请不要返回较低的层。换句话说，如果数据需求可以适合特定于产品的架构，则无需返回到常见架构。 
 
 ## <a name="office-365-management-api-schemas"></a>Office 365 管理 API 架构
 
-本文详细介绍了常见架构以及每个特定于产品的架构。 下表描述了可用的架构。
+本文详细介绍了常见架构以及每个特定于产品的架构。下表描述了可用的架构。
 
 |架构名称|说明|
 |:-----|:-----|
@@ -51,7 +50,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[数据中心安全 Cmdlet 架构](#data-center-security-cmdlet-schema)|使用特定于所有数据中心安全 cmdlet 审核数据的属性扩展数据中心安全基本架构。|
 |[Microsoft Teams 架构](#microsoft-teams-schema)|使用特定于所有 Microsoft Teams 事件的属性扩展常见架构。|
 |[Office 365 高级威胁防护和威胁调查与响应](#office-365-advanced-threat-protection-and-threat-investigation-and-response-schema)|使用特定于 Office 365 高级威胁防护与威胁调查和响应数据的属性扩展常见架构。|
-|[自动调查和响应事件架构](#automated-investigation-and-response-events-in-office-365)|使用特定于 Office 365 自动调查和响应 (AIR) 事件的属性扩展常见架构。 若要查看示例，请参阅 [技术社区博客：使用 Office 365 ATP 和 O365 管理 API 改进 SOC 的有效性](https://techcommunity.microsoft.com/t5/microsoft-security-and/improve-the-effectiveness-of-your-soc-with-office-365-atp-and/ba-p/1525185)。|
+|[自动调查和响应事件架构](#automated-investigation-and-response-events-in-office-365)|使用特定于 Office 365 自动调查和响应 (AIR) 事件的属性扩展常见架构。要查看示例，请参阅[技术社区博客：使用 Office 365 ATP 和 O365 管理 API 改进 SOC 的有效性](https://techcommunity.microsoft.com/t5/microsoft-security-and/improve-the-effectiveness-of-your-soc-with-office-365-atp-and/ba-p/1525185)。|
 |[卫生事件架构](#hygiene-events-schema)|使用特定于 Exchange Online Protection 和高级威胁防护中的事件的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
 |[Dynamics 365 架构](#dynamics-365-schema)|使用特定于所有 Dynamics 365 事件的属性扩展常见架构。|
@@ -64,23 +63,23 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="common-schema"></a>常见架构
 
-**EntityType 名称** ：AuditRecord
+**EntityType 名称**：AuditRecord
 
 |参数|类型|强制？|说明|
 |:-----|:-----|:-----|:-----|
 |Id|Combination GUIDEdm.Guid|是|审核记录的唯一标识符。|
-|RecordType|Self.[AuditLogRecordType](#auditlogrecordtype)|是|记录指示的操作类型。 有关审核日志记录类型的详细信息表，请参阅 [AuditLogRecordType](#auditlogrecordtype)。|
+|RecordType|Self.[AuditLogRecordType](#auditlogrecordtype)|是|记录指示的操作类型。有关审核日志记录类型的详细信息表，请参阅 [AuditLogRecordType](#auditlogrecordtype)。|
 |CreationTime|Edm.Date|是|用户执行活动时的协调世界时 (UTC) 日期和时间。|
-|Operation|Edm.String|是|用户或管理员活动的名称。 有关最常见操作/活动的说明，请参阅[在 Office 365 保护中心搜索审核日志](https://go.microsoft.com/fwlink/p/?LinkId=708432)。 对于 Exchange 管理员活动，此属性标识已运行的 cmdlet 名称。 对于 DLp 事件，这可以是“DLP 架构”下描述的“DlpRuleMatch”、“DlpRuleUndo”或“DlpInfo”。|
-|OrganizationId|Edm.Guid|是|组织 Office 365 租户的 GUID。 对于组织而言，该值始终相同，而不管它是在哪个 Office 365 服务中出现。|
-|UserType|Self.[UserType](#user-type)|是|执行操作的用户类型。 有关用户类型的详细信息，请参阅 [UserType](#user-type) 表。|
-|UserKey|Edm.String|是|UserID 属性中标识的用户的备选 ID。 例如，此属性使用 passport 唯一 ID (PUID) 填充，用于 SharePoint、OneDrive for Business 和 Exchange 中用户执行的事件。 此属性还可以为系统帐户执行的其他服务和事件中发生的事件指定与 UserID 属性相同的值。|
-|Workload|Edm.String|否|其中发生活动的 Office 365 服务。 
-|ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为： **Succeeded** 、 **PartiallySucceeded** 或 **Failed** 。 对于 Exchange 管理员活动，值为 **True** 或 **False** 。<br/><br/>**重要说明** ：不同的工作负载可能会覆盖 ResultStatus 属性的值。 例如，对于 Azure Active Directory STS 登录事件，ResultStatus 的“ **已成功** ”值仅指示 HTTP 操作成功；这并不意味着登录成功。 若要确定实际登录是否成功，请参阅 [Azure Active Directory STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)中的 LogonError 属性。 如果登录失败，则此属性的值将包含登录尝试失败的原因。 |
-|ObjectId|Edm.string|否|对于 SharePoint 和 OneDrive for Business 活动，用户访问的文件或文件夹的完整路径名称。 对于 Exchange 管理员审核日志，通过 cmdlet 修改的对象的名称。|
-|UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。 在 SharePoint 中，UserId 属性中的另一个数值显示为 app@sharepoint。 这表明执行活动的“用户”是在 SharePoint 中拥有必要权限的应用程序，代表用户、管理员或服务执行组织范围内操作（例如，搜索 SharePoint 网站或 OneDrive 帐户）。 有关详细信息，请参阅[审核记录中的 app@sharepoint 用户](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records)。 |
-|ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。<br/><br/>对于某些服务，此属性中显示的值可能是代表用户调用服务的受信任应用程序（例如，Web 应用上的 Office）的 IP 地址，而不是执行活动的人员使用的设备的 IP 地址。 <br/><br/>此外，对于与 Azure Active Directory 相关的事件，不会记录 IP 地址，并且 ClientIP 属性的值为 `null`。|
-|范围|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？ 可能的值为 **online** 和 **onprem** 。 请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
+|Operation|Edm.String|是|用户或管理员活动的名称。有关最常见操作/活动的说明，请参阅[在 Office 365 保护中心中搜索审核日志](https://go.microsoft.com/fwlink/p/?LinkId=708432)。对于 Exchange 管理员活动，此属性标识运行的 cmdlet 的名称。对于 Dlp 事件，它可以是“DlpRuleMatch”、“DlpRuleUndo”或“DlpInfo”，下面的“DLP 架构”下对它们进行了描述。|
+|OrganizationId|Edm.Guid|是|组织 Office 365 租户的 GUID。对于组织而言，该值始终相同，而不管它是在哪个 Office 365 服务中出现。|
+|UserType|Self.[UserType](#user-type)|是|执行操作的用户类型。有关用户类型的详细信息，请参见 [UserType](#user-type) 表。|
+|UserKey|Edm.String|是|UserId 属性中标识的用户的备用 ID。例如，使用 SharePoint、OneDrive for Business 和 Exchange 中用户执行的事件的 passport 唯一标识号 (PUID) 填充此属性。此属性还可能指定与发生在其他服务中的事件以及由系统帐户执行的事件的 UserID 属性相同的值。|
+|工作负载|Edm.String|否|其中发生活动的 Office 365 服务。 
+|ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）是否成功。可能的值为 **Succeeded**、**PartiallySucceeded** 或 **Failed**。对于 Exchange 管理员活动，该值为 **True** 或 **False**。<br/><br/>**重要说明**：不同的工作负载可能会覆盖 ResultStatus 属性的值。例如，对于 Azure Active Directory STS 登录事件，ResultStatus 的 **Succeeded** 值仅指示 HTTP 操作成功；这并不意味着登录成功。若要确定实际登录是否成功，请参阅 [Azure Active Directory STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)中的 LogonError 属性。如果登录失败，则此属性的值将包含登录尝试失败的原因。 |
+|ObjectId|Edm.string|否|对于 SharePoint 和 OneDrive for Business 活动，是用户访问的文件或文件夹的完整路径名称。对于 Exchange 管理员审核日志，是通过 cmdlet 修改的对象的名称。|
+|UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。在 SharePoint 中，UserId 属性中的另一个数值显示为 app@sharepoint。这表明执行活动的“用户”是在 SharePoint 中拥有必要权限的应用程序，代表用户、管理员或服务执行组织范围内操作（例如，搜索 SharePoint 网站或 OneDrive 帐户）。有关详细信息，请参阅[审核记录中的 app@sharepoint 用户](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records)。 |
+|ClientIP|Edm.String|是|记录活动时所用设备的 IP 地址。IP 地址显示为 IPv4 或 IPv6 地址格式。<br/><br/>对于某些服务，此属性中显示的值可能是代表用户调用服务的受信任应用程序（例如，Web 应用上的 Office）的 IP 地址，而不是执行活动的人员使用的设备的 IP 地址。 <br/><br/>此外，对于与 Azure Active Directory 相关的事件，不会记录 IP 地址，并且 ClientIP 属性的值为 `null`。|
+|范围|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？可能的值为 **online** 和 **onprem**。请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
 |||||
 
 ### <a name="enum-auditlogrecordtype---type-edmint32"></a>枚举：AuditLogRecordType - 类型：Edm.Int32
@@ -99,7 +98,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |9|AzureActiveDirectoryAccountLogon|Azure Active Directory OrgId 徽标事件（弃用）。|
 |10|DataCenterSecurityCmdlet|数据中心安全 cmdlet 事件。|
 |11|ComplianceDLPSharePoint|SharePoint 和 OneDrive for Business 中的数据丢失保护 (DLP) 事件。|
-|13|ComplianceDLPExchange|通过统一 DLP 策略配置时，Exchange 中的数据丢失保护 (DLP) 事件。 不支持基于 Exchange 传输规则的 DLP 事件。|
+|13|ComplianceDLPExchange|通过统一 DLP 策略配置时，Exchange 中的数据丢失保护 (DLP) 事件。不支持基于 Exchange 传输规则的 DLP 事件。|
 |14|SharePointSharingOperation|SharePoint 共享事件。|
 |15|AzureActiveDirectoryStsLogon|Azure Active Directory 中安全令牌服务 (STS) 登录事件。|
 |16|SkypeForBusinessPSTNUsage|Skype for Business 中的公共交换电话网络 (PSTN) 事件。|
@@ -174,10 +173,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |90|MSTIC|Microsoft Defender for Office 365 中的威胁智能事件。|
 |91|PhysicalBadgingSignal|与支持内部风险管理解决方案的 无力标记信号相关的事件。|
 |93|AipDiscover|Azure 信息保护 (AIP) 扫描事件。|
-|94|AipSensitivityLabelAction||
-|95|AipProtectionAction||
-|96|AipFileDeleted||
-|97|AipHeartBeat||
+|94|AipSensitivityLabelAction|AIP 敏感度标签事件。 |
+|95|AipProtectionAction|AIP 保护事件。|
+|96|AipFileDeleted|AIP 文件删除事件。|
+|97|AipHeartBeat|AIP 检测信号事件。|
 |98|MCASAlerts|由 Microsoft Cloud App Security 触发的警报对应的事件。|
 |99|OnPremisesFileShareScannerDlp|有关扫描文件共享上的敏感数据的事件。|
 |100|OnPremisesSharePointScannerDlp|有关扫描 SharePoint 中敏感数据的事件。|
@@ -223,8 +222,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|:-----|
 |Site|Edm.Guid|否|用户访问的文件或文件夹所在网站的 GUID。|
 |ItemType|Edm.String String="Microsoft.Office.Audit.Schema.SharePoint.[ItemType](#itemtype)"|否|访问或修改的对象类型。 有关对象类型的详细信息，请参阅 [ItemType](#itemtype) 表。|
-|EventSource|Edm.String String="Microsoft.Office.Audit.Schema.SharePoint.[EventSource](#eventsource)"|否|识别在 SharePoint 中发生的事件。 可能的值为 **SharePoint** 或 **ObjectModel** 。|
-|SourceName|Edm.String|否|触发已审核操作的实体。 可能的值为 SharePoint 或 **ObjectModel** 。|
+|EventSource|Edm.String String="Microsoft.Office.Audit.Schema.SharePoint.[EventSource](#eventsource)"|否|识别在 SharePoint 中发生的事件。 可能的值为 **SharePoint** 或 **ObjectModel**。|
+|SourceName|Edm.String|否|触发已审核操作的实体。 可能的值为 SharePoint 或 **ObjectModel**。|
 |UserAgent|Edm.String|否|有关用户客户端或浏览器的信息。 此信息由客户端或浏览器提供。|
 |MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。 只有在请求中存在该信息时才会报告该信息。|
 |MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。 只有在请求中存在该信息时才会报告该信息。|
@@ -419,10 +418,10 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |SiteUrl|Edm.String|是|用户访问的文件或文件夹所在网站的 URL。|
-|SourceRelativeUrl|Edm.String|否|包含用户访问文件的文件夹的 URL。 _SiteURL_ 、 _SourceRelativeURL_ 和 _SourceFileName_ 参数的值组合与 **ObjectID** 属性的值相同，它是用户访问的文件的完整路径名称。|
+|SourceRelativeUrl|Edm.String|否|包含用户访问文件的文件夹的 URL。 _SiteURL_、_SourceRelativeURL_ 和 _SourceFileName_ 参数的值组合与 **ObjectID** 属性的值相同，它是用户访问的文件的完整路径名称。|
 |SourceFileName|Edm.String|是|用户访问的文件或文件夹名称。|
 |SourceFileExtension|Edm.String|否|用户访问的文件的文件扩展名。 如果访问对象是一个文件夹，则此属性为空。|
-|DestinationRelativeUrl|Edm.String|否|在其中复制或移动文件的目标文件夹的 URL。 _SiteURL_ 、 _DestinationRelativeURL_ 和 _DestinationFileName_ 参数的值组合与 **ObjectID** 属性的值相同，它是复制的文件的完整路径名称。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
+|DestinationRelativeUrl|Edm.String|否|在其中复制或移动文件的目标文件夹的 URL。 _SiteURL_、_DestinationRelativeURL_ 和 _DestinationFileName_ 参数的值组合与 **ObjectID** 属性的值相同，它是复制的文件的完整路径名称。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
 |DestinationFileName|Edm.String|否|复制或移动的文件的名称。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
 |DestinationFileExtension|Edm.String|否|复制或移动的文件的文件扩展名。 此属性仅对 FileCopied 和 FileMoved 事件显示。|
 |UserSharedWith|Edm.String|否|与之共享资源的用户。|
@@ -1044,9 +1043,9 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |NetworkMessageId|Edm.String|是|Exchange Online 网络消息 ID。|
 |P1Sender|Edm.String|是|电子邮件发件人的返回路径。|
 |P2Sender|Edm.String|是|电子邮件的发件人。|
-|Policy|Self.[Policy](#policy-type-and-action-type)|是|与电子邮件相关的筛选策略类型（例如，“ **反垃圾邮件** ”或“ **反钓鱼** ”）和相关操作类型（例如，“ **高可信度垃圾邮件** ”、“ **垃圾邮件** ”或“ **网络钓鱼** ”）。|
-|Policy|Self.[PolicyAction](#policy-action)|是|与电子邮件相关的筛选策略中配置的操作（例如，“ **移动到垃圾邮件文件夹** ”或“ **隔离** ”）。|
-|P2Sender|Edm.String|是|电子邮件的“ **发件人:** ”。|
+|Policy|Self.[Policy](#policy-type-and-action-type)|是|与电子邮件相关的筛选策略类型（例如，“**反垃圾邮件**”或“**反钓鱼**”）和相关操作类型（例如，“**高可信度垃圾邮件**”、“**垃圾邮件**”或“**网络钓鱼**”）。|
+|Policy|Self.[PolicyAction](#policy-action)|是|与电子邮件相关的筛选策略中配置的操作（例如，“**移动到垃圾邮件文件夹**”或“**隔离**”）。|
+|P2Sender|Edm.String|是|电子邮件的“**发件人:**”。|
 |Recipients|Collection(Edm.String)|是|电子邮件的收件人数组。|
 |SenderIp|Edm.String|是|提交 Office 365 电子邮件的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。|
 |Subject|Edm.String|是|邮件的主题行。|
@@ -1324,7 +1323,7 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |Audit|Edm.String|否|与卫生事件相关的系统信息。|
-|Event|Edm.String|否|卫生事件的类型。 此参数的值为 **已列出** 或 **已从列表中删除** 。|
+|Event|Edm.String|否|卫生事件的类型。 此参数的值为 **已列出** 或 **已从列表中删除**。|
 |EventId|Edm.Int64|否|卫生事件类型的 ID。|
 |EventValue|Edm.String|否|受影响的用户。|
 |Reason|Edm.String|否|有关卫生事件的详细信息。|
@@ -1402,7 +1401,7 @@ Dynamics 365 中模型驱动应用程的实体事件使用此架构在 Dynamics 
 |:------------------ | :------------------ | :--------------|:--------------|
 | WpaUserRole        | Edm.String | 否     | 执行操作的用户的工作区分析角色。|
 | ModifiedProperties | 集合 (Common.ModifiedProperty) | 否 | 该属性包括已修改属性的名称、已修改属性的新值和已修改属性的先前值。|
-| OperationDetails   | 集合 (Common.NameValuePair)    | 否 | 已更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value** 。|
+| OperationDetails   | 集合 (Common.NameValuePair)    | 否 | 已更改的设置的扩展属性列表。 每个属性都将具有 **Name** 和 **Value**。|
 ||||
 
 ## <a name="quarantine-schema"></a>隔离架构
