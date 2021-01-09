@@ -7,12 +7,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: a65c8dff39d80b57b1c885639be2e228e8119cb7
-ms.sourcegitcommit: 263cfbc04033ea8a1d765215e8777739587818e0
+ms.openlocfilehash: 9c909220d660e0202c3ebda2777b2d8922da45a3
+ms.sourcegitcommit: c3bb30b86a4569e9f18891f1cdc30cbffc8c8db4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2020
-ms.locfileid: "49021007"
+ms.lasthandoff: 01/08/2021
+ms.locfileid: "49784205"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Office 365 管理活动 API 常见问题和疑难解答
 
@@ -79,6 +79,10 @@ Office 365 管理活动 API（也称为 *统一审核 API*）是 Office 365 安�
 **TargetUpdatedProperties 为何不再位于 Azure Active Directory 活动审核日志的 ExtendedProperties 中？**
 
 TargetUpdatedProperties 显示在 ExtendedProperties 中。 但是，它们将从 ExtendedProperties 中删除，并且现在将显示在 ModifiedProperties 中。
+
+**为什么 Azure Active Directory (Azure AD) 登录活动的 UserAccountNotFound 错误的审核日志不能通过管理活动 API 使用？**
+
+从 2020 年 11 月开始，Azure AD 登录活动的审核日志将从 Azure AD 事件中心引入到统一审核日志中。 由于 UserAccountNotFound 登录错误在事件集线器中不可用，因此管理活动 API 不再返回 UserAccountNotFound 错误的审核日志。
 
 ## <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
