@@ -7,12 +7,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 94879a2634396868248d3df6a6eb76b9931d9f65
-ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
+ms.openlocfilehash: 92eb7f2838e673992a778043075b6c0ef3f8d133
+ms.sourcegitcommit: e998d2175540269e94db529e74532efd4c43fab9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "48397424"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "50094981"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
@@ -102,7 +102,7 @@ Authorization: Bearer eyJ0e...Qa6wg
     
 - **列出当前订阅**
     
-- **列出可用内容**及相应的内容 URL。
+- **列出可用内容** 及相应的内容 URL。
     
 - **接收通知**：通知是在有新内容时由 Webhook 发送。
     
@@ -129,7 +129,7 @@ Authorization: Bearer eyJ0e...Qa6wg
 |:-----|:-----|:-----|
 |**路径**| `/subscriptions/start?contentType={ContentType}`||
 |**参数**|contentType|必须为有效内容类型。|
-||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这**不是**应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
+||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这 **不是** 应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
 |**正文**|webhook|可选 JSON 对象，包含以下三个属性：<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>address</b>：可接收通知的必需 HTTPS 终结点。  在订阅创建前，Webhook 会收到用于验证自身的测试消息。</p></li><li><p><b>authId</b>：可选字符串，作为 WebHook-AuthID 头包含在向 Webhook 发送的通知中，用于向 Webhook 标识和授权请求来源。</p></li><li><p><b>expiration</b>：可选日期/时间，指明在此日期/时间后便不得再向 Webhook 发送通知。</p></li></ul>|
 |**响应**|contentType|在调用中指定的内容类型。|
 ||status|订阅的状态。 如果订阅已遭禁用，便无法列出或检索内容。|
@@ -212,7 +212,7 @@ HTTP/1.1 200 OK
 |:-----|:-----|:-----|
 |**路径**| `/subscriptions/stop?contentType={ContentType}`||
 |**参数**|contentType|必须为有效内容类型。|
-||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这**不是**应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
+||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这 **不是** 应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
 |**正文**|（空）||
 |**响应**|（空）|||
 
@@ -238,7 +238,7 @@ HTTP/1.1 200 OK
 ||订阅|说明|
 |:-----|:-----|:-----|
 |**路径**| `/subscriptions/list`||
-|**参数**|PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这**不是**应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
+|**参数**|PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这 **不是** 应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
 |**正文**|（空）||
 |**响应**|JSON 数组|每个订阅都由包含以下三个属性的 JSON 对象表示：<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>contentType</b>：指明内容类型。</p></li><li><p><b>status</b>：指明订阅的状态。</p></li><li><p><b>webhook</b>：指明已配置的 Webhook 及其状态（已启用、已禁用或已到期）。  如果订阅没有 Webhook，虽然 Webhook 属性会显示，但值为 null。</p></li></ul>|
 
@@ -289,7 +289,7 @@ Content-Type: application/json; charset=utf-8
 |:-----|:-----|:-----|
 |**路径**| `/subscriptions/content?contentType={ContentType}&amp;startTime={0}&amp;endTime={1}`||
 |**参数**|contentType|必须为有效内容类型。|
-||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这**不是**应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
+||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这 **不是** 应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
 ||startTime endTime|依据为内容可用时间的可选日期/时间 (UTC)，指明要返回的内容的时间范围。 此时间范围包含 startTime (startTime <= contentCreated)，但不包含 endTime (contentCreated < endTime)，这样便能使用不重叠的增量时间间隔翻阅可用内容。<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>YYYY-MM-DD</p></li><li><p>YYYY-MM-DDTHH:MM</p></li><li><p>YYYY-MM-DDTHH:MM:SS</p></li></ul>必须同时指定（或同时省略）开始时间和结束时间，两者间隔不得超过 24 小时，且开始时间与当前时间的间隔不得超过 7 天。 默认情况下，如果 startTime 和 endTime 遭省略，返回的便是过去 24 小时内的可用内容。<p>**注意**：即使可以指定间隔超过 24 小时的 startTime 和 endTime，也不建议这样做。 此外，如果确实返回了开始时间和结束时间间隔超过 24 小时的请求的任何响应结果，它们可能只是部分结果，不得纳入考虑范围。 应发出 startTime 和 endTime 间隔不超过 24 小时的请求。</p>|
 |**响应**|JSON 数组|可用内容由包含以下属性的 JSON 对象表示：<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>contentType</b>：指明内容类型。</p></li><li><p><b>contentId</b>：用于唯一标识内容的不透明字符串。</p></li><li><p><b>contentUri</b>：供检索内容时使用的 URL。</p></li><li><p><b>contentCreated</b>：内容的可用日期/时间。</p></li><li><p><b>contentExpiration</b>：内容不再可供检索的日期/时间。</p></li></ul>|
 
@@ -368,8 +368,8 @@ Webhook-AuthID: o365activityapinotification
 
 [
     {
-        "tenantId": "{GUID}"
-        "clientId": "{GUID}"
+        "tenantId": "{GUID}",
+        "clientId": "{GUID}",
         "contentType": "Audit.SharePoint",
         "contentId": "492638008028$492638008028$f28ab78ad40140608012736e373933ebspo2015043022$4a81a7c326fc4aed89c62e6039ab833b$04",
         "contentUri": "https://manage.office.com/api/v1.0/f28ab78a-d401-4060-8012-736e373933eb/activity/feed/audit/492638008028$492638008028$f28ab78ad40140608012736e373933ebspo2015043022$4a81a7c326fc4aed89c62e6039ab833b$04",
@@ -505,7 +505,7 @@ Content-Type: application/json; charset=utf-8
 |:-----|:-----|:-----|
 |**路径**| `/subscriptions/notifications?contentType={ContentType}&amp;startTime={0}&amp;endTime={1}`||
 |**参数**|contentType|必须为有效内容类型。|
-||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这**不是**应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
+||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这 **不是** 应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
 ||startTime endTime|依据为内容可用时间的可选日期/时间 (UTC)，指明要返回的内容的时间范围。 此时间范围包含 _startTime_ ( _startTime_ <= contentCreated)，但不包含 _endTime_ (_contentCreated_ < endTime)，这样便能使用不重叠的增量时间间隔翻阅可用内容。<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>YYYY-MM-DD</p></li><li><p>YYYY-MM-DDTHH:MM</p></li><li><p>YYYY-MM-DDTHH:MM:SS</p></li></ul>必须同时指定（或同时省略）开始时间和结束时间，两者间隔不得超过 24 小时，且开始时间与当前时间的间隔不得超过 7 天。 默认情况下，如果 _startTime_ 和 _endTime_ 遭省略，返回的便是过去 24 小时内的可用内容。|
 |**响应**|JSON 数组|通知由包含以下属性的 JSON 对象表示： <ul><li>**contentType**：指明内容类型。</li><li>**contentId**：用于唯一标识内容的不透明字符串。</li><li>**contentUri**：供检索内容时使用的 URL。 </li><li>**contentCreated**：内容的可用日期/时间。</li><li>**contentExpiration**：内容不再可供检索的日期/时间。</li><li>**notificationSent**：通知发送日期/时间。</li><li>**notificationStatus**：指明通知尝试发送是成功还是失败。</li></ul>|
 
@@ -561,7 +561,7 @@ NextPageUrl: https://manage.office.com/api/v1/{tenant_id}/activity/feed/subscrip
 ||订阅|说明|
 |:-----|:-----|:-----|
 |**路径**| `/resources/dlpSensitiveTypes`||
-|**参数**|PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这**不是**应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
+|**参数**|PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这 **不是** 应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
 |**头**|Accept-Language|用于指定本地化名称的目标语言的头。 例如，使用“en-US”表示英语，使用“es”表示西班牙语。 如果没有此头，返回的便是默认语言 (en-US)。|
 |**正文**|（空）||
 |**响应**|JSON 数组|可用内容由包含以下属性的 JSON 对象表示：<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>id</b>：指明敏感信息类型的 GUID。</p></li><li><p><b>name</b>：指明敏感信息类型的易记名称。</p></li></ul>|
