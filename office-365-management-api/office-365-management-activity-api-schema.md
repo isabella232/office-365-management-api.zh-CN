@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c39865d8b3aff5a11aaf113482982e1c407b9800
-ms.sourcegitcommit: 0f988a3c25a34491a6e80307cfcf097a85aa26fa
+ms.openlocfilehash: c71536ad05afe50e675661cebbfe1826cf6af3fa
+ms.sourcegitcommit: 3a6a64742924b9fbc1ffd6826b5651eb5583f70c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/23/2020
-ms.locfileid: "49385167"
+ms.lasthandoff: 02/03/2021
+ms.locfileid: "50096953"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -332,7 +332,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |GroupUpdated|网站管理员或所有者更改 SharePoint 或 OneDrive for Business 网站的组设置。 这可能包括更改组名、可以查看或编辑组成员身份的人员，以及成员身份请求的处理方式。|
 |LanguageAddedToTermStore|向术语库中添加了语言。|
 |LanguageRemovedFromTermStore|从术语库中删除了语言。|
-|LegacyWorkflowEnabledSet|网站管理员或所有者向网站添加 SharePoint Workflow Task 内容类型。 全局管理员还可以在 SharePoint 管理中心中对整个组织启用工作流。|
+|LegacyWorkflowEnabledSet|网站管理员或所有者向网站添加 SharePoint 工作流任务内容类型。 全局管理员还可以在 SharePoint 管理中心中对整个组织启用工作流。|
 |LookAndFeelModified|用户修改快速启动、甘特图格式或组格式。  或者用户在 Project Web App 中创建、修改或删除视图。|
 |ManagedSyncClientAllowed|用户成功建立与 SharePoint 或 OneDrive for Business 网站的同步关系。 同步关系之所以成功，是因为用户计算机是添加到域列表（称为“安全收件人列表”）的域成员，可以访问组织中的文档库。 有关详细信息，请参阅[使用 SharePoint Online PowerShell ](https://go.microsoft.com/fwlink/p/?LinkID=534609)为安全收件人列表中的域启用 OneDrive 同步。|
 |MaxQuotaModified|修改了网站的最大限额。|
@@ -746,7 +746,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|:-----|
 |ApplicationId|Edm.String|否|表示正在请求登录的应用程序的 GUID。 可以通过 Azure Active Directory Graph API 查找显示名称。|
 |Client|Edm.String|否|客户端设备信息，由执行登录的浏览器提供。|
-|LogonError|Edm.String|否|用于失败登录，包含登录失败的原因。 有关 LogonErrors 的完整说明，请参阅[身份验证和授权错误代码](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes)列表。
+|ErrorCode|Edm.String|否|对于失败的登录（"操作"属性的值为 UserLoginFailed），此属性包含 Azure Active Directory STS （AADSTS） 错误代码。 有关这些错误代码的说明，请参阅 [身份验证和授权错误](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes)。 登录名 `0` 表示登录成功。|
+|LogonError|Edm.String|否|对于登录失败，此属性包含用户可阅读的登录失败原因说明。|
 |||||
 
 ## <a name="dlp-schema"></a>DLP 架构
@@ -871,7 +872,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |CmdletVersion|Edm.String|否|执行 cmdlet 时的内部版本号。|
 |EffectiveOrganization|Edm.String|否|受 cmdlet 影响的组织 GUID。 （弃用：此参数以后将停止显示。）|
 |UserServicePlan|Edm.String|否|分配给执行 cmdlet 的用户的 Exchange Online Protection 服务计划。|
-|ClientApplication|Edm.String|否|如果 cmdlet 由应用程序执行，而不是由远程 powershell 执行，则此字段包含该应用程序的名称。|
+|ClientApplication|Edm.String|否|如果 cmdlet 是由应用程序（而非远程 PowerShell）执行的，则此字段包含该应用程序的名称。|
 |参数|Edm.String|否|与不包含个人身份信息的 cmdlet 结合使用的参数的名称和值。|
 |NonPiiParameters|Edm.String|否|与包含个人身份信息的 cmdlet 结合使用的参数的名称和值。 （弃用：此字段将在以后停止显示，其内容将与 Parameters 字段合并。）|
 |||||
@@ -931,7 +932,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
-|DataCenterSecurityEventType|Self.[DataCenterSecurityEventType](#datacentersecurityeventtype)|是|锁定框中的 dmdlet 事件的类型。|
+|DataCenterSecurityEventType|Self.[DataCenterSecurityEventType](#datacentersecurityeventtype)|是|锁定框中的 cmdlet 事件的类型。|
 |||||
 
 ### <a name="enum-datacentersecurityeventtype---type-edmint32"></a>枚举：DataCenterSecurityEventType - 类型：Edm.Int32
@@ -1152,7 +1153,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
 |FileData|Self.[FileData](#filedata)|是|有关触发事件的文件的数据。|
-|SourceWorkload|Self.[SourceWorkload](#sourceworkload)|是|在其中找到 teh 文件的工作负载或服务（例如，SharePoint Online、OneDrive for Business 或 Microsoft Teams）
+|SourceWorkload|Self.[SourceWorkload](#sourceworkload)|是|找到该文件的工作负载和服务（例如 SharePoint Online、OneDrive for Business 或 Microsoft Teams）
 |DetectionMethod|Edm.String|是|Microsoft Defender for Office 365 用于检测的方法或技术。|
 |LastModifiedDate|Edm.Date|是|创建文件或上次修改文件时的协调世界时 (UTC) 日期和时间。|
 |LastModifiedBy|Edm.String|是|创建或上次修改文件的用户的标识符（例如，电子邮件地址）。|
@@ -1439,7 +1440,7 @@ Dynamics 365 中模型驱动应用程的实体事件使用此架构在 Dynamics 
 
 ## <a name="microsoft-forms-schema"></a>Microsoft Forms 架构
 
-[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities)中列出的 Micorosft Forms 事件将使用此架构。
+Office 365 安全与合规中心 [搜索审核日志"中列出的 Microsoft Forms](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities) 将使用此架构。
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -1476,9 +1477,9 @@ Dynamics 365 中模型驱动应用程的实体事件使用此架构在 Dynamics 
 
 ## <a name="mip-label-schema"></a>MIP 标签架构
 
-如果 Microsoft 365 检测到由应用了敏感度标签的传输管道中的代理处理的电子邮件，将触发 Microsoft 信息保护 (MIP) 标签架构中的事件。 敏感度标签可能是手动或自动应用的，也可能是在传输管道内部或外部应用的。 可通过自动应用标签策略将敏感度标签自动应用到电子邮件。
+如果 Microsoft 365 检测到由应用了敏感度标签的传输管道中的代理处理的电子邮件，将触发 Microsoft 信息保护 (MIP) 标签架构中的事件。 敏感度标签可能是手动或自动应用的，也可能是在传输管道内部或外部应用的。 可通过自动应用标签策略将敏感度标签自动应用于电子邮件。
 
-此审核架构的目的即表示全部带有敏感度标签的电子邮件活动的总和。 换句话说，组织里的用户收发的所有带有敏感度标签的电子邮件都应该有一个记录下来的审计活动，而与应用敏感度标签的时间或方式无关。 有关敏感度标签的详细信息，请参阅：
+此审核架构的目的即表示全部带有敏感度标签的电子邮件活动的总和。 换言之，对于向组织中用户发送或发送的每封电子邮件，应存在一个记录的审核活动，并应用了敏感度标签，而不考虑何时或如何应用敏感度标签。 有关敏感度标签的详细信息，请参阅：
 
 - [了解敏感性标签](https://docs.microsoft.com/microsoft-365/compliance/sensitivity-labels)
 
