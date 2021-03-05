@@ -2,17 +2,17 @@
 ms.technology: o365-service-communications
 ms.TocTitle: Troubleshooting the Office 365 Management Activity API
 title: Office 365 管理活动 API 疑难解答
-description: 汇总 Microsoft 支持部门在提供此 API 支持方面所收到的最常见问题。
+description: 汇总 Microsoft 支持部门在提供此 Office 365 管理活动 API 支持方面所收到的最常见问题。
 ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 9c909220d660e0202c3ebda2777b2d8922da45a3
-ms.sourcegitcommit: c3bb30b86a4569e9f18891f1cdc30cbffc8c8db4
+ms.openlocfilehash: d954cc97320953ed35d6e46cb118395469c93394
+ms.sourcegitcommit: 24ef06fd001f273d16be72733509b5ec202d3ebb
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2021
-ms.locfileid: "49784205"
+ms.lasthandoff: 03/03/2021
+ms.locfileid: "50418186"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Office 365 管理活动 API 常见问题和疑难解答
 
@@ -80,9 +80,9 @@ Office 365 管理活动 API（也称为 *统一审核 API*）是 Office 365 安�
 
 TargetUpdatedProperties 显示在 ExtendedProperties 中。 但是，它们将从 ExtendedProperties 中删除，并且现在将显示在 ModifiedProperties 中。
 
-**为什么 Azure Active Directory (Azure AD) 登录活动的 UserAccountNotFound 错误的审核日志不能通过管理活动 API 使用？**
+**为什么 Azure Active Directory (Azure AD) 登录活动的 UserAccountNotFound "LogonError" 的审核日志不能通过管理活动 API 使用？**
 
-从 2020 年 11 月开始，Azure AD 登录活动的审核日志将从 Azure AD 事件中心引入到统一审核日志中。 由于 UserAccountNotFound 登录错误在事件集线器中不可用，因此管理活动 API 不再返回 UserAccountNotFound 错误的审核日志。
+从 2020 年 11 月开始，Azure AD 登录活动的审核日志将从 Azure AD 事件中心引入到统一审核日志中。 由于此更改，无法使用 UserAccountNotFound 值填充 "LogonError" 属性。 自 2021 年 2 月第一周开始，[Azure AD 登录审核架构中的 ErrorCode 属性](https://docs.microsoft.com/office/office-365-management-api/office-365-management-activity-api-schema#azure-active-directory-secure-token-service-sts-logon-schema)现在与[ AADSTS 错误代码](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#lookup-current-error-code-information)匹配。 此外，UserId 参数不会使用 UserAccountNotFound 错误尝试登录时的用户名填充，因为此用户名在组织的 Azure AD 目录中不存在。
 
 ## <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -219,15 +219,16 @@ RawContentLength  : 266
 
 ```powershell
 Invoke-WebRequest -Method Post -Headers $headerParams -Uri "https://<YOUR_API_ENDPOINT>/api/v1.0/$tenantGUID/activity/feed/subscriptions/start?contentType=Audit.AzureActiveDirectory"
+```
 
 > [!NOTE]
-> Remember that `$headerParams` was populated in the first part of the script listed in the [Connecting to the API](#connecting-to-the-api) section in this article.
+> 请记住，在本文的[连接到 API](#connecting-to-the-api)部分列出的脚本的第一部分中填充了 `$headerParams`。
 
-The previous code will create a new subscription to the Audit.AzureActiveDirectory content type, with a webhook that is null. You can then check your subscriptions using the code in the [Checking your subscriptions](#checking-your-subscriptions) section in this article.
+前面的代码将创建一个针对 Audit.AzureActiveDirectory 内容类型的新订阅，其中 webhook 为 null。 然后，你可以使用本文[检查订阅](#checking-your-subscriptions)部分中的代码检查你的订阅。
 
-## Checking content availability
+## <a name="checking-content-availability"></a>检查内容可用性
 
-To check what content blobs were created during a certain period, you can add the following line to the script in the “Connecting to the API” section.
+要检查在特定时间段内创建了哪些内容 Blob，可以将以下行添加到脚本中的“连接到 API”部分。
 
 ```powershell
 Invoke-WebRequest -Method GET -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/content?contentType=Audit.SharePoint"
