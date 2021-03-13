@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c71536ad05afe50e675661cebbfe1826cf6af3fa
-ms.sourcegitcommit: 3a6a64742924b9fbc1ffd6826b5651eb5583f70c
+ms.openlocfilehash: c0e253532abd43779cb624d5b63b907600e0f5b5
+ms.sourcegitcommit: bd92bba316c564fd7c09d5202ce46c1f9276f5ee
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "50096953"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "50726896"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -837,10 +837,23 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
-|Confidence|Edm.Int|是|匹配检测的模式的置信度。|
-|Count|Edm.Int|是|检测到的敏感实例数。|
+|Confidence|Edm.Int|是|敏感信息类型的所有模式匹配聚合置信度。|
+|Count|Edm.Int|是|检测到的敏感实例总数。|
+|位置|Edm.String|否||
 |SensitiveType|Edm.Guid|是|识别检测到的敏感数据类型的 guid。|
 |SensitiveInformationDetections|Self.SensitiveInformationDetections|否|包含具有以下详细信息的敏感信息数据的对象数组 - 匹配值和匹配值上下文。|
+|SensitiveInformationDetailedClassificationAttributes|Collection(SensitiveInformationDetailedConfidenceLevelResult)|是|关于三个置信度级别（高、中和低）的每个级别上检测到的敏感信息类型计数信息，以及其是否匹配 DLP 规则|
+|SensitiveInformationTypeName|Edm.String|否|敏感信息类型的名称。|
+|UniqueCount|Edm.Int32|是|检测到的敏感实例唯一计数。|
+|||||
+
+### <a name="sensitiveinformationdetailedclassificationattributes-complex-type"></a>SensitiveInformationDetailedClassificationAttributes complex type
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|Confidence|Edm.Int32|是|检测到的模式置信度水平。|
+|计数|Edm.Int32|是|特定置信度水平上检测到的敏感实例数量。|
+|IsMatch|Edm.Boolean|是|指示检测到的敏感类型的给定计数和置信度水平是否导致 DLP 规则匹配。|
 |||||
 
 ### <a name="sensitiveinformationdetections-complex-type"></a>SensitiveInformationDetections 复杂类型
@@ -849,7 +862,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
-|Detections|Collection(Self.Detections)|是|检测到的敏感信息数组。 信息包含键值对，其中值 = 匹配值（如 SSN 的信用卡值），上下文 = 来自包含匹配值的源内容的摘要。 |
+|DetectedValues|Collection(Common.NameValuePair)|是|检测到的敏感信息数组。 信息包含键值对，其中值 = 匹配值（如 信用卡值）和上下文 = 来自包含匹配值的源内容的摘要。 |
 |ResultsTruncated|Edm.Boolean|是|指示日志是否由于大量结果而被截断。 |
 |||||
 
