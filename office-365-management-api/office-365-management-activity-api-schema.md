@@ -2,28 +2,25 @@
 ms.technology: o365-service-communications
 ms.TocTitle: Office 365 Management Activity API schema
 title: Office 365 管理活动 API 架构
-description: Office 365 管理活动 API 架构作为两层数据服务提供 - 常见架构和特定于产品的架构。
+description: Office 365 管理活动 API 架构作为数据服务提供两层 - 通用架构和服务特定的架构。
 ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: c0e253532abd43779cb624d5b63b907600e0f5b5
-ms.sourcegitcommit: bd92bba316c564fd7c09d5202ce46c1f9276f5ee
+ms.openlocfilehash: 1d4fdfd920ae10331e789847ef76dc1a719ad2fc
+ms.sourcegitcommit: 1bd313b6add47b58e5aa1af53cd00d2872610556
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/11/2021
-ms.locfileid: "50726896"
+ms.lasthandoff: 03/19/2021
+ms.locfileid: "50903353"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
 Office 365 管理活动 API 架构作为两层数据服务提供：
 
-- **常见架构**。 用于访问核心 Office 365 审核概念（如 Record Type、Creation Time、User Type 和 Action），以及提供核心维度（如 User ID）、具体位置细节（如 Client IP address）和特定于产品的属性（如 Object ID）的接口。 它建立一致且统一的视图，以便用户使用适当参数在少数顶级视图中提取所有 Office 365 审核数据，并为所有数据源提供固定架构，从而极大地降低了学习成本。 常见架构源自于归每个产品团队（如 Exchange、SharePoint、Azure Active Directory、Yammer 和 OneDrive for Business）所有的产品数据。 Object ID 字段可由产品团队扩展，添加特定于产品的属性。
+- **常见架构**。 用于访问核心 Office 365 审核概念（如 Record Type、Creation Time、User Type 和 Action），以及提供核心维度（如 User ID）、具体位置细节（如 Client IP address）和特定于产品的属性（如 Object ID）的接口。 它建立一致且统一的视图，以便用户使用适当参数在少数顶级视图中提取所有 Office 365 审核数据，并为所有数据源提供固定架构，从而极大地降低了学习成本。 常见架构源自于归每个产品团队（如 Exchange、SharePoint、Azure Active Directory、Yammer 和 OneDrive for Business）所有的产品数据。 Microsoft 365 产品团队可以扩展对象 ID 字段，以添加特定于服务的属性。
 
-- **特定于产品的架构**。 基于常见架构，提供一组特定于产品的属性；例如，SharePoint 架构、OneDrive for Business 架构以及 Exchange 管理员架构。
-
-**对于你自身的情况应使用哪个层？**
-一般情况下，如果数据在较高层中可用，则不要回到较低层。 换言之，如果可在特定于产品的架构中满足数据要求，则不需要返回到常见架构。 
+- **特定于服务的架构**。 基于通用架构构建，提供一组 Microsoft 365 服务特定的属性;例如，SharePoint 架构、OneDrive for Business 架构和 Exchange 管理员架构。
 
 ## <a name="office-365-management-api-schemas"></a>Office 365 管理 API 架构
 
@@ -1067,7 +1064,40 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |Verdict|Edm.String|是|邮件裁定。|
 |MessageTime|Edm.Date|是|接收或发送电子邮件的协调世界时 (UTC) 日期和时间。|
 |EventDeepLink|Edm.String|是|指向资源管理器中的电子邮件事件的深层链接或 Office 365 安全与合规中心中的实时报表。|
+|传递操作（即将进行的域） |Edm.String|是|电子邮件上的原始送达操作。|
+|原始送达位置（即将开始字段） |Edm.String|是|电子邮件的原始送达位置。|
+|最新送达位置（即将开始字段） |Edm.String|是|事件发生时电子邮件的最新送达位置。|
+|定向（即将进行的域） |Edm.String|是|标识电子邮件是入站、出站还是组织内邮件。|
+|ThreatsAndDetectionTech（即将推出的域） |Edm.String|是|威胁和相应的检测技术。 此字段显示电子邮件的所有威胁，包括垃圾邮件垃圾邮件程序上的最新威胁。  例如，["Phish： [Spoof DMARC]"，"垃圾邮件：[URL 恶意名称]"]。 下面介绍了不同的检测威胁和检测技术。|
 |||||
+
+> [!NOTE]
+> 建议使用新的 ThreatsAndDetectionTech 字段，因为它显示多个子项和更新的检测技术。 这还会与威胁资源管理器和高级搜索等其他体验内看到的值保持一致。 
+
+### <a name="detection-technologies"></a>检测技术
+
+|**名称**|**说明**|
+|:-----|:-----|
+|常规筛选器 |根据规则钓鱼信号。|
+|模拟品牌 | 附件的文件类型。|
+|欺骗外部域 |发件人试图欺骗一些其他域。|
+|欺骗 DMARC |邮件的 DMARC 身份验证失败。|
+|模拟域 | 模拟客户拥有或定义的域。|
+|文件设置 |发现文件附件在阻止分析过程中错误。|
+|文件信誉 |文件附件由于声誉错误而标记错误。|
+|文件创建的信誉 |由于以前的组织信誉而标记为错误的文件附件。|
+|指纹匹配 |由于之前的邮件，该邮件被标记为错误。|
+|邮箱智能模拟 |基于邮箱智能的模拟。|
+|域的信誉 |基于域的信誉进行分析。|
+|欺骗内部组织 |  发件人试图欺骗收件人域。 |
+|高级筛选器 |  基于机器学习的钓鱼信号。|
+|反恶意软件引擎    | 来自反恶意软件引擎的检测。 |
+|混合分析检测   | 此邮件包括多个筛选器。 |
+|URL 恶意声誉   | 此邮件被视为恶意 URL 错误。 |
+|URL 设置 | 由于以前的恶意 URL 的攻击，此邮件被视为错误。 |
+|URL 组织的信誉| 恶意 URL 阻止将邮件视为错误。 |
+|模拟用户|    模拟由管理员定义的用户或通过邮箱智能了解的用户。|
+|Campaign   |被标识为活动一部分的消息。|
 
 ### <a name="attachmentdata-complex-type"></a>AttachmentData 复杂类型
 
@@ -1081,6 +1111,9 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |MalwareFamily|Edm.String|否|文件恶意软件系列。|
 |SHA256|Edm.String|是|文件 SHA256 哈希。|
 |||||
+
+> [!NOTE]
+> 在 Malware 系列中，你将能够看到准确的 Malware你的姓名（例如，HTML/Phish.VS！MSR） 或恶意负载作为静态字符串。 未识别特定名称时，恶意负载仍可被视为恶意电子邮件。
 
 ### <a name="enum-fileverdict---type-edmint32"></a>枚举：FileVerdict - 类型：Edm.Int32
 
