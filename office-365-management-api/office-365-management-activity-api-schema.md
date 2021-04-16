@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 1d4fdfd920ae10331e789847ef76dc1a719ad2fc
-ms.sourcegitcommit: 1bd313b6add47b58e5aa1af53cd00d2872610556
+ms.openlocfilehash: 9ce20bd1fd8f0b6e706df46a5d8b63540962ffaf
+ms.sourcegitcommit: dfdacf2cdee3ad0f305167ba0c8a9bf9df8af356
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/19/2021
-ms.locfileid: "50903353"
+ms.lasthandoff: 04/14/2021
+ms.locfileid: "51761995"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -1064,11 +1064,11 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |Verdict|Edm.String|是|邮件裁定。|
 |MessageTime|Edm.Date|是|接收或发送电子邮件的协调世界时 (UTC) 日期和时间。|
 |EventDeepLink|Edm.String|是|指向资源管理器中的电子邮件事件的深层链接或 Office 365 安全与合规中心中的实时报表。|
-|传递操作（即将进行的域） |Edm.String|是|电子邮件上的原始送达操作。|
-|原始送达位置（即将开始字段） |Edm.String|是|电子邮件的原始送达位置。|
-|最新送达位置（即将开始字段） |Edm.String|是|事件发生时电子邮件的最新送达位置。|
-|定向（即将进行的域） |Edm.String|是|标识电子邮件是入站、出站还是组织内邮件。|
-|ThreatsAndDetectionTech（即将推出的域） |Edm.String|是|威胁和相应的检测技术。 此字段显示电子邮件的所有威胁，包括垃圾邮件垃圾邮件程序上的最新威胁。  例如，["Phish： [Spoof DMARC]"，"垃圾邮件：[URL 恶意名称]"]。 下面介绍了不同的检测威胁和检测技术。|
+|发送操作 |Edm.String|是|电子邮件上的原始送达操作。|
+|原始送达位置 |Edm.String|是|电子邮件的原始送达位置。|
+|最新送达位置 |Edm.String|是|事件发生时电子邮件的最新送达位置。|
+|方向性 |Edm.String|是|标识电子邮件是入站、出站还是组织内邮件。|
+|ThreatsAndDetectionTech |Edm.String|是|威胁和相应的检测技术。 此字段显示电子邮件的所有威胁，包括垃圾邮件垃圾邮件程序上的最新威胁。  例如，["Phish： [Spoof DMARC]"，"垃圾邮件：[URL 恶意名称]"]。 下面介绍了不同的检测威胁和检测技术。|
 |||||
 
 > [!NOTE]
