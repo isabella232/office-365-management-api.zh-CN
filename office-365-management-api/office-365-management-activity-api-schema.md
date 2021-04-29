@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 9ce20bd1fd8f0b6e706df46a5d8b63540962ffaf
-ms.sourcegitcommit: dfdacf2cdee3ad0f305167ba0c8a9bf9df8af356
+ms.openlocfilehash: 5e2274dd3d5050a0db433fd93aa8ea1514744549
+ms.sourcegitcommit: c3786c4bfacf3c1187f1269c162946288b45c967
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/14/2021
-ms.locfileid: "51761995"
+ms.lasthandoff: 04/27/2021
+ms.locfileid: "52059939"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -69,7 +69,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |RecordType|Self.[AuditLogRecordType](#auditlogrecordtype)|是|记录指示的操作类型。 有关审核日志记录类型的详细信息表，请参阅 [AuditLogRecordType](#auditlogrecordtype)。|
 |CreationTime|Edm.Date|是|用户执行活动时的协调世界时 (UTC) 日期和时间。|
 |Operation|Edm.String|是|用户或管理员活动的名称。 有关最常见操作/活动的说明，请参阅[在 Office 365 保护中心搜索审核日志](https://go.microsoft.com/fwlink/p/?LinkId=708432)。 对于 Exchange 管理员活动，此属性标识已运行的 cmdlet 名称。 对于 DLp 事件，这可以是“DLP 架构”下描述的“DlpRuleMatch”、“DlpRuleUndo”或“DlpInfo”。|
-|OrganizationId|Edm.Guid|是|组织 Office 365 租户的 GUID。 对于组织而言，该值始终相同，而不管它是在哪个 Office 365 服务中出现。|
+|OrganizationId|Edm.Guid|是|组织 Office 365 租户的 GUID。对于组织而言，该值始终相同，而不管它是在哪个 Office 365 服务中出现。|
 |UserType|Self.[UserType](#user-type)|是|执行操作的用户类型。 有关用户类型的详细信息，请参阅 [UserType](#user-type) 表。|
 |UserKey|Edm.String|是|UserID 属性中标识的用户的备选 ID。 例如，此属性使用 passport 唯一 ID (PUID) 填充，用于 SharePoint、OneDrive for Business 和 Exchange 中用户执行的事件。 此属性还可以为系统帐户执行的其他服务和事件中发生的事件指定与 UserID 属性相同的值。|
 |Workload|Edm.String|否|其中发生活动的 Office 365 服务。 
@@ -258,9 +258,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |**成员名称**|**说明**|
 |:-----|:-----|
 |AccessInvitationAccepted|邀请查看或编辑共享文件（或文件夹）的收件人已通过单击邀请中的链接访问共享文件。|
-|AccessInvitationCreated|用户向其他人发出邀请（在其组织内部或外部）来查看或编辑 SharePoint 或 OneDrive for Business 网站上的共享文件或文件夹。 事件条目的详细信息标识共享文件的名称、接收邀请的用户以及发送邀请的人员所选择的共享权限的类型。|
+|AccessInvitationCreated|用户向其他人发出邀请（在其组织内部或外部）来查看或编辑 SharePoint 或 OneDrive for Business 网站上的共享文件或文件夹。事件条目的详细信息标识共享文件的名称、接收邀请的用户以及发送邀请的人员所选择的共享权限的类型。|
 |AccessInvitationExpired|向外部用户发送的邀请过期。默认情况下，如果未接受邀请，向您组织之外的某个用户发送的邀请将在 7 天之后过期。|
-|AccessInvitationRevoked|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者撤回发送给组织外部用户的邀请。 邀请只有在被接受之前才能撤回。|
+|AccessInvitationRevoked|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者撤回发送给组织外部用户的邀请。邀请只有在被接受之前才能撤回。|
 |AccessInvitationUpdated|在 SharePoint 或 OneDrive for Business 网站上创建并向其他人发送邀请以查看或编辑共享文件（或文件夹）的用户可以重新发送邀请。|
 |AccessRequestApproved|SharePoint 或 OneDrive for Business 中的网站管理员或网站或文档所有者批准用户访问网站或文档的请求。|
 |AccessRequestCreated|用户请求访问 SharePoint 或 OneDrive for Business 中无权限访问的网站或文档。 |
@@ -279,7 +279,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |CustomFieldOrLookupTableCreated|用户在 Project Web App 中创建自定义字段或查找表/项。|
 |CustomFieldOrLookupTableDeleted|用户在 Project Web App 中删除自定义字段或查找表/项。|
 |CustomFieldOrLookupTableModified|用户在 Project Web App 中修改自定义字段或查找表/项。|
-|CustomizeExemptUsers|全局管理员自定义 SharePoint 管理中心的豁免用户代理列表。 可以指定哪些用户代理可以免于接收用于编制索引的整个 Web页面。 这意味着，当指定为豁免的用户代理遇到 InfoPath 表单时，表单将作为 XML 文件而不是整个 Web 页面返回。 这可以加速对 InfoPath 表单编制索引。|
+|CustomizeExemptUsers|全局管理员自定义 SharePoint 管理中心的豁免用户代理列表。可以指定哪些用户代理可以免于接收用于编制索引的整个 Web页面。这意味着，当指定为豁免的用户代理遇到 InfoPath 表单时，表单将作为 XML 文件而不是整个 Web 页面返回。这可以加速对 InfoPath 表单编制索引。|
 |DefaultLanguageChangedInTermStore*|术语库中的语言设置发生更改。|
 |DelegateModified|用户创建或修改 Project Web App 中的安全代理。|
 |DelegateRemoved|用户删除 Project Web App 中的安全代理。|
@@ -294,11 +294,11 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |EntityDeleted|用户删除 Project Web App 中的时间表。|
 |EntityForceCheckedIn|用户在 Project Web App 中的日历、自定义字段或查找表上强制签入。|
 |ExemptUserAgentSet|全局管理员向 SharePoint 管理中心的豁免用户代理列表添加用户代理。|
-|FileAccessed|用户或系统帐户访问 SharePoint 或 OneDrive for Business 网站上的文件。 系统帐户还可以生成 FileAccessed 事件。|
+|FileAccessed|用户或系统帐户访问 SharePoint 或 OneDrive for Business 网站上的文件。系统帐户还可以生成 FileAccessed 事件。|
 |FileCheckOutDiscarded|用户放弃（或撤消）签出的文件。这意味着将放弃签出文件时对其所做的更改，而不将其保存到文档库中的文档版本。|
 |FileCheckedIn|用户签入在 SharePoint 或 OneDrive for Business 文档库中签出的文档。|
-|FileCheckedOut|用户签出位于 SharePoint 或 OneDrive for Business 文档库的文档。 用户可以对与其共享的文档执行签出和更改操作。|
-|FileCopied|用户从 SharePoint 或 OneDrive for Business 网站复制文档。 可以将复制的文件保存到网站上的另一个文件夹。|
+|FileCheckedOut|用户签出位于 SharePoint 或 OneDrive for Business 文档库的文档。用户可以签出与之共享的文档并对其进行更改。|
+|FileCopied|用户从 SharePoint 或 OneDrive for Business 网站复制文档。可以将复制的文件保存到网站上的其他文件夹中。|
 |FileDeleted|用户从 SharePoint 或 OneDrive for Business 网站删除文档。|
 |FileDeletedFirstStageRecycleBin|用户从 SharePoint 或 OneDrive for Business 网站上的回收站删除文件。|
 |FileDeletedSecondStageRecycleBin|用户从 SharePoint 或 OneDrive for Business 网站上的第二阶段回收站删除文件。|
@@ -310,9 +310,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |FileRenamed|用户在 SharePoint 或 OneDrive for Business 网站上重命名文档。|
 |FileRestored|用户从 SharePoint 或 OneDrive for Business 网站的回收站中恢复文档。 |
 |FileSyncDownloadedFull|用户建立同步关系，并首次成功从 SharePoint 或 OneDrive Business 文档库将文件下载到他们的计算机。|
-|FileSyncDownloadedPartial|用户成功下载对 SharePoint 或 OneDrive for Business 文档库中的文件所做的任何更改。 此事件表明对文档库中的文件所做的任何更改已下载到用户计算机。 仅下载了更改，因为用户先前已下载文档库（如 FileSyncDownloadedFull 事件所示）。|
+|FileSyncDownloadedPartial|用户成功下载对 SharePoint 或 OneDrive for Business 文档库中的文件所做的任何更改。此事件表明对文档库中的文件所做的任何更改已下载到用户计算机。仅下载了更改，因为用户先前已下载文档库（如 FileSyncDownloadedFull 事件所示）。|
 |FileSyncUploadedFull|用户建立同步关系，并首次成功从他们的计算机将文件上传到 SharePoint 或 OneDrive Business 文档库。|
-|FileSyncUploadedPartial|用户成功上传对 SharePoint 或 OneDrive for Business 文档库上的文件所做的更改。 此事件表明对文档库文件的本地版本所做的任何更改都已成功上传到文档库。 仅上传更改，因为用户先前已上传这些文件（如 FileSyncUploadedFull 事件所示）。|
+|FileSyncUploadedPartial|用户成功上传对 SharePoint 或 OneDrive for Business 文档库上的文件所做的更改。此事件表明对文档库文件的本地版本所做的任何更改都已成功上传到文档库。仅上传更改，因为用户先前已上传这些文件（如 FileSyncUploadedFull 事件所示）。|
 |FileUploaded|用户将文档上传到 SharePoint 或 OneDrive for Business 网站上的文件夹。 |
 |FileViewed|此事件已被 FileAccessed 事件取代，并且已弃用。|
 |FolderCopied|用户将文件夹从 SharePoint 或 OneDrive for Business 网站复制到 SharePoint 或 OneDrive for Business 的其他位置。|
@@ -324,20 +324,20 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |FolderMoved|用户从 SharePoint 或 OneDrive for Business 网站移动文件夹。|
 |FolderRenamed|用户在 SharePoint 或 OneDrive for Business 网站上重命名文件夹。|
 |FolderRestored|用户从 SharePoint 或 OneDrive for Business 网站上的回收站恢复文件夹。|
-|GroupAdded|网站管理员或所有者为 SharePoint 或 OneDrive for Business 网站创建组，或者执行导致创建组的任务。 例如，当用户首次创建共享文件的链接时，系统组会被添加到用户的 OneDrive for Business 网站中。 此事件也可以是用户使用编辑权限创建共享文件链接的结果。|
+|GroupAdded|网站管理员或所有者为 SharePoint 或 OneDrive for Business 网站创建组，或执行导致创建组的任务。例如，当用户首次创建共享文件的链接时，系统组会被添加到用户的 OneDrive for Business 网站中。此事件也可以是用户使用编辑权限创建共享文件链接的结果。|
 |GroupRemoved|用户从 SharePoint 或 OneDrive for Business 网站删除组。 |
-|GroupUpdated|网站管理员或所有者更改 SharePoint 或 OneDrive for Business 网站的组设置。 这可能包括更改组名、可以查看或编辑组成员身份的人员，以及成员身份请求的处理方式。|
+|GroupUpdated|网站管理员或所有者更改 SharePoint 或 OneDrive for Business 网站的组设置。这可能包括更改组名、可查看或编辑组成员身份的人员，以及成员身份请求的处理方式。|
 |LanguageAddedToTermStore|向术语库中添加了语言。|
 |LanguageRemovedFromTermStore|从术语库中删除了语言。|
-|LegacyWorkflowEnabledSet|网站管理员或所有者向网站添加 SharePoint 工作流任务内容类型。 全局管理员还可以在 SharePoint 管理中心中对整个组织启用工作流。|
+|LegacyWorkflowEnabledSet|网站管理员或所有者向网站添加 SharePoint 工作流任务内容类型。全局管理员还可以在 SharePoint online 管理中心为整个组织启用工作流。|
 |LookAndFeelModified|用户修改快速启动、甘特图格式或组格式。  或者用户在 Project Web App 中创建、修改或删除视图。|
 |ManagedSyncClientAllowed|用户成功建立与 SharePoint 或 OneDrive for Business 网站的同步关系。 同步关系之所以成功，是因为用户计算机是添加到域列表（称为“安全收件人列表”）的域成员，可以访问组织中的文档库。 有关详细信息，请参阅[使用 SharePoint Online PowerShell ](https://go.microsoft.com/fwlink/p/?LinkID=534609)为安全收件人列表中的域启用 OneDrive 同步。|
 |MaxQuotaModified|修改了网站的最大限额。|
 |MaxResourceUsageModified|修改了网站所允许的最大资源使用量。|
 |MySitePublicEnabledSet|SharePoint 管理员设置了使用户拥有公共 MySites 的标志。|
-|NewsFeedEnabledSet|网站管理员或所有者启用 SharePoint 或 OneDrive for Business 网站的 RSS 源。 全局管理员可以在 SharePoint 管理中心中对整个组织启用 RSS 源。|
+|NewsFeedEnabledSet|网站管理员或所有者启用 SharePoint 或 OneDrive for Business 网站的 RSS 源。全局管理员还可以在 SharePoint 管理中心为整个组织启用 RSS 源。|
 |ODBNextUXSettings|已启用 OneDrive for Business 的新 UI。|
-|OfficeOnDemandSet|网站管理员启用 Office on Demand，允许用户访问最新版本的 Office 桌面应用程序。 SharePoint 管理中心启用了 Office on Demand，并需要包括全套已安装的 Office 应用程序的 Office 365 订阅。|
+|OfficeOnDemandSet|网站管理员启用 Office on Demand，允许用户访问最新版本的 Office 桌面应用程序。SharePoint 管理中心启用了 Office on Demand，并需要包括全套已安装的 Office 应用程序的 Office 365 订阅。|
 |PageViewed|用户在 SharePoint 网站或 OneDrive for Business 网站上查看页面。 这不包括在浏览器上从 SharePoint 网站或 One Drive for Business 网站查看文档库文件。|
 |PeopleResultsScopeSet|网站管理员创建或更改 SharePoint 网站人员搜索的结果来源。|
 |PermissionSyncSettingModified|用户修改 Project Web App 中的项目权限同步设置。|
@@ -379,15 +379,15 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |SecondaryMySiteOwnerSet|用户向其 MySite 添加了第二所有者。|
 |SecurityCategoryModified|用户在 Project Web App 中创建、修改或删除安全类别。|
 |SecurityGroupModified|用户在 Project Web App 中创建、修改或删除安全组。|
-|SendToConnectionAdded|全局管理员在 SharePoint 管理中心中的“记录管理”页上创建新“发送至”连接。 “发送至”连接指定文档存储库或记录中心设置。 创建“收件人”连接时，内容管理器可以将文档提交到指定位置。|
+|SendToConnectionAdded|全局管理页在 SharePoint 管理中心内的“记录管理”页面上创建一个新的“发送至”连接。“发送至”连接指定文档库或记录中心的设置。创建“发送至”连接时，内容管理器可以将文档提交到指定的位置。|
 |SendToConnectionRemoved|全局管理员在 SharePoint 管理中心的“记录管理”页上删除“发送至”连接。|
-|SharedLinkCreated|用户在 SharePoint 或 OneDrive for Business 中创建共享文件的链接。 此链接可以发送给其他人，以便授予其对文件的访问权限。 用户可创建两个类型的链接：允许用户查看和编辑共享文件的链接，或仅允许用户查看文件的链接。|
+|SharedLinkCreated|用户在 SharePoint 或 OneDrive for Business 中创建共享文件的链接。此链接可以发送给其他人，以便授予其对文件的访问权限。用户可创建两个类型的链接：允许用户查看和编辑共享文件的链接，或仅允许用户查看文件的链接。|
 |SharedLinkDisabled|用户禁用（永久）为共享文件而创建的链接。|
 |SharingInvitationAccepted*|用户接受共享文件或文件夹的邀请。 当用户与其他用户共享文件时，将记录此事件。|
 |SharingRevoked|用户取消共享以前与其他用户共享的文件或文件夹。当用户停止与其他用户共享文件时，会记录此事件。|
 |SharingSet|用户与组织内的其他用户共享位于 SharePoint 或 OneDrive for Business 中的文件或文件夹。|
-|SiteAdminChangeRequest|用户请求添加为 SharePoint 网站集的网站集管理员。 网站集管理员具有网站集和所有子网站的完全控制权限。|
-|SiteCollectionAdminAdded*|网站集管理员或所有者添加人员，作为 SharePoint 或 OneDrive for Business 网站的网站集管理员。 网站集管理员具有网站集和所有子网站的完全控制权限。|
+|SiteAdminChangeRequest|用户请求添加为 SharePoint 网站集的网站集管理员。网站集管理员具有网站集和所有子网站的完全控制权限。|
+|SiteCollectionAdminAdded*|网站集管理员或所有者添加了作为 SharePoint 或 OneDrive for Business 网站的网站集管理员的人员。网站集管理员具有对网站集和所有子网站的完全控制权限。|
 |SiteCollectionCreated| 全局管理员在 SharePoint 组织中创建新的网站集。|
 |SiteRenamed|网站管理员或所有者重命名 SharePoint 或 OneDrive for Business 网站|
 |StatusReportModified|用户在 Project Web App 中创建、修改或删除状态报告。|
@@ -404,8 +404,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |TimesheetSubmitted|用户在 Project Web App 中提交状态时间表。|
 |UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](https://docs.microsoft.com/powershell/module/sharepoint-online/index)。|
 |UpdateSSOApplication|Secure Store Service 中更新了目标应用程序。|
-|UserAddedToGroup|网站管理员或所有者向 SharePoint 或 OneDrive for Business 网站上的组添加人员。 向组添加人员授予用户已分配给组的权限。 |
-|UserRemovedFromGroup|网站管理员或所有者从 SharePoint 或 OneDrive for Business 网站上的组删除人员。 删除该人员后，不再向其授予已分配给组的权限。 |
+|UserAddedToGroup|网站管理员或所有者向 SharePoint 或 OneDrive for Business 网站上的组添加人员。向组添加人员授予用户已分配给组的权限。 |
+|UserRemovedFromGroup|网站管理员或所有者从 SharePoint 或 OneDrive for Business 网站上的组删除人员。删除该人员后，不再向其授予已分配给组的权限。 |
 |WorkflowModified|用户在 Project Web App 中创建、修改或删除 Enterprise Project 类型或 Workflow 阶段。|
 |||||
 
@@ -743,6 +743,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|:-----|
 |ApplicationId|Edm.String|否|表示正在请求登录的应用程序的 GUID。 可以通过 Azure Active Directory Graph API 查找显示名称。|
 |Client|Edm.String|否|客户端设备信息，由执行登录的浏览器提供。|
+|DeviceProperties|Collection(Common.NameValuePair)|否|此属性包含各种设备详细信息，包括 ID、显示名称、操作系统、浏览器、IsCompliant、IsCompliantAndManaged、SessionId 和 DeviceTrustType。 DeviceTrustType 属性可具有以下值：<br/><br/>**0** - 已注册 Azure AD<br/> **1** - 已建立 Azure AD 联接<br/> **2** - 已建立混合 Azure AD 联接|
 |ErrorCode|Edm.String|否|对于失败的登录（"操作"属性的值为 UserLoginFailed），此属性包含 Azure Active Directory STS （AADSTS） 错误代码。 有关这些错误代码的说明，请参阅 [身份验证和授权错误](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes)。 登录名 `0` 表示登录成功。|
 |LogonError|Edm.String|否|对于登录失败，此属性包含用户可阅读的登录失败原因说明。|
 |||||
@@ -988,6 +989,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |名称|Edm.String|否|仅用于设置事件。 已更改的设置的名称。|
 |OldValue|Edm.String|否|仅用于设置事件。 设置的旧值。|
 |NewValue|Edm.String|否|仅用于设置事件。 设置的新值。|
+|MessageURLs|Edm.String|否|为在 Teams 邮件中发送的任何 URL 进行演示。|
 ||||
 
 ### <a name="microsoftteamsmember-complex-type"></a>MicrosoftTeamsMember 复杂类型
@@ -1236,7 +1238,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 [Office 365 自动调查和响应 (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) 事件适用于订阅了 Microsoft Defender for Office 365 计划 2 或 Office 365 E5 的 Office 365 客户。将根据调查状态的变化记录调查事件。 将根据调查状态的变化记录调查事件。 例如，当管理员执行将调查状态从“挂起的操作”更改为“已完成”的操作时，将记录一个事件。
 
-目前，仅记录自动调查事件。 （手动生成调查的事件即将提供。）将记录以下状态值：
+目前，只记录自动调查。（即将提供手动生成调查的事件。）将记录以下状态值：
 
 - 已开始调查
 - 未发现威胁
@@ -1518,7 +1520,7 @@ Office 365 安全与合规中心 [搜索审核日志"中列出的 Microsoft Form
 |:-----|:-----|:-----|
 |0|表单|使用“新建表单”选项创建的表单。|
 |1|测验|使用“新建测验”选项创建的测验。  测验是表单的一种特殊类型，包含得分值、自动和手动评分、批注等附加功能。|
-|2|调查|使用“新建调查”选项创建的调查。  调查是表单的一种特殊类型，包含 CMS 集成和对流程规则的支持等附加功能。|
+|2|调查|使用“新建调查”选项创建的调查。调查是表单的一种特殊类型，包含 CMS 集成和对流程规则的支持等附加功能。|
 ||||
 
 ## <a name="mip-label-schema"></a>MIP 标签架构
