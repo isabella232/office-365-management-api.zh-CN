@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 5e2274dd3d5050a0db433fd93aa8ea1514744549
-ms.sourcegitcommit: c3786c4bfacf3c1187f1269c162946288b45c967
+ms.openlocfilehash: fe70aa617829bcfc9709c32f6349798f0ceb27aa
+ms.sourcegitcommit: b112bebdb289e0be863009ac032b11107a12c1f8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/27/2021
-ms.locfileid: "52059939"
+ms.lasthandoff: 07/01/2021
+ms.locfileid: "53242689"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -24,7 +24,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="office-365-management-api-schemas"></a>Office 365 管理 API 架构
 
-本文详细介绍了常见架构以及每个特定于产品的架构。 下表描述了可用的架构。
+本文详细介绍了常见架构以及每个特定于产品的架构。下表描述了可用的架构。
 
 |架构名称|说明|
 |:-----|:-----|
@@ -223,8 +223,8 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |EventSource|Edm.String String="Microsoft.Office.Audit.Schema.SharePoint.[EventSource](#eventsource)"|否|识别在 SharePoint 中发生的事件。 可能的值为 **SharePoint** 或 **ObjectModel**。|
 |SourceName|Edm.String|否|触发已审核操作的实体。 可能的值为 SharePoint 或 **ObjectModel**。|
 |UserAgent|Edm.String|否|有关用户客户端或浏览器的信息。 此信息由客户端或浏览器提供。|
-|MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。 只有在请求中存在该信息时才会报告该信息。|
-|MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。 只有在请求中存在该信息时才会报告该信息。|
+|MachineDomainInfo|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。只有在请求中存在该信息时才会报告该信息。|
+|MachineId|Edm.String Term="Microsoft.Office.Audit.Schema.PIIFlag" Bool="true"|否|有关设备同步操作的信息。只有在请求中存在该信息时才会报告该信息。|
 |||||
 
 ### <a name="enum-itemtype---type-edmint32"></a>枚举：ItemType - 类型：Edm.Int32
@@ -532,7 +532,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|:-----|
 |ModifiedObjectResolvedName|Edm.String|否|这是通过 cmdlet 修改的对象的用户友好名称。 只有当 cmdlet 修改对象时才会记录此参数。|
 |参数|Collection(Common.NameValuePair)|否|与 Operations 属性中标识的 cmdlet 结合使用的所有参数的名称和值。|
-|ModifiedProperties|Collection(Common.ModifiedProperty)|否|该属性包含在管理员事件中。 该属性包括已修改属性的名称、已修改属性的新值和已修改对象的先前值。|
+|ModifiedProperties|Collection(Common.ModifiedProperty)|否|该属性包含在管理员事件中。该属性包括已修改属性的名称、已修改属性的新值和已修改对象的先前值。|
 |ExternalAccess|Edm.Boolean|是|指定 cmdlet 是由组织中的用户、Microsoft 数据中心人员或数据中心服务帐户，还是由委托的管理员运行。 值 **False** 表示 cmdlet 由组织中的某人运行。 值 **True** 表示 cmdlet 由数据中心人员、数据中心服务帐户或委托的管理员运行。|
 |OriginatingServer|Edm.String|否|从中执行 cmdlet 的服务器的名称。|
 |OrganizationName|Edm.String|否|租户名称。|
@@ -626,7 +626,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |:-----|:-----|:-----|:-----|
 |AzureActiveDirectoryEventType|Self.[AzureActiveDirectoryEventType](#azureactivedirectoryeventtype)|是|Azure AD 事件的类型。 |
 |ExtendedProperties|Collection(Common.NameValuePair)|否|Azure AD 事件的扩展属性。|
-|ModifiedProperties|Collection(Common.ModifiedProperty)|否|该属性包含在管理员事件中。 该属性包括已修改属性的名称、已修改属性的新值和已修改属性的先前值。|
+|ModifiedProperties|Collection(Common.ModifiedProperty)|否|此属性包含在管理员事件中。该属性包括已修改属性的名称、已修改属性的新值和已修改属性的先前值。|
 |||||
 
 ### <a name="enum-azureactivedirectoryeventtype---type--edmint32"></a>枚举：AzureActiveDirectoryEventType - 类型 - Edm.Int32
@@ -784,6 +784,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |DocumentSharer|Edm.String|是|上次修改共享文档的用户。|
 |UniqueId|Edm.String|是|标识文件的 guid。|
 |LastModifiedTime|Edm.DateTime|是|上次修改文档时的 UTC 时间戳。|
+|IsViewableByExternalUsers|Edm.Boolean|是|确定文件是否可供任何外部用户访问。|
 |||||
 
 ### <a name="exchangemetadata-complex-type"></a>ExchangeMetadata 复杂类型
@@ -879,7 +880,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**参数**|**类型**|**强制**|**说明**|
 |:-----|:-----|:-----|:-----|
 |StartTime|Edm.Date|否|执行 cmdlet 时的日期和时间。|
-|ClientRequestId|Edm.String|否|可用于将此 cmdlet 与安全与合规中心 UX 操作关联起来的 GUID。 此信息仅供 Microsoft 支持部门使用。|
+|ClientRequestId|Edm.String|否|可用于将此 cmdlet 与安全与合规中心 UX 操作关联起来的 GUID。此信息仅供 Microsoft 支持部门使用。|
 |CmdletVersion|Edm.String|否|执行 cmdlet 时的内部版本号。|
 |EffectiveOrganization|Edm.String|否|受 cmdlet 影响的组织 GUID。 （弃用：此参数以后将停止显示。）|
 |UserServicePlan|Edm.String|否|分配给执行 cmdlet 的用户的 Exchange Online Protection 服务计划。|
@@ -916,7 +917,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |Comments|Edm.String|否|查看过警报的用户留下的注释。 默认情况下为“新警报”。|
 |Data|Edm.String|否|警报或警报实体的详细数据 blob。|
 |AlertEntityId|Edm.String|否|警报实体的标识符。 此参数仅适用于 AlertEntityGenerated 事件。|
-|EntityType|Edm.String|否|警报或警报实体的类型。 实体类型包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>User</p></li><li><p>Recipients</p></li><li><p>Sender</p></li><li><p>MalwareFamily</p></li></ul>此参数仅适用于 AlertEntityGenerated 事件。|
+|EntityType|Edm.String|否|警报或警报实体的类型。实体类型包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>User</p></li><li><p>Recipients</p></li><li><p>Sender</p></li><li><p>MalwareFamily</p></li></ul>此参数仅适用于 AlertEntityGenerated 事件。|
 |||||
 
 ## <a name="yammer-schema"></a>Yammer 架构
