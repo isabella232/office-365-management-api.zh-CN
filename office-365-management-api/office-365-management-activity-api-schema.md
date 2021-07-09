@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: fe70aa617829bcfc9709c32f6349798f0ceb27aa
-ms.sourcegitcommit: b112bebdb289e0be863009ac032b11107a12c1f8
+ms.openlocfilehash: 8ee293d2e82fc2a4cc5cce04289c7428f39339d5
+ms.sourcegitcommit: 1c2efaeeeb4942591cf37f16edb64b3b41b9e83c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2021
-ms.locfileid: "53242689"
+ms.lasthandoff: 07/07/2021
+ms.locfileid: "53326600"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -24,7 +24,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="office-365-management-api-schemas"></a>Office 365 管理 API 架构
 
-本文详细介绍了常见架构以及每个特定于产品的架构。下表描述了可用的架构。
+本文详细介绍了常见架构以及特定于服务的架构。下表描述了可用的架构。
 
 |架构名称|说明|
 |:-----|:-----|
@@ -48,6 +48,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |[数据中心安全 Cmdlet 架构](#data-center-security-cmdlet-schema)|使用特定于所有数据中心安全 cmdlet 审核数据的属性扩展数据中心安全基本架构。|
 |[Microsoft Teams 架构](#microsoft-teams-schema)|使用特定于所有 Microsoft Teams 事件的属性扩展常见架构。|
 |[Microsoft Defender for Office 365 和威胁调查与响应架构](#microsoft-defender-for-office-365-and-threat-investigation-and-response-schema)|使用特定于 Defender for Office 365 与威胁调查和响应数据的属性扩展常见架构。|
+|[提交架构](#submission-schema)|使用 Microsoft Defender for Office 365 中特定于用户和管理员提交的属性来扩展常见架构。|
 |[自动调查和响应事件架构](#automated-investigation-and-response-events-in-office-365)|使用特定于 Office 365 自动调查和响应 (AIR) 事件的属性扩展常见架构。 要查看示例，请参阅[技术社区博客：使用 Microsoft Defender for Office 365 和 O365 管理 API 改进 SOC 的有效性](https://techcommunity.microsoft.com/t5/microsoft-security-and/improve-the-effectiveness-of-your-soc-with-office-365-atp-and/ba-p/1525185)。|
 |[卫生事件架构](#hygiene-events-schema)|使用特定于 Exchange Online Protection 和 Microsoft Defender for Office 365 中的事件的属性扩展常见架构。|
 |[Power BI 架构](#power-bi-schema)|使用特定于所有 Power BI 事件的属性扩展常见架构。|
@@ -75,7 +76,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |Workload|Edm.String|否|其中发生活动的 Office 365 服务。 
 |ResultStatus|Edm.String|否|指示操作（在 Operation 属性中指定）成功还是失败。 可能的值为：**Succeeded**、**PartiallySucceeded** 或 **Failed**。 对于 Exchange 管理员活动，值为 **True** 或 **False**。<br/><br/>**重要说明**：不同的工作负载可能会覆盖 ResultStatus 属性的值。 例如，对于 Azure Active Directory STS 登录事件，ResultStatus 的“**已成功**”值仅指示 HTTP 操作成功；这并不意味着登录成功。 若要确定实际登录是否成功，请参阅 [Azure Active Directory STS 登录架构](#azure-active-directory-secure-token-service-sts-logon-schema)中的 LogonError 属性。 如果登录失败，则此属性的值将包含登录尝试失败的原因。 |
 |ObjectId|Edm.string|否|对于 SharePoint 和 OneDrive for Business 活动，用户访问的文件或文件夹的完整路径名称。 对于 Exchange 管理员审核日志，通过 cmdlet 修改的对象的名称。|
-|UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。 在 SharePoint 中，UserId 属性中的另一个数值显示为 app@sharepoint。 这表明执行活动的“用户”是在 SharePoint 中拥有必要权限的应用程序，代表用户、管理员或服务执行组织范围内操作（例如，搜索 SharePoint 网站或 OneDrive 帐户）。 有关详细信息，请参阅[审核记录中的 app@sharepoint 用户](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records)。 |
+|UserID|Edm.string|是|执行导致记录被记录的操作（在 Operation 属性中指定）的用户的 UPN（用户主体名称）；例如 `my_name@my_domain_name`。 注意，系统帐户执行的活动记录（例如 SHAREPOINT\system 或 NT AUTHORITY\SYSTEM）也包括在内。 在 SharePoint 中，UserId 属性中的另一个数值显示为 app@sharepoint。 这表明执行活动的“用户”是在 SharePoint 中拥有必要权限的应用程序，代表用户、管理员或服务执行组织范围内操作（例如，搜索 SharePoint 网站或 OneDrive 帐户）。 有关详细信息，请参阅[审核记录中的 app@sharepoint 用户](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#the-appsharepoint-user-in-audit-records)。 |
 |ClientIP|Edm.String|是|记录活动时使用的设备的 IP 地址。 IP 地址显示为 IPv4 或 IPv6 地址格式。<br/><br/>对于某些服务，此属性中显示的值可能是代表用户调用服务的受信任应用程序（例如，Web 应用上的 Office）的 IP 地址，而不是执行活动的人员使用的设备的 IP 地址。 <br/><br/>此外，对于与 Azure Active Directory 相关的事件，不会记录 IP 地址，并且 ClientIP 属性的值为 `null`。|
 |范围|Self.[AuditLogScope](#auditlogscope)|否|此事件是由托管的 O365 服务还是本地服务器创建的？ 可能的值为 **online** 和 **onprem**。 请注意，SharePoint 是当前将事件从本地发送到 O365 的唯一工作负载。|
 |||||
@@ -129,9 +130,9 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |45|PowerAppsApp|Power Apps 事件。|
 |46|PowerAppsPlan|适用于 Power 应用的订阅计划事件。 |
 |47|ThreatIntelligenceAtpContent|在 Microsoft Defender for Office 365 中，SharePoint、OneDrive for Business 和 Microsoft Teams 中的文件的网络钓鱼和恶意软件事件。|
-|48|LabelContentExplorer|与[数据分类内容资源管理器](https://docs.microsoft.com/microsoft-365/compliance/data-classification-content-explorer)相关的事件。|
-|49|TeamsHealthcare|与 Microsoft Teams for Healthcare 中的[患者应用程序](https://docs.microsoft.com/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit)相关的事件。|
-|50|ExchangeItemAggregated|与 [MailItemsAccessed 邮箱审核操作](https://docs.microsoft.com/microsoft-365/compliance/mailitemsaccessed-forensics-investigations)相关的事件。|
+|48|LabelContentExplorer|与[数据分类内容资源管理器](/microsoft-365/compliance/data-classification-content-explorer)相关的事件。|
+|49|TeamsHealthcare|与 Microsoft Teams for Healthcare 中的[患者应用程序](/MicrosoftTeams/expand-teams-across-your-org/healthcare/patients-audit)相关的事件。|
+|50|ExchangeItemAggregated|与 [MailItemsAccessed 邮箱审核操作](/microsoft-365/compliance/mailitemsaccessed-forensics-investigations)相关的事件。|
 |51|HygieneEvent|与出站垃圾邮件保护相关的事件。 |
 |52|DataInsightsRestApiAudit|数据见解 REST API 事件。|
 |53|InformationBarrierPolicyApplication|与信息屏障策略的应用有关的事件。|
@@ -402,7 +403,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |TimesheetRejected|用户拒绝 Project Web App 中的时间表。|
 |TimesheetSaved|用户保存 Project Web App 中的时间表。|
 |TimesheetSubmitted|用户在 Project Web App 中提交状态时间表。|
-|UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](https://docs.microsoft.com/powershell/module/sharepoint-online/index)。|
+|UnmanagedSyncClientBlocked|用户尝试从不是组织域成员或者是尚未添加到可访问组织文档库的域列表（称为“安全收件人列表”）的域成员的计算机与 SharePoint 或 OneDrive for Business 网站建立同步关系。 不允许同步关系，并阻止用户计算机在文档库上同步、下载或上传文件。 有关此功能的信息，请参阅[使用 Windows PowerShell cmdlet 为安全收件人列表中的域启用 OneDrive 同步](/powershell/module/sharepoint-online/index)。|
 |UpdateSSOApplication|Secure Store Service 中更新了目标应用程序。|
 |UserAddedToGroup|网站管理员或所有者向 SharePoint 或 OneDrive for Business 网站上的组添加人员。向组添加人员授予用户已分配给组的权限。 |
 |UserRemovedFromGroup|网站管理员或所有者从 SharePoint 或 OneDrive for Business 网站上的组删除人员。删除该人员后，不再向其授予已分配给组的权限。 |
@@ -411,7 +412,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-file-operations"></a>SharePoint 文件操作
 
-在[在安全与合规中心内搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance)的“文件和文件夹活动”部分列出的与文件相关的 SharePoint 事件使用此架构。
+在[在安全与合规中心内搜索审核日志](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance)的“文件和文件夹活动”部分列出的与文件相关的 SharePoint 事件使用此架构。
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -428,7 +429,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-sharing-schema"></a>SharePoint 共享架构
 
- 与文件共享相关的 SharePoint 事件。 它们不同于与文件和文件夹相关的事件，因为用户正在执行对另一个用户有一定影响的操作。 有关 SharePoint 共享架构信息，请参阅[在 Office 365 审核日志中使用共享审核](https://docs.microsoft.com/microsoft-365/compliance/use-sharing-auditing
+ 与文件共享相关的 SharePoint 事件。 它们不同于与文件和文件夹相关的事件，因为用户正在执行对另一个用户有一定影响的操作。 有关 SharePoint 共享架构信息，请参阅[在 Office 365 审核日志中使用共享审核](/microsoft-365/compliance/use-sharing-auditing
 )。
 
 |**参数**|**类型**|**强制？**|**说明**|
@@ -440,7 +441,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 
 ## <a name="sharepoint-schema"></a>SharePoint 架构
 
-在[在安全与合规中心内搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance)中列出的 SharePoint 事件（除了文件和文件夹事件）使用此架构。
+在[在安全与合规中心内搜索审核日志](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance)中列出的 SharePoint 事件（除了文件和文件夹事件）使用此架构。
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -744,7 +745,7 @@ Office 365 管理活动 API 架构作为两层数据服务提供：
 |ApplicationId|Edm.String|否|表示正在请求登录的应用程序的 GUID。 可以通过 Azure Active Directory Graph API 查找显示名称。|
 |Client|Edm.String|否|客户端设备信息，由执行登录的浏览器提供。|
 |DeviceProperties|Collection(Common.NameValuePair)|否|此属性包含各种设备详细信息，包括 ID、显示名称、操作系统、浏览器、IsCompliant、IsCompliantAndManaged、SessionId 和 DeviceTrustType。 DeviceTrustType 属性可具有以下值：<br/><br/>**0** - 已注册 Azure AD<br/> **1** - 已建立 Azure AD 联接<br/> **2** - 已建立混合 Azure AD 联接|
-|ErrorCode|Edm.String|否|对于失败的登录（"操作"属性的值为 UserLoginFailed），此属性包含 Azure Active Directory STS （AADSTS） 错误代码。 有关这些错误代码的说明，请参阅 [身份验证和授权错误](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes)。 登录名 `0` 表示登录成功。|
+|ErrorCode|Edm.String|否|对于失败的登录（"操作"属性的值为 UserLoginFailed），此属性包含 Azure Active Directory STS （AADSTS） 错误代码。 有关这些错误代码的说明，请参阅 [身份验证和授权错误](/azure/active-directory/develop/reference-aadsts-error-codes#aadsts-error-codes)。 登录名 `0` 表示登录成功。|
 |LogonError|Edm.String|否|对于登录失败，此属性包含用户可阅读的登录失败原因说明。|
 |||||
 
@@ -893,8 +894,8 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 警报信号包括：
 
-- 基于[安全与合规中心的警报策略](https://docs.microsoft.com/office365/securitycompliance/alert-policies#default-alert-policies)生成的所有警报。
-- 在 [Office 365 云应用安全](https://docs.microsoft.com/office365/securitycompliance/office-365-cas-overview)和 [Microsoft Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security) 中生成的 Office 365 相关警报。
+- 基于[安全与合规中心的警报策略](/office365/securitycompliance/alert-policies#default-alert-policies)生成的所有警报。
+- 在 [Office 365 云应用安全](/office365/securitycompliance/office-365-cas-overview)和 [Microsoft Cloud App Security](/cloud-app-security/what-is-cloud-app-security) 中生成的 Office 365 相关警报。
 
 这些事件的 UserId 和 UserKey 始终为 SecurityComplianceAlerts。 有三种类型的警报事件，它们被存储为常见架构的 Operation 属性值：
 
@@ -922,7 +923,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 ## <a name="yammer-schema"></a>Yammer 架构
 
-在[在安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#yammer-activities)中列出的 Yammer 事件将使用此架构。
+在[在安全与合规中心搜索审核日志](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#yammer-activities)中列出的 Yammer 事件将使用此架构。
 
 |**参数**|**类型**|**强制**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -1034,18 +1035,18 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 ## <a name="microsoft-defender-for-office-365-and-threat-investigation-and-response-schema"></a>Microsoft Defender for Office 365 和威胁调查与响应架构
 
-[Microsoft Defender for Office 365](https://docs.microsoft.com/office365/securitycompliance/office-365-atp) 和威胁调查与响应事件适用于拥有 Defender for Office 365 计划 1、Defender for Office 365 计划 2 或 E5 订阅的 Office 365 客户。 Defender for Office 365 源中的每个事件都与确定包含威胁的以下事件相对应：
+[Microsoft Defender for Office 365](/office365/securitycompliance/office-365-atp) 和威胁调查与响应事件适用于拥有 Defender for Office 365 计划 1、Defender for Office 365 计划 2 或 E5 订阅的 Office 365 客户。 Defender for Office 365 源中的每个事件都与确定包含威胁的以下事件相对应：
 
 - 由组织中的用户发送或接收电子邮件，同时对送达的邮件进行检测，并从[零时差自动清除](https://support.office.com/article/Zero-hour-auto-purge-protection-against-spam-and-malware-96deb75f-64e8-4c10-b570-84c99c674e15)检测邮件。 
 
-- 组织中的用户单击 URL，基于 [Defender for Office 365 中的安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)保护被检测为恶意。  
+- 组织中的用户单击 URL，基于 [Defender for Office 365 中的安全链接](/office365/securitycompliance/atp-safe-links)保护被检测为恶意。  
 
-- SharePoint Online、OneDrive for Business 或 Microsoft Teams 中的文件由 [Microsoft Defender for Office 365](https://docs.microsoft.com/office365/securitycompliance/atp-for-spo-odb-and-teams) 保护检测为“恶意”。
+- SharePoint Online、OneDrive for Business 或 Microsoft Teams 中的文件由 [Microsoft Defender for Office 365](/office365/securitycompliance/atp-for-spo-odb-and-teams) 保护检测为“恶意”。
 
-- 触发并启动[自动调查](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office)的警报。
+- 触发并启动[自动调查](/office365/securitycompliance/automated-investigation-response-office)的警报。
 
 > [!NOTE]
-> Microsoft Defender for Office 365 和 Office 365 威胁调查和响应（以前称为 Office 365 威胁智能）功能现在是 Defender for Office 365 计划 2 的一部分，具有附加的威胁保护功能。 若要了解详细信息，请参阅 [Microsoft Defender for Office 365 计划和定价](https://products.office.com/exchange/advance-threat-protection)以及 [Defender for Office 365 服务说明](https://docs.microsoft.com/office365/servicedescriptions/office-365-advanced-threat-protection-service-description)。
+> Microsoft Defender for Office 365 和 Office 365 威胁调查和响应（以前称为 Office 365 威胁智能）功能现在是 Defender for Office 365 计划 2 的一部分，具有附加的威胁保护功能。 若要了解详细信息，请参阅 [Microsoft Defender for Office 365 计划和定价](https://products.office.com/exchange/advance-threat-protection)以及 [Defender for Office 365 服务说明](/office365/servicedescriptions/office-365-advanced-threat-protection-service-description)。
 
 ### <a name="email-message-events"></a>电子邮件事件
 
@@ -1072,6 +1073,11 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |最新送达位置 |Edm.String|是|事件发生时电子邮件的最新送达位置。|
 |方向性 |Edm.String|是|标识电子邮件是入站、出站还是组织内邮件。|
 |ThreatsAndDetectionTech |Edm.String|是|威胁和相应的检测技术。 此字段显示电子邮件的所有威胁，包括垃圾邮件垃圾邮件程序上的最新威胁。  例如，["Phish： [Spoof DMARC]"，"垃圾邮件：[URL 恶意名称]"]。 下面介绍了不同的检测威胁和检测技术。|
+|AdditionalActionsAndResults |Collection(Edm.String)|否|已对电子邮件执行的其他操作，例如 ZAP 或手动修正。 还包括相应的结果。|
+|连接器 |Edm.String|否|与该电子邮件关联的连接器名称和 GUID。|
+|AuthDetails |Collection(Self.[AuthDetails](#authdetails))|否|对电子邮件进行的身份验证检查。 还包括 SPF、DKIM、DMARC 和 CompAuth 的值。|
+|SystemOverrides |Collection(Self.[SystemOverrides](#systemoverrides))|否|适用于电子邮件的替代。 这些可以是系统或用户替代。|
+|网络钓鱼可信度 |Edm.String|否|指示与网络钓鱼裁定相关的可信度。 它可以是普通或高。|  
 |||||
 
 > [!NOTE]
@@ -1118,6 +1124,28 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 > [!NOTE]
 > 在 Malware 系列中，你将能够看到准确的 Malware你的姓名（例如，HTML/Phish.VS！MSR） 或恶意负载作为静态字符串。 未识别特定名称时，恶意负载仍可被视为恶意电子邮件。
 
+### <a name="systemoverrides-complex-type"></a>SystemOverrides 复杂类型
+ 
+#### <a name="systemoverrides"></a>SystemOverrides
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|详细信息|Edm.String|否|有关已应用的特定替代（例如 ETR 或安全发件人）的详细信息。|
+|FinalOverride|Edm.String|否|指示在多个替代的情况下影响传递的替代。|
+|结果|Edm.String|否|指示是否根据替代将电子邮件设置为已允许或已阻止。|
+|Source|Edm.String|否|指示替代是用户配置的还是租户配置的。|
+|||||
+
+### <a name="authdetails-complex-type"></a>AuthDetails 复杂类型
+ 
+#### <a name="authdetails"></a>AuthDetails
+ 
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|名称|Edm.String|否|特定身份验证检查的名称，如 DKIM 或 DMARC。|
+|值|Edm.String|否|与特定身份验证检查关联的值，如 True 或 False。|
+|||||
+ 
 ### <a name="enum-fileverdict---type-edmint32"></a>枚举：FileVerdict - 类型：Edm.Int32
 
 #### <a name="fileverdict"></a>FileVerdict
@@ -1178,7 +1206,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |:-----|:-----|:-----|:-----|
 |UserID|Edm.String|是|单击 URL 的用户的标识符（例如电子邮件地址）。|
 |AppName|Edm.String|是|从中单击 URL 的 Office 365 服务（例如邮件）。|
-|URLClickAction|Self.[URLClickAction](#urlclickaction)|是|URL 的单击操作基于组织针对 [Defender for Office 365 中的安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)的策略。|
+|URLClickAction|Self.[URLClickAction](#urlclickaction)|是|URL 的单击操作基于组织针对 [Defender for Office 365 中的安全链接](/office365/securitycompliance/atp-safe-links)的策略。|
 |SourceId|Edm.String|是|从中单击 URL 的 Office 365 服务的标识符（例如，对于邮件而言，这是 Exchange Online 网络消息 ID）。|
 |TimeOfClick|Edm.Date|是|用户单击 URL 时的协调世界时 (UTC) 日期和时间。|
 |URL|Edm.String|是|用户单击 URL。|
@@ -1191,10 +1219,10 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 |**值**|**成员名称**|**说明**|
 |:-----|:-----|:-----|
-|2|Blockpage|[Defender for Office 365 中的安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL。|
-|3|PendingDetonationPage|[Defender for Office 365 中的安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆待定页。|
-|4|BlockPageOverride|[Defender for Office 365 中的安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL；但用户忽略阻碍以导航到该 URL。|
-|5|PendingDetonationPageOverride|[Defender for Office 365 中的安全链接](https://docs.microsoft.com/office365/securitycompliance/atp-safe-links)向用户显示引爆页；但用户忽略以导航到该 URL。|
+|2|Blockpage|[Defender for Office 365 中的安全链接](/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL。|
+|3|PendingDetonationPage|[Defender for Office 365 中的安全链接](/office365/securitycompliance/atp-safe-links)向用户显示引爆待定页。|
+|4|BlockPageOverride|[Defender for Office 365 中的安全链接](/office365/securitycompliance/atp-safe-links)阻止用户导航到该 URL；但用户忽略阻碍以导航到该 URL。|
+|5|PendingDetonationPageOverride|[Defender for Office 365 中的安全链接](/office365/securitycompliance/atp-safe-links)向用户显示引爆页；但用户忽略以导航到该 URL。|
 |||||
 
 ### <a name="file-events"></a>文件事件
@@ -1235,9 +1263,34 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |2|Microsoft Teams|
 |||||
 
+## <a name="submission-schema"></a>提交架构
+
+[提交](/microsoft-365/security/office-365-security/report-junk-email-messages-to-microsoft) 事件适用于每个 [Office 365 客户，因为它附带安全](/microsoft-365/security/office-365-security/overview)。 这包括使用 Exchange Online Protection 和 Microsoft Defender for Office 365 的组织。 提交源中的每个事件对应于作为以下内容提交的误报或漏报：
+
+- **管理员提交**。 提交给 Microsoft 进行分析的消息、文件或 URL。
+- **用户报告的项**。 最终用户向管理员或 Microsoft 报告以供审阅的消息。
+
+### <a name="submission-events"></a>提交事件
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|AdminSubmissionRegistered|Edm.String|否|管理员提交已注册，正在等待处理。|
+|AdminSubmissionDeliveryCheck|Edm.String|否|管理员提交系统已检查电子邮件的策略。|
+|AdminSubmissionSubmitting|Edm.String|否|管理员提交系统正在提交电子邮件。|
+|AdminSubmissionSubmitted|Edm.String|否|管理员提交系统已提交电子邮件。|
+|AdminSubmissionTriage|Edm.String|否|管理员提交由评分器进行会审。|
+|AdminSubmissionTimeout|Edm.String|否|管理员提交超时，无结果。|
+|UserSubmission|Edm.String|否|提交首先由最终用户报告。|
+|UserSubmissionTriage|Edm.String|否|用户提交由评分器进行会审。|
+|CustomSubmission|Edm.String|否|用户报告的邮件已按照用户报告邮件设置中的设置发送到组织的自定义邮箱。|
+|AttackSimUserSubmission|Edm.String|否|用户报告的消息实际上是网络钓鱼模拟训练消息。|
+|AdminSubmissionTablAllow|Edm.String|否|在提交时创建了允许，以便在重新扫描类似邮件时立即对其执行操作。|
+|SubmissionNotification|Edm.String|否|管理员反馈发送给最终用户。|
+|||||
+
 ## <a name="automated-investigation-and-response-events-in-office-365"></a>Office 365 中的自动调查和响应事件
 
-[Office 365 自动调查和响应 (AIR)](https://docs.microsoft.com/office365/securitycompliance/automated-investigation-response-office) 事件适用于订阅了 Microsoft Defender for Office 365 计划 2 或 Office 365 E5 的 Office 365 客户。将根据调查状态的变化记录调查事件。 将根据调查状态的变化记录调查事件。 例如，当管理员执行将调查状态从“挂起的操作”更改为“已完成”的操作时，将记录一个事件。
+[Office 365 自动调查和响应 (AIR)](/office365/securitycompliance/automated-investigation-response-office) 事件适用于订阅了 Microsoft Defender for Office 365 计划 2 或 Office 365 E5 的 Office 365 客户。将根据调查状态的变化记录调查事件。 将根据调查状态的变化记录调查事件。 例如，当管理员执行将调查状态从“挂起的操作”更改为“已完成”的操作时，将记录一个事件。
 
 目前，只记录自动调查。（即将提供手动生成调查的事件。）将记录以下状态值：
 
@@ -1367,9 +1420,9 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 
 与出站垃圾邮件保护相关的卫生事件。 这些事件与被限制发送电子邮件的用户相关。 有关更多信息，请参阅：
 
-- [出站垃圾邮件保护](https://docs.microsoft.com/microsoft-365/security/office-365-security/outbound-spam-controls)
+- [出站垃圾邮件保护](/microsoft-365/security/office-365-security/outbound-spam-controls)
 
-- [在 Office 365 中从“受限的用户”门户中删除被阻止的用户](https://docs.microsoft.com/microsoft-365/security/office-365-security/removing-user-from-restricted-users-portal-after-spam)
+- [在 Office 365 中从“受限的用户”门户中删除被阻止的用户](/microsoft-365/security/office-365-security/removing-user-from-restricted-users-portal-after-spam)
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -1417,7 +1470,7 @@ FileHashes |集合 (Edm.String)    |与文件关联的文件哈希 |
 
 ## <a name="dynamics-365-schema"></a>Dynamics 365 架构
 
-Dynamics 365 事件中与模型驱动应用相关的事件的审核记录同时使用基操作架构和实体操作架构。 了解更多信息，请参阅[启用和禁用活动日志记录](https://docs.microsoft.com/power-platform/admin/enable-use-comprehensive-auditing#model-driven-apps-in-dynamics-365-schema)。
+Dynamics 365 事件中与模型驱动应用相关的事件的审核记录同时使用基操作架构和实体操作架构。 了解更多信息，请参阅[启用和禁用活动日志记录](/power-platform/admin/enable-use-comprehensive-auditing#model-driven-apps-in-dynamics-365-schema)。
 
 ### <a name="dynamics-365-base-schema"></a>Dynamics 365 基本架构
 
@@ -1446,7 +1499,7 @@ Dynamics 365 中模型驱动应用程的实体事件使用此架构在 Dynamics 
 
 ## <a name="workplace-analytics-schema"></a>工作区分析架构
 
-在[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-workplace-analytics-activities)中列出的工作区分析事件将使用此架构。
+在[在 Office 365 安全与合规中心搜索审核日志](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-workplace-analytics-activities)中列出的工作区分析事件将使用此架构。
 
 | **参数**     | **类型**            | **强制？** | **说明**|
 |:------------------ | :------------------ | :--------------|:--------------|
@@ -1457,7 +1510,7 @@ Dynamics 365 中模型驱动应用程的实体事件使用此架构在 Dynamics 
 
 ## <a name="quarantine-schema"></a>隔离架构
 
-[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#quarantine-activities)中列出的隔离事件将使用此架构。 有关隔离的详细信息，请参阅 [Office 365 中的隔离电子邮件](https://docs.microsoft.com/microsoft-365/security/office-365-security/quarantine-email-messages)。
+[在 Office 365 安全与合规中心搜索审核日志](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#quarantine-activities)中列出的隔离事件将使用此架构。 有关隔离的详细信息，请参阅 [Office 365 中的隔离电子邮件](/microsoft-365/security/office-365-security/quarantine-email-messages)。
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -1489,7 +1542,7 @@ Dynamics 365 中模型驱动应用程的实体事件使用此架构在 Dynamics 
 
 ## <a name="microsoft-forms-schema"></a>Microsoft Forms 架构
 
-Office 365 安全与合规中心 [搜索审核日志"中列出的 Microsoft Forms](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities) 将使用此架构。
+Office 365 安全与合规中心 [搜索审核日志"中列出的 Microsoft Forms](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities) 将使用此架构。
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
@@ -1498,7 +1551,7 @@ Office 365 安全与合规中心 [搜索审核日志"中列出的 Microsoft Form
 |FormName|Edm.String|否|当前表单的名称。|
 |FormId |Edm.String|否|目标表单的 ID。|
 |FormTypes|Collection(Self.[FormTypes](#formtypes))|否|指示这是表单、测验还是调查。|
-|ActivityParameters|Edm.String|否|包含活动参数的 JSON 字符串。 有关更多详细信息，请参阅[在 Office 365 安全与合规中心搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities)。|
+|ActivityParameters|Edm.String|否|包含活动参数的 JSON 字符串。 有关更多详细信息，请参阅[在 Office 365 安全与合规中心搜索审核日志](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#microsoft-forms-activities)。|
 ||||
 
 ### <a name="enum-formsusertypes---type-edmint32"></a>枚举：FormsUserTypes - 类型：Edm.Int32
@@ -1530,9 +1583,9 @@ Office 365 安全与合规中心 [搜索审核日志"中列出的 Microsoft Form
 
 此审核架构的目的即表示全部带有敏感度标签的电子邮件活动的总和。 换言之，对于向组织中用户发送或发送的每封电子邮件，应存在一个记录的审核活动，并应用了敏感度标签，而不考虑何时或如何应用敏感度标签。 有关敏感度标签的详细信息，请参阅：
 
-- [了解敏感性标签](https://docs.microsoft.com/microsoft-365/compliance/sensitivity-labels)
+- [了解敏感性标签](/microsoft-365/compliance/sensitivity-labels)
 
-- [将敏感度标签自动应用于内容](https://docs.microsoft.com/microsoft-365/compliance/apply-sensitivity-label-automatically)
+- [将敏感度标签自动应用于内容](/microsoft-365/compliance/apply-sensitivity-label-automatically)
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
