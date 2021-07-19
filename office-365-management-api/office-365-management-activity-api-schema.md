@@ -7,12 +7,12 @@ ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 8ee293d2e82fc2a4cc5cce04289c7428f39339d5
-ms.sourcegitcommit: 1c2efaeeeb4942591cf37f16edb64b3b41b9e83c
+ms.openlocfilehash: 6bb8d836281ebb4e98ef90957ab98d24e0c1342d
+ms.sourcegitcommit: f08ff7cfd17aedd9d2ca85b5df0666ca986c9aed
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/07/2021
-ms.locfileid: "53326600"
+ms.lasthandoff: 07/15/2021
+ms.locfileid: "53447903"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -976,22 +976,26 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 
 |**参数**|**类型**|**强制？**|**说明**|
 |:-----|:-----|:-----|:-----|
-|MessageId|Edm.String|否|聊天或频道消息的标识符。|
-|Members|Collection(Self.[MicrosoftTeamsMember](#microsoftteamsmember-complex-type))|否|团队中的用户列表。|
-|TeamName|Edm.String|否|审核中的团队名称。|
-|TeamGuid|Edm.Guid|否|审核中团队的唯一标识符。|
-|ChannelType|Edm.String|否|审核中的频道类型（标准/私有）。|
-|ChannelName|Edm.String|否|审核中的频道名称。|
-|ChannelGuid|Edm.Guid|否|审核中的频道的唯一标识符。|
-|ExtraProperties|Collection(Self.[KeyValuePair](#keyvaluepair-complex-type))|否|额外属性的列表。|
-|AddOnType|Self.[AddOnType](#addontype)|否|生成此事件的加载项类型。|
-|AddonName|Edm.String|否|生成此事件的加载项名称。|
 |AddOnGuid|Edm.Guid|否|生成此事件的加载项的唯一标识符。|
-|TabType|Edm.String|否|仅用于选项卡事件。 生成此事件的选项卡类型。|
-|名称|Edm.String|否|仅用于设置事件。 已更改的设置的名称。|
-|OldValue|Edm.String|否|仅用于设置事件。 设置的旧值。|
-|NewValue|Edm.String|否|仅用于设置事件。 设置的新值。|
+|AddOnName|Edm.String|否|生成此事件的加载项名称。|
+|AddOnType|Self.[AddOnType](#addontype)|否|生成此事件的加载项类型。|
+|ChannelGuid|Edm.Guid|否|审核中的频道的唯一标识符。|
+|ChannelName|Edm.String|否|审核中的频道名称。|
+|ChannelType|Edm.String|否|审核中的频道类型（标准/私有）。|
+|ExtraProperties|Collection(Self.[KeyValuePair](#keyvaluepair-complex-type))|否|额外属性的列表。|
+|HostedContents|Collection（Self.[HostedContent](#hostedcontent-complex-type)）|不支持|聊天或频道消息托管内容的集合。|
+|Members|Collection(Self.[MicrosoftTeamsMember](#microsoftteamsmember-complex-type))|否|团队中的用户列表。|
+|MessageId|Edm.String|否|聊天或频道消息的标识符。|
 |MessageURLs|Edm.String|否|为在 Teams 邮件中发送的任何 URL 进行演示。|
+|消息|Collection（Self.[Message](#message-complex-type)）|不支持|聊天或频道消息的集合。|
+|MessageSizeInBytes|Edm.Int64|否|使用 UTF-16 编码的聊天或频道消息的大小（以字节为单位）。|
+|名称|Edm.String|否|仅用于设置事件。 已更改的设置的名称。|
+|NewValue|Edm.String|否|仅用于设置事件。 设置的新值。|
+|OldValue|Edm.String|否|仅用于设置事件。 设置的旧值。|
+|SubscriptionId|Edm.String|否|Microsoft Graph更改通知订阅的唯一标识符。|
+|TabType|Edm.String|否|仅用于选项卡事件。 生成此事件的选项卡类型。|
+|TeamGuid|Edm.Guid|否|审核中团队的唯一标识符。|
+|TeamName|Edm.String|否|审核中的团队名称。|
 ||||
 
 ### <a name="microsoftteamsmember-complex-type"></a>MicrosoftTeamsMember 复杂类型
@@ -1033,6 +1037,32 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |3|Tab|Microsoft Teams 选项卡。|
 ||||
 
+### <a name="hostedcontent-complex-type"></a>HostedContent 复杂类型
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|Id|Edm.String|是|邮件托管内容的唯一标识符。|
+|SizeInBytes|Edm.Int64|否|邮件托管的内容大小（以字节为单位）。|
+|||||
+
+### <a name="message-complex-type"></a>消息复杂类型
+
+|**参数**|**类型**|**强制？**|**说明**|
+|:-----|:-----|:-----|:-----|
+|AADGroupId|Edm.String|否|消息所属的组Azure Active Directory的唯一标识符。|
+|Id|Edm.String|是|聊天或频道消息的唯一标识符。|
+|ChannelGuid|Edm.String|否|消息所属通道的唯一标识符。|
+|ChannelName|Edm.String|否|消息所属的通道的名称。|
+|ChannelType|Edm.String|否|消息所属的通道的类型。|
+|ChatName|Edm.String|否|消息所属的聊天的名称。|
+|ChatThreadId|Edm.String|否|消息所属聊天的唯一标识符。|
+|ParentMessageId|Edm.String|否|父聊天或频道消息的唯一标识符。|
+|SizeInBytes|Edm.Int64|否|具有 UTF-16 编码的消息大小（以字节为单位）。|
+|TeamGuid|Edm.String|否|消息所属团队的唯一标识符。|
+|TeamName|Edm.String|否|消息所属的团队的名称。|
+|版本|Edm.String|否|聊天或频道消息的版本。|
+|||||
+ 
 ## <a name="microsoft-defender-for-office-365-and-threat-investigation-and-response-schema"></a>Microsoft Defender for Office 365 和威胁调查与响应架构
 
 [Microsoft Defender for Office 365](/office365/securitycompliance/office-365-atp) 和威胁调查与响应事件适用于拥有 Defender for Office 365 计划 1、Defender for Office 365 计划 2 或 E5 订阅的 Office 365 客户。 Defender for Office 365 源中的每个事件都与确定包含威胁的以下事件相对应：
@@ -1073,7 +1103,7 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |最新送达位置 |Edm.String|是|事件发生时电子邮件的最新送达位置。|
 |方向性 |Edm.String|是|标识电子邮件是入站、出站还是组织内邮件。|
 |ThreatsAndDetectionTech |Edm.String|是|威胁和相应的检测技术。 此字段显示电子邮件的所有威胁，包括垃圾邮件垃圾邮件程序上的最新威胁。  例如，["Phish： [Spoof DMARC]"，"垃圾邮件：[URL 恶意名称]"]。 下面介绍了不同的检测威胁和检测技术。|
-|AdditionalActionsAndResults |Collection(Edm.String)|否|已对电子邮件执行的其他操作，例如 ZAP 或手动修正。 还包括相应的结果。|
+|AdditionalActionsAndResults |Collection(Edm.String)|否|对电子邮件执行的其他操作，例如 ZAP 或手动修正。还包括相应的结果。|
 |连接器 |Edm.String|否|与该电子邮件关联的连接器名称和 GUID。|
 |AuthDetails |Collection(Self.[AuthDetails](#authdetails))|否|对电子邮件进行的身份验证检查。 还包括 SPF、DKIM、DMARC 和 CompAuth 的值。|
 |SystemOverrides |Collection(Self.[SystemOverrides](#systemoverrides))|否|适用于电子邮件的替代。 这些可以是系统或用户替代。|

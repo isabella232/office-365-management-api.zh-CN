@@ -7,12 +7,12 @@ ms.ContentId: 52749845-37f8-6076-7ea5-49d9a4055445
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 92eb7f2838e673992a778043075b6c0ef3f8d133
-ms.sourcegitcommit: e998d2175540269e94db529e74532efd4c43fab9
+ms.openlocfilehash: c8eb59433b49c9735ddfefea0d1e6804e8937439
+ms.sourcegitcommit: f08ff7cfd17aedd9d2ca85b5df0666ca986c9aed
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/03/2021
-ms.locfileid: "50094981"
+ms.lasthandoff: 07/15/2021
+ms.locfileid: "53447896"
 ---
 # <a name="office-365-management-activity-api-reference"></a>Office 365 管理活动 API 参考
 
@@ -30,7 +30,7 @@ ms.locfileid: "50094981"
 
 ## <a name="working-with-the-office-365-management-activity-api"></a>使用 Office 365 管理活动 API
 
-Office 365 管理活动 API 将操作和事件聚合到租户专用内容 blob 中，这些 blob 按其中所含内容的类型和来源进行分类。 目前支持以下内容类型：
+Office 365 管理活动 API 将操作和事件聚合到特定于租户的内容 Blob 中，这些内容 Blob 按它们包含的内容的类型和源进行分类。目前，支持以下内容类型：
 
 - Audit.AzureActiveDirectory
     
@@ -88,7 +88,7 @@ https://manage.office365.us/api/v1.0/{tenant_id}/activity/feed/{operation}
 https://manage.protection.apps.mil/api/v1.0/{tenant_id}/activity/feed/{operation}
 ```
 
-所有 API 操作都要求，必须有包含从 Azure AD 获取的访问令牌的授权 HTTP 头。 访问令牌中的租户 ID 必须与 API 根 URL 中的租户 ID 一致，且访问令牌必须包含 ActivityFeed.Read 声明（此声明对应于在 Azure AD 中为应用程序配置的[读取组织的活动数据]权限）。
+所有 API 操作都需要一个授权 HTTP 标头，其中包含从Azure AD获取的访问令牌。访问令牌中的租户 ID 必须与 API 根 URL 中的租户 ID 匹配，访问令牌必须包含 ActivityFeed.Read 声明（这与在 Azure AD 中为应用程序配置的权限 [读取组织的活动数据] 相对应）。
 
 ```json
 Authorization: Bearer eyJ0e...Qa6wg
@@ -132,7 +132,7 @@ Authorization: Bearer eyJ0e...Qa6wg
 ||PublisherIdentifier|对 API 编码的供应商的租户 GUID。 这 **不是** 应用程序 GUID 或使用应用程序的客户的 GUID，而是编写代码的公司的 GUID。 此参数用于限制请求速率。 请务必在发出的所有请求中指定此参数，以获取专用配额。 收到的所有不包含此参数的请求都会共用同一配额。|
 |**正文**|webhook|可选 JSON 对象，包含以下三个属性：<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p><b>address</b>：可接收通知的必需 HTTPS 终结点。  在订阅创建前，Webhook 会收到用于验证自身的测试消息。</p></li><li><p><b>authId</b>：可选字符串，作为 WebHook-AuthID 头包含在向 Webhook 发送的通知中，用于向 Webhook 标识和授权请求来源。</p></li><li><p><b>expiration</b>：可选日期/时间，指明在此日期/时间后便不得再向 Webhook 发送通知。</p></li></ul>|
 |**响应**|contentType|在调用中指定的内容类型。|
-||status|订阅的状态。 如果订阅已遭禁用，便无法列出或检索内容。|
+||status|订阅的状态。如果禁用订阅，将无法列出或检索内容。|
 ||webhook|在调用中指定的 Webhook 属性，以及 Webhook 的状态。 如果 Webhook 已遭禁用，便无法收到通知，但仍可以列出和检索内容，只要订阅处于启用状态即可。|
 
 #### <a name="sample-request"></a>示例请求
@@ -547,11 +547,11 @@ Content-Type: application/json; charset=utf-8
 ```json
 HTTP/1.1 200 OK
 Content-Type: application/json; charset=utf-8
-NextPageUrl: https://manage.office.com/api/v1/{tenant_id}/activity/feed/subscriptions/content?contentType=Audit.SharePoint&amp;startTime=2015-10-01&amp;endTime=2015-10-02&amp;nextPage=2015101900R022885001761
+NextPageUri: https://manage.office.com/api/v1/{tenant_id}/activity/feed/subscriptions/content?contentType=Audit.SharePoint&amp;startTime=2015-10-01&amp;endTime=2015-10-02&amp;nextPage=2015101900R022885001761
 
 ```
 
-若要列出指定时间范围的所有可用内容，可能需要检索多页，直到收到的响应不含 **NextPageUrl** 头为止。
+若要列出指定时间范围的所有可用内容，可能需要检索多页，直到收到的响应不含 **NextPageUri** 头为止。
 
 ## <a name="retrieve-resource-friendly-names"></a>检索资源易记名称
 
@@ -635,7 +635,7 @@ HTTP/1.1 200 OK
 |AF20012|指定的租户 ID ({0}) 未在系统中正确配置。 <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>    {0} = 在 URL 中传递的租户 ID</p></li></ul>|
 |AF20013|在 URL 中传递的租户 ID ({0}) 不是有效的 GUID。<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p> {0} = 在 URL 中传递的租户 ID</p></li></ul>|
 |AF20020|指定的内容类型无效。|
-|AF20021|无法验证 Webhook 终结点{{0})。 {1}<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = Webhook 地址。</p></li><li><p>{1} =“终结点未返回 HTTP 200” 或“地址必须以 HTTPS 开头”。</p></li></ul>|
+|AF20021|无法验证 webhook 终结点 {{0}）。 {1}<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} = Webhook 地址。</p></li><li><p>{1} =“终结点未返回 HTTP 200” 或“地址必须以 HTTPS 开头”。</p></li></ul>|
 |AF20022|找不到对指定内容类型的订阅。|
 |AF20023|{0} 已禁用订阅。<ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>{0} =“租户管理员”或“服务管理员”</p></li></ul>|
 |AF20030|必须同时指定（或同时省略）开始时间和结束时间，两者间隔不得超过 24 小时，且开始时间与当前时间的间隔不得超过 7 天。|
