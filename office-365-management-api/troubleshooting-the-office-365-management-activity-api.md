@@ -7,12 +7,12 @@ ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: d954cc97320953ed35d6e46cb118395469c93394
-ms.sourcegitcommit: 24ef06fd001f273d16be72733509b5ec202d3ebb
+ms.openlocfilehash: 086b40d0207fba761db66d918d74dc872ae66c9471ceced91d2b4b6dfe73ac1e
+ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/03/2021
-ms.locfileid: "50418186"
+ms.lasthandoff: 08/05/2021
+ms.locfileid: "54274348"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Office 365 管理活动 API 常见问题和疑难解答
 
@@ -55,7 +55,7 @@ Office 365 管理活动 API（也称为 *统一审核 API*）是 Office 365 安�
 
 **可通过 API 获取内容的时长：**
 
-在通知内容可用后的 7 天内，都可以通过 API 获取内容。 即使通知延迟了很长的时间（例如服务中断的情况），你仍然可以在第一次收到通知后的 7 天内下载与原始事件相关的内容 blob。
+内容可在内容可用性通知后的 7 天内通过 API 提取。即使通知延迟了异常长的时间（例如，在服务中断的情况下），在首次发布通知后仍有 7 天的时间来下载与发起事件相关的内容 Blob。
 
 **我可以在管理活动 API 中查询内容 blob 中的特定事件 ID、RecordType 或其他属性吗？**
 
@@ -78,7 +78,7 @@ Office 365 管理活动 API（也称为 *统一审核 API*）是 Office 365 安�
 
 **TargetUpdatedProperties 为何不再位于 Azure Active Directory 活动审核日志的 ExtendedProperties 中？**
 
-TargetUpdatedProperties 显示在 ExtendedProperties 中。 但是，它们将从 ExtendedProperties 中删除，并且现在将显示在 ModifiedProperties 中。
+TargetUpdatedProperties 出现在 ExtendedProperties 中。但是，它们已从 ExtendedProperties 中删除，现在显示在 ModifiedProperties 中。
 
 **为什么 Azure Active Directory (Azure AD) 登录活动的 UserAccountNotFound "LogonError" 的审核日志不能通过管理活动 API 使用？**
 
@@ -86,7 +86,7 @@ TargetUpdatedProperties 显示在 ExtendedProperties 中。 但是，它们将�
 
 ## <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
-对于任何开始使用 Office 365 管理活动 API 的人来说，应该明确的一点是，没有按事件细节（例如事件发生的日期、可能触发事件的网站集或者事件类型）进行查询的概念。 相反，而是创建对特定工作负载（例如，SharePoint 或 Azure AD）的订阅，并且每个租户对应一个订阅。
+对于任何开始使用 Office 365 管理活动 API 的用户来说，应该清楚的一点是，没有按事件特定信息进行查询的概念，例如事件发生的日期、事件可能触发的网站集或事件类型。有的是创建特定工作负荷的订阅（例如，SharePoint 或 Azure AD），每个订阅是每个租户。
 
 以下各节概述了使用 Office 365 管理活动 API 的客户最常见问题：
 
@@ -174,7 +174,7 @@ access_token   : eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IjJLVmN1enFBaWRPTHF
 
 ### <a name="checking-your-subscriptions"></a>检查订阅
 
-如果出现到现有管理活动 API 客户端或解决方案的数据流中断的问题，你可能想知道订阅是否出现某些问题。 要检查活动的订阅，请将以下内容添加到上一个脚本：
+如果流向现有管理活动 API 客户端或解决方案的数据中断，则可能想知道订阅是否发生了问题。若要检查活动订阅，请将以下内容添加到上一个脚本：
 
 ```powershell
 Invoke-WebRequest -Headers $headerParams -Uri "$resource/api/v1.0/$tenantGUID/activity/feed/subscriptions/list" 

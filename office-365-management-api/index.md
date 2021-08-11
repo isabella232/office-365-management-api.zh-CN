@@ -7,12 +7,12 @@ ms.ContentId: a11a6d30-f6b7-3629-28b6-cbab527d8a5e
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 4912388e05b3ff443a78505cc54238455a2ecf36
-ms.sourcegitcommit: ec60dbd5990cfc61b8c000b423e7ade25fa613a8
+ms.openlocfilehash: 44ed478bb5b4d732ca76c83395b7ca4236497f4698511e54d87883adf9677d2d
+ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/09/2020
-ms.locfileid: "48397411"
+ms.lasthandoff: 08/05/2021
+ms.locfileid: "54274122"
 ---
 # <a name="welcome-to-office-365-management-apis"></a>欢迎使用 Office 365 管理 API
 

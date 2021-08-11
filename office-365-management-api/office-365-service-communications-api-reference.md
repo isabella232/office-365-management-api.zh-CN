@@ -7,24 +7,27 @@ ms.ContentId: d0b9341a-b205-5442-1c20-8fb56407351d
 ms.topic: reference (API)
 ms.date: ''
 localization_priority: Priority
-ms.openlocfilehash: 7cd91d9a43090b4731a11df701e0bf1aa340800e
-ms.sourcegitcommit: e7f345710dc63003704399419f784c4a9b5fc529
+ms.openlocfilehash: 883c7026ea41794e290208bed73b8da4f8ce90861cd2a1f8193e731e5dd1a4ef
+ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2020
-ms.locfileid: "48830467"
+ms.lasthandoff: 08/05/2021
+ms.locfileid: "54274336"
 ---
 # <a name="office-365-service-communications-api-reference"></a>Office 365 服务通信 API 参考
 
+> [!IMPORTANT]
+> Microsoft Graph 中的服务运行状况和通信 API 现已推出。 Microsoft Graph API 替换本文中所述的服务通信 API。 我们将从 2021 年 12 月 17 日开始停用旧版服务通信 API。 有关新 Microsoft Graph API 的详细信息，请参阅[通过 Microsoft Graph 访问服务运行状况和通信的概述](/graph/service-communications-concept-overview)。
+
 Office 365 服务通信 API V2 可用于访问以下数据：
 
-- **获取服务** ：获取已订阅服务的列表。
+- **获取服务**：获取已订阅服务的列表。
 
-- **获取当前状态** ：获取当前正在进行的服务事件的实时视图。
+- **获取当前状态**：获取当前正在进行的服务事件的实时视图。
 
-- **获取历史记录状态** ：获取服务事件的历史视图。
+- **获取历史记录状态**：获取服务事件的历史视图。
 
-- **获取消息** ：查找事件和消息中心通信。
+- **获取消息**：查找事件和消息中心通信。
 
 目前，Office 365 服务通信 API 包含 Office 365、Yammer、Dynamics CRM 和 Microsoft Intune 云服务的数据。
 
@@ -278,7 +281,7 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
 - PostIncidentReportPublished
 - ServiceOperational
 
-有关这些状态定义的说明, 请参阅[如何检查 Microsoft 365 服务运行状况](https://docs.microsoft.com/microsoft-365/enterprise/view-service-health#status-definitions)。
+有关这些状态定义的说明, 请参阅[如何检查 Microsoft 365 服务运行状况](/enterprise/view-service-health#status-definitions)。
 
 ## <a name="get-historical-status"></a>获取历史状态
 
@@ -464,7 +467,6 @@ Authorization: Bearer {AAD_Bearer_JWT_Token}
     ]
 }
 ```
-
 
 ## <a name="errors"></a>错误
 
