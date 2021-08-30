@@ -6,13 +6,13 @@ description: Office 365 管理 API 提供了一个用于执行所有 Office 365 
 ms.ContentId: a11a6d30-f6b7-3629-28b6-cbab527d8a5e
 ms.topic: reference (API)
 ms.date: ''
-localization_priority: Priority
-ms.openlocfilehash: 44ed478bb5b4d732ca76c83395b7ca4236497f4698511e54d87883adf9677d2d
-ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
+ms.localizationpriority: high
+ms.openlocfilehash: c38c87bfeeb312ddaaf2d9ee95a67067dd23d0ec
+ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "54274122"
+ms.lasthandoff: 08/25/2021
+ms.locfileid: "58510130"
 ---
 # <a name="welcome-to-office-365-management-apis"></a>欢迎使用 Office 365 管理 API
 
@@ -29,4 +29,4 @@ Office 365 管理 API 提供了一个用于执行所有 Office 365 客户和合�
 
 ## <a name="see-also"></a>另请参阅
 
-- [Office 365 REST API](https://docs.microsoft.com/previous-versions/office/office-365-api/how-to/platform-development-overview)
+- [Office 365 REST API](/previous-versions/office/office-365-api/how-to/platform-development-overview)

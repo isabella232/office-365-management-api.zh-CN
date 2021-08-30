@@ -6,13 +6,13 @@ description: 汇总 Microsoft 支持部门在提供此 Office 365 管理活动 A
 ms.ContentId: 50822603-a1ec-a754-e7dc-67afe36bb1b0
 ms.topic: reference (API)
 ms.date: ''
-localization_priority: Priority
-ms.openlocfilehash: 086b40d0207fba761db66d918d74dc872ae66c9471ceced91d2b4b6dfe73ac1e
-ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
+ms.localizationpriority: high
+ms.openlocfilehash: a5bceab7d18553824b604609d71c50a05f4d65d6
+ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "54274348"
+ms.lasthandoff: 08/25/2021
+ms.locfileid: "58510151"
 ---
 # <a name="office-365-management-activity-api-faqs-and-troubleshooting"></a>Office 365 管理活动 API 常见问题和疑难解答
 
@@ -35,11 +35,11 @@ Office 365 管理活动 API（也称为 *统一审核 API*）是 Office 365 安�
 
 **如果我对 Office 365 组织禁用审核，会发生什么情况？我是否仍然可以通过管理活动 API 获取事件？**
 
-否。 必须为组织启用 Office 365 统一审核，才能通过管理活动 API 拉取记录。 有关说明，请参阅[启用或禁用审核日志搜索](https://docs.microsoft.com/microsoft-365/compliance/turn-audit-log-search-on-or-off)。
+否。 必须为组织启用 Office 365 统一审核，才能通过管理活动 API 拉取记录。 有关说明，请参阅[启用或禁用审核日志搜索](/microsoft-365/compliance/turn-audit-log-search-on-or-off)。
 
 **要对特定 Office 365 服务审核什么事件？**
 
-“Office 365 管理活动 API 架构”一文列出了全部事件。 有关详细信息，请参阅 Office 365 管理活动 API 架构。 另请参阅[在安全与合规中心内搜索审核日志](https://docs.microsoft.com/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#audited-activities)中的“已审核的活动”部分，以获取大多数已审核的 Office 365 服务的事件列表。
+“Office 365 管理活动 API 架构”一文列出了全部事件。 有关详细信息，请参阅 Office 365 管理活动 API 架构。 另请参阅[在安全与合规中心内搜索审核日志](/microsoft-365/compliance/search-the-audit-log-in-security-and-compliance#audited-activities)中的“已审核的活动”部分，以获取大多数已审核的 Office 365 服务的事件列表。
 
 **管理活动 API 提取的记录与使用 Microsoft 365 合规中心内的审核日志搜索工具返回的记录是否有何不同？**
 
@@ -82,7 +82,7 @@ TargetUpdatedProperties 出现在 ExtendedProperties 中。但是，它们已从
 
 **为什么 Azure Active Directory (Azure AD) 登录活动的 UserAccountNotFound "LogonError" 的审核日志不能通过管理活动 API 使用？**
 
-从 2020 年 11 月开始，Azure AD 登录活动的审核日志将从 Azure AD 事件中心引入到统一审核日志中。 由于此更改，无法使用 UserAccountNotFound 值填充 "LogonError" 属性。 自 2021 年 2 月第一周开始，[Azure AD 登录审核架构中的 ErrorCode 属性](https://docs.microsoft.com/office/office-365-management-api/office-365-management-activity-api-schema#azure-active-directory-secure-token-service-sts-logon-schema)现在与[ AADSTS 错误代码](https://docs.microsoft.com/azure/active-directory/develop/reference-aadsts-error-codes#lookup-current-error-code-information)匹配。 此外，UserId 参数不会使用 UserAccountNotFound 错误尝试登录时的用户名填充，因为此用户名在组织的 Azure AD 目录中不存在。
+从 2020 年 11 月开始，Azure AD 登录活动的审核日志将从 Azure AD 事件中心引入到统一审核日志中。 由于此更改，无法使用 UserAccountNotFound 值填充 "LogonError" 属性。 自 2021 年 2 月第一周开始，[Azure AD 登录审核架构中的 ErrorCode 属性](/office/office-365-management-api/office-365-management-activity-api-schema#azure-active-directory-secure-token-service-sts-logon-schema)现在与[ AADSTS 错误代码](/azure/active-directory/develop/reference-aadsts-error-codes#lookup-current-error-code-information)匹配。 此外，UserId 参数不会使用 UserAccountNotFound 错误尝试登录时的用户名填充，因为此用户名在组织的 Azure AD 目录中不存在。
 
 ## <a name="troubleshooting-the-office-365-management-activity-api"></a>Office 365 管理活动 API 疑难解答
 
@@ -112,13 +112,13 @@ TargetUpdatedProperties 出现在 ExtendedProperties 中。但是，它们已从
 
 ### <a name="enabling-unified-audit-logging-in-office-365"></a>在 Office 365 中启用统一审核日志记录
 
-如果你刚刚设置了一个正在尝试使用管理活动 API 的应用程序，但它无法正常工作，请确保已针对你的 Office 365 组织启用统一审核日志记录。 可通过启用 Office 365 审核日志来实现此操作。 有关说明，请参阅[打开或关闭 Office 365 审核日志搜索](https://docs.microsoft.com/office365/securitycompliance/turn-audit-log-search-on-or-off)。
+如果你刚刚设置了一个正在尝试使用管理活动 API 的应用程序，但它无法正常工作，请确保已针对你的 Office 365 组织启用统一审核日志记录。 可通过启用 Office 365 审核日志来实现此操作。 有关说明，请参阅[打开或关闭 Office 365 审核日志搜索](/microsoft-365/compliance/turn-audit-log-search-on-or-off)。
 
 如果未启用统一审核，则通常会收到包含以下字符串的错误：`Microsoft.Office.Compliance.Audit``.DataServiceException: Tenant <tenantID> does not exist.`
 
 ### <a name="connecting-to-the-api"></a>连接到 API
 
-大多数应用程序使用简单直观的客户端凭据 OAuth2 流连接到 API。 因此，第一步是创建一个 Azure AD 应用，该应用具有访问管理活动 API 数据所需的权限。 介绍进行 Azure AD 应用注册的步骤不在本文的探讨范围内。 有关详细信息，请参阅[通过 Azure Active Directory 租户注册应用程序](https://docs.microsoft.com/azure/active-directory/develop/active-directory-integrating-applications)。
+大多数应用程序使用简单直观的客户端凭据 OAuth2 流连接到 API。 因此，第一步是创建一个 Azure AD 应用，该应用具有访问管理活动 API 数据所需的权限。 介绍进行 Azure AD 应用注册的步骤不在本文的探讨范围内。 有关详细信息，请参阅[通过 Azure Active Directory 租户注册应用程序](/azure/active-directory/develop/active-directory-integrating-applications)。
 
 #### <a name="azure-application-permissions"></a>Azure 应用程序权限
 

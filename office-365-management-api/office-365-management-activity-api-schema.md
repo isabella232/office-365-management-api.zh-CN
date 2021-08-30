@@ -6,13 +6,13 @@ description: Office 365 管理活动 API 架构作为数据服务提供两层 - 
 ms.ContentId: 1c2bf08c-4f3b-26c0-e1b2-90b190f641f5
 ms.topic: reference (API)
 ms.date: ''
-localization_priority: Priority
-ms.openlocfilehash: 696b624beaff188d51313ce248ffabbbad421a1b5014e5b61da1cb86c8e18dbd
-ms.sourcegitcommit: 88ef5f75a9e2a25760a2caa2cef1f51f9afba90c
+ms.localizationpriority: high
+ms.openlocfilehash: 57c9fb5adcb92d2fd04c6377b7f9a320bbcc8a83
+ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2021
-ms.locfileid: "54274335"
+ms.lasthandoff: 08/25/2021
+ms.locfileid: "58510158"
 ---
 # <a name="office-365-management-activity-api-schema"></a>Office 365 管理活动 API 架构
 
@@ -908,17 +908,17 @@ DLP 事件可用于 Exchange Online、SharePoint Online 和 OneDrive For Busines
 |**参数**|**类型**|**强制**|**说明**|
 |:-----|:-----|:-----|:-----|
 |AlertId|Edm.Guid|是|警报的 GUID。|
-|AlertType|Self.String|是|警报的类型。 警报类型包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>系统警报</p></li><li><p>自定义警报</p></li>|
+|AlertType|Self.String|是|警报的类型。 警报类型包括： <ul><li>系统警报</li><li>自定义警报|
 |Name|Edm.String|是|警报的名称。|
 |PolicyId|Edm.Guid|否|触发了警报的策略的 GUID。|
-|Status|Edm.String|否|警报的状态。 状态包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>活动</p></li><li><p>正在调查</p></li><li><p>已解决</p></li><li><p>已解除</p></li></ul>|
-|Severity|Edm.String|否|警报的严重性。 严重性级别包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>低</p></li><li><p>中</p></li><li><p>高</p></li></ul>|
-|类别|Edm.String|否|警报的类别。 类别包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>AccessGovernance</p></li><li><p>DataGovernance</p></li><li><p>DataLossPrevention</p></li><li><p>InsiderRiskManagement</p></li><li><p>MailFlow</p></li><li><p>ThreatManagement</p></li><li><p>其他</p></li></ul>|
-|Source|Edm.String|否|警报的来源。 来源包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>Office 365 安全与合规中心</p></li><li><p>云应用安全</p></li></ul>|
+|Status|Edm.String|否|警报的状态。 状态包括： <ul><li><p>活动</li><li>正在调查</li><li>已解决</li><li>已解除|
+|Severity|Edm.String|否|警报的严重性。 严重性级别包括： <ul><li>低</li><li>中</li><li>高</li></ul>|
+|类别|Edm.String|否|警报的类别。 类别包括： <ul><li>AccessGovernance</li><li>DataGovernance</li><li>DataLossPrevention</li><li>InsiderRiskManagement</li><li>MailFlow</li><li>ThreatManagement</li><li>其他|
+|Source|Edm.String|否|警报的来源。 来源包括： <ul><li>Office 365 安全与合规中心</li><li>云应用安全|
 |Comments|Edm.String|否|查看过警报的用户留下的注释。 默认情况下为“新警报”。|
 |Data|Edm.String|否|警报或警报实体的详细数据 blob。|
 |AlertEntityId|Edm.String|否|警报实体的标识符。 此参数仅适用于 AlertEntityGenerated 事件。|
-|EntityType|Edm.String|否|警报或警报实体的类型。实体类型包括： <ul xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns:mshelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:msxsl="urn:schemas-microsoft-com:xslt"><li><p>User</p></li><li><p>Recipients</p></li><li><p>Sender</p></li><li><p>MalwareFamily</p></li></ul>此参数仅适用于 AlertEntityGenerated 事件。|
+|EntityType|Edm.String|否|警报或警报实体的类型。实体类型包括： <ul><li>User</li><li>Recipients</li><li>Sender</li><li>MalwareFamily</li></ul>此参数仅适用于 AlertEntityGenerated 事件。|
 |||||
 
 ## <a name="yammer-schema"></a>Yammer 架构
