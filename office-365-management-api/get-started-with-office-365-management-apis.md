@@ -7,12 +7,12 @@ ms.ContentId: 74137c9a-29e0-b588-6122-26f4d2c5e3fc
 ms.topic: reference (API)
 ms.date: ''
 ms.localizationpriority: high
-ms.openlocfilehash: 96a0cd71c55251160117d1ae598c8935479b6780
-ms.sourcegitcommit: 13b50617b1a73f5890414087d8eabe6b2240cfb4
+ms.openlocfilehash: ef4ea62f03eb9d536bf42234d9a9f5b28de005e8
+ms.sourcegitcommit: 6c9efd49e6406ee72edc7450afa811d6c660992c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/25/2021
-ms.locfileid: "58510144"
+ms.lasthandoff: 10/08/2021
+ms.locfileid: "60235856"
 ---
 # <a name="get-started-with-office-365-management-apis"></a>Office 365 管理 API 入门
 
@@ -26,7 +26,7 @@ ms.locfileid: "58510144"
     
 3. **从 Azure AD 请求获取访问令牌**。 应用程序使用在 Azure AD 中配置的应用程序凭据，持续不断地请求获取适用于已同意租户的其他访问令牌，而无需与租户管理员有进一步交互。 这些访问令牌称为“仅应用程序令牌”，因为它们不包含租户管理员的相关信息。
     
-4. **调用 Office 365 管理 API**。 仅应用程序访问令牌被传递到 Office 365 管理 API，以验证和授权应用程序。
+4. **调用 Office 365 管理 API**。仅限应用的访问令牌会传递给 Office 365 管理 API，以对应用程序进行身份验证和授权。
     
 下图展示了获取同意和请求获取访问令牌的顺序。
 
@@ -39,42 +39,39 @@ ms.locfileid: "58510144"
 
 Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全身份验证。 若要访问 Office 365 管理 API，必须在 Azure AD 中注册应用程序，并在配置过程中指定应用程序访问 API 所需的权限级别。
 
-
 ### <a name="prerequisites"></a>先决条件
 
 必须有 Office 365 订阅以及与 Office 365 订阅关联的 Azure 订阅，才能在 Azure AD 中注册应用程序。 可以从 Office 365 和 Azure 这两款产品的试用订阅入手。 有关详细信息，请参阅[欢迎加入 Office 365 开发人员计划](/office/developer-program/office-365-developer-program)。
 
-
-### <a name="use-the-azure-management-portal-to-register-your-application-in-azure-ad"></a>使用 Azure 管理门户在 Azure AD 中注册应用程序
+### <a name="use-the-azure-portal-to-register-your-application-in-azure-ad"></a>使用 Azure 门户在 Azure AD 中注册应用程序
 
 拥有包含正确订阅的 Microsoft 租户后，便可以在 Azure AD 中注册应用程序了。
 
-1. 使用包含要使用的 Office 365 订阅的 Microsoft 租户的凭据，登录 [Azure 管理门户](https://manage.windowsazure.com/)。 也可以单击 [Office 管理门户](https://portal.office.com/)左侧导航窗格中的链接，从而访问 Azure 管理门户。
-    
-2. 在左侧导航窗格中，选择“Active Directory”（图中的“1”）。 请确保“目录”选项卡（图中的“2”）处于选中状态，再选择目录名称（图中的“3”）。
-    
-   ![O365 注册页](images/o365-sign-up-page.png)
-    
-    
-3. 在目录页上，选择“应用程序”。 此时，Azure AD 会列出当前在租赁中安装的应用程序。
-    
-4. 选择“添加”。
-    
-   ![Office 365 管理页](images/o365-admin-page.png)
-    
-    
-5. 选择“添加我的组织正在开发的应用程序”。
-    
-6. 在“名称”字段中输入应用程序名称，并将“类型”指定为“WEB 应用程序和/或 WEB API”。
-    
-7. 输入相应的应用程序属性：
-    
-   - **登录 URL**。 可供用户登录并使用应用程序的网址。 稍后可根据需要更改此设置。
-    
-   - **应用程序 ID URI**。 用作应用程序的唯一逻辑标识符的 URI。 URI 必须位于已验证自定义域中，这样外部用户才能向应用程序授予权限，允许应用程序访问外部用户在 Windows Azure AD 中的数据。 例如，如果 Microsoft 租户为 **contoso.onmicrosoft.com**，那么应用程序 ID URI 可以是 **https://app.contoso.onmicrosoft.com**。
-    
-8. 此时，应用程序已向 Azure AD 进行注册，并已分配有客户端 ID。 不过，还剩几个重要的应用程序方面需要配置。
-    
+1. 使用具有想要使用的 Office 365 订阅的 Microsoft 租户凭据登录到 [Azure 门户](https://portal.azure.com)。 还可以通过显示在 [Microsoft 365 管理中心](https://admin.microsoft.com/) 内左侧导航窗格中的链接访问 Azure 门户。
+
+2. 在左侧导航窗格中，选择 **Azure Active Directory** (1)。
+
+   ![Azure 门户主页](images/AzurePortal1.png)
+
+3. 在 **Azure Active Directory** 页面中，选择 **应用注册** (2)，然后选择 **新注册** (3)。
+
+   ![Azure Active Directory 中的应用注册页面](images/AzureAppRegistration2.png)
+
+4. 在“**应用注册**”页面，选择“**新增注册**”。
+
+   将显示开始注册应用的新页面。
+
+5. 在 **注册应用程序** 页面中，执行以下操作:
+
+   ![应用注册流程](images/AzureAppRegistration3.png)
+
+   1. 命名应用。
+
+   2. 选择可以使用应用并访问 API 的人员。
+
+   3. 如果需要，请在身份验证后为用户重定向提供重定向 URL。
+
+6. 点击 **注册** 以注册新应用。
 
 ### <a name="configure-your-application-properties-in-azure-ad"></a>在 Azure AD 中配置应用程序属性
 
@@ -82,68 +79,69 @@ Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全
 
 若要详细了解 Azure AD 应用程序常规配置，请参阅[应用程序对象属性](/azure/active-directory/develop/active-directory-application-objects)。
 
-
 1. **客户端 ID**。 此值由 Azure AD 自动生成。 应用程序在请求获取租户管理员同意时，以及在从 Azure AD 请求获取仅应用程序令牌时使用此值。
-    
-2. **应用程序是多租户的**。 此属性必须设置为“是”，这样租户管理员才能同意允许应用程序使用 Office 365 管理 API 访问管理员租户数据。 如果此属性设置为“否”，应用程序就只能访问你自己租户的数据。
-    
-3. **回复 URL**。 这是租户管理员在同意允许应用程序使用 Office 365 管理 API 访问管理员租户数据后重定向到的 URL。 可根据需要配置多个回复 URL。 Azure 会自动设置第一个回复 URL，以匹配你在创建应用程序时指定的登录 URL，但你可根据需要更改此值。
-    
-更改这些属性后，请务必选择“保存”。
 
+2. **应用程序为多租户**。 此属性必须设置为“是”，这样租户管理员才能同意允许应用程序使用 Office 365 管理 API 访问管理员租户数据。 如果此属性设置为“否”，应用程序就只能访问你自己租户的数据。
+
+3. **回复 URL**。 这是租户管理员在同意允许应用程序使用 Office 365 管理 API 访问管理员租户数据后重定向到的 URL。 可根据需要配置多个回复 URL。 Azure 会自动设置第一个回复 URL，以匹配你在创建应用程序时指定的登录 URL，但你可根据需要更改此值。
+
+更改这些属性后，请务必选择“保存”。
 
 ### <a name="generate-a-new-key-for-your-application"></a>生成应用程序的新密钥
 
-用授权代码交换访问令牌时会用到密钥（亦称为“客户端密码”）。
+当交换访问令牌的授权代码时，会使用密钥(也称为 *客户端密码*)。
 
+1. 在 Azure 门户的 **Azure Active Directory** 页面中，选择 **应用注册**，然后选择应用程序。
 
-1. 在 Azure 管理门户中，选择应用程序并在顶部菜单中选择 **配置**。 向下滚动到 **密钥**。
-    
-2. 依次选择密钥期限和“保存”。
-    
-   ![Azure 订阅页](images/azure-subscription-page.png)
-    
-    
-3. Azure 仅显示保存后的应用程序密码。 选择“剪贴板”图标，将客户端密码复制到剪贴板中。
-    
-   ![Azure 门户页](images/azure-portal-page.png)
+    ![选择刚刚注册的应用](images/AzureAppRegistration4.png)
 
-   > [!IMPORTANT] 
-   > Azure 仅在客户端密码最初生成时才显示它。 无法返回到此页，因此稍后也无法检索客户端密码。
+2. 在应用页面显示后，在左窗格中选择 **证书和密码** (1)。 在此页面中，可以上传证书并新建客户端密码(2)。
+
+    ![应用的“证书和密码”页面](images\AzureAppRegistrationCertificatesSecrets.png)
+
+3. 在 **证书和密码** (1)页面中，选择 **新客户端密码** (2)，键入说明并选择密钥的持续时间(3)，然后选择 **添加** (4)。
+
+   ![创建客户端密码](images\AzureAppRegistration5.png)
+
+4. 创建客户端密码后，该值将显示在 **客户端密码**(2) 下。 点击剪贴板图标(3)，以将客户端密码值复制到剪贴板。
+
+   ![将客户端密码值复制到剪贴板并将其保存，以供之后使用](images\AzureAppRegistration6.png)
+
+   > [!IMPORTANT]
+   > Azure 仅在你最初生成客户端密码值时显示该值。 之后无法返回此页面并取回客户端密码值。 请确保将其复制并保存到安全位置，以便之后使用。
 
 ### <a name="configure-an-x509-certificate-to-enable-service-to-service-calls"></a>将 X.509 证书配置为启用服务到服务调用
 
-在后台运行的应用程序（如守护程序或服务）可使用客户端凭据，以请求获取仅应用程序访问令牌，而无需在获取初始同意后重复请求获取租户管理员同意。 
+在后台运行的应用程序（如守护程序或服务）可使用客户端凭据，以请求获取仅应用程序访问令牌，而无需在获取初始同意后重复请求获取租户管理员同意。
 
 有关详细信息，请参阅[使用客户端凭据执行服务到服务调用](https://msdn.microsoft.com/library/azure/dn645543.aspx)。
 
 必须为应用程序配置 X.509 证书，以用作在从 Azure AD 请求获取仅应用程序访问令牌时所需的客户端凭据。此流程有两个步骤：
 
 - 获取 X.509 证书。可使用自签名证书或由公共可信的证书颁发机构颁发的证书。
-    
+
 - 将应用程序清单修改为，包含证书的指纹和公钥。
-    
+
 下面介绍了如何使用 Visual Studio 或 Windows SDK _makecert_ 工具生成自签名证书，并将公钥导出到经过 base64 编码的文件中。
 
-
 1. 在命令行中运行下面的命令：
-    
-   ```
+
+   ```powershell
     makecert -r -pe -n "CN=MyCompanyName MyAppName Cert" -b 03/15/2015 -e 03/15/2017 -ss my -len 2048
    ```
 
-   > [!NOTE] 
+   > [!NOTE]
    > 生成 X.509 证书时，请确保密钥长度至少为 2048。 无法将长度较短的密钥接受为有效密钥。
 
-2. 打开证书 MMC 管理单元，并连接到用户帐户。 
-    
-3. 在个人文件夹中查找新证书，并将公钥导出到经过 base64 编码的文件（例如，mycompanyname.cer）中。 由于应用程序将使用此证书与 Azure AD 进行通信，因此请确保你也保留对私钥的访问权限。
-    
-   > [!NOTE] 
+2. 打开证书 MMC 管理单元，并连接到用户帐户。
+
+3. 在“个人”文件夹中查找新证书，并将公钥导出到 base64 编码文件中(例如，`mycompanyname.cer`)。 由于应用程序将使用此证书与 Azure AD 进行通信，因此请确保你也保留对私钥的访问权限。
+
+   > [!NOTE]
    > 可使用 Windows PowerShell 提取指纹和经过 base64 编码的公钥。 其他平台提供了用于检索证书属性的类似工具。
 
-4. 在 Windows PowerShell 提示符中键入并运行下面的命令：
-    
+4. 在 Windows PowerShell 提示下，键入并运行以下命令:
+
    ```powershell
     $cer = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
     $cer.Import("mycer.cer")
@@ -155,17 +153,16 @@ Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全
    ```
 
 5. 存储 `$base64Thumbprint`、`$base64Value` 和 `$keyid` 的值，以供在下一组步骤中更新应用程序清单时使用。
-    
+
    使用从证书中提取的值和生成的密钥 ID，现在必须在 Azure AD 中更新应用程序清单。
-    
-6. 在 Azure 管理门户中，依次选择应用程序和顶部菜单中的“配置”。
-    
-7. 在命令栏中，依次选择“管理清单”和“下载清单”。
-    
-   ![命令行证书显示](images/command-line-certificate-display.png)
-    
-    
-8. 打开下载的清单进行编辑，并将空的 KeyCredentials 属性替换为以下 JSON：
+
+6. 在 Azure 门户中，转到 **应用注册** > **所有应用程序**，选择应用程序，然后在左窗格中选择 **清单**。
+
+7. 在 **清单** 页面(1)的顶部导航栏中，选择 **下载** (2)。
+
+   ![下载清单以便编辑](images/AzureAppRegistration7.png)
+
+8. 在编辑器中打开下载的清单，并将空的 *keyCredentials* 属性替换为以下 JSON:
     
    ```json
       "keyCredentials": [
@@ -179,43 +176,40 @@ Office 365 管理 API 使用 Azure AD 提供对 Office 365 租户数据的安全
     ],
    ```
 
-
-   > [!NOTE] 
+   > [!NOTE]
    > [KeyCredentials](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#KeyCredentialType) 属性是一个集合，让为滚动更新方案上传多个 X.509 证书，或者为泄漏方案删除证书成为可能。
 
 9. 保存更改，并依次选择命令栏中的“管理清单”和“上传清单”，再浏览并选择更新后的清单文件以上传。
-    
 
 ### <a name="specify-the-permissions-your-app-requires-to-access-the-office-365-management-apis"></a>指定应用程序访问 Office 365 管理 API 所需的权限
 
 最后，需要指定应用程序访问 Office 365 管理 API 所需的确切权限。 为此，请先向应用程序添加对 Office 365 管理 API 的访问权限，再指定所需的一项或多项权限。
 
+1. 在 Azure 门户中，转到 **应用注册** > **所有应用程序**，选择应用程序，然后在左窗格中选择 **API 权限** (1)。 点击 **添加权限** (2)以显示 **请求 API 权限** (3)浮出控件页面。
 
-1. 在 Azure 管理门户中，依次选择应用程序和顶部菜单中的“配置”。 向下滚动到“对其他应用程序的权限”，并选择“添加应用程序”。
-    
-   ![Azure AD 页](images/azure-ad-page.png)
-    
-    
-2. 选择“Office 365 管理 API”（图中的“1”），让它显示在“已选择”列（图中的“2”）中，再选择右下角的复选标记（图中的“3”），以保存选择并返回到应用程序的主配置页。
-    
-   ![Azure AD 应用程序页](images/azure-ad-apps-page.png)
-    
-    
-3. 此时，Office 管理 API 显示在应用程序需要有权访问的应用程序列表中。 在“应用程序权限”和“委托权限”下，选择应用程序需要的权限。 若要详细了解每项权限，请参阅具体的 API 参考。  
+   ![添加 API 权限](images/AzureAppRegistration8.png)
 
-   > [!NOTE] 
-   > 目前有四项未用权限与今后即将弃用的活动报告和威胁智能相关。 请勿选择其中任何权限，因为它们是不必要的。
-    
-   ![“添加应用程序”对话框](images/add-an-application-dialog.png)
-    
-    
-4. 选择“保存”，以保存配置。
-    
+2. 在 **Microsoft API** 选项卡中，选择 **Office 365 管理 API** (4)。
+
+   ![在 Microsoft API 选项卡中选择 Office 365 管理 API](images/AzureAppRegistration9.png)
+
+3. 在浮出控件页面中，选择应用所需的以下权限类型 (3)，然后点击 **添加权限**
+
+   ![选择应用的权限类型](images/AzureAppRegistration10.png)
+
+   1. **委派权限**。 允许客户端应用代表已登录用户执行操作，例如阅读电子邮件或修改用户的配置文件。
+
+   2. **应用程序权限**。 允许客户端应用在无用户交互或同意的情况下以自身身份进行身份验证的权限，例如后台服务使用的应用或守护进程应用。
+
+4. Office 管理 API 现在显示在应用需要其权限的应用程序列表中。 在 **应用程序权限** 和 **委派权限** 下，如果需要，请选择应用程序所需的权限。 若要详细了解每项权限，请参阅具体的 API 参考。  
+
+   ![应用的 API 权限](images/AzureAppRegistration11.png)
+
+5. 选择 **为“租户名称”授予管理员许可**，以同意授予应用的权限。
 
 ## <a name="get-office-365-tenant-admin-consent"></a>获取 Office 365 租户管理员同意
 
 至此，应用程序已配置有使用 Office 365 管理 API 所需的权限。租户管理员必须显式授予应用程序这些权限，应用程序才能使用 API 访问管理员租户数据。 若要授予同意，租户管理员必须使用以下专门构造的 URL 登录 Azure AD，以查看应用程序请求获取的权限。 如果使用 API 访问你自己租户的数据，便无需执行这一步。
-
 
 ```http
 https://login.windows.net/common/oauth2/authorize?response_type=code&resource=https%3A%2F%2Fmanage.office.com&client_id={your_client_id}&redirect_uri={your_redirect_url }
@@ -231,10 +225,9 @@ https://login.windows.net/common/oauth2/authorize?response_type=code&resource=ht
 
 你可以通过将同意 URL 粘贴到浏览器中并使用 Office 365 管理员的凭据登录来测试许可 URL，而不是用于注册应用程序的租户的凭据。你将看到授予应用程序使用 Office 管理 API 的权限的请求。
 
+![“权限同意”页面](images/AzureAppRegistration12.png)
 
-![Azure AD 已添加应用程序页](images/azure-ad-app-added-page.png)
-
-选择“接受”后，便会重定向到指定页，并且查询字符串中会有授权代码。 
+选择“接受”后，便会重定向到指定页，并且查询字符串中会有授权代码。
 
 例如：
 
@@ -243,7 +236,6 @@ http://www.mycompany.com/myapp/?code=AAABAAAAvPM1KaPlrEqdFSB...
 ```
 
 应用程序使用此授权代码，从 Azure AD 获取可从中提取租户 ID 的访问令牌。 提取并存储租户 ID 后，可获取后续访问令牌，而无需请求租户管理员登录。
-
 
 ## <a name="request-access-tokens-from-azure-ad"></a>从 Azure AD 请求获取访问令牌
 
@@ -287,7 +279,7 @@ resource=https%3A%2F%2Fmanage.office.com&amp;client_id=a6099727-6b7b-482c-b509-1
 
 <br/>
 
-响应正文包含多个属性，包括访问令牌。 
+响应正文包含多个属性，包括访问令牌。
 
 #### <a name="sample-response"></a>示例响应
 
@@ -334,7 +326,7 @@ Content-Length: 3265
 
 在租户 ID 已知后，应用程序便可以对 Azure AD 执行服务到服务调用，以在访问令牌到期时请求获取其他访问令牌。 这些令牌仅包含发出请求的应用程序的相关信息，并不包含最初授予同意的管理员的相关信息。 若要执行服务到服务调用，应用程序必须使用 X.509 证书创建客户端断言（形式为经过 base64 编码的 SHA256 签名 JWT 持有者令牌）。
 
-在 .NET 中开发应用程序时，可使用 [Azure AD 身份验证库 (ADAL)](/azure/active-directory/develop/active-directory-authentication-libraries) 创建客户端断言。 其他开发平台应该有类似的库。
+当在 .NET 中开发应用程序时，可以使用 [Azure AD 身份验证库(ADAL)](/azure/active-directory/develop/active-directory-authentication-libraries) 创建客户端断言。其他开发平台应具有类似的库。
 
 未编码的 JWT 令牌由具有以下属性的头和有效负载组成。
 
@@ -449,11 +441,11 @@ Content-Length: 1276
 
 - **同意体验**。 若要获取客户同意，必须在浏览器中使用前面所述的专门构造 URL 将客户定向到 Azure AD 网站，并且必须有 Azure AD 在管理员授予同意后将他们重定向到的网站。 此网站必须从 URL 中提取授权代码，并用它来请求获取可从中获取租户 ID 的访问令牌。
     
-- **将租户 ID 存储在系统中**。 从 Azure AD 请求获取访问令牌和调用 Office 管理 API 时，都必须这样做。
+- **将租户 ID 存储在系统中**。当从 Azure AD 请求访问令牌以及调用 Office 管理 API 时，将需要此设置。
     
-- **管理访问令牌**。 需要有在必要时请求获取和管理访问令牌的组件。 如果应用程序定期调用 API，可按需请求获取令牌；或如果应用程序连续调用 API 来检索数据，可定期（例如，每 45 分钟）请求获取一次令牌。
+- **管理访问令牌**。将需要根据需要请求并管理访问令牌的组件。如果应用定期调用 API，则其可以按需请求令牌，或者如果应用连续调用 API 以检索数据，则其可以定期请求令牌(例如，每 45 分钟)。
     
 - 根据要使用的特定 API 的需要，**实现 Webhook 侦听器**。
     
-- **数据检索和存储**。 需要有检索每个租户的数据的组件，检索方式可以是使用连续轮询，也可以是响应 Webhook 通知，具体视要使用的特定 API 而定。
+- **数据检索和存储**。将需要为每个租户检索数据的组件，方法是使用连续轮询或响应 Webhook 通知，具体取决于你正在使用的特定 API。
     
